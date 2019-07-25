@@ -6,7 +6,6 @@
   "description": "Product List",
   "defaultLocale": "pt-BR",
   "builders": {
-    "messages": "1.x",
     "store": "0.x",
     "react": "3.x"
   },
@@ -15,8 +14,7 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.styleguide": "9.x",
-    "vtex.checkout-graphql": "0.x"
+    "vtex.styleguide": "9.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
