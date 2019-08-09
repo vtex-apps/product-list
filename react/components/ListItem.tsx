@@ -26,7 +26,7 @@ const ListItem: FunctionComponent<Props> = ({
     <div>
       <div className="lh-copy pb3">
         <div>{item.additionalInfo.brandName}</div>
-        <Link className="c-link no-underline" to={item.detailUrl}>
+        <Link className="c-link no-underline" href={item.detailUrl}>
           {item.name}
         </Link>
         {item.variations &&
