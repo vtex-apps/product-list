@@ -25,7 +25,7 @@ const ListItem: FunctionComponent<Props> = ({
     <div>
       <div className="lh-copy pb3">
         <div>{item.additionalInfo.brandName}</div>
-        <a className="blue no-underline" href={item.detailUrl}>
+        <Link className="c-link no-underline" to={item.detailUrl}>
           {item.name}
         </a>
         {item.variations &&
@@ -63,7 +63,7 @@ const ListItem: FunctionComponent<Props> = ({
         </div>
       </div>
       <div>
-        <a className="gray no-underline" href="#" onClick={onRemove}>
+        <a className="c-muted-1 no-underline" href="#" onClick={onRemove}>
           x
         </a>
       </div>
