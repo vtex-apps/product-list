@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import { Link } from 'vtex.styleguide'
 
 import FormattedPrice from './FormattedPrice'
 import Selector from './QuantitySelector'
@@ -27,7 +28,7 @@ const ListItem: FunctionComponent<Props> = ({
         <div>{item.additionalInfo.brandName}</div>
         <Link className="c-link no-underline" to={item.detailUrl}>
           {item.name}
-        </a>
+        </Link>
         {item.variations &&
           item.variations.map((variation: Variation, idx: number) => {
             return (
