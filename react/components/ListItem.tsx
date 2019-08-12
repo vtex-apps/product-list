@@ -29,11 +29,11 @@ const ListItem: FunctionComponent<Props> = ({
         <Link className="c-link no-underline" href={item.detailUrl}>
           {item.name}
         </Link>
-        {item.variations &&
-          item.variations.map((variation: Variation, idx: number) => {
+        {item.skuSpecifications &&
+          item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
             return (
               <div key={idx}>
-                {`${variation.name}: ${variation.values.join(', ')}`}
+                {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
               </div>
             )
           })}
