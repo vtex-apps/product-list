@@ -1,45 +1,31 @@
-import React, { useState } from 'react'
-import { Input } from 'vtex.styleguide'
+import React, { FunctionComponent } from 'react'
 
-import TranslatedTitle from './components/TranslatedTitle'
+import ListItem from './components/ListItem'
 
-import styles from './styles.css'
+interface Props {
+  currency: string
+  items: Item[]
+  onQuantityChange: (index: number, value: number) => void
+  onRemove: (index: number) => void
+}
 
-const Example: StorefrontFunctionComponent<ExampleProps> = ({ title }) => {
-  const [inputValue, setValue] = useState<string | null>(null)
-
-  return (
-    <div className={`${styles.container} flex flex-column pv6 ph4`}>
-      <TranslatedTitle title="Hello from Product List!" />
-      <div className="t-body pv4">
-        <span>Foobar</span>
-      </div>
-      <Input
-        value={inputValue}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setValue(e.target.value)
-        }
+const ProductList: FunctionComponent<Props> = ({
+  currency,
+  items,
+  onQuantityChange,
+  onRemove,
+}) => (
+  <div>
+    {items.map((item: any, index: number) => (
+      <ListItem
+        key={index}
+        currency={currency}
+        item={item}
+        onQuantityChange={(value: number) => onQuantityChange(index, value)}
+        onRemove={() => onRemove(index)}
       />
-    </div>
-  )
-}
+    ))}
+  </div>
+)
 
-interface ExampleProps {
-  title?: string
-}
-
-Example.schema = {
-  title: 'editor.base-store-component.title',
-  description: 'editor.base-store-component.description',
-  type: 'object',
-  properties: {
-    title: {
-      title: 'editor.base-store-component.title.title',
-      description: 'editor.base-store-component.title.description',
-      type: 'string',
-      default: null,
-    },
-  },
-}
-
-export default Example
+export default ProductList
