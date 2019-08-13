@@ -10,9 +10,6 @@
     "react": "3.x"
   },
   "mustUpdateAt": "2019-04-02",
-  "scripts": {
-    "postreleasy": "vtex publish --verbose"
-  },
   "dependencies": {
     "vtex.styleguide": "9.x",
     "vtex.checkout-graphql": "0.x"
