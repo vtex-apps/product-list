@@ -17,9 +17,9 @@ const ListItem: FunctionComponent<Props> = ({
   onQuantityChange,
   onRemove,
 }) => (
-  <div className="c-on-base flex bb b--muted-4 pb5 pb6-l">
+  <div className="c-on-base flex bb b--muted-4 pb5 pb6-m">
     {/* Image */}
-    <div className="flex-none mr5 mt5 mr6-l mt6-l">
+    <div className="flex-none mr5 mt5 mr6-m mt6-m">
       <a href={item.detailUrl}>
         <img alt={item.name} src={item.imageUrl} width="100%" />
       </a>
@@ -27,15 +27,15 @@ const ListItem: FunctionComponent<Props> = ({
 
 
     {/* Desktop Container */}
-    <div className="flex-auto flex-l">
+    <div className="flex-auto flex-m">
 
       {/* Product Info */}
-      <div className="flex-none w-100 flex mb4 w-60-l">
+      <div className="flex-none w-100 flex mb4 w-60-m">
         {/* Brand and Name */}
-        <div className="flex-auto mt5 mt6-l mr6-l">
-          <div className="ttu f7 fw6 c-muted-1 mb2 fw5-l">{item.additionalInfo.brandName}</div>
+        <div className="flex-auto mt5 mt6-m mr6-m">
+          <div className="ttu f7 fw6 c-muted-1 mb2 fw5-m">{item.additionalInfo.brandName}</div>
           <div>
-            <a className="c-on-base t-title lh-copy fw6 no-underline fw5-l" href={item.detailUrl}>
+            <a className="c-on-base t-title lh-copy fw6 no-underline fw5-m" href={item.detailUrl}>
               {item.name}
             </a>
           </div>
@@ -56,7 +56,7 @@ const ListItem: FunctionComponent<Props> = ({
         </div>
 
         {/* Remove - Mobile */}
-        <div className="flex-none dn-l">
+        <div className="flex-none dn-m">
           <button className="bg-transparent bn pa2 mt4 mr4" onClick={onRemove}>
             <IconDelete color="#727273"/>
           </button>
@@ -64,11 +64,11 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
       
       {/* Quantity Selector */}
-      <div className="flex-auto-l mt6-l">
-        <div className="dn-l" style={{ width: '70px' }}>
+      <div className="flex-auto-m mt6-m">
+        <div className="dn-m" style={{ width: '70px' }}>
           <Selector value={item.quantity} onChange={onQuantityChange} />
         </div>
-        <div className="dn db-l" style={{ width: '90px' }}>
+        <div className="dn db-m" style={{ width: '90px' }}>
           <Selector value={item.quantity} onChange={onQuantityChange} />
         </div>
 
@@ -83,7 +83,7 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
 
       {/* Price */}
-      <div className="mt5 tr-l flex-auto-l mt6-l ml5-l">
+      <div className="mt5 tr-m flex-auto-m mt6-m ml5-m">
         {
           item.listPrice !== item.price && (
             <div className="c-muted-1 strike t-mini mb2">
@@ -94,7 +94,7 @@ const ListItem: FunctionComponent<Props> = ({
             </div>
           )
         }
-        <div className="div fw6 fw5-l">
+        <div className="div fw6 fw5-m">
           <FormattedPrice
             currency={currency}
             value={item.sellingPrice * item.quantity}
@@ -103,7 +103,7 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
 
       {/* Remove - Desktop */}
-      <div className="flex-none-l dn db-l">
+      <div className="flex-none-m dn db-m">
         <button className="pointer bg-transparent bn pa2 mt6 ml6" onClick={onRemove}>
           <IconDelete color="#727273"/>
         </button>
