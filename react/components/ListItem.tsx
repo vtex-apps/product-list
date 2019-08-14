@@ -17,52 +17,69 @@ const ListItem: FunctionComponent<Props> = ({
   onQuantityChange,
   onRemove,
 }) => (
-  <div className="c-on-base flex bb b--muted-4 pl5 pb5">
-    <div className="flex-none mr5 mt5">
+  <div className="c-on-base flex bb b--muted-4 pl5 pb5 pl0-l pb6-l">
+    {/* Image */}
+    <div className="flex-none mr5 mt5 mr6-l mt6-l">
       <a href={item.detailUrl}>
         <img alt={item.name} src={item.imageUrl} width="100%" />
       </a>
     </div>
-    <div className="flex-auto">
-      <div className="flex-none w-100 flex mb4">
-        <div className="flex-auto mt5">
-          <div className="ttu f7 fw5 c-muted-1 mb2">{item.additionalInfo.brandName}</div>
-          <a className="c-on-base t-title lh-copy fw5 no-underline" href={item.detailUrl}>
+
+
+    {/* Desktop Container */}
+    <div className="flex-auto flex-l">
+
+      {/* Product Info */}
+      <div className="flex-none w-100 flex mb4 w-60-l">
+        {/* Brand and Name */}
+        <div className="flex-auto mt5 mt6-l mr6-l">
+          <div className="ttu f7 fw6 c-muted-1 mb2">{item.additionalInfo.brandName}</div>
+          <a className="c-on-base t-title lh-copy fw6 no-underline" href={item.detailUrl}>
             {item.name}
           </a>
         </div>
-        <div className="flex-none">
+
+        {/* Remove - Mobile */}
+        <div className="flex-none dn-l">
           <button className="bg-transparent bn pa2 mt4 mr4" onClick={onRemove}>
             <IconDelete color="#727273"/>
           </button>
         </div>
+        
+        {/* Variations */}
+        <div className="">
+          {item.skuSpecifications &&
+            item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
+              return (
+                <div key={idx}>
+                  {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
+                </div>
+              )
+            })}
+        </div>
       </div>
       
-      <div className="">
-        {item.skuSpecifications &&
-          item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
-            return (
-              <div key={idx}>
-                {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
-              </div>
-            )
-          })}
-      </div>
-      
-      <div className="" style={{ width: '70px' }}>
-        <Selector value={item.quantity} onChange={onQuantityChange} />
+      {/* Quantity Selector */}
+      <div className="flex-auto-l mt6-l">
+        <div className="dn-l" style={{ width: '70px' }}>
+          <Selector value={item.quantity} onChange={onQuantityChange} />
+        </div>
+        <div className="dn db-l" style={{ width: '90px' }}>
+          <Selector value={item.quantity} onChange={onQuantityChange} />
+        </div>
+
+        {
+          item.quantity > 1 && (
+            <div className="mt3 t-mini c-muted-1">
+              <FormattedPrice currency={currency} value={item.sellingPrice} />
+              <span> per {item.measurementUnit}</span>
+            </div>
+          )
+        }
       </div>
 
-      {
-        item.quantity > 1 && (
-          <div className="mt3 t-mini c-muted-1">
-            <FormattedPrice currency={currency} value={item.sellingPrice} />
-            <span> per {item.measurementUnit}</span>
-          </div>
-        )
-      }
-
-      <div className="mt5">
+      {/* Price */}
+      <div className="mt5 tr-l flex-auto-l mt6-l">
         {
           item.listPrice !== item.price && (
             <div className="c-muted-1 strike t-mini mb2">
@@ -73,14 +90,24 @@ const ListItem: FunctionComponent<Props> = ({
             </div>
           )
         }
-        <div className="div fw5 mr3">
+        <div className="div fw6">
           <FormattedPrice
             currency={currency}
             value={item.sellingPrice * item.quantity}
           />
         </div>
       </div>
+
+      {/* Remove - Desktop */}
+      <div className="flex-none-l dn db-l">
+        <button className="pointer bg-transparent bn pa2 mt6 ml6" onClick={onRemove}>
+          <IconDelete color="#727273"/>
+        </button>
+      </div>
+
     </div>
+
+
   </div>
 )
 
