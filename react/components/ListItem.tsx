@@ -17,7 +17,7 @@ const ListItem: FunctionComponent<Props> = ({
   onQuantityChange,
   onRemove,
 }) => (
-  <div className="c-on-base flex bb b--muted-4 pl5 pb5 pl0-l pb6-l">
+  <div className="c-on-base flex bb b--muted-4 pb5 pb6-l">
     {/* Image */}
     <div className="flex-none mr5 mt5 mr6-l mt6-l">
       <a href={item.detailUrl}>
@@ -33,10 +33,26 @@ const ListItem: FunctionComponent<Props> = ({
       <div className="flex-none w-100 flex mb4 w-60-l">
         {/* Brand and Name */}
         <div className="flex-auto mt5 mt6-l mr6-l">
-          <div className="ttu f7 fw6 c-muted-1 mb2">{item.additionalInfo.brandName}</div>
-          <a className="c-on-base t-title lh-copy fw6 no-underline" href={item.detailUrl}>
-            {item.name}
-          </a>
+          <div className="ttu f7 fw6 c-muted-1 mb2 fw5-l">{item.additionalInfo.brandName}</div>
+          <div>
+            <a className="c-on-base t-title lh-copy fw6 no-underline fw5-l" href={item.detailUrl}>
+              {item.name}
+            </a>
+          </div>
+          {/* Variations */}
+          {
+            item.skuSpecifications && item.skuSpecifications.length > 0 && (
+              <div className="mt2 c-muted-1 f6 lh-copy">
+                {item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
+                  return (
+                    <div key={idx}>
+                      {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          }
         </div>
 
         {/* Remove - Mobile */}
@@ -44,19 +60,7 @@ const ListItem: FunctionComponent<Props> = ({
           <button className="bg-transparent bn pa2 mt4 mr4" onClick={onRemove}>
             <IconDelete color="#727273"/>
           </button>
-        </div>
-        
-        {/* Variations */}
-        <div className="">
-          {item.skuSpecifications &&
-            item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
-              return (
-                <div key={idx}>
-                  {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
-                </div>
-              )
-            })}
-        </div>
+        </div>        
       </div>
       
       {/* Quantity Selector */}
@@ -79,7 +83,7 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
 
       {/* Price */}
-      <div className="mt5 tr-l flex-auto-l mt6-l">
+      <div className="mt5 tr-l flex-auto-l mt6-l ml5-l">
         {
           item.listPrice !== item.price && (
             <div className="c-muted-1 strike t-mini mb2">
@@ -90,7 +94,7 @@ const ListItem: FunctionComponent<Props> = ({
             </div>
           )
         }
-        <div className="div fw6">
+        <div className="div fw6 fw5-l">
           <FormattedPrice
             currency={currency}
             value={item.sellingPrice * item.quantity}
