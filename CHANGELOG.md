@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Improved UI for all device types.
+
 ## [0.1.0] - 2019-08-13
 
 ### Added
