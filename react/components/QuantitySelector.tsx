@@ -104,14 +104,13 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
         </div>
         <div className="dn db-l">
           <Input
-              value={curDisplayValue}
-              onChange={(event: any) => handleChange(event.target.value)}
-              onBlur={handleBlur}
-              placeholder=""
-            />
+            value={curDisplayValue}
+            onChange={(event: any) => handleChange(event.target.value)}
+            onBlur={handleBlur}
+            placeholder=""
+          />
         </div>
       </div>
-
     )
   }
 }

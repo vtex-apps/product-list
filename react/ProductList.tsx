@@ -18,7 +18,9 @@ const ProductList: FunctionComponent<Props> = ({
   <div className="ml5 ml0-l mb6-l">
     <h3>
       <span className="t-heading-3 c-on-base t-heading-2-l">Cart</span>
-      <span className="t-heading-5 c-muted-1 t-heading-4-l"> ({items.length} items)</span>
+      <span className="t-heading-5 c-muted-1 t-heading-4-l">
+        ({items.length} items)
+      </span>
     </h3>
 
     {items.map((item: any, index: number) => (
