@@ -70,23 +70,47 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
     ]
 
     return (
-      <Dropdown
-        options={dropdownOptions}
-        size="small"
-        value={value}
-        onChange={(event: any) => handleChange(event.target.value)}
-        placeholder=""
-      />
+      <div>
+        <div className="dn-l">
+          <Dropdown
+            options={dropdownOptions}
+            size="small"
+            value={value}
+            onChange={(event: any) => handleChange(event.target.value)}
+            placeholder=""
+          />
+        </div>
+        <div className="dn db-l">
+          <Dropdown
+            options={dropdownOptions}
+            value={value}
+            onChange={(event: any) => handleChange(event.target.value)}
+            placeholder=""
+          />
+        </div>
+      </div>
     )
   } else {
     return (
-      <Input
-        size="small"
-        value={curDisplayValue}
-        onChange={(event: any) => handleChange(event.target.value)}
-        onBlur={handleBlur}
-        placeholder=""
-      />
+      <div>
+        <div className="dn-l">
+          <Input
+            size="small"
+            value={curDisplayValue}
+            onChange={(event: any) => handleChange(event.target.value)}
+            onBlur={handleBlur}
+            placeholder=""
+          />
+        </div>
+        <div className="dn db-l">
+          <Input
+            value={curDisplayValue}
+            onChange={(event: any) => handleChange(event.target.value)}
+            onBlur={handleBlur}
+            placeholder=""
+          />
+        </div>
+      </div>
     )
   }
 }
