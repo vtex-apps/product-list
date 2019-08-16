@@ -62,7 +62,11 @@ const ListItem: FunctionComponent<Props> = ({
 
         {/* Remove - Mobile */}
         <div className="flex-none dn-m">
-          <button className="bg-transparent bn pa2 mt4 mr4" onClick={onRemove}>
+          <button
+            className="bg-transparent bn pa2 mt4 mr4"
+            title="remove"
+            onClick={onRemove}
+          >
             <IconDelete color="#727273" />
           </button>
         </div>
