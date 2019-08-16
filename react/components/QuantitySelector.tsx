@@ -2,6 +2,8 @@ import { range } from 'ramda'
 import React, { FunctionComponent, useState } from 'react'
 import { Dropdown, Input } from 'vtex.styleguide'
 
+const MAX_INPUT_LENGTH = 5
+
 enum SelectorType {
   Dropdown,
   Input,
@@ -10,7 +12,6 @@ enum SelectorType {
 interface Props {
   value: number
   maxValue: number
-  maxLength: number
   onChange: (value: number) => void
 }
 
@@ -53,7 +54,6 @@ const getDropdownOptions = (maxValue: number) => {
 const QuantitySelector: FunctionComponent<Props> = ({
   value,
   maxValue,
-  maxLength,
   onChange,
 }) => {
   const [curSelector, setSelector] = useState(
@@ -120,7 +120,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
           <Input
             size="small"
             value={curDisplayValue}
-            maxLength={maxLength}
+            maxLength={MAX_INPUT_LENGTH}
             onChange={(event: any) => handleChange(event.target.value)}
             onBlur={handleBlur}
             placeholder=""
@@ -129,7 +129,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
         <div className="dn db-l">
           <Input
             value={curDisplayValue}
-            maxLength={maxLength}
+            maxLength={MAX_INPUT_LENGTH}
             onChange={(event: any) => handleChange(event.target.value)}
             onBlur={handleBlur}
             placeholder=""

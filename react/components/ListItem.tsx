@@ -5,7 +5,6 @@ import FormattedPrice from './FormattedPrice'
 import Selector from './QuantitySelector'
 
 const MAX_ITEM_QUANTITY = 99999
-const MAX_ITEM_QUANTITY_LENGTH = 5
 
 interface Props {
   currency: string
@@ -75,7 +74,6 @@ const ListItem: FunctionComponent<Props> = ({
           <Selector
             value={item.quantity}
             maxValue={MAX_ITEM_QUANTITY}
-            maxLength={MAX_ITEM_QUANTITY_LENGTH}
             onChange={onQuantityChange}
           />
         </div>
@@ -83,7 +81,6 @@ const ListItem: FunctionComponent<Props> = ({
           <Selector
             value={item.quantity}
             maxValue={MAX_ITEM_QUANTITY}
-            maxLength={MAX_ITEM_QUANTITY_LENGTH}
             onChange={onQuantityChange}
           />
         </div>
