@@ -14,7 +14,8 @@ interface Props {
   onChange: (value: number) => void
 }
 
-const normalizeValue = (value: number, maxValue: number) => value > maxValue ? maxValue : value
+const normalizeValue = (value: number, maxValue: number) =>
+  value > maxValue ? maxValue : value
 
 const validateValue = (value: string, maxValue: number) => {
   const parsedValue = parseInt(value, 10)
@@ -36,7 +37,25 @@ const validateDisplayValue = (value: string, maxValue: number) => {
   return `${normalizeValue(parsedValue, maxValue)}`
 }
 
-const QuantitySelector: FunctionComponent<Props> = ({ value, maxValue, maxLength, onChange }) => {
+const getDropdownOptions = (maxValue: number) => {
+  const limit = Math.min(9, maxValue)
+  const options = [
+    ...range(1, limit + 1).map(idx => ({ value: idx, label: `${idx}` })),
+  ]
+
+  if (maxValue >= 10) {
+    options.push({ value: 10, label: '10+' })
+  }
+
+  return options
+}
+
+const QuantitySelector: FunctionComponent<Props> = ({
+  value,
+  maxValue,
+  maxLength,
+  onChange,
+}) => {
   const [curSelector, setSelector] = useState(
     value < 10 ? SelectorType.Dropdown : SelectorType.Input
   )
@@ -71,10 +90,7 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, maxValue, maxLength
   }
 
   if (curSelector === SelectorType.Dropdown) {
-    const dropdownOptions = [
-      ...range(1, 10).map(idx => ({ value: idx, label: idx })),
-      { value: 10, label: '10+' },
-    ]
+    const dropdownOptions = getDropdownOptions(maxValue)
 
     return (
       <div>
