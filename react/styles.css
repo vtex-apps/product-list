@@ -1,0 +1,22 @@
+@media screen and (max-width: 39.9em) {
+  .quantitySelector {
+    width: 70px;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .price {
+    width: 140px;
+  }
+  .quantity {
+    width: 90px;
+  }
+  .price,
+  .remove {
+    height: 44px;
+  }
+}
+
+@media screen and (min-width: 60em) {
+}
+

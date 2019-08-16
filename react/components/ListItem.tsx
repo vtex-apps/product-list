@@ -5,6 +5,7 @@ import { FormattedCurrency } from 'vtex.format-currency'
 import Selector from './QuantitySelector'
 
 const MAX_ITEM_QUANTITY = 99999
+import styles from '../styles.css'
 
 interface Props {
   item: Item
@@ -17,9 +18,9 @@ const ListItem: FunctionComponent<Props> = ({
   onQuantityChange,
   onRemove,
 }) => (
-  <div className="c-on-base flex bb b--muted-4 pb5 pb6-m">
+  <div className="c-on-base flex bb b--muted-4 pt5 pt6-m pb5 pb6-m pr6-m pr0-l">
     {/* Image */}
-    <div className="flex-none mr5 mt5 mr6-m mt6-m">
+    <div className="flex-none mr5">
       <a href={item.detailUrl}>
         <img alt={item.name} src={item.imageUrl} width="100%" />
       </a>
@@ -28,9 +29,9 @@ const ListItem: FunctionComponent<Props> = ({
     {/* Desktop Container */}
     <div className="flex-auto flex-m">
       {/* Product Info */}
-      <div className="flex-none w-100 flex mb4 w-60-m">
+      <div className="flex-auto w-100 flex mb4 mr7-m">
         {/* Brand and Name */}
-        <div className="flex-auto mt5 mt6-m mr6-m">
+        <div className="flex-auto">
           <div className="ttu f7 fw6 c-muted-1 mb2 fw5-m">
             {item.additionalInfo.brandName}
           </div>
@@ -71,15 +72,8 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
 
       {/* Quantity Selector */}
-      <div className="flex-auto-m mt6-m">
-        <div className="dn-m" style={{ width: '70px' }}>
-          <Selector
-            value={item.quantity}
-            maxValue={MAX_ITEM_QUANTITY}
-            onChange={onQuantityChange}
-          />
-        </div>
-        <div className="dn db-m" style={{ width: '90px' }}>
+      <div className={`${styles.quantity} flex-none-m`}>
+        <div className={`${styles.quantitySelector}`}>
           <Selector
             value={item.quantity}
             maxValue={MAX_ITEM_QUANTITY}
@@ -96,27 +90,31 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
 
       {/* Price */}
-      <div className="mt5 tr-m flex-auto-m mt6-m ml5-m">
-        {item.listPrice !== item.price && (
-          <div className="c-muted-1 strike t-mini mb2">
-            <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
+      <div className={`${styles.price} mt5 mt0-ns flex-m items-center-m tr-m flex-none-m ml5-m`}>
+        <div className="flex-auto">
+          {item.listPrice !== item.price && (
+            <div className="c-muted-1 strike t-mini mb2">
+              <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
+            </div>
+          )}
+          <div className="div fw6 fw5-m">
+            <FormattedCurrency
+              value={(item.sellingPrice * item.quantity) / 100}
+            />
           </div>
-        )}
-        <div className="div fw6 fw5-m">
-          <FormattedCurrency
-            value={(item.sellingPrice * item.quantity) / 100}
-          />
         </div>
       </div>
 
       {/* Remove - Desktop */}
-      <div className="flex-none-m dn db-m">
-        <button
-          className="pointer bg-transparent bn pa2 mt6 ml6"
-          onClick={onRemove}
-        >
-          <IconDelete color="#727273" />
-        </button>
+      <div className={`${styles.remove} flex-m items-center-m flex-none-m dn db-m`}>
+        <div className="flex-auto">
+          <button
+            className="pointer bg-transparent bn pa2 ml6"
+            onClick={onRemove}
+          >
+            <IconDelete color="#727273" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
