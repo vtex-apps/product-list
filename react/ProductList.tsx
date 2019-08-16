@@ -19,7 +19,7 @@ const ProductList: FunctionComponent<Props> = ({
     <h3>
       <span className="t-heading-3 c-on-base t-heading-2-l">Cart</span>
       <span className="t-heading-5 c-muted-1 t-heading-4-l">
-        ({items.length} items)
+        &nbsp;({items.length} items)
       </span>
     </h3>
 
