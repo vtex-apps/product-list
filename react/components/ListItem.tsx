@@ -82,9 +82,14 @@ const ListItem: FunctionComponent<Props> = ({
         </div>
 
         {item.quantity > 1 && (
-          <div className="mt3 t-mini c-muted-1">
-            <FormattedCurrency value={item.sellingPrice / 100} />
-            <span> per {item.measurementUnit}</span>
+          <div className="mt3 t-mini c-muted-1 tc lh-title">
+            <div className="dib">
+              <FormattedCurrency value={item.sellingPrice / 100} />
+            </div>
+            &nbsp;
+            <div className="dib">
+              per {item.measurementUnit}.
+            </div>
           </div>
         )}
       </div>

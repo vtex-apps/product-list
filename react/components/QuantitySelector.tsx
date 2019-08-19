@@ -94,7 +94,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
 
     return (
       <div>
-        <div className="dn-l">
+        <div className="dn-m">
           <Dropdown
             options={dropdownOptions}
             size="small"
@@ -103,7 +103,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             placeholder=""
           />
         </div>
-        <div className="dn db-l">
+        <div className="dn db-m">
           <Dropdown
             options={dropdownOptions}
             value={normalizedValue}
@@ -116,7 +116,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
   } else {
     return (
       <div>
-        <div className="dn-l">
+        <div className="dn-m">
           <Input
             size="small"
             value={curDisplayValue}
@@ -126,7 +126,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             placeholder=""
           />
         </div>
-        <div className="dn db-l">
+        <div className="dn db-m">
           <Input
             value={curDisplayValue}
             maxLength={MAX_INPUT_LENGTH}
