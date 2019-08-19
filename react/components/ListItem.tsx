@@ -1,20 +1,18 @@
 import React, { FunctionComponent } from 'react'
 import { IconDelete } from 'vtex.styleguide'
+import { FormattedCurrency } from 'vtex.format-currency'
 
-import FormattedPrice from './FormattedPrice'
 import Selector from './QuantitySelector'
 
 const MAX_ITEM_QUANTITY = 99999
 
 interface Props {
-  currency: string
   item: Item
   onQuantityChange: (value: number) => void
   onRemove: () => void
 }
 
 const ListItem: FunctionComponent<Props> = ({
-  currency,
   item,
   onQuantityChange,
   onRemove,
@@ -62,7 +60,11 @@ const ListItem: FunctionComponent<Props> = ({
 
         {/* Remove - Mobile */}
         <div className="flex-none dn-m">
-          <button className="bg-transparent bn pa2 mt4 mr4" onClick={onRemove}>
+          <button
+            className="bg-transparent bn pa2 mt4 mr4"
+            title="remove"
+            onClick={onRemove}
+          >
             <IconDelete color="#727273" />
           </button>
         </div>
@@ -87,7 +89,7 @@ const ListItem: FunctionComponent<Props> = ({
 
         {item.quantity > 1 && (
           <div className="mt3 t-mini c-muted-1">
-            <FormattedPrice currency={currency} value={item.sellingPrice} />
+            <FormattedCurrency value={item.sellingPrice / 100} />
             <span> per {item.measurementUnit}</span>
           </div>
         )}
@@ -97,16 +99,12 @@ const ListItem: FunctionComponent<Props> = ({
       <div className="mt5 tr-m flex-auto-m mt6-m ml5-m">
         {item.listPrice !== item.price && (
           <div className="c-muted-1 strike t-mini mb2">
-            <FormattedPrice
-              currency={currency}
-              value={item.listPrice * item.quantity}
-            />
+            <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
           </div>
         )}
         <div className="div fw6 fw5-m">
-          <FormattedPrice
-            currency={currency}
-            value={item.sellingPrice * item.quantity}
+          <FormattedCurrency
+            value={(item.sellingPrice * item.quantity) / 100}
           />
         </div>
       </div>

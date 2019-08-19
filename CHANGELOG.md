@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Replaced the implemented currency component in favor of `FormattedCurrency` from `vtex.format-currency`.
+
 ## [0.2.1] - 2019-08-19
 
 ### Fixed

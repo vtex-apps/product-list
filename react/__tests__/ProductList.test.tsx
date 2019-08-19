@@ -23,7 +23,7 @@ describe('Product List', () => {
   it('should call onRemove when remove button is clicked', async () => {
     const mockHandleRemove = jest.fn((_: number) => {})
 
-    const { findAllByText } = render(
+    const { findAllByTitle } = render(
       <ProductList
         items={mockItems}
         onQuantityChange={() => {}}
@@ -32,7 +32,7 @@ describe('Product List', () => {
       />
     )
 
-    const removeButtons = (await findAllByText('x')) as HTMLElement[]
+    const removeButtons = (await findAllByTitle('remove')) as HTMLElement[]
     expect(removeButtons.length).toBe(3)
 
     fireEvent.click(removeButtons[1])

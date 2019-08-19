@@ -12,7 +12,7 @@
   "mustUpdateAt": "2019-04-02",
   "dependencies": {
     "vtex.styleguide": "9.x",
-    "vtex.checkout-graphql": "0.x"
+    "vtex.format-currency": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
