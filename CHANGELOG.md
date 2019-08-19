@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.1] - 2019-08-19
+
 ### Fixed
 
 - Fix bug that caused the component to break when a huge value was input in the quantity selector.
