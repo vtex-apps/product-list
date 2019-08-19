@@ -2,6 +2,8 @@ import { range } from 'ramda'
 import React, { FunctionComponent, useState } from 'react'
 import { Dropdown, Input } from 'vtex.styleguide'
 
+const MAX_INPUT_LENGTH = 5
+
 enum SelectorType {
   Dropdown,
   Input,
@@ -9,38 +11,62 @@ enum SelectorType {
 
 interface Props {
   value: number
+  maxValue: number
   onChange: (value: number) => void
 }
 
-const validateValue = (value: string) => {
+const normalizeValue = (value: number, maxValue: number) =>
+  value > maxValue ? maxValue : value
+
+const validateValue = (value: string, maxValue: number) => {
   const parsedValue = parseInt(value, 10)
 
   if (isNaN(parsedValue) || parsedValue === 0) {
     return 1
   }
 
-  return parseInt(value, 10)
+  return normalizeValue(parseInt(value, 10), maxValue)
 }
 
-const validateDisplayValue = (value: string) => {
+const validateDisplayValue = (value: string, maxValue: number) => {
   const parsedValue = parseInt(value, 10)
 
   if (isNaN(parsedValue) || parsedValue < 1) {
     return ''
   }
 
-  return `${parsedValue}`
+  return `${normalizeValue(parsedValue, maxValue)}`
 }
 
-const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
+const getDropdownOptions = (maxValue: number) => {
+  const limit = Math.min(9, maxValue)
+  const options = [
+    ...range(1, limit + 1).map(idx => ({ value: idx, label: `${idx}` })),
+  ]
+
+  if (maxValue >= 10) {
+    options.push({ value: 10, label: '10+' })
+  }
+
+  return options
+}
+
+const QuantitySelector: FunctionComponent<Props> = ({
+  value,
+  maxValue,
+  onChange,
+}) => {
   const [curSelector, setSelector] = useState(
     value < 10 ? SelectorType.Dropdown : SelectorType.Input
   )
-  const [curDisplayValue, setDisplayValue] = useState(`${value}`)
+
+  const normalizedValue = normalizeValue(value, maxValue)
+
+  const [curDisplayValue, setDisplayValue] = useState(`${normalizedValue}`)
 
   const handleChange = (value: string) => {
-    const validatedValue = validateValue(value)
-    const displayValue = validateDisplayValue(value)
+    const validatedValue = validateValue(value, maxValue)
+    const displayValue = validateDisplayValue(value, maxValue)
 
     if (validatedValue >= 10 && curSelector === SelectorType.Dropdown) {
       setSelector(SelectorType.Input)
@@ -56,18 +82,15 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
     }
   }
 
-  if (value !== validateValue(curDisplayValue)) {
-    if (value >= 10) {
+  if (normalizedValue !== validateValue(curDisplayValue, maxValue)) {
+    if (normalizedValue >= 10) {
       setSelector(SelectorType.Input)
     }
-    setDisplayValue(validateDisplayValue(`${value}`))
+    setDisplayValue(validateDisplayValue(`${normalizedValue}`, maxValue))
   }
 
   if (curSelector === SelectorType.Dropdown) {
-    const dropdownOptions = [
-      ...range(1, 10).map(idx => ({ value: idx, label: idx })),
-      { value: 10, label: '10+' },
-    ]
+    const dropdownOptions = getDropdownOptions(maxValue)
 
     return (
       <div>
@@ -75,7 +98,7 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
           <Dropdown
             options={dropdownOptions}
             size="small"
-            value={value}
+            value={normalizedValue}
             onChange={(event: any) => handleChange(event.target.value)}
             placeholder=""
           />
@@ -83,7 +106,7 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
         <div className="dn db-l">
           <Dropdown
             options={dropdownOptions}
-            value={value}
+            value={normalizedValue}
             onChange={(event: any) => handleChange(event.target.value)}
             placeholder=""
           />
@@ -97,6 +120,7 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
           <Input
             size="small"
             value={curDisplayValue}
+            maxLength={MAX_INPUT_LENGTH}
             onChange={(event: any) => handleChange(event.target.value)}
             onBlur={handleBlur}
             placeholder=""
@@ -105,6 +129,7 @@ const QuantitySelector: FunctionComponent<Props> = ({ value, onChange }) => {
         <div className="dn db-l">
           <Input
             value={curDisplayValue}
+            maxLength={MAX_INPUT_LENGTH}
             onChange={(event: any) => handleChange(event.target.value)}
             onBlur={handleBlur}
             placeholder=""

@@ -4,6 +4,8 @@ import { IconDelete } from 'vtex.styleguide'
 import FormattedPrice from './FormattedPrice'
 import Selector from './QuantitySelector'
 
+const MAX_ITEM_QUANTITY = 99999
+
 interface Props {
   currency: string
   item: Item
@@ -69,10 +71,18 @@ const ListItem: FunctionComponent<Props> = ({
       {/* Quantity Selector */}
       <div className="flex-auto-m mt6-m">
         <div className="dn-m" style={{ width: '70px' }}>
-          <Selector value={item.quantity} onChange={onQuantityChange} />
+          <Selector
+            value={item.quantity}
+            maxValue={MAX_ITEM_QUANTITY}
+            onChange={onQuantityChange}
+          />
         </div>
         <div className="dn db-m" style={{ width: '90px' }}>
-          <Selector value={item.quantity} onChange={onQuantityChange} />
+          <Selector
+            value={item.quantity}
+            maxValue={MAX_ITEM_QUANTITY}
+            onChange={onQuantityChange}
+          />
         </div>
 
         {item.quantity > 1 && (
