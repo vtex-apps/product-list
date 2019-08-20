@@ -18,9 +18,9 @@ const ListItem: FunctionComponent<Props> = ({
   onQuantityChange,
   onRemove,
 }) => (
-  <div className="c-on-base flex bb b--muted-4 pt5 pt6-m pb5 pb6-m pr6-m pr0-l">
+  <div className="c-on-base flex bb b--muted-4 ml5 pr5 pv5 ml6-m pt6-m pb6-m pr6-m ph0-l mh0-l">
     {/* Image */}
-    <div className="flex-none mr5">
+    <div className="flex-none mr5 mr6-m">
       <a href={item.detailUrl}>
         <img alt={item.name} src={item.imageUrl} width="100%" />
       </a>
@@ -62,7 +62,7 @@ const ListItem: FunctionComponent<Props> = ({
         {/* Remove - Mobile */}
         <div className="flex-none dn-m">
           <button
-            className="bg-transparent bn pa2 mt4 mr4"
+            className="bg-transparent bn pa2 mt4-m ml4"
             title="remove"
             onClick={onRemove}
           >
