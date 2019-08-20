@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.1] - 2019-08-20
+
 - Changed UI details to make layout work well and to improve some components' behavior
 
 ## [0.3.0] - 2019-08-19
