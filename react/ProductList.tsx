@@ -13,11 +13,11 @@ const ProductList: FunctionComponent<Props> = ({
   onQuantityChange,
   onRemove,
 }) => (
-  <div className="ml5 ml0-l mb6-l">
-    <h3>
+  <div>
+    <h3 className="mh5 mh6-m">
       <span className="t-heading-3 c-on-base t-heading-2-l">Cart</span>
       <span className="t-heading-5 c-muted-1 t-heading-4-l">
-        ({items.length} items)
+        &nbsp;({items.length} items)
       </span>
     </h3>
 
