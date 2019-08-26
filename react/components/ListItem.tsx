@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { IconDelete } from 'vtex.styleguide'
 import { FormattedCurrency } from 'vtex.format-currency'
 
@@ -83,13 +84,24 @@ const ListItem: FunctionComponent<Props> = ({
 
         {item.quantity > 1 && (
           <div className="mt3 t-mini c-muted-1 tc-m lh-title">
-            <div className="dib">
-              <FormattedCurrency value={item.sellingPrice / 100} />
-            </div>
-            &nbsp;
-            <div className="dib">
-              per {item.measurementUnit}.
-            </div>
+            <FormattedMessage
+              id="store/product-list.pricePerUnit"
+              values={{
+                price: (
+                  <div className="dib">
+                    <FormattedCurrency value={item.sellingPrice / 100} />
+                  </div>
+                ),
+                perMeasurementUnit: (
+                  <div className="dib">
+                    <FormattedMessage
+                      id="store/product-list.pricePerUnit.measurementUnit"
+                      values={{ measurementUnit: item.measurementUnit }}
+                    />
+                  </div>
+                ),
+              }}
+            />
           </div>
         )}
       </div>
