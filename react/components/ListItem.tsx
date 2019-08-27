@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { IconDelete } from 'vtex.styleguide'
 import { FormattedCurrency } from 'vtex.format-currency'
 
@@ -83,23 +84,38 @@ const ListItem: FunctionComponent<Props> = ({
 
         {item.quantity > 1 && (
           <div className="mt3 t-mini c-muted-1 tc-m lh-title">
-            <div className="dib">
-              <FormattedCurrency value={item.sellingPrice / 100} />
-            </div>
-            &nbsp;
-            <div className="dib">
-              per {item.measurementUnit}.
-            </div>
+            <FormattedMessage
+              id="store/product-list.pricePerUnit"
+              values={{
+                price: (
+                  <div className="dib">
+                    <FormattedCurrency value={item.sellingPrice / 100} />
+                  </div>
+                ),
+                perMeasurementUnit: (
+                  <div className="dib">
+                    <FormattedMessage
+                      id="store/product-list.pricePerUnit.measurementUnit"
+                      values={{ measurementUnit: item.measurementUnit }}
+                    />
+                  </div>
+                ),
+              }}
+            />
           </div>
         )}
       </div>
 
       {/* Price */}
-      <div className={`${styles.price} mt5 mt0-ns flex-m items-center-m tr-m flex-none-m ml5-m`}>
+      <div
+        className={`${styles.price} mt5 mt0-ns flex-m items-center-m tr-m flex-none-m ml5-m`}
+      >
         <div className="flex-auto">
           {item.listPrice !== item.price && (
             <div className="c-muted-1 strike t-mini mb2">
-              <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
+              <FormattedCurrency
+                value={(item.listPrice * item.quantity) / 100}
+              />
             </div>
           )}
           <div className="div fw6 fw5-m">
@@ -111,7 +127,9 @@ const ListItem: FunctionComponent<Props> = ({
       </div>
 
       {/* Remove - Desktop */}
-      <div className={`${styles.remove} flex-m items-center-m flex-none-m dn db-m`}>
+      <div
+        className={`${styles.remove} flex-m items-center-m flex-none-m dn db-m`}
+      >
         <div className="flex-auto">
           <button
             className="pointer bg-transparent bn pa2 ml6"

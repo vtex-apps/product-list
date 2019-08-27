@@ -1,0 +1,4 @@
+{
+  "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
+  "store/product-list.pricePerUnit.measurementUnit": "per {measurementUnit}."
+}
