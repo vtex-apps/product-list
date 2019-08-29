@@ -1,4 +1,6 @@
 {
+  "store/product-list.availableItems": "{quantity, plural, one {# item disponível} other {# itens disponíveis}}",
+  "store/product-list.unavailableItems": "{quantity, plural, one {# item indisponível} other {# itens indisponíveis}}",
   "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
   "store/product-list.pricePerUnit.measurementUnit": "por {measurementUnit}."
 }

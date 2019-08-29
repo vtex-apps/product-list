@@ -1,5 +1,6 @@
 interface Item {
   additionalInfo: ItemAdditionalInfo
+  availability: string
   detailUrl: string
   id: string
   imageUrl: string
