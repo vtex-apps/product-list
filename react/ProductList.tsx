@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 
 import ListItem from './components/ListItem'
+import Availability from './constants/Availability'
 
 interface Props {
   items: Item[]
@@ -16,7 +17,7 @@ const ProductList: FunctionComponent<Props> = ({
 }) => {
   const [availableItems, unavailableItems] = items.reduce(
     (acc, item) => {
-      acc[item.availability === 'available' ? 0 : 1].push(item)
+      acc[item.availability === Availability.AVAILABLE ? 0 : 1].push(item)
       return acc
     },
     [[], []] as Item[][]
@@ -37,7 +38,7 @@ const ProductList: FunctionComponent<Props> = ({
   return (
     <div>
       {unavailableItems.length > 0 ? (
-        <div className="t-heading-4 bb b--muted-4">
+        <div className="c-muted-1 bb b--muted-4 fw5 pv5 pl5 pl6-m pl0-l t-heading-5-l">
           <FormattedMessage
             id="store/product-list.unavailableItems"
             values={{ quantity: unavailableItems.length }}
@@ -45,8 +46,8 @@ const ProductList: FunctionComponent<Props> = ({
         </div>
       ) : null}
       {productList(unavailableItems)}
-      {availableItems.length > 0 ? (
-        <div className="t-heading-4 bb b--muted-4">
+      {unavailableItems.length > 0 && availableItems.length > 0 ? (
+        <div className="c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l">
           <FormattedMessage
             id="store/product-list.availableItems"
             values={{ quantity: availableItems.length }}
