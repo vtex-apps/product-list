@@ -12,6 +12,7 @@ interface Item {
   sellingPrice: number
   skuName: string
   skuSpecifications: SKUSpecification[]
+  uniqueId: string
 }
 
 interface ItemAdditionalInfo {
