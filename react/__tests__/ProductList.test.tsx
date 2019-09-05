@@ -11,7 +11,6 @@ describe('Product List', () => {
         items={mockItems}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        currency="USD"
       />
     )
 
@@ -21,14 +20,13 @@ describe('Product List', () => {
   })
 
   it('should call onRemove when remove button is clicked', async () => {
-    const mockHandleRemove = jest.fn((_: number) => {})
+    const mockHandleRemove = jest.fn((_: string) => {})
 
     const { findAllByTitle } = render(
       <ProductList
         items={mockItems}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
-        currency="USD"
       />
     )
 
@@ -37,7 +35,7 @@ describe('Product List', () => {
 
     fireEvent.click(removeButtons[1])
 
-    expect(mockHandleRemove.mock.calls.length).toBe(1)
-    expect(mockHandleRemove.mock.calls[0][0]).toBe(1)
+    expect(mockHandleRemove).toHaveBeenCalledTimes(1)
+    expect(mockHandleRemove.mock.calls[0][0]).toBe(mockItems[1].uniqueId)
   })
 })

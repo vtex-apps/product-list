@@ -4,8 +4,8 @@ import ListItem from './components/ListItem'
 
 interface Props {
   items: Item[]
-  onQuantityChange: (index: number, value: number) => void
-  onRemove: (index: number) => void
+  onQuantityChange: (uniqueId: string, value: number) => void
+  onRemove: (uniqueId: string) => void
 }
 
 const ProductList: FunctionComponent<Props> = ({
@@ -14,12 +14,14 @@ const ProductList: FunctionComponent<Props> = ({
   onRemove,
 }) => (
   <div>
-    {items.map((item: any, index: number) => (
+    {items.map((item: any) => (
       <ListItem
-        key={index}
+        key={item.uniqueId}
         item={item}
-        onQuantityChange={(value: number) => onQuantityChange(index, value)}
-        onRemove={() => onRemove(index)}
+        onQuantityChange={(value: number) =>
+          onQuantityChange(item.uniqueId, value)
+        }
+        onRemove={() => onRemove(item.uniqueId)}
       />
     ))}
   </div>

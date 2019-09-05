@@ -16,6 +16,7 @@ export const mockItems: Item[] = [
     sellingPrice: 2400000,
     skuName: 'Test SKU 0',
     skuSpecifications: [],
+    uniqueId: 'SomeUniqueId0',
   },
   {
     additionalInfo: {
@@ -34,6 +35,7 @@ export const mockItems: Item[] = [
     sellingPrice: 945000,
     skuName: 'Test SKU 1',
     skuSpecifications: [],
+    uniqueId: 'SomeUniqueId1',
   },
   {
     additionalInfo: {
@@ -52,5 +54,6 @@ export const mockItems: Item[] = [
     sellingPrice: 360000,
     skuName: 'Test SKU 2',
     skuSpecifications: [],
+    uniqueId: 'SomeUniqueId2',
   },
 ]
