@@ -5,8 +5,8 @@ import ProductList from '../ProductList'
 import { mockItems } from '../__mocks__/mockItems'
 
 describe('Product List', () => {
-  it('should display the list of products', async () => {
-    const { findByText } = render(
+  it('should display the list of products', () => {
+    const { queryByText } = render(
       <ProductList
         items={mockItems}
         onQuantityChange={() => {}}
@@ -14,28 +14,63 @@ describe('Product List', () => {
       />
     )
 
-    expect(await findByText(mockItems[0].name)).toBeTruthy()
-    expect(await findByText(mockItems[1].name)).toBeTruthy()
-    expect(await findByText(mockItems[2].name)).toBeTruthy()
+    expect(queryByText(mockItems[0].name)).toBeTruthy()
+    expect(queryByText(mockItems[1].name)).toBeTruthy()
+    expect(queryByText(mockItems[2].name)).toBeTruthy()
   })
 
-  it('should call onRemove when remove button is clicked', async () => {
+  it('should call onRemove when remove button is clicked', () => {
     const mockHandleRemove = jest.fn((_: string) => {})
 
-    const { findAllByTitle } = render(
+    const { getByTitle } = render(
       <ProductList
-        items={mockItems}
+        items={[mockItems[2]]}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
       />
     )
 
-    const removeButtons = (await findAllByTitle('remove')) as HTMLElement[]
-    expect(removeButtons.length).toBe(3)
-
-    fireEvent.click(removeButtons[1])
+    const removeButton = getByTitle('remove')
+    fireEvent.click(removeButton)
 
     expect(mockHandleRemove).toHaveBeenCalledTimes(1)
-    expect(mockHandleRemove.mock.calls[0][0]).toBe(mockItems[1].uniqueId)
+    expect(mockHandleRemove.mock.calls[0][0]).toBe(mockItems[2].uniqueId)
+  })
+
+  it('should display unavailable items separately', () => {
+    const { getByText } = render(
+      <ProductList
+        items={mockItems}
+        onQuantityChange={() => {}}
+        onRemove={() => {}}
+      />
+    )
+
+    expect(getByText('2 unavailable items')).toBeTruthy()
+    expect(getByText('1 available item')).toBeTruthy()
+  })
+
+  it('should display a message when item is out of stock', () => {
+    const { queryByText } = render(
+      <ProductList
+        items={[mockItems[1]]}
+        onQuantityChange={() => {}}
+        onRemove={() => {}}
+      />
+    )
+
+    expect(queryByText(/no longer available/)).toBeTruthy()
+  })
+
+  it('should display a message when item cannot be delivered', () => {
+    const { queryByText } = render(
+      <ProductList
+        items={[mockItems[2]]}
+        onQuantityChange={() => {}}
+        onRemove={() => {}}
+      />
+    )
+
+    expect(queryByText(/cannot be delivered/)).toBeTruthy()
   })
 })
