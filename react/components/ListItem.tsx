@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import { IconDelete } from 'vtex.styleguide'
 import { FormattedCurrency } from 'vtex.format-currency'
 
-import Availability from '../constants/Availability'
+import { AVAILABLE, WITHOUT_STOCK } from '../constants/Availability'
 import AvailabilityMessage from './AvailabilityMessage'
 import Selector from './QuantitySelector'
 
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const displayOpaque = (availability: string) => {
-  return availability === Availability.WITHOUT_STOCK ? 'o-70' : ''
+  return availability === WITHOUT_STOCK ? 'o-70' : ''
 }
 
 const ListItem: FunctionComponent<Props> = ({
@@ -91,7 +91,7 @@ const ListItem: FunctionComponent<Props> = ({
                 value={item.quantity}
                 maxValue={MAX_ITEM_QUANTITY}
                 onChange={onQuantityChange}
-                disabled={item.availability !== 'available'}
+                disabled={item.availability !== AVAILABLE}
               />
             </div>
 
@@ -154,7 +154,7 @@ const ListItem: FunctionComponent<Props> = ({
           </div>
         </div>
 
-        {item.availability !== 'available' ? (
+        {item.availability !== AVAILABLE ? (
           <div className="mt4">
             <AvailabilityMessage
               availability={item.availability}

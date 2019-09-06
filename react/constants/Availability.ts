@@ -1,5 +1,3 @@
-export default {
-  AVAILABLE: 'available',
-  CANNOT_BE_DELIVERED: 'cannotBeDelivered',
-  WITHOUT_STOCK: 'withoutStock',
-}
+export const AVAILABLE = 'available'
+export const CANNOT_BE_DELIVERED = 'cannotBeDelivered'
+export const WITHOUT_STOCK = 'withoutStock'

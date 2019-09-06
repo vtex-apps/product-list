@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 
 import ListItem from './components/ListItem'
-import Availability from './constants/Availability'
+import { AVAILABLE } from './constants/Availability'
 
 interface Props {
   items: Item[]
@@ -17,7 +17,7 @@ const ProductList: FunctionComponent<Props> = ({
 }) => {
   const [availableItems, unavailableItems] = items.reduce(
     (acc, item) => {
-      acc[item.availability === Availability.AVAILABLE ? 0 : 1].push(item)
+      acc[item.availability === AVAILABLE ? 0 : 1].push(item)
       return acc
     },
     [[], []] as Item[][]
