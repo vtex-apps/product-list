@@ -3,6 +3,7 @@ export const mockItems: Item[] = [
     additionalInfo: {
       brandName: 'Test Brand 0',
     },
+    availability: 'available',
     id: '1',
     detailUrl: '/work-shirt/p',
     imageUrl:
@@ -22,6 +23,7 @@ export const mockItems: Item[] = [
     additionalInfo: {
       brandName: 'Test Brand 1',
     },
+    availability: 'withoutStock',
     id: '30',
     detailUrl: '/long-sleeve-shirt/p',
     imageUrl:
@@ -41,6 +43,7 @@ export const mockItems: Item[] = [
     additionalInfo: {
       brandName: 'Test Brand 2',
     },
+    availability: 'cannotBeDelivered',
     id: '2000535',
     detailUrl: '/classy--sunglasses/p',
     imageUrl:

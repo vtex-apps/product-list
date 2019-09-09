@@ -13,6 +13,7 @@ interface Props {
   value: number
   maxValue: number
   onChange: (value: number) => void
+  disabled: boolean
 }
 
 const normalizeValue = (value: number, maxValue: number) =>
@@ -55,6 +56,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
   value,
   maxValue,
   onChange,
+  disabled,
 }) => {
   const [curSelector, setSelector] = useState(
     value < 10 ? SelectorType.Dropdown : SelectorType.Input
@@ -101,6 +103,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             value={normalizedValue}
             onChange={(event: any) => handleChange(event.target.value)}
             placeholder=""
+            disabled={disabled}
           />
         </div>
         <div className="dn db-m">
@@ -109,6 +112,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             value={normalizedValue}
             onChange={(event: any) => handleChange(event.target.value)}
             placeholder=""
+            disabled={disabled}
           />
         </div>
       </div>
@@ -124,6 +128,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             onChange={(event: any) => handleChange(event.target.value)}
             onBlur={handleBlur}
             placeholder=""
+            disabled={disabled}
           />
         </div>
         <div className="dn db-m">
@@ -133,6 +138,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             onChange={(event: any) => handleChange(event.target.value)}
             onBlur={handleBlur}
             placeholder=""
+            disabled={disabled}
           />
         </div>
       </div>

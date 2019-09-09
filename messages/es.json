@@ -1,4 +1,9 @@
 {
   "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
-  "store/product-list.pricePerUnit.measurementUnit": "por {measurementUnit}."
+  "store/product-list.pricePerUnit.measurementUnit": "por {measurementUnit}.",
+  "store/product-list.availableItems": "{quantity, plural, one {# ítem disponible} other {# ítems disponibles}}",
+  "store/product-list.unavailableItems": "{quantity, plural, one {# ítem no disponible} other {# ítems no disponibles}}",
+  "store/product-list.message.cantBeDelivered": "Este item no se puede entregar a esta dirección.",
+  "store/product-list.message.noLongerAvailable": "Este item no está disponible actualmente.",
+  "store/product-list.message.remove": "RETIRAR"
 }
