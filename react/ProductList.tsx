@@ -1,22 +1,17 @@
 import React, { FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 
-import ListItem from './components/ListItem'
+import { ItemContextProvider } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
 
-interface Props {
-  items: Item[]
-  onQuantityChange: (uniqueId: string, value: number) => void
-  onRemove: (uniqueId: string) => void
-}
-
-const ProductList: FunctionComponent<Props> = ({
+const ProductList: FunctionComponent<any> = ({
   items,
   onQuantityChange,
   onRemove,
+  children,
 }) => {
   const [availableItems, unavailableItems] = items.reduce(
-    (acc, item) => {
+    (acc: any, item: Item) => {
       acc[item.availability === AVAILABLE ? 0 : 1].push(item)
       return acc
     },
@@ -25,14 +20,19 @@ const ProductList: FunctionComponent<Props> = ({
 
   const productList = (itemList: Item[]) =>
     itemList.map((item: Item) => (
-      <ListItem
+      <ItemContextProvider
         key={item.uniqueId}
-        item={item}
-        onQuantityChange={(value: number) =>
-          onQuantityChange(item.uniqueId, value)
-        }
-        onRemove={() => onRemove(item.uniqueId)}
-      />
+        value={{
+          item,
+          onQuantityChange: (value: number) =>
+            onQuantityChange(item.uniqueId, value),
+          onRemove: () => onRemove(item.uniqueId),
+        }}
+      >
+        <div className="c-on-base bb b--muted-4 ml5 pr5 pv5 ml6-m pt6-m pb6-m pr6-m ph0-l mh0-l">
+          {children}
+        </div>
+      </ItemContextProvider>
     ))
 
   return (

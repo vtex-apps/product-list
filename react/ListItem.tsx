@@ -3,32 +3,23 @@ import { FormattedMessage } from 'react-intl'
 import { IconDelete } from 'vtex.styleguide'
 import { FormattedCurrency } from 'vtex.format-currency'
 
-import { AVAILABLE, WITHOUT_STOCK } from '../constants/Availability'
-import AvailabilityMessage from './AvailabilityMessage'
-import Selector from './QuantitySelector'
+import { AVAILABLE, WITHOUT_STOCK } from './constants/Availability'
+import AvailabilityMessage from './components/AvailabilityMessage'
+import { useItemContext } from './components/ItemContext'
+import Selector from './components/QuantitySelector'
 
 const MAX_ITEM_QUANTITY = 99999
-import styles from '../styles.css'
-
-interface Props {
-  item: Item
-  onQuantityChange: (value: number) => void
-  onRemove: () => void
-}
+import styles from './styles.css'
 
 const displayOpaque = (availability: string) => {
   return availability === WITHOUT_STOCK ? 'o-70' : ''
 }
 
-const ListItem: FunctionComponent<Props> = ({
-  item,
-  onQuantityChange,
-  onRemove,
-}) => (
-  <div className="bb b--muted-4">
-    <div
-      className={`c-on-base flex ml5 pr5 pv5 ml6-m pt6-m pb6-m pr6-m ph0-l mh0-l`}
-    >
+const ListItem: FunctionComponent = () => {
+  const { item, onQuantityChange, onRemove } = useItemContext()
+
+  return (
+    <div className="flex">
       {/* Image */}
       <div
         className={`flex-none mr5 mr6-m ${displayOpaque(item.availability)}`}
@@ -77,7 +68,7 @@ const ListItem: FunctionComponent<Props> = ({
               <button
                 className="bg-transparent bn pa2 mt4-m ml4"
                 title="remove"
-                onClick={onRemove}
+                onClick={() => onRemove()}
               >
                 <IconDelete color="#727273" />
               </button>
@@ -164,7 +155,7 @@ const ListItem: FunctionComponent<Props> = ({
         ) : null}
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default ListItem

@@ -1,5 +1,10 @@
 {
   "product-list": {
-    "component": "ProductList"
+    "component": "ProductList",
+    "composition": "children",
+    "allowed": "*"
+  },
+  "list-item": {
+    "component": "ListItem"
   }
 }

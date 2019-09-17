@@ -1,0 +1,8 @@
+{
+  "product-list": {
+    "children": ["flex-layout.row#list-row"]
+  },
+  "flex-layout.row#list-row": {
+    "children": ["list-item"]
+  }
+}
