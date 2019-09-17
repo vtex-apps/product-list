@@ -4,7 +4,10 @@
     "composition": "children",
     "allowed": "*"
   },
-  "list-item": {
-    "component": "ListItem"
+  "image": {
+    "component": "Image"
+  },
+  "container": {
+    "component": "DesktopContainer"
   }
 }
