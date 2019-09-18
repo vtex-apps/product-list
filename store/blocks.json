@@ -13,7 +13,20 @@
     "children": ["image"]
   },
   "flex-layout.col#container": {
-    "children": ["container", "message"],
+    "children": ["flex-layout.row#container2", "message"],
+    "props": {
+      "width": "grow"
+    }
+  },
+  "flex-layout.row#container2": {
+    "children": ["flex-layout.col#product-description", "container"],
+    "props": {
+      "preserveLayoutOnMobile": "true",
+      "colSizing": "auto"
+    }
+  },
+  "flex-layout.col#product-description": {
+    "children": ["product-description"],
     "props": {
       "width": "grow"
     }

@@ -12,5 +12,17 @@
   },
   "message": {
     "component": "AvailabilityMessage"
+  },
+  "product-description": {
+    "component": "ProductDescription"
+  },
+  "quantity-selector": {
+    "component": "QuantitySelector"
+  },
+  "price": {
+    "component": "Price"
+  },
+  "remove-button": {
+    "component": "RemoveButton"
   }
 }
