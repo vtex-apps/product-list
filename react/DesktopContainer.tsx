@@ -4,7 +4,6 @@ import { FormattedCurrency } from 'vtex.format-currency'
 import { IconDelete } from 'vtex.styleguide'
 
 import { AVAILABLE } from './constants/Availability'
-import AvailabilityMessage from './components/AvailabilityMessage'
 import { useItemContext } from './components/ItemContext'
 import Selector from './components/QuantitySelector'
 import { opaque } from './utils/opaque'
@@ -131,15 +130,6 @@ const DesktopContainer: FunctionComponent = () => {
           </div>
         </div>
       </div>
-
-      {item.availability !== AVAILABLE ? (
-        <div className="mt4">
-          <AvailabilityMessage
-            availability={item.availability}
-            onRemove={onRemove}
-          />
-        </div>
-      ) : null}
     </div>
   )
 }

@@ -9,5 +9,8 @@
   },
   "container": {
     "component": "DesktopContainer"
+  },
+  "message": {
+    "component": "AvailabilityMessage"
   }
 }

@@ -13,7 +13,7 @@
     "children": ["image"]
   },
   "flex-layout.col#container": {
-    "children": ["container"],
+    "children": ["container", "message"],
     "props": {
       "width": "grow"
     }
