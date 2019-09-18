@@ -19,7 +19,12 @@
     }
   },
   "flex-layout.row#container2": {
-    "children": ["flex-layout.col#product-description", "flex-layout.col#quantity-selector", "flex-layout.col#price", "container"],
+    "children": [
+      "flex-layout.col#product-description",
+      "flex-layout.col#quantity-selector",
+      "flex-layout.col#price",
+      "flex-layout.col#remove-button"
+    ],
     "props": {
       "preserveLayoutOnMobile": "true",
       "colSizing": "auto"
@@ -42,5 +47,8 @@
     "props": {
       "preventHorizontalStretch": "true"
     }
+  },
+  "flex-layout.col#remove-button": {
+    "children": ["remove-button"]
   }
 }

@@ -7,9 +7,6 @@
   "image": {
     "component": "Image"
   },
-  "container": {
-    "component": "DesktopContainer"
-  },
   "message": {
     "component": "AvailabilityMessage"
   },
