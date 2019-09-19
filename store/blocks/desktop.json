@@ -1,0 +1,35 @@
+{
+  "flex-layout.col#main-container.desktop": {
+    "children": [
+      "flex-layout.row#sub-container.desktop",
+      "flex-layout.row#message"
+    ],
+    "props": {
+      "width": "grow"
+    }
+  },
+  "flex-layout.row#sub-container.desktop": {
+    "children": [
+      "flex-layout.col#product-description",
+      "flex-layout.col#quantity.desktop",
+      "flex-layout.col#price.desktop",
+      "flex-layout.col#remove-button"
+    ],
+    "props": {
+      "preserveLayoutOnMobile": "true",
+      "colSizing": "auto"
+    }
+  },
+  "flex-layout.col#quantity.desktop": {
+    "children": [
+      "flex-layout.row#quantity-selector",
+      "flex-layout.row#unit-price"
+    ]
+  },
+  "flex-layout.col#price.desktop": {
+    "children": ["price"],
+    "props": {
+      "preventHorizontalStretch": "true"
+    }
+  }
+}
