@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import { IconDelete } from 'vtex.styleguide'
 
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 
 const ProductDescription: FunctionComponent = () => {
-  const { item, onRemove } = useItemContext()
+  const { item } = useItemContext()
 
   return (
     <div
@@ -38,17 +37,6 @@ const ProductDescription: FunctionComponent = () => {
             )}
           </div>
         )}
-      </div>
-
-      {/* Remove - Mobile */}
-      <div className="flex-none dn-m">
-        <button
-          className="bg-transparent bn pa2 mt4-m ml4"
-          title="remove"
-          onClick={() => onRemove()}
-        >
-          <IconDelete color="#727273" />
-        </button>
       </div>
     </div>
   )

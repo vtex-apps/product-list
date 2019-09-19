@@ -13,16 +13,14 @@ const RemoveButton: FunctionComponent = () => {
     <div
       className={`${opaque(item.availability)} ${
         styles.remove
-      } flex-m items-center-m flex-none-m dn db-m`}
+      } items-center-m`}
     >
-      <div className="flex-auto">
-        <button
-          className="pointer bg-transparent bn pa2 ml6"
-          onClick={onRemove}
-        >
-          <IconDelete color="#727273" />
-        </button>
-      </div>
+      <button
+        className="pointer bg-transparent bn pa2 ml6"
+        onClick={onRemove}
+      >
+        <IconDelete color="#727273" />
+      </button>
     </div>
   )
 }
