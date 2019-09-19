@@ -15,6 +15,9 @@
   "flex-layout.col#message": {
     "children": ["message"]
   },
+  "flex-layout.row#message": {
+    "children": ["message"]
+  },
   "flex-layout.col#container": {
     "children": ["flex-layout.row#container2", "flex-layout.col#message"],
     "props": {
@@ -24,9 +27,10 @@
   "flex-layout.col#container.mobile": {
     "children": [
       "flex-layout.row#top.mobile",
-      "flex-layout.col#quantity-selector",
-      "flex-layout.col#price",
-      "flex-layout.col#message"
+      "flex-layout.row#quantity-selector",
+      "flex-layout.row#unit-price",
+      "flex-layout.row#price",
+      "flex-layout.row#message"
     ],
     "props": {
       "width": "grow"
@@ -45,7 +49,7 @@
   "flex-layout.row#container2": {
     "children": [
       "flex-layout.col#product-description",
-      "flex-layout.col#quantity-selector",
+      "flex-layout.col#quantity",
       "flex-layout.col#price",
       "flex-layout.col#remove-button"
     ],
@@ -79,13 +83,31 @@
       "marginTop": "2"
     }
   },
-  "flex-layout.col#quantity-selector": {
+  "flex-layout.col#quantity": {
+    "children": [
+      "flex-layout.row#quantity-selector",
+      "flex-layout.row#unit-price"
+    ]
+  },
+  "flex-layout.row#quantity-selector": {
     "children": ["quantity-selector"],
     "props": {
       "preventHorizontalStretch": "true"
     }
   },
+  "flex-layout.row#unit-price": {
+    "children": ["unit-price"],
+    "props": {
+      "preventHorizontalStretch": "true"
+    }
+  },
   "flex-layout.col#price": {
+    "children": ["price"],
+    "props": {
+      "preventHorizontalStretch": "true"
+    }
+  },
+  "flex-layout.row#price": {
     "children": ["price"],
     "props": {
       "preventHorizontalStretch": "true"

@@ -22,6 +22,9 @@
   "quantity-selector": {
     "component": "QuantitySelector"
   },
+  "unit-price": {
+    "component": "UnitPrice"
+  },
   "price": {
     "component": "Price"
   },

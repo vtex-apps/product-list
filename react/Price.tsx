@@ -10,12 +10,8 @@ const Price: FunctionComponent = () => {
   const { item } = useItemContext()
 
   return (
-    <div
-      className={`${opaque(item.availability)} ${
-        styles.price
-      } tr-m`}
-    >
-      <div className="flex-auto">
+    <div className={`${opaque(item.availability)} ${styles.price} tr-m`}>
+      <div className="">
         {item.listPrice !== item.price && (
           <div className="c-muted-1 strike t-mini mb2">
             <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
