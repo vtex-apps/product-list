@@ -1,17 +1,26 @@
 {
   "product-list-content-desktop": {
-    "children": ["flex-layout.row#list-row.desktop"]
+    "children": ["flex-layout.row#list-row.desktop"],
+    "props": {
+      "fullWidth": true
+    }
   },
   "flex-layout.row#list-row.desktop": {
     "children": [
-      "flex-layout.col#image",
+      "flex-layout.col#image.desktop",
       "flex-layout.col#main-container.desktop"
     ],
     "props": {
-      "paddingBottom": "5",
-      "paddingTop": "5",
+      "paddingBottom": "7",
+      "paddingTop": "6",
       "colSizing": "auto",
       "preserveLayoutOnMobile": "true"
+    }
+  },
+  "flex-layout.col#image.desktop": {
+    "children": ["image"],
+    "props": {
+      "marginRight": "6"
     }
   },
   "flex-layout.col#main-container.desktop": {
@@ -27,8 +36,7 @@
     "children": [
       "flex-layout.col#product-description",
       "flex-layout.col#quantity.desktop",
-      "flex-layout.col#price.desktop",
-      "flex-layout.col#remove-button"
+      "flex-layout.row#price-remove"
     ],
     "props": {
       "preserveLayoutOnMobile": "true",
@@ -37,19 +45,45 @@
   },
   "flex-layout.col#quantity.desktop": {
     "children": [
-      "flex-layout.row#quantity-selector",
+      "flex-layout.row#quantity-selector.desktop",
       "flex-layout.row#unit-price"
-    ]
+    ],
+    "props": {
+      "marginLeft": "5"
+    }
+  },
+  "flex-layout.row#price-remove": {
+    "children": [
+      "flex-layout.col#price.desktop",
+      "flex-layout.col#remove-button.desktop"
+    ],
+    "props": {
+      "colSizing": "auto"
+    }
+  },
+  "flex-layout.row#quantity-selector.desktop": {
+    "children": ["quantity-selector"],
+    "props": {
+      "preventHorizontalStretch": "true"
+    }
   },
   "flex-layout.col#price.desktop": {
     "children": ["price#desktop"],
     "props": {
-      "preventHorizontalStretch": "true"
+      "blockClass": "priceWrapper",
+      "preventHorizontalStretch": "true",
+      "verticalAlign": "middle"
     }
   },
   "price#desktop": {
     "props": {
       "textAlign": "right"
+    }
+  },
+  "flex-layout.col#remove-button.desktop": {
+    "children": ["remove-button"],
+    "props": {
+      "verticalAlign": "middle"
     }
   }
 }

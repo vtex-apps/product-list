@@ -11,8 +11,4 @@
   .quantity {
     width: 90px;
   }
-  .price,
-  .remove {
-    height: 44px;
-  }
 }

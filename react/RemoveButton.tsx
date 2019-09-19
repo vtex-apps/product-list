@@ -4,16 +4,12 @@ import { IconDelete } from 'vtex.styleguide'
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 
-import styles from './styles.css'
-
 const RemoveButton: FunctionComponent = () => {
   const { item, onRemove } = useItemContext()
 
   return (
     <div
-      className={`${opaque(item.availability)} ${
-        styles.remove
-      }`}
+      className={opaque(item.availability)}
     >
       <button
         className="pointer bg-transparent bn pa2 ml6"
