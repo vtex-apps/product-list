@@ -55,9 +55,28 @@
     }
   },
   "flex-layout.col#product-description": {
-    "children": ["product-description"],
+    "children": [
+      "flex-layout.row#product-brand",
+      "flex-layout.row#product-name",
+      "flex-layout.row#product-variations"
+    ],
     "props": {
       "width": "grow"
+    }
+  },
+  "flex-layout.row#product-brand": {
+    "children": ["product-brand"],
+    "props": {
+      "marginBottom": "2"
+    }
+  },
+  "flex-layout.row#product-name": {
+    "children": ["product-name"]
+  },
+  "flex-layout.row#product-variations": {
+    "children": ["product-variations"],
+    "props": {
+      "marginTop": "2"
     }
   },
   "flex-layout.col#quantity-selector": {

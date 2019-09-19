@@ -10,8 +10,14 @@
   "message": {
     "component": "AvailabilityMessage"
   },
-  "product-description": {
-    "component": "ProductDescription"
+  "product-name": {
+    "component": "ProductName"
+  },
+  "product-brand": {
+    "component": "ProductBrand"
+  },
+  "product-variations": {
+    "component": "ProductVariations"
   },
   "quantity-selector": {
     "component": "QuantitySelector"
