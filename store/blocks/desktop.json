@@ -1,5 +1,5 @@
 {
-  "list-item.desktop": {
+  "product-list-content-desktop": {
     "children": ["flex-layout.row#list-row.desktop"]
   },
   "flex-layout.row#list-row.desktop": {

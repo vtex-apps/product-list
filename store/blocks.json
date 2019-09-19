@@ -1,8 +1,8 @@
 {
   "product-list": {
     "blocks": [
-      "list-item.desktop",
-      "list-item.mobile"
+      "product-list-content-desktop",
+      "product-list-content-mobile"
     ]
   }
 }

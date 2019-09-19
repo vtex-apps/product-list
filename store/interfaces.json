@@ -1,19 +1,18 @@
 {
   "product-list": {
-    "component": "ProductList",
+    "component": "ProductListWrapper",
     "allowed": [
-      "list-item.desktop",
-      "list-item.mobile"
+      "product-list-content-desktop",
+      "product-list-content-mobile"
     ]
   },
-  "list-item": {},
-  "list-item.desktop": {
-    "component": "vtex.render-runtime/LayoutContainer",
+  "product-list-content-desktop": {
+    "component": "ProductList",
     "composition": "children",
     "allowed": "*"
   },
-  "list-item.mobile": {
-    "component": "vtex.render-runtime/LayoutContainer",
+  "product-list-content-mobile": {
+    "component": "ProductList",
     "composition": "children",
     "allowed": "*"
   },

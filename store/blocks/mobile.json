@@ -1,6 +1,9 @@
 {
-  "list-item.mobile": {
-    "children": ["flex-layout.row#list-row.mobile"]
+  "product-list-content-mobile": {
+    "children": ["flex-layout.row#list-row.mobile"],
+    "props": {
+      "marginLeft": "5"
+    }
   },
   "flex-layout.row#list-row.mobile": {
     "children": [
