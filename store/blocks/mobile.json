@@ -22,9 +22,14 @@
     }
   },
   "flex-layout.row#price.mobile": {
-    "children": ["price"],
+    "children": ["price#mobile"],
     "props": {
       "preventHorizontalStretch": "true"
+    }
+  },
+  "price#mobile": {
+    "props": {
+      "textAlign": "left"
     }
   }
 }

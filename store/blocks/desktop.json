@@ -27,9 +27,14 @@
     ]
   },
   "flex-layout.col#price.desktop": {
-    "children": ["price"],
+    "children": ["price#desktop"],
     "props": {
       "preventHorizontalStretch": "true"
+    }
+  },
+  "price#desktop": {
+    "props": {
+      "textAlign": "right"
     }
   }
 }

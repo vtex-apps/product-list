@@ -6,11 +6,30 @@ import { opaque } from './utils/opaque'
 
 import styles from './styles.css'
 
-const Price: FunctionComponent = () => {
+interface Props {
+  textAlign: 'left' | 'right'
+}
+
+const align = (prop: string) => {
+  switch (prop) {
+    case 'left':
+      return 'tl'
+    case 'right':
+      return 'tr'
+    default:
+      return ''
+  }
+}
+
+const Price: FunctionComponent<Props> = ({ textAlign }) => {
   const { item } = useItemContext()
 
   return (
-    <div className={`${opaque(item.availability)} ${styles.price} tr-m`}>
+    <div
+      className={`${opaque(item.availability)} ${styles.price} ${align(
+        textAlign
+      )}`}
+    >
       <div className="">
         {item.listPrice !== item.price && (
           <div className="c-muted-1 strike t-mini mb2">
@@ -25,6 +44,20 @@ const Price: FunctionComponent = () => {
       </div>
     </div>
   )
+}
+
+Price.defaultProps = {
+  textAlign: 'left',
+}
+
+Price.schema = {
+  properties: {
+    textAlign: {
+      type: 'string',
+      default: Price.defaultProps.textAlign,
+      isLayout: true,
+    },
+  },
 }
 
 export default Price
