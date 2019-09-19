@@ -1,6 +1,19 @@
 {
   "product-list": {
     "component": "ProductList",
+    "allowed": [
+      "list-item.desktop",
+      "list-item.mobile"
+    ]
+  },
+  "list-item": {},
+  "list-item.desktop": {
+    "component": "vtex.render-runtime/LayoutContainer",
+    "composition": "children",
+    "allowed": "*"
+  },
+  "list-item.mobile": {
+    "component": "vtex.render-runtime/LayoutContainer",
     "composition": "children",
     "allowed": "*"
   },

@@ -1,4 +1,19 @@
 {
+  "list-item.mobile": {
+    "children": ["flex-layout.row#list-row.mobile"]
+  },
+  "flex-layout.row#list-row.mobile": {
+    "children": [
+      "flex-layout.col#image",
+      "flex-layout.col#main-container.mobile"
+    ],
+    "props": {
+      "paddingBottom": "5",
+      "paddingTop": "5",
+      "colSizing": "auto",
+      "preserveLayoutOnMobile": "true"
+    }
+  },
   "flex-layout.col#main-container.mobile": {
     "children": [
       "flex-layout.row#top.mobile",

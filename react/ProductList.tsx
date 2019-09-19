@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useDevice } from 'vtex.device-detector'
+import { ExtensionPoint } from 'vtex.render-runtime'
 
 import { ItemContextProvider } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
@@ -8,8 +10,9 @@ const ProductList: FunctionComponent<any> = ({
   items,
   onQuantityChange,
   onRemove,
-  children,
 }) => {
+  const { device } = useDevice()
+
   const [availableItems, unavailableItems] = items.reduce(
     (acc: any, item: Item) => {
       acc[item.availability === AVAILABLE ? 0 : 1].push(item)
@@ -30,7 +33,9 @@ const ProductList: FunctionComponent<any> = ({
         }}
       >
         <div className="c-on-base bb b--muted-4">
-          {children}
+          <ExtensionPoint
+            id={`list-item.${device === 'phone' ? 'mobile' : 'desktop'}`}
+          />
         </div>
       </ItemContextProvider>
     ))

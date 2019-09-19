@@ -1,4 +1,19 @@
 {
+  "list-item.desktop": {
+    "children": ["flex-layout.row#list-row.desktop"]
+  },
+  "flex-layout.row#list-row.desktop": {
+    "children": [
+      "flex-layout.col#image",
+      "flex-layout.col#main-container.desktop"
+    ],
+    "props": {
+      "paddingBottom": "5",
+      "paddingTop": "5",
+      "colSizing": "auto",
+      "preserveLayoutOnMobile": "true"
+    }
+  },
   "flex-layout.col#main-container.desktop": {
     "children": [
       "flex-layout.row#sub-container.desktop",

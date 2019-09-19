@@ -1,14 +1,8 @@
 {
   "product-list": {
-    "children": ["flex-layout.row#list-row"]
-  },
-  "flex-layout.row#list-row": {
-    "children": ["flex-layout.col#image", "flex-layout.col#main-container.desktop"],
-    "props": {
-      "paddingBottom": "5",
-      "paddingTop": "5",
-      "colSizing": "auto",
-      "preserveLayoutOnMobile": "true"
-    }
+    "blocks": [
+      "list-item.desktop",
+      "list-item.mobile"
+    ]
   }
 }
