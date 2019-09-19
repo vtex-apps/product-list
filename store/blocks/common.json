@@ -2,12 +2,14 @@
   "flex-layout.row#quantity-selector": {
     "children": ["quantity-selector"],
     "props": {
+      "marginTop": "5",
       "preventHorizontalStretch": "true"
     }
   },
   "flex-layout.row#unit-price": {
     "children": ["unit-price"],
     "props": {
+      "marginTop": "3",
       "preventHorizontalStretch": "true"
     }
   },
@@ -21,6 +23,7 @@
       "flex-layout.row#product-variations"
     ],
     "props": {
+      "marginBottom": "5",
       "width": "grow"
     }
   },
@@ -43,6 +46,9 @@
     "children": ["message"]
   },
   "flex-layout.col#image": {
-    "children": ["image"]
+    "children": ["image"],
+    "props": {
+      "marginRight": "5"
+    }
   }
 }

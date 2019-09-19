@@ -24,6 +24,7 @@
   "flex-layout.row#price.mobile": {
     "children": ["price#mobile"],
     "props": {
+      "marginTop": "5",
       "preventHorizontalStretch": "true"
     }
   },

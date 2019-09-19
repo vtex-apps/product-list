@@ -5,6 +5,8 @@
   "flex-layout.row#list-row": {
     "children": ["flex-layout.col#image", "flex-layout.col#main-container.desktop"],
     "props": {
+      "paddingBottom": "5",
+      "paddingTop": "5",
       "colSizing": "auto",
       "preserveLayoutOnMobile": "true"
     }
