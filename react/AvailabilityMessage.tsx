@@ -12,7 +12,7 @@ const AvailabilityMessage: FunctionComponent = () => {
   } = useItemContext()
 
   return availability !== AVAILABLE ? (
-    <div className="bg-warning--faded br2 flex-m justify-between mt4">
+    <div className="bg-warning--faded br2 flex-m justify-between">
       <div className="self-center ph4 pt4 pt0-m">
         {availability === CANNOT_BE_DELIVERED ? (
           <FormattedMessage id="store/product-list.message.cantBeDelivered" />

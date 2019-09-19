@@ -29,7 +29,7 @@ const ProductList: FunctionComponent<any> = ({
           onRemove: () => onRemove(item.uniqueId),
         }}
       >
-        <div className="c-on-base bb b--muted-4 ml5 pr5 pv5 ml6-m pt6-m pb6-m pr6-m ph0-l mh0-l">
+        <div className="c-on-base bb b--muted-4">
           {children}
         </div>
       </ItemContextProvider>

@@ -13,7 +13,7 @@ const RemoveButton: FunctionComponent = () => {
     <div
       className={`${opaque(item.availability)} ${
         styles.remove
-      } items-center-m`}
+      }`}
     >
       <button
         className="pointer bg-transparent bn pa2 ml6"

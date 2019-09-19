@@ -8,7 +8,7 @@ const Image: FunctionComponent = () => {
 
   return (
     <div
-      className={`mr5 mr6-m ${opaque(item.availability)}`}
+      className={opaque(item.availability)}
       style={{ minWidth: '96px' }}
     >
       <a href={item.detailUrl}>

@@ -13,7 +13,7 @@ const Price: FunctionComponent = () => {
     <div
       className={`${opaque(item.availability)} ${
         styles.price
-      } mt5 mt0-ns flex-m items-center-m tr-m flex-none-m ml5-m`}
+      } tr-m`}
     >
       <div className="flex-auto">
         {item.listPrice !== item.price && (
