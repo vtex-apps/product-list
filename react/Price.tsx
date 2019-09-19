@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { FormattedCurrency } from 'vtex.format-currency'
 
 import { useItemContext } from './components/ItemContext'
@@ -21,7 +21,7 @@ const align = (prop: string) => {
   }
 }
 
-const Price: FunctionComponent<Props> = ({ textAlign }) => {
+const Price: StorefrontFunctionComponent<Props> = ({ textAlign }) => {
   const { item } = useItemContext()
 
   return (
