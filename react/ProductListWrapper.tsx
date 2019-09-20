@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDevice } from 'vtex.device-detector'
 import { ExtensionPoint } from 'vtex.render-runtime'
+import { SizeMe } from 'react-sizeme'
 
 interface Props {
   items: Item[]
@@ -9,12 +9,16 @@ interface Props {
 }
 
 const ProductListWrapper: StorefrontFunctionComponent<Props> = props => {
-  const { device } = useDevice()
-
-  return device === 'phone' ? (
-    <ExtensionPoint id="product-list-content-mobile" {...props} />
-  ) : (
-    <ExtensionPoint id="product-list-content-desktop" {...props} />
+  return (
+    <SizeMe>
+      {({ size }) =>
+        size.width && size.width < 640 ? (
+          <ExtensionPoint id="product-list-content-mobile" {...props} />
+        ) : (
+          <ExtensionPoint id="product-list-content-desktop" {...props} />
+        )
+      }
+    </SizeMe>
   )
 }
 
