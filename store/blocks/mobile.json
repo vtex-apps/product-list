@@ -2,7 +2,7 @@
   "product-list-content-mobile": {
     "children": ["flex-layout.row#list-row.mobile"],
     "props": {
-      "fullWidth": true
+      "marginLeft": "5"
     }
   },
   "flex-layout.row#list-row.mobile": {
@@ -11,6 +11,7 @@
       "flex-layout.col#main-container.mobile"
     ],
     "props": {
+      "fullWidth": true,
       "paddingBottom": "6",
       "paddingTop": "5",
       "colSizing": "auto",

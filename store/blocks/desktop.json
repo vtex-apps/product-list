@@ -1,9 +1,6 @@
 {
   "product-list-content-desktop": {
-    "children": ["flex-layout.row#list-row.desktop"],
-    "props": {
-      "fullWidth": true
-    }
+    "children": ["flex-layout.row#list-row.desktop"]
   },
   "flex-layout.row#list-row.desktop": {
     "children": [
@@ -11,6 +8,7 @@
       "flex-layout.col#main-container.desktop"
     ],
     "props": {
+      "fullWidth": true,
       "paddingBottom": "7",
       "paddingTop": "6",
       "colSizing": "auto",
