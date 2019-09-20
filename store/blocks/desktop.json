@@ -44,7 +44,7 @@
   "flex-layout.col#quantity.desktop": {
     "children": [
       "flex-layout.row#quantity-selector.desktop",
-      "flex-layout.row#unit-price"
+      "flex-layout.row#unit-price.desktop"
     ],
     "props": {
       "marginLeft": "5"
@@ -63,6 +63,18 @@
     "children": ["quantity-selector"],
     "props": {
       "preventHorizontalStretch": "true"
+    }
+  },
+  "flex-layout.row#unit-price.desktop": {
+    "children": ["unit-price#desktop"],
+    "props": {
+      "marginTop": "3",
+      "preventHorizontalStretch": "true"
+    }
+  },
+  "unit-price#desktop": {
+    "props": {
+      "textAlign": "center"
     }
   },
   "flex-layout.col#price.desktop": {

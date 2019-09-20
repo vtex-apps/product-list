@@ -1,9 +1,6 @@
 {
   "product-list-content-mobile": {
-    "children": ["flex-layout.row#list-row.mobile"],
-    "props": {
-      "marginLeft": "5"
-    }
+    "children": ["flex-layout.row#list-row.mobile"]
   },
   "flex-layout.row#list-row.mobile": {
     "children": [
@@ -28,7 +25,7 @@
     "children": [
       "flex-layout.row#top.mobile",
       "flex-layout.row#quantity-selector.mobile",
-      "flex-layout.row#unit-price",
+      "flex-layout.row#unit-price.mobile",
       "flex-layout.row#price.mobile",
       "flex-layout.row#message"
     ],
@@ -52,6 +49,12 @@
     "props": {
       "marginTop": "5",
       "preventHorizontalStretch": "true"
+    }
+  },
+  "flex-layout.row#unit-price.mobile": {
+    "children": ["unit-price"],
+    "props": {
+      "marginTop": "3"
     }
   },
   "flex-layout.row#price.mobile": {

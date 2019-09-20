@@ -1,11 +1,4 @@
 {
-  "flex-layout.row#unit-price": {
-    "children": ["unit-price"],
-    "props": {
-      "marginTop": "3",
-      "preventHorizontalStretch": "true"
-    }
-  },
   "flex-layout.col#product-description": {
     "children": [
       "flex-layout.row#product-brand",
