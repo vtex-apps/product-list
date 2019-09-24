@@ -24,8 +24,5 @@
     "props": {
       "marginTop": "2"
     }
-  },
-  "flex-layout.row#message": {
-    "children": ["message"]
   }
 }

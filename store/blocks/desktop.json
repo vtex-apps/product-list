@@ -24,7 +24,7 @@
   "flex-layout.col#main-container.desktop": {
     "children": [
       "flex-layout.row#sub-container.desktop",
-      "flex-layout.row#message"
+      "flex-layout.row#message.desktop"
     ],
     "props": {
       "width": "grow"
@@ -94,6 +94,17 @@
     "children": ["remove-button"],
     "props": {
       "verticalAlign": "middle"
+    }
+  },
+  "flex-layout.row#message.desktop": {
+    "children": ["message#desktop"],
+    "props": {
+      "marginTop": "4"
+    }
+  },
+  "message#desktop": {
+    "props": {
+      "layout": "cols"
     }
   }
 }

@@ -27,7 +27,7 @@
       "flex-layout.row#quantity-selector.mobile",
       "flex-layout.row#unit-price.mobile",
       "flex-layout.row#price.mobile",
-      "flex-layout.row#message"
+      "flex-layout.row#message.mobile"
     ],
     "props": {
       "marginRight": "5",
@@ -71,5 +71,16 @@
   },
   "flex-layout.col#remove-button.mobile": {
     "children": ["remove-button"]
+  },
+  "flex-layout.row#message.mobile": {
+    "children": ["message#mobile"],
+    "props": {
+      "marginTop": "3"
+    }
+  },
+  "message#mobile": {
+    "props": {
+      "layout": "rows"
+    }
   }
 }
