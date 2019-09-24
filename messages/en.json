@@ -5,5 +5,5 @@
   "store/product-list.unavailableItems": "{quantity, plural, one {# unavailable item} other {# unavailable items}}",
   "store/product-list.message.cantBeDelivered": "This item cannot be delivered to this address.",
   "store/product-list.message.noLongerAvailable": "This item is no longer available.",
-  "store/product-list.message.remove": "REMOVE"
+  "store/product-list.message.remove": "remove"
 }
