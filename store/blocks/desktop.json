@@ -47,7 +47,7 @@
       "flex-layout.row#unit-price.desktop"
     ],
     "props": {
-      "marginLeft": "5"
+      "marginLeft": "8"
     }
   },
   "flex-layout.row#price-remove": {
