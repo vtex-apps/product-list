@@ -1,12 +1,26 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useDevice } from 'vtex.device-detector'
 
 import { ItemContextProvider } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
 
 interface LayoutProps {
+  divider: DividerProps,
   marginLeft: string
   marginRight: string
+}
+
+interface DividerProps {
+  color: string,
+  expand: DividerExpansion,
+  width: string,
+}
+
+interface DividerExpansion {
+  device: string,
+  side: string,
+  width: string
 }
 
 interface ParentProps {
@@ -21,7 +35,38 @@ const parseMargins = ({ marginLeft, marginRight }: LayoutProps) => {
   return `${left} ${right}`
 }
 
+const parseDividerStyle = ({ divider }: LayoutProps) => {
+  if (!divider.color && !divider.width) {
+    return
+  }
+  const color = divider.color ? `b--${divider.color}` : ''
+  const width = divider.width ? `bw-${divider.width}` : ''
+  return `bb ${color} ${width}`
+}
+
+const parseDividerExpansion = ({ divider }: LayoutProps) => {
+  const { device } = useDevice()
+  console.log(device)
+
+  if (divider.expand && divider.expand.device && divider.expand.device === device) {
+    const width = divider.expand.width ? `-${parseInt(divider.expand.width)}rem` : '0'
+    switch (divider.expand.side) {
+      case 'left':
+        return {'marginLeft': width}
+        break
+      case 'right':
+        return {'marginRight': width}
+        break
+      case 'all':
+        return {'marginLeft': width, 'marginRight': width}
+        break
+    }
+  }
+  return
+}
+
 const ProductList: StorefrontFunctionComponent<LayoutProps & ParentProps> = ({
+  divider,
   marginLeft,
   marginRight,
   items,
@@ -48,12 +93,15 @@ const ProductList: StorefrontFunctionComponent<LayoutProps & ParentProps> = ({
           onRemove: () => onRemove(item.uniqueId),
         }}
       >
-        <div className="c-on-base bb b--muted-4">{children}</div>
+        <div className="c-on-base">
+          {children}
+          <div className={parseDividerStyle({ divider, marginLeft, marginRight })} style={parseDividerExpansion({ divider, marginLeft, marginRight })}></div>
+        </div>
       </ItemContextProvider>
     ))
 
   return (
-    <div className={parseMargins({ marginLeft, marginRight })}>
+    <div className={parseMargins({ divider, marginLeft, marginRight })}>
       {unavailableItems.length > 0 ? (
         <div className="c-muted-1 bb b--muted-4 fw5 pv5 pl5 pl6-m pl0-l t-heading-5-l">
           <FormattedMessage
@@ -77,12 +125,18 @@ const ProductList: StorefrontFunctionComponent<LayoutProps & ParentProps> = ({
 }
 
 ProductList.defaultProps = {
+  divider: undefined,
   marginLeft: undefined,
   marginRight: undefined,
 }
 
 ProductList.schema = {
   properties: {
+    divider: {
+      type: 'object',
+      default: ProductList.defaultProps.divider,
+      isLayout: true,
+    },
     marginLeft: {
       type: 'string',
       default: ProductList.defaultProps.marginLeft,

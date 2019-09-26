@@ -30,7 +30,6 @@
       "flex-layout.row#message.mobile"
     ],
     "props": {
-      "marginRight": "5",
       "width": "grow"
     }
   },

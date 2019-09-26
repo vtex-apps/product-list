@@ -3,6 +3,17 @@
     "blocks": [
       "product-list-content-desktop",
       "product-list-content-mobile"
-    ]
+    ],
+    "props": {
+      "divider": {
+        "color": "muted-4",
+        "expand": {
+          "device": "phone",
+          "side": "right",
+          "width": "1"
+        },
+        "width": "1"
+      }
+    }
   }
 }
