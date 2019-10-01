@@ -1,5 +1,46 @@
 {
   "product-list": {
-    "component": "ProductList"
+    "component": "ProductListWrapper",
+    "allowed": [
+      "product-list-content-desktop",
+      "product-list-content-mobile"
+    ]
+  },
+  "product-list-content-desktop": {
+    "component": "ProductList",
+    "composition": "children",
+    "allowed": "*"
+  },
+  "product-list-content-mobile": {
+    "component": "ProductList",
+    "composition": "children",
+    "allowed": "*"
+  },
+  "image": {
+    "component": "Image"
+  },
+  "message": {
+    "component": "AvailabilityMessage"
+  },
+  "product-name": {
+    "component": "ProductName"
+  },
+  "product-brand": {
+    "component": "ProductBrand"
+  },
+  "product-variations": {
+    "component": "ProductVariations"
+  },
+  "quantity-selector": {
+    "component": "QuantitySelector"
+  },
+  "unit-price": {
+    "component": "UnitPrice"
+  },
+  "price": {
+    "component": "Price"
+  },
+  "remove-button": {
+    "component": "RemoveButton"
   }
 }
