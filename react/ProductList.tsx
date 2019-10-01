@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { FormattedMessage } from 'react-intl'
 
-import ListItem from './components/ListItem'
+import { ItemContextProvider } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
 
 interface Props {
@@ -10,13 +10,14 @@ interface Props {
   onRemove: (uniqueId: string) => void
 }
 
-const ProductList: FunctionComponent<Props> = ({
+const ProductList: StorefrontFunctionComponent<Props> = ({
   items,
   onQuantityChange,
   onRemove,
+  children,
 }) => {
   const [availableItems, unavailableItems] = items.reduce(
-    (acc, item) => {
+    (acc: any, item: Item) => {
       acc[item.availability === AVAILABLE ? 0 : 1].push(item)
       return acc
     },
@@ -25,14 +26,17 @@ const ProductList: FunctionComponent<Props> = ({
 
   const productList = (itemList: Item[]) =>
     itemList.map((item: Item) => (
-      <ListItem
+      <ItemContextProvider
         key={item.uniqueId}
-        item={item}
-        onQuantityChange={(value: number) =>
-          onQuantityChange(item.uniqueId, value)
-        }
-        onRemove={() => onRemove(item.uniqueId)}
-      />
+        value={{
+          item,
+          onQuantityChange: (value: number) =>
+            onQuantityChange(item.uniqueId, value),
+          onRemove: () => onRemove(item.uniqueId),
+        }}
+      >
+        <div className="c-on-base bb b--muted-4">{children}</div>
+      </ItemContextProvider>
     ))
 
   return (
