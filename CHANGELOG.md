@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.8.0] - 2019-10-04
+
 ### Changed
 
 - `ListItem` was broken into several smaller components in order to implement the `blocks` structure using `flex-layout`.
