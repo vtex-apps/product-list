@@ -9,7 +9,11 @@ const RemoveButton: FunctionComponent = () => {
 
   return (
     <div className={opaque(item.availability)}>
-      <button className="pointer bg-transparent bn pa2 ml6" onClick={onRemove}>
+      <button
+        className="pointer bg-transparent bn pa2 ml6"
+        title="remove"
+        onClick={onRemove}
+      >
         <IconDelete color="#727273" />
       </button>
     </div>

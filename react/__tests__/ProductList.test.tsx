@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { render, fireEvent } from '@vtex/test-tools/react'
 
-import ProductList from '../ProductList'
 import { mockItems } from '../__mocks__/mockItems'
+import AvailabilityMessage from '../AvailabilityMessage'
+import Image from '../Image'
+import Price from '../Price'
+import ProductBrand from '../ProductBrand'
+import ProductList from '../ProductList'
+import ProductName from '../ProductName'
+import ProductVariations from '../ProductVariations'
+import QuantitySelector from '../QuantitySelector'
+import RemoveButton from '../RemoveButton'
+import UnitPrice from '../UnitPrice'
+
+const ListItem: FunctionComponent = () => (
+  <div>
+    <AvailabilityMessage layout="cols" />
+    <Image />
+    <Price textAlign="left" />
+    <ProductBrand />
+    <ProductName />
+    <ProductVariations />
+    <QuantitySelector />
+    <RemoveButton />
+    <UnitPrice textAlign="left" />
+  </div>
+)
 
 describe('Product List', () => {
   it('should display the list of products', () => {
@@ -11,6 +34,7 @@ describe('Product List', () => {
         items={mockItems}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        children={<ListItem />}
       />
     )
 
@@ -27,6 +51,7 @@ describe('Product List', () => {
         items={[mockItems[2]]}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
+        children={<ListItem />}
       />
     )
 
@@ -43,6 +68,7 @@ describe('Product List', () => {
         items={mockItems}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        children={<ListItem />}
       />
     )
 
@@ -56,6 +82,7 @@ describe('Product List', () => {
         items={[mockItems[1]]}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        children={<ListItem />}
       />
     )
 
@@ -68,6 +95,7 @@ describe('Product List', () => {
         items={[mockItems[2]]}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        children={<ListItem />}
       />
     )
 
