@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- When the selling price of an item is zero, the text "FREE" is shown in place of the price and the price per unit is not shown, even when the item quantity is greater than one.
+
 ## [0.9.0] - 2019-10-04
 
 ### Added
