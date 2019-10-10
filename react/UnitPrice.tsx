@@ -12,7 +12,7 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
 }) => {
   const { item } = useItemContext()
 
-  return item.quantity > 1 ? (
+  return item.quantity > 1 && item.sellingPrice > 0 ? (
     <div
       className={`t-mini c-muted-1 lh-title ${styles.quantity} ${opaque(
         item.availability

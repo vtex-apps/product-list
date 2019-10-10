@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormattedCurrency } from 'vtex.format-currency'
+import { FormattedPrice } from 'vtex.formatted-price'
 
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
@@ -23,9 +24,7 @@ const Price: StorefrontFunctionComponent<TextAlignProp> = ({ textAlign }) => {
           </div>
         )}
         <div className="div fw6 fw5-m">
-          <FormattedCurrency
-            value={(item.sellingPrice * item.quantity) / 100}
-          />
+          <FormattedPrice value={(item.sellingPrice * item.quantity) / 100} />
         </div>
       </div>
     </div>
