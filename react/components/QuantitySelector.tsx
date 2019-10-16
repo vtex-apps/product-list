@@ -22,7 +22,7 @@ const normalizeValue = (value: number, maxValue: number) =>
 const validateValue = (value: string, maxValue: number) => {
   const parsedValue = parseInt(value, 10)
 
-  if (isNaN(parsedValue) || parsedValue === 0) {
+  if (isNaN(parsedValue)) {
     return 1
   }
 
@@ -32,7 +32,7 @@ const validateValue = (value: string, maxValue: number) => {
 const validateDisplayValue = (value: string, maxValue: number) => {
   const parsedValue = parseInt(value, 10)
 
-  if (isNaN(parsedValue) || parsedValue < 1) {
+  if (isNaN(parsedValue) || parsedValue < 0) {
     return ''
   }
 
@@ -42,6 +42,7 @@ const validateDisplayValue = (value: string, maxValue: number) => {
 const getDropdownOptions = (maxValue: number) => {
   const limit = Math.min(9, maxValue)
   const options = [
+    { value: 0, label: '0' },
     ...range(1, limit + 1).map(idx => ({ value: idx, label: `${idx}` })),
   ]
 
@@ -61,12 +62,13 @@ const QuantitySelector: FunctionComponent<Props> = ({
   const [curSelector, setSelector] = useState(
     value < 10 ? SelectorType.Dropdown : SelectorType.Input
   )
+  const [activeInput, setActiveInput] = useState(false)
 
   const normalizedValue = normalizeValue(value, maxValue)
 
   const [curDisplayValue, setDisplayValue] = useState(`${normalizedValue}`)
 
-  const handleChange = (value: string) => {
+  const handleDropdownChange = (value: string) => {
     const validatedValue = validateValue(value, maxValue)
     const displayValue = validateDisplayValue(value, maxValue)
 
@@ -78,13 +80,28 @@ const QuantitySelector: FunctionComponent<Props> = ({
     onChange(validatedValue)
   }
 
-  const handleBlur = () => {
+  const handleInputChange = (value: string) => {
+    const displayValue = validateDisplayValue(value, maxValue)
+
+    setDisplayValue(displayValue)
+  }
+
+  const handleInputBlur = () => {
+    setActiveInput(false)
     if (curDisplayValue === '') {
       setDisplayValue('1')
     }
+
+    const validatedValue = validateValue(curDisplayValue, maxValue)
+    onChange(validatedValue)
   }
 
-  if (normalizedValue !== validateValue(curDisplayValue, maxValue)) {
+  const handleInputFocus = () => setActiveInput(true)
+
+  if (
+    !activeInput &&
+    normalizedValue !== validateValue(curDisplayValue, maxValue)
+  ) {
     if (normalizedValue >= 10) {
       setSelector(SelectorType.Input)
     }
@@ -101,7 +118,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
             options={dropdownOptions}
             size="small"
             value={normalizedValue}
-            onChange={(event: any) => handleChange(event.target.value)}
+            onChange={(event: any) => handleDropdownChange(event.target.value)}
             placeholder=""
             disabled={disabled}
           />
@@ -110,7 +127,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
           <Dropdown
             options={dropdownOptions}
             value={normalizedValue}
-            onChange={(event: any) => handleChange(event.target.value)}
+            onChange={(event: any) => handleDropdownChange(event.target.value)}
             placeholder=""
             disabled={disabled}
           />
@@ -125,8 +142,9 @@ const QuantitySelector: FunctionComponent<Props> = ({
             size="small"
             value={curDisplayValue}
             maxLength={MAX_INPUT_LENGTH}
-            onChange={(event: any) => handleChange(event.target.value)}
-            onBlur={handleBlur}
+            onChange={(event: any) => handleInputChange(event.target.value)}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             placeholder=""
             disabled={disabled}
           />
@@ -135,8 +153,9 @@ const QuantitySelector: FunctionComponent<Props> = ({
           <Input
             value={curDisplayValue}
             maxLength={MAX_INPUT_LENGTH}
-            onChange={(event: any) => handleChange(event.target.value)}
-            onBlur={handleBlur}
+            onChange={(event: any) => handleInputChange(event.target.value)}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             placeholder=""
             disabled={disabled}
           />

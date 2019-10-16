@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Quantity selector now allows selecting the value zero.
+
+### Fixed
+
+- Bug that caused the component to crash when a negative number was input into the quantity selector.
+
 ## [0.10.0] - 2019-10-10
 
 ### Changed
