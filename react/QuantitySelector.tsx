@@ -14,6 +14,7 @@ const QuantitySelector: FunctionComponent = () => {
 
   return (
     <div
+      id={`${item.id}-selector`}
       className={`${opaque(item.availability)} ${styles.quantity} ${
         styles.quantitySelector
       }`}

@@ -10,6 +10,7 @@ const RemoveButton: FunctionComponent = () => {
   return (
     <div className={opaque(item.availability)}>
       <button
+        id="remove-button"
         className="pointer bg-transparent bn pa2 ml6"
         title="remove"
         onClick={onRemove}
