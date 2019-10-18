@@ -12,7 +12,7 @@ const ProductVariations: FunctionComponent = () => {
         return (
           <div
             id={`${item.id}-${spec.fieldName}-specification`}
-            key={`${spec.fieldName}-key`}
+            key={spec.fieldName}
           >
             {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
           </div>
