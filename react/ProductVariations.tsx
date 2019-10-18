@@ -10,7 +10,10 @@ const ProductVariations: FunctionComponent = () => {
     <div className={`c-muted-1 f6 lh-copy ${opaque(item.availability)}`}>
       {item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
         return (
-          <div id={`${idx}`} key={idx}>
+          <div
+            id={`${idx}-${spec.fieldName}-specification`}
+            key={`${spec.fieldName}-key`}
+          >
             {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
           </div>
         )
