@@ -8,7 +8,11 @@ const Image: FunctionComponent = () => {
   const { item } = useItemContext()
 
   return (
-    <div className={opaque(item.availability)} style={{ minWidth: '96px' }}>
+    <div
+      id={`${item.id}-image`}
+      className={opaque(item.availability)}
+      style={{ minWidth: '96px' }}
+    >
       <a href={item.detailUrl}>
         {item.imageUrl ? (
           <img

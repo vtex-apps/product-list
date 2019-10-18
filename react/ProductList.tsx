@@ -42,7 +42,10 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
   return (
     <div>
       {unavailableItems.length > 0 ? (
-        <div className="c-muted-1 bb b--muted-4 fw5 pv5 pl5 pl6-m pl0-l t-heading-5-l">
+        <div
+          id="unavailable-items"
+          className="c-muted-1 bb b--muted-4 fw5 pv5 pl5 pl6-m pl0-l t-heading-5-l"
+        >
           <FormattedMessage
             id="store/product-list.unavailableItems"
             values={{ quantity: unavailableItems.length }}

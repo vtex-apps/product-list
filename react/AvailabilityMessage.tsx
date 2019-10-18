@@ -49,7 +49,12 @@ const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
         )}
       </div>
       <div className="ph3">
-        <Button variation="tertiary" onClick={onRemove} collapseRight>
+        <Button
+          id="availability-remove-button"
+          variation="tertiary"
+          onClick={onRemove}
+          collapseRight
+        >
           <FormattedMessage id="store/product-list.message.remove" />
         </Button>
       </div>

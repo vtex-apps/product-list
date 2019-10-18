@@ -8,9 +8,12 @@ const ProductVariations: FunctionComponent = () => {
 
   return item.skuSpecifications && item.skuSpecifications.length > 0 ? (
     <div className={`c-muted-1 f6 lh-copy ${opaque(item.availability)}`}>
-      {item.skuSpecifications.map((spec: SKUSpecification, idx: number) => {
+      {item.skuSpecifications.map((spec: SKUSpecification) => {
         return (
-          <div key={idx}>
+          <div
+            id={`${item.id}-${spec.fieldName}-specification`}
+            key={spec.fieldName}
+          >
             {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
           </div>
         )
