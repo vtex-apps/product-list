@@ -1,6 +1,19 @@
 import { range } from 'ramda'
 import React, { FunctionComponent, useState } from 'react'
+import {
+  defineMessages,
+  InjectedIntl,
+  InjectedIntlProps,
+  injectIntl,
+} from 'react-intl'
 import { Dropdown, Input } from 'vtex.styleguide'
+
+const messages = defineMessages({
+  remove: {
+    defaultMessage: '',
+    id: 'store/product-list.quantity-selector.remove',
+  },
+})
 
 const MAX_INPUT_LENGTH = 5
 
@@ -39,10 +52,10 @@ const validateDisplayValue = (value: string, maxValue: number) => {
   return `${normalizeValue(parsedValue, maxValue)}`
 }
 
-const getDropdownOptions = (maxValue: number) => {
+const getDropdownOptions = (maxValue: number, intl: InjectedIntl) => {
   const limit = Math.min(9, maxValue)
   const options = [
-    { value: 0, label: '0' },
+    { value: 0, label: `0 - ${intl.formatMessage(messages.remove)}` },
     ...range(1, limit + 1).map(idx => ({ value: idx, label: `${idx}` })),
   ]
 
@@ -53,11 +66,12 @@ const getDropdownOptions = (maxValue: number) => {
   return options
 }
 
-const QuantitySelector: FunctionComponent<Props> = ({
+const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
   value,
   maxValue,
   onChange,
   disabled,
+  intl,
 }) => {
   const [curSelector, setSelector] = useState(
     value < 10 ? SelectorType.Dropdown : SelectorType.Input
@@ -109,7 +123,7 @@ const QuantitySelector: FunctionComponent<Props> = ({
   }
 
   if (curSelector === SelectorType.Dropdown) {
-    const dropdownOptions = getDropdownOptions(maxValue)
+    const dropdownOptions = getDropdownOptions(maxValue, intl)
 
     return (
       <div>
@@ -165,4 +179,4 @@ const QuantitySelector: FunctionComponent<Props> = ({
   }
 }
 
-export default QuantitySelector
+export default injectIntl(QuantitySelector)
