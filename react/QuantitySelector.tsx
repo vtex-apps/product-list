@@ -14,12 +14,12 @@ const QuantitySelector: FunctionComponent = () => {
 
   return (
     <div
-      id={`${item.id}-selector`}
       className={`${opaque(item.availability)} ${styles.quantity} ${
         styles.quantitySelector
       }`}
     >
       <Selector
+        id={item.id}
         value={item.quantity}
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}

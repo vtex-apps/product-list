@@ -8,7 +8,7 @@ const ProductName: FunctionComponent = () => {
 
   return (
     <a
-      id={`${item.id}-name`}
+      id={`name-${item.id}`}
       className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${opaque(
         item.availability
       )}`}

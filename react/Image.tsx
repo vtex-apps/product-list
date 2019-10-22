@@ -9,7 +9,7 @@ const Image: FunctionComponent = () => {
 
   return (
     <div
-      id={`${item.id}-image`}
+      id={`image-${item.id}`}
       className={opaque(item.availability)}
       style={{ minWidth: '96px' }}
     >

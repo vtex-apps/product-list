@@ -14,6 +14,7 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
 
   return item.quantity > 1 && item.sellingPrice > 0 ? (
     <div
+      id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${styles.quantity} ${opaque(
         item.availability
       )} ${parseTextAlign(textAlign)}`}
