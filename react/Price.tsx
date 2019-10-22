@@ -2,6 +2,9 @@ import React from 'react'
 import { FormattedCurrency } from 'vtex.format-currency'
 import { FormattedPrice } from 'vtex.formatted-price'
 
+import { useOrderForm } from 'vtex.order-manager/OrderForm'
+import { Loading } from 'vtex.render-runtime'
+
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 import { parseTextAlign, TextAlignProp } from './utils/textAlign'
@@ -10,6 +13,11 @@ import styles from './styles.css'
 
 const Price: StorefrontFunctionComponent<TextAlignProp> = ({ textAlign }) => {
   const { item } = useItemContext()
+  const { loading } = useOrderForm()
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <div
