@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "product-list",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "title": "Product List",
   "description": "Product List",
   "defaultLocale": "pt-BR",
