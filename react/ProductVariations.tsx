@@ -11,7 +11,7 @@ const ProductVariations: FunctionComponent = () => {
       {item.skuSpecifications.map((spec: SKUSpecification) => {
         return (
           <div
-            id={`${item.id}-${spec.fieldName}-specification`}
+            id={`specification-${item.id}-${spec.fieldName}`}
             key={spec.fieldName}
           >
             {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}

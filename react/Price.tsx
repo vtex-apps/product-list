@@ -20,13 +20,13 @@ const Price: StorefrontFunctionComponent<TextAlignProp> = ({ textAlign }) => {
       <div>
         {item.listPrice !== item.price && (
           <div
-            id={`${item.id}-list-price`}
+            id={`list-price-${item.id}`}
             className="c-muted-1 strike t-mini mb2"
           >
             <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
           </div>
         )}
-        <div id={`${item.id}-price`} className="div fw6 fw5-m">
+        <div id={`price-${item.id}`} className="div fw6 fw5-m">
           <FormattedPrice value={(item.sellingPrice * item.quantity) / 100} />
         </div>
       </div>

@@ -23,6 +23,7 @@ enum SelectorType {
 }
 
 interface Props {
+  id: string
   value: number
   maxValue: number
   onChange: (value: number) => void
@@ -67,6 +68,7 @@ const getDropdownOptions = (maxValue: number, intl: InjectedIntl) => {
 }
 
 const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
+  id,
   value,
   maxValue,
   onChange,
@@ -129,6 +131,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
       <div>
         <div className="dn-m">
           <Dropdown
+            id={`quantity-dropdown-mobile-${id}`}
             options={dropdownOptions}
             size="small"
             value={normalizedValue}
@@ -139,6 +142,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
         </div>
         <div className="dn db-m">
           <Dropdown
+            id={`quantity-dropdown-${id}`}
             options={dropdownOptions}
             value={normalizedValue}
             onChange={(event: any) => handleDropdownChange(event.target.value)}
@@ -153,6 +157,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
       <div>
         <div className="dn-m">
           <Input
+            id={`quantity-input-mobile-${id}`}
             size="small"
             value={curDisplayValue}
             maxLength={MAX_INPUT_LENGTH}
@@ -165,6 +170,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
         </div>
         <div className="dn db-m">
           <Input
+            id={`quantity-input-${id}`}
             value={curDisplayValue}
             maxLength={MAX_INPUT_LENGTH}
             onChange={(event: any) => handleInputChange(event.target.value)}
