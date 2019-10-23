@@ -7,17 +7,16 @@ const ProductVariations: FunctionComponent = () => {
   const { item } = useItemContext()
 
   return item.skuSpecifications && item.skuSpecifications.length > 0 ? (
-    <div className={`c-muted-1 f6 lh-copy ${opaque(item.availability)}`}>
-      {item.skuSpecifications.map((spec: SKUSpecification) => {
-        return (
-          <div
-            id={`${item.id}-${spec.fieldName}-specification`}
-            key={spec.fieldName}
-          >
-            {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
-          </div>
+    <div
+      id={`${item.id}-specifications`}
+      className={`c-muted-1 f6 lh-copy ${opaque(item.availability)}`}
+    >
+      {item.skuSpecifications
+        .map(
+          (spec: SKUSpecification) =>
+            `${spec.fieldName}: ${spec.fieldValues.join(', ')}`
         )
-      })}
+        .join(' • ')}
     </div>
   ) : null
 }
