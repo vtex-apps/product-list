@@ -132,6 +132,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
         <div className="dn-m">
           <Dropdown
             id={`quantity-dropdown-mobile-${id}`}
+            testId={`quantity-dropdown-mobile-${id}`}
             options={dropdownOptions}
             size="small"
             value={normalizedValue}
@@ -143,6 +144,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
         <div className="dn db-m">
           <Dropdown
             id={`quantity-dropdown-${id}`}
+            testId={`quantity-dropdown-${id}`}
             options={dropdownOptions}
             value={normalizedValue}
             onChange={(event: any) => handleDropdownChange(event.target.value)}
