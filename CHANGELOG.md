@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.11.6] - 2019-10-24
+
 ### Added
 
 - `testId` prop to `Dropdown` component in order to allow the proper tests.
