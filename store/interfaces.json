@@ -17,8 +17,9 @@
     "component": "Image",
     "preview": {
       "type": "box",
-      "height": 200,
-      "width": 200
+      "height": 96,
+      "width": 96,
+      "minWidth": 96
     }
   },
   "message": {
@@ -28,56 +29,46 @@
     "component": "ProductName",
     "preview": {
       "type": "box",
-      "height": 70,
-      "width": 400
+      "height": 30,
+      "width": 260
     }
   },
   "product-brand": {
     "component": "ProductBrand",
     "preview": {
       "type": "box",
-      "height": 60,
-      "width": 200
+      "height": 15,
+      "width": 120
     }
   },
   "product-variations": {
-    "component": "ProductVariations",
-    "preview": {
-      "type": "box",
-      "height": 70,
-      "width": 400
-    }
+    "component": "ProductVariations"
   },
   "quantity-selector": {
     "component": "QuantitySelector",
     "preview": {
       "type": "box",
-      "height": 80,
-      "width": 200
+      "height": 35,
+      "width": 90
     }
   },
   "unit-price": {
-    "component": "UnitPrice",
-    "preview": {
-      "type": "box",
-      "height": 80,
-      "width": 200
-    }
+    "component": "UnitPrice"
   },
   "price": {
     "component": "Price",
     "preview": {
       "type": "box",
-      "height": 80,
-      "width": 200
+      "height": 35,
+      "width": 100
     }
   },
   "remove-button": {
     "component": "RemoveButton",
     "preview": {
       "type": "box",
-      "height": 70,
-      "width": 80
+      "height": 25,
+      "width": 25
     }
   }
 }

@@ -70,7 +70,10 @@
     }
   },
   "flex-layout.col#remove-button.mobile": {
-    "children": ["remove-button"]
+    "children": ["remove-button"],
+    "props": {
+      "marginLeft": "6"
+    }
   },
   "flex-layout.row#message.mobile": {
     "children": ["message#mobile"],
