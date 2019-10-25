@@ -3,12 +3,10 @@ import React, { FunctionComponent } from 'react'
 import { useItemContext } from './components/ItemContext'
 import { NoImageIcon } from './components/NoImageIcon'
 import { opaque } from './utils/opaque'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
 import { Loading } from 'vtex.render-runtime'
 
 const Image: FunctionComponent = () => {
-  const { item } = useItemContext()
-  const { loading } = useOrderForm()
+  const { item, loading } = useItemContext()
 
   if (loading) {
     return <Loading />

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
 import { Loading } from 'vtex.render-runtime'
 
 import Selector from './components/QuantitySelector'
@@ -13,8 +12,7 @@ import styles from './styles.css'
 const MAX_ITEM_QUANTITY = 99999
 
 const QuantitySelector: FunctionComponent = () => {
-  const { item, onQuantityChange } = useItemContext()
-  const { loading } = useOrderForm()
+  const { item, loading, onQuantityChange } = useItemContext()
 
   if (loading) {
     return <Loading />

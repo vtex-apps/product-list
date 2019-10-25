@@ -1,7 +1,6 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Button } from 'vtex.styleguide'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
 
 import { useItemContext } from './components/ItemContext'
 import { AVAILABLE, CANNOT_BE_DELIVERED } from './constants/Availability'
@@ -37,10 +36,9 @@ const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
 }) => {
   const {
     item: { availability },
+    loading,
     onRemove,
   } = useItemContext()
-
-  const { loading } = useOrderForm()
 
   if (loading) {
     return null

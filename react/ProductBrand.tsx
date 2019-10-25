@@ -1,14 +1,12 @@
 import React, { FunctionComponent } from 'react'
 
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
 import { Loading } from 'vtex.render-runtime'
 
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 
 const ProductBrand: FunctionComponent = () => {
-  const { item } = useItemContext()
-  const { loading } = useOrderForm()
+  const { item, loading } = useItemContext()
 
   if (loading) {
     return <Loading />

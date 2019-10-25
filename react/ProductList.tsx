@@ -6,12 +6,14 @@ import { AVAILABLE } from './constants/Availability'
 
 interface Props {
   items: Item[]
+  loading: boolean
   onQuantityChange: (uniqueId: string, value: number) => void
   onRemove: (uniqueId: string) => void
 }
 
 const ProductList: StorefrontFunctionComponent<Props> = ({
   items,
+  loading,
   onQuantityChange,
   onRemove,
   children,
@@ -30,6 +32,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
         key={item.uniqueId}
         value={{
           item,
+          loading: loading,
           onQuantityChange: (value: number) =>
             onQuantityChange(item.uniqueId, value),
           onRemove: () => onRemove(item.uniqueId),

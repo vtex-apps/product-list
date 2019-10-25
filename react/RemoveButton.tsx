@@ -1,15 +1,13 @@
 import React, { FunctionComponent } from 'react'
 import { IconDelete } from 'vtex.styleguide'
 
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
 import { Loading } from 'vtex.render-runtime'
 
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 
 const RemoveButton: FunctionComponent = () => {
-  const { item, onRemove } = useItemContext()
-  const { loading } = useOrderForm()
+  const { item, loading, onRemove } = useItemContext()
 
   if (loading) {
     return <Loading />
