@@ -32,7 +32,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
         key={item.uniqueId}
         value={{
           item,
-          loading: loading,
+          loading,
           onQuantityChange: (value: number) =>
             onQuantityChange(item.uniqueId, value),
           onRemove: () => onRemove(item.uniqueId),
