@@ -1,10 +1,7 @@
 {
   "product-list": {
     "component": "ProductListWrapper",
-    "allowed": [
-      "product-list-content-desktop",
-      "product-list-content-mobile"
-    ]
+    "allowed": ["product-list-content-desktop", "product-list-content-mobile"]
   },
   "product-list-content-desktop": {
     "component": "ProductList",
@@ -17,30 +14,61 @@
     "allowed": "*"
   },
   "image": {
-    "component": "Image"
+    "component": "Image",
+    "preview": {
+      "type": "box",
+      "height": 96,
+      "width": 96,
+      "minWidth": 96
+    }
   },
   "message": {
     "component": "AvailabilityMessage"
   },
   "product-name": {
-    "component": "ProductName"
+    "component": "ProductName",
+    "preview": {
+      "type": "box",
+      "height": 30,
+      "width": 260
+    }
   },
   "product-brand": {
-    "component": "ProductBrand"
+    "component": "ProductBrand",
+    "preview": {
+      "type": "box",
+      "height": 15,
+      "width": 120
+    }
   },
   "product-variations": {
     "component": "ProductVariations"
   },
   "quantity-selector": {
-    "component": "QuantitySelector"
+    "component": "QuantitySelector",
+    "preview": {
+      "type": "box",
+      "height": 35,
+      "width": 90
+    }
   },
   "unit-price": {
     "component": "UnitPrice"
   },
   "price": {
-    "component": "Price"
+    "component": "Price",
+    "preview": {
+      "type": "box",
+      "height": 35,
+      "width": 100
+    }
   },
   "remove-button": {
-    "component": "RemoveButton"
+    "component": "RemoveButton",
+    "preview": {
+      "type": "box",
+      "height": 25,
+      "width": 25
+    }
   }
 }

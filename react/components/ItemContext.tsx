@@ -2,6 +2,7 @@ import React, { createContext, FC, useContext } from 'react'
 
 interface Context {
   item: Item
+  loading: boolean
   onQuantityChange: (value: number) => void
   onRemove: () => void
 }

@@ -10,7 +10,11 @@ import { parseTextAlign, TextAlignProp } from './utils/textAlign'
 const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
   textAlign,
 }) => {
-  const { item } = useItemContext()
+  const { item, loading } = useItemContext()
+
+  if (loading) {
+    return null
+  }
 
   return item.quantity > 1 && item.sellingPrice > 0 ? (
     <div

@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
+import { Loading } from 'vtex.render-runtime'
+
 import Selector from './components/QuantitySelector'
 import { useItemContext } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
@@ -10,7 +12,11 @@ import styles from './styles.css'
 const MAX_ITEM_QUANTITY = 99999
 
 const QuantitySelector: FunctionComponent = () => {
-  const { item, onQuantityChange } = useItemContext()
+  const { item, loading, onQuantityChange } = useItemContext()
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <div

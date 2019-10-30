@@ -36,8 +36,13 @@ const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
 }) => {
   const {
     item: { availability },
+    loading,
     onRemove,
   } = useItemContext()
+
+  if (loading) {
+    return null
+  }
 
   return availability !== AVAILABLE ? (
     <div className={`bg-warning--faded br2 ${setContainerLayout(layout)}`}>

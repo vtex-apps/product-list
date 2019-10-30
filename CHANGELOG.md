@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Preview skeleton to replace loading spinner.
+
 ## [0.11.6] - 2019-10-24
 
 ### Added

@@ -1,14 +1,14 @@
 @media screen and (max-width: 39.9em) {
   .quantitySelector {
-    width: 70px;
+    width: 4.4rem;
   }
 }
 
 @media screen and (min-width: 40em) {
   .price {
-    width: 140px;
+    width: 7.25rem;
   }
   .quantity {
-    width: 90px;
+    width: 5.6rem;
   }
 }

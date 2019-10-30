@@ -81,6 +81,7 @@
     "children": ["price#desktop"],
     "props": {
       "blockClass": "priceWrapper",
+      "marginLeft": "6",
       "preventHorizontalStretch": "true",
       "verticalAlign": "middle"
     }
@@ -93,6 +94,7 @@
   "flex-layout.col#remove-button.desktop": {
     "children": ["remove-button"],
     "props": {
+      "marginLeft": "6",
       "verticalAlign": "middle"
     }
   },

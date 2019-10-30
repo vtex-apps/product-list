@@ -1,10 +1,16 @@
 import React, { FunctionComponent } from 'react'
 
+import { Loading } from 'vtex.render-runtime'
+
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 
 const ProductName: FunctionComponent = () => {
-  const { item } = useItemContext()
+  const { item, loading } = useItemContext()
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <a
