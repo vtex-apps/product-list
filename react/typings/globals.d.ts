@@ -11,7 +11,11 @@ declare global {
     availability: string
     detailUrl: string
     id: string
-    imageUrl: string | null
+    imageUrls?: {
+      at1x: string
+      at2x: string
+      at3x: string
+    }
     listPrice: number
     measurementUnit: string
     name: string
