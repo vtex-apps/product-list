@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Images with higher resolutions are now displayed if the user device has retina screen.
+
 ## [0.12.0] - 2019-10-30
 
 ### Added
