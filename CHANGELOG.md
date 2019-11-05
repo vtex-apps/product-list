@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `image` interface name to `product-list-image`.
+
 ## [0.13.0] - 2019-11-01
 
 ### Changed
