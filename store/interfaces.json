@@ -13,7 +13,7 @@
     "composition": "children",
     "allowed": "*"
   },
-  "image": {
+  "product-list-image": {
     "component": "Image",
     "preview": {
       "type": "box",

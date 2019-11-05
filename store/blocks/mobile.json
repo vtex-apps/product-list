@@ -16,7 +16,7 @@
     }
   },
   "flex-layout.col#image.mobile": {
-    "children": ["image"],
+    "children": ["product-list-image"],
     "props": {
       "marginRight": "5"
     }

@@ -16,7 +16,7 @@
     }
   },
   "flex-layout.col#image.desktop": {
-    "children": ["image"],
+    "children": ["product-list-image"],
     "props": {
       "marginRight": "6"
     }
