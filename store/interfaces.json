@@ -19,7 +19,10 @@
       "type": "box",
       "height": 96,
       "width": 96,
-      "minWidth": 96
+      "options": {
+        "padding": 0,
+        "minWidth": 96
+      }
     }
   },
   "message": {
@@ -30,7 +33,10 @@
     "preview": {
       "type": "box",
       "height": 30,
-      "width": 260
+      "width": 260,
+      "options": {
+        "padding": 0
+      }
     }
   },
   "product-brand": {
@@ -38,7 +44,10 @@
     "preview": {
       "type": "box",
       "height": 15,
-      "width": 120
+      "width": 120,
+      "options": {
+        "padding": 0
+      }
     }
   },
   "product-variations": {
@@ -49,7 +58,10 @@
     "preview": {
       "type": "box",
       "height": 35,
-      "width": 90
+      "width": 90,
+      "options": {
+        "padding": 0
+      }
     }
   },
   "unit-price": {
@@ -60,7 +72,10 @@
     "preview": {
       "type": "box",
       "height": 35,
-      "width": 100
+      "width": 100,
+      "options": {
+        "padding": 0
+      }
     }
   },
   "remove-button": {
@@ -68,7 +83,10 @@
     "preview": {
       "type": "box",
       "height": 25,
-      "width": 25
+      "width": 25,
+      "options": {
+        "padding": 0
+      }
     }
   }
 }
