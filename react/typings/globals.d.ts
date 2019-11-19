@@ -21,6 +21,9 @@ declare global {
     name: string
     price: number
     productId: string
+    productCategories: Record<string, string>
+    productCategoryIds: string
+    productRefId: string
     quantity: number
     sellingPrice: number
     skuName: string
