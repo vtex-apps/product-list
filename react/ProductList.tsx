@@ -7,8 +7,8 @@ import { AVAILABLE } from './constants/Availability'
 interface Props {
   items: Item[]
   loading: boolean
-  onQuantityChange: (uniqueId: string, value: number) => void
-  onRemove: (uniqueId: string) => void
+  onQuantityChange: (uniqueId: string, value: number, item?: Item) => void
+  onRemove: (uniqueId: string, item?: Item) => void
 }
 
 const ProductList: StorefrontFunctionComponent<Props> = ({
@@ -34,8 +34,8 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
           item,
           loading,
           onQuantityChange: (value: number) =>
-            onQuantityChange(item.uniqueId, value),
-          onRemove: () => onRemove(item.uniqueId),
+            onQuantityChange(item.uniqueId, value, item),
+          onRemove: () => onRemove(item.uniqueId, item),
         }}
       >
         <div className="c-on-base bb b--muted-4">{children}</div>

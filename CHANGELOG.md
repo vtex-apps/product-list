@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- New `item` argument to callback functions `onQuantityChange` and `onRemove` passed to `ProductList` component.
+
 ## [0.13.2] - 2019-11-08
 
 ### Changed
