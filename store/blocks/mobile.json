@@ -30,7 +30,6 @@
       "flex-layout.row#message.mobile"
     ],
     "props": {
-      "marginRight": "5",
       "width": "grow"
     }
   },
@@ -72,7 +71,7 @@
   "flex-layout.col#remove-button.mobile": {
     "children": ["remove-button"],
     "props": {
-      "marginLeft": "6"
+      "marginLeft": "3"
     }
   },
   "flex-layout.row#message.mobile": {
