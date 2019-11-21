@@ -7,17 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-<<<<<<< HEAD
+### Changed
+
+- Margins in mobile version.
+- Font weight
+
 ## [0.14.0] - 2019-11-19
 
 ### Added
 
 - New `item` argument to callback functions `onQuantityChange` and `onRemove` passed to `ProductList` component.
-=======
-### Changed
-
-- Margins in mobile version.
->>>>>>> Fix delete icon margins in mobile
 
 ## [0.13.2] - 2019-11-08
 
