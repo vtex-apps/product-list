@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Margins in mobile version.
-- Font weight
+- Font weight.
 
 ## [0.14.0] - 2019-11-19
 
