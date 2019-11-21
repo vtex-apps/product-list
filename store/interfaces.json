@@ -33,7 +33,7 @@
     "preview": {
       "type": "box",
       "height": 30,
-      "width": 260,
+      "width": 140,
       "options": {
         "padding": 0
       }
@@ -44,7 +44,7 @@
     "preview": {
       "type": "box",
       "height": 15,
-      "width": 120,
+      "width": 110,
       "options": {
         "padding": 0
       }
@@ -58,7 +58,7 @@
     "preview": {
       "type": "box",
       "height": 35,
-      "width": 90,
+      "width": 80,
       "options": {
         "padding": 0
       }
@@ -72,7 +72,7 @@
     "preview": {
       "type": "box",
       "height": 35,
-      "width": 100,
+      "width": 90,
       "options": {
         "padding": 0
       }
