@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Component's preview width values, in order to keep the expected behavior on mobile devices.
+
 ## [0.14.1] - 2019-11-21
 
 ### Changed
