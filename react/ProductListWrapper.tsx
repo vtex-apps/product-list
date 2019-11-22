@@ -12,7 +12,7 @@ interface Props {
 
 const ProductListWrapper: StorefrontFunctionComponent<Props> = props => {
   return (
-    <SizeMe>
+    <SizeMe noPlaceholder={true}>
       {({ size }) =>
         size.width && size.width < MAX_MOBILE_WIDTH ? (
           <ExtensionPoint id="product-list-content-mobile" {...props} />
