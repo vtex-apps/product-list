@@ -12,16 +12,16 @@
     }
   },
   "flex-layout.row#product-brand": {
-    "children": ["product-brand"],
+    "children": ["product-list-product-brand"],
     "props": {
       "marginBottom": "2"
     }
   },
   "flex-layout.row#product-name": {
-    "children": ["product-name"]
+    "children": ["product-list-product-name"]
   },
   "flex-layout.row#product-variations": {
-    "children": ["product-variations"],
+    "children": ["product-list-product-variations"],
     "props": {
       "marginTop": "2"
     }

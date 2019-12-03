@@ -25,10 +25,10 @@
       }
     }
   },
-  "message": {
+  "product-list-message": {
     "component": "AvailabilityMessage"
   },
-  "product-name": {
+  "product-list-product-name": {
     "component": "ProductName",
     "preview": {
       "type": "box",
@@ -39,7 +39,7 @@
       }
     }
   },
-  "product-brand": {
+  "product-list-product-brand": {
     "component": "ProductBrand",
     "preview": {
       "type": "box",
@@ -50,10 +50,10 @@
       }
     }
   },
-  "product-variations": {
+  "product-list-product-variations": {
     "component": "ProductVariations"
   },
-  "quantity-selector": {
+  "product-list-quantity-selector": {
     "component": "QuantitySelector",
     "preview": {
       "type": "box",
@@ -64,10 +64,10 @@
       }
     }
   },
-  "unit-price": {
+  "product-list-unit-price": {
     "component": "UnitPrice"
   },
-  "price": {
+  "product-list-price": {
     "component": "Price",
     "preview": {
       "type": "box",
@@ -78,7 +78,7 @@
       }
     }
   },
-  "remove-button": {
+  "product-list-remove-button": {
     "component": "RemoveButton",
     "preview": {
       "type": "box",
