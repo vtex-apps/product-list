@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Desktop skeleton appearing on phone screens.
+
 ## [0.14.3] - 2019-11-25
 
 ### Fixed
