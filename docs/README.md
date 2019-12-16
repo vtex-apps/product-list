@@ -1,13 +1,23 @@
-# VTEX IO Base Component
+# Product List
 
-This demo component shows you how to make a simple yet complete VTEX IO component.
+The Product List displays all items in the user's cart and informs the user when some of them are unavailable. Currently, the Product List only works out of the box within the [Minicart](https://github.com/vtex-apps/minicart) and the [Checkout Cart](https://github.com/vtex-apps/checkout-cart).
 
-It shows a simple demonstration of the following features:
+![image](https://user-images.githubusercontent.com/8902498/71035787-03bfc100-20fb-11ea-914e-51301b3bedf4.png)
 
-- Declaring a component interface in `store/interfaces.json`.
-- Declaring a schema to receive props via Storefront.
-- Using the `messages` feature to have localized strings.
-- Using an NPM package like `react-intl`
-- Using another VTEX IO App like `vtex.styleguide`.
-- Using CSS Modules to make your component customizable via CSS on a store theme.
-- Using tachyons tokens to quickly style your components.
+## Configuration
+
+1. Add the Product List app to your theme's dependencies in `manifest.json`. For example:
+
+```json
+  "dependencies": {
+    "vtex.product-list": "0.x"
+  }
+```
+
+2. Add the `product-list` block to the `minicart-product-list` block of the Minicart or to the `product-list-wrapper` block of the Checkout Cart. For example:
+
+```json
+  "minicart-product-list#example": {
+    "blocks": ["product-list"]
+  }
+```
