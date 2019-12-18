@@ -72,8 +72,8 @@ describe('Product List', () => {
       />
     )
 
-    expect(getByText('2 unavailable items')).toBeTruthy()
-    expect(getByText('1 available item')).toBeTruthy()
+    expect(getByText('2 unavailable products')).toBeTruthy()
+    expect(getByText('1 available product')).toBeTruthy()
   })
 
   it('should display a message when item is out of stock', () => {
