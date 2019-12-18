@@ -1,6 +1,5 @@
 import React from 'react'
 import { SizeMe } from 'react-sizeme'
-
 import { Item } from 'vtex.checkout-graphql'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { useDevice } from 'vtex.device-detector'
@@ -21,7 +20,7 @@ const ProductListWrapper: StorefrontFunctionComponent<Props> = props => {
   const { device } = useDevice()
 
   return (
-    <SizeMe noPlaceholder={true}>
+    <SizeMe noPlaceholder>
       {({ size }) =>
         (loading && device === 'phone') ||
         (size.width && size.width < MAX_MOBILE_WIDTH) ? (

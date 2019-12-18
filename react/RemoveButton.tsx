@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { IconDelete } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
-
 import { Loading } from 'vtex.render-runtime'
 
 import { useItemContext } from './components/ItemContext'

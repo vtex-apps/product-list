@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 

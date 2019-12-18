@@ -7,7 +7,6 @@ import { useCssHandles } from 'vtex.css-handles'
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 import { parseTextAlign, TextAlignProp } from './utils/textAlign'
-
 import styles from './styles.css'
 
 const CSS_HANDLES = [

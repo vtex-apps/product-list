@@ -14,7 +14,6 @@ declare module 'vtex.styleguide' {
 }
 
 declare module '@vtex/styleguide/lib/*' {
-  import { ComponentType } from 'react'
   const Component: ComponentType<any>
   export default Component
 }

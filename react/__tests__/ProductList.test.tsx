@@ -35,8 +35,9 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(queryByText(mockItems[0].name as string)).toBeTruthy()
@@ -53,8 +54,9 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     const removeButton = getByTitle('remove')
@@ -71,8 +73,9 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(getByText('2 unavailable products')).toBeTruthy()
@@ -86,8 +89,9 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(queryByText(/no longer available/)).toBeTruthy()
@@ -100,8 +104,9 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(queryByText(/cannot be delivered/)).toBeTruthy()
