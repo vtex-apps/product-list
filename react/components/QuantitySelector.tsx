@@ -68,7 +68,12 @@ const getDropdownOptions = (maxValue: number, intl: InjectedIntl) => {
   return options
 }
 
-const CSS_HANDLES = [] as const
+const CSS_HANDLES = [
+  'quantityDropdownMobileContainer',
+  'quantityDropdownContainer',
+  'quantityInputMobileContainer',
+  'quantityInputContainer',
+] as const
 
 const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
   id,
