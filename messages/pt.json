@@ -3,7 +3,7 @@
   "store/product-list.pricePerUnit.measurementUnit": "por {measurementUnit}.",
   "store/product-list.availableItems": "{quantity, plural, one {# produto disponível} other {# produtos disponíveis}}",
   "store/product-list.unavailableItems": "{quantity, plural, one {# produto indisponível} other {# produtos indisponíveis}}",
-  "store/product-list.message.cantBeDelivered": "Este produto não pode ser entregue nesse endereço.",
+  "store/product-list.message.cantBeDelivered": "Este produto não pode ser entregue no endereço fornecido.",
   "store/product-list.message.noLongerAvailable": "Este produto não está mais disponível.",
   "store/product-list.message.remove": "remover",
   "store/product-list.quantity-selector.remove": "Remover"
