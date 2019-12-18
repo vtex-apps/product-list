@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
 import { Loading } from 'vtex.render-runtime'
+import { useCssHandles } from 'vtex.css-handles'
 
 import Selector from './components/QuantitySelector'
 import { useItemContext } from './components/ItemContext'
@@ -10,9 +11,11 @@ import { opaque } from './utils/opaque'
 import styles from './styles.css'
 
 const MAX_ITEM_QUANTITY = 99999
+const CSS_HANDLES = ['quantitySelectorContainer'] as const
 
 const QuantitySelector: FunctionComponent = () => {
   const { item, loading, onQuantityChange } = useItemContext()
+  const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
     return <Loading />
@@ -20,9 +23,9 @@ const QuantitySelector: FunctionComponent = () => {
 
   return (
     <div
-      className={`${opaque(item.availability)} ${styles.quantity} ${
-        styles.quantitySelector
-      }`}
+      className={`${opaque(item.availability)} ${
+        handles.quantitySelectorContainer
+      } ${styles.quantity} ${styles.quantitySelector}`}
     >
       <Selector
         id={item.id}
