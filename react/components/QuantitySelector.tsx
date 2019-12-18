@@ -1,5 +1,5 @@
 import { range } from 'ramda'
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, Fragment } from 'react'
 import {
   defineMessages,
   InjectedIntl,
@@ -7,6 +7,7 @@ import {
   injectIntl,
 } from 'react-intl'
 import { Dropdown, Input } from 'vtex.styleguide'
+import { useCssHandles } from 'vtex.css-handles'
 
 const messages = defineMessages({
   remove: {
@@ -67,6 +68,8 @@ const getDropdownOptions = (maxValue: number, intl: InjectedIntl) => {
   return options
 }
 
+const CSS_HANDLES = [] as const
+
 const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
   id,
   value,
@@ -83,6 +86,8 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
   const normalizedValue = normalizeValue(value, maxValue)
 
   const [curDisplayValue, setDisplayValue] = useState(`${normalizedValue}`)
+
+  const handles = useCssHandles(CSS_HANDLES)
 
   const handleDropdownChange = (value: string) => {
     const validatedValue = validateValue(value, maxValue)
@@ -128,8 +133,8 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
     const dropdownOptions = getDropdownOptions(maxValue, intl)
 
     return (
-      <div>
-        <div className="dn-m">
+      <Fragment>
+        <div className={`${handles.quantityDropdownMobileContainer} dn-m`}>
           <Dropdown
             id={`quantity-dropdown-mobile-${id}`}
             testId={`quantity-dropdown-mobile-${id}`}
@@ -141,7 +146,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
             disabled={disabled}
           />
         </div>
-        <div className="dn db-m">
+        <div className={`${handles.quantityDropdownContainer} dn db-m`}>
           <Dropdown
             id={`quantity-dropdown-${id}`}
             testId={`quantity-dropdown-${id}`}
@@ -152,12 +157,12 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
             disabled={disabled}
           />
         </div>
-      </div>
+      </Fragment>
     )
   } else {
     return (
-      <div>
-        <div className="dn-m">
+      <Fragment>
+        <div className={`${handles.quantityInputMobileContainer} dn-m`}>
           <Input
             id={`quantity-input-mobile-${id}`}
             size="small"
@@ -170,7 +175,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
             disabled={disabled}
           />
         </div>
-        <div className="dn db-m">
+        <div className={`${handles.quantityInputContainer} dn db-m`}>
           <Input
             id={`quantity-input-${id}`}
             value={curDisplayValue}
@@ -182,7 +187,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
             disabled={disabled}
           />
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
