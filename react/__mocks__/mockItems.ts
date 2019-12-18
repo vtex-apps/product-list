@@ -1,3 +1,5 @@
+import { Item } from 'vtex.checkout-graphql'
+
 export const mockItems: Item[] = [
   {
     additionalInfo: {
@@ -6,8 +8,6 @@ export const mockItems: Item[] = [
     availability: 'available',
     id: '1',
     detailUrl: '/work-shirt/p',
-    imageUrl:
-      'http://storecomponents.vteximg.com.br/arquivos/ids/155476-55-55/Frame-4.jpg?v=636793808441900000',
     listPrice: 2800000,
     measurementUnit: 'un',
     name: 'قميص العمل الأعلى',
@@ -26,8 +26,6 @@ export const mockItems: Item[] = [
     availability: 'withoutStock',
     id: '30',
     detailUrl: '/long-sleeve-shirt/p',
-    imageUrl:
-      'http://storecomponents.vteximg.com.br/arquivos/ids/155487-55-55/Frame-7.jpg?v=636793837686400000',
     listPrice: 945000,
     measurementUnit: 'un',
     name: '上品なサングラス',
@@ -46,8 +44,6 @@ export const mockItems: Item[] = [
     availability: 'cannotBeDelivered',
     id: '2000535',
     detailUrl: '/classy--sunglasses/p',
-    imageUrl:
-      'http://storecomponents.vteximg.com.br/arquivos/ids/155469-55-55/Frame-8.jpg?v=636793757498800000',
     listPrice: 400000,
     measurementUnit: 'un',
     name: 'กางเกงขาสั้น St Tropez',

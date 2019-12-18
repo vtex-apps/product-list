@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react'
+
+import { SkuSpecification } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './components/ItemContext'
@@ -19,12 +21,12 @@ const ProductVariations: FunctionComponent = () => {
         handles.productVariationsContainer
       } ${opaque(item.availability)}`}
     >
-      {item.skuSpecifications.map((spec: SKUSpecification) => {
+      {item.skuSpecifications.map((spec: SkuSpecification) => {
         return (
           <div
             className={handles.productVariationsItem}
             id={`specification-${item.id}-${spec.fieldName}`}
-            key={spec.fieldName}
+            key={spec.fieldName || undefined}
           >
             {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
           </div>

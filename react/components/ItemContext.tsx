@@ -1,4 +1,5 @@
 import React, { createContext, FC, useContext } from 'react'
+import { Item } from 'vtex.checkout-graphql'
 
 interface Context {
   item: Item

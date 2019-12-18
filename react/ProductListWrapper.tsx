@@ -1,8 +1,12 @@
 import React from 'react'
-import { ExtensionPoint } from 'vtex.render-runtime'
 import { SizeMe } from 'react-sizeme'
+
+import { Item } from 'vtex.checkout-graphql'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import { useDevice } from 'vtex.device-detector'
-import { useOrderForm } from 'vtex.order-manager/OrderForm'
+import { OrderForm } from 'vtex.order-manager'
+
+const { useOrderForm } = OrderForm
 
 const MAX_MOBILE_WIDTH = 640
 

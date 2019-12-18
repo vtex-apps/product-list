@@ -2,6 +2,8 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
+import { Item } from 'vtex.checkout-graphql'
+
 import { ItemContextProvider } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
 

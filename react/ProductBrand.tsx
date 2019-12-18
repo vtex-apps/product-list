@@ -23,7 +23,7 @@ const ProductBrand: FunctionComponent = () => {
         handles.productBrandName
       } ${opaque(item.availability)}`}
     >
-      {item.additionalInfo.brandName}
+      {item.additionalInfo?.brandName}
     </div>
   )
 }

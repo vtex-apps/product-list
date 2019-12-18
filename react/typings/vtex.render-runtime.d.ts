@@ -35,4 +35,5 @@ declare module 'vtex.render-runtime' {
   export const withRuntimeContext: <TOriginalProps extends {}>(
     Component: ComponentType<TOriginalProps & RenderContextProps>
   ) => ComponentType<TOriginalProps>
+  export const Loading: ComponentType
 }
