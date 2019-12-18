@@ -21,3 +21,38 @@ The Product List displays all items in the user's cart and informs the user when
     "blocks": ["product-list"]
   }
 ```
+
+## Customization
+
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+
+| CSS Handles                          |
+| ------------------------------------ |
+| `availabilityMessageContainer`       |
+| `availabilityMessageTextContainer`   |
+| `availabilityMessageText`            |
+| `availabilityMessageButtonContainer` |
+| `availabilityMessageButtonText`      |
+| `productImageContainer`              |
+| `productImageAnchor`                 |
+| `productImage`                       |
+| `productPriceContainer`              |
+| `productPriceCurrency`               |
+| `productPrice`                       |
+| `productBrandName`                   |
+| `productListItem`                    |
+| `productListUnavailableItemsMessage` |
+| `productListAvailableItemsMessage`   |
+| `productName`                        |
+| `productVariationsContainer`         |
+| `productVariationsItem`              |
+| `quantitySelectorContainer`          |
+| `removeButtonContainer`              |
+| `removeButton`                       |
+| `unitPriceContainer`                 |
+| `unitPricePerUnitCurrency`           |
+| `unitPriceMeasurementUnit`           |
+| `quantityDropdownMobileContainer`    |
+| `quantityDropdownContainer`          |
+| `quantityInputMobileContainer`       |
+| `quantityInputContainer`             |
