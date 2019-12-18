@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './components/ItemContext'
 import { AVAILABLE } from './constants/Availability'
@@ -11,6 +12,12 @@ interface Props {
   onRemove: (uniqueId: string, item?: Item) => void
 }
 
+const CSS_HANDLES = [
+  'productListItem',
+  'productListUnavailableItemsMessage',
+  'productListAvailableItemsMessage',
+] as const
+
 const ProductList: StorefrontFunctionComponent<Props> = ({
   items,
   loading,
@@ -18,6 +25,8 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
   onRemove,
   children,
 }) => {
+  const handles = useCssHandles(CSS_HANDLES)
+
   const [availableItems, unavailableItems] = items.reduce(
     (acc: any, item: Item) => {
       acc[item.availability === AVAILABLE ? 0 : 1].push(item)
@@ -38,16 +47,18 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
           onRemove: () => onRemove(item.uniqueId, item),
         }}
       >
-        <div className="c-on-base bb b--muted-4">{children}</div>
+        <div className={`${handles.productListItem} c-on-base bb b--muted-4`}>
+          {children}
+        </div>
       </ItemContextProvider>
     ))
 
   return (
-    <div>
+    <Fragment>
       {unavailableItems.length > 0 ? (
         <div
           id="unavailable-items"
-          className="c-muted-1 bb b--muted-4 fw5 pv5 pl5 pl6-m pl0-l t-heading-5-l"
+          className={`${handles.productListUnavailableItemsMessage} c-muted-1 bb b--muted-4 fw5 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
         >
           <FormattedMessage
             id="store/product-list.unavailableItems"
@@ -57,7 +68,9 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
       ) : null}
       {productList(unavailableItems)}
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
-        <div className="c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l">
+        <div
+          className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
+        >
           <FormattedMessage
             id="store/product-list.availableItems"
             values={{ quantity: availableItems.length }}
@@ -65,7 +78,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
         </div>
       ) : null}
       {productList(availableItems)}
-    </div>
+    </Fragment>
   )
 }
 
