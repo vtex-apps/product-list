@@ -1,9 +1,10 @@
 {
   "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
   "store/product-list.pricePerUnit.measurementUnit": "por {measurementUnit}.",
-  "store/product-list.availableItems": "{quantity, plural, one {# ítem disponible} other {# ítems disponibles}}",
-  "store/product-list.unavailableItems": "{quantity, plural, one {# ítem no disponible} other {# ítems no disponibles}}",
-  "store/product-list.message.cantBeDelivered": "Este item no se puede entregar a esta dirección.",
-  "store/product-list.message.noLongerAvailable": "Este item no está disponible actualmente.",
+  "store/product-list.availableItems": "{quantity, plural, one {# producto disponible} other {# productos disponibles}}",
+  "store/product-list.unavailableItems": "{quantity, plural, one {# producto no disponible} other {# productos no disponibles}}",
+  "store/product-list.message.cantBeDelivered": "Este producto no se puede entregar en la dirección proporcionada.",
+  "store/product-list.message.noLongerAvailable": "Este producto no está disponible actualmente.",
+  "store/product-list.message.remove": "retirar",
   "store/product-list.quantity-selector.remove": "Retirar"
 }
