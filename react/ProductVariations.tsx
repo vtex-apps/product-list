@@ -1,16 +1,28 @@
 import React, { FunctionComponent } from 'react'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './components/ItemContext'
 import { opaque } from './utils/opaque'
 
+const CSS_HANDLES = [
+  'productVariationsContainer',
+  'productVariationsItem',
+] as const
+
 const ProductVariations: FunctionComponent = () => {
   const { item } = useItemContext()
+  const handles = useCssHandles(CSS_HANDLES)
 
   return item.skuSpecifications && item.skuSpecifications.length > 0 ? (
-    <div className={`c-muted-1 f6 lh-copy ${opaque(item.availability)}`}>
+    <div
+      className={`c-muted-1 f6 lh-copy ${
+        handles.productVariationsContainer
+      } ${opaque(item.availability)}`}
+    >
       {item.skuSpecifications.map((spec: SKUSpecification) => {
         return (
           <div
+            className={handles.productVariationsItem}
             id={`specification-${item.id}-${spec.fieldName}`}
             key={spec.fieldName}
           >
