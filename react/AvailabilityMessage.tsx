@@ -1,6 +1,5 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Button } from 'vtex.styleguide'
 
 import { useItemContext } from './components/ItemContext'
 import { AVAILABLE, CANNOT_BE_DELIVERED } from './constants/Availability'
@@ -20,24 +19,12 @@ const setContainerLayout = (prop: string) => {
   }
 }
 
-const setTextLayout = (prop: string) => {
-  switch (prop) {
-    case 'cols':
-      return 'pa4'
-    case 'rows':
-      return 'pt4 pr4 pb0 pl4'
-    default:
-      return ''
-  }
-}
-
 const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
   layout,
 }) => {
   const {
     item: { availability },
     loading,
-    onRemove,
   } = useItemContext()
 
   if (loading) {
@@ -46,22 +33,12 @@ const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
 
   return availability !== AVAILABLE ? (
     <div className={`bg-warning--faded br2 ${setContainerLayout(layout)}`}>
-      <div className={`t-small lh-title ${setTextLayout(layout)}`}>
+      <div className="lh-title pa4">
         {availability === CANNOT_BE_DELIVERED ? (
           <FormattedMessage id="store/product-list.message.cantBeDelivered" />
         ) : (
           <FormattedMessage id="store/product-list.message.noLongerAvailable" />
         )}
-      </div>
-      <div className="ph3">
-        <Button
-          id="availability-remove-button"
-          variation="tertiary"
-          onClick={onRemove}
-          collapseRight
-        >
-          <FormattedMessage id="store/product-list.message.remove" />
-        </Button>
       </div>
     </div>
   ) : null
