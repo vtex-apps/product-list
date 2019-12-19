@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.14.6] - 2019-12-19
+
 ### Removed
 
 - "Remove" button from availability message.
