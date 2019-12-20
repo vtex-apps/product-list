@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -54,7 +54,9 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
     ))
 
   return (
-    <Fragment>
+    /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
+
+    <div>
       {unavailableItems.length > 0 ? (
         <div
           id="unavailable-items"
@@ -78,7 +80,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
         </div>
       ) : null}
       {productList(availableItems)}
-    </Fragment>
+    </div>
   )
 }
 
