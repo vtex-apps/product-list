@@ -4,6 +4,7 @@ import { useItemContext } from './components/ItemContext'
 import { NoImageIcon } from './components/NoImageIcon'
 import { opaque } from './utils/opaque'
 import { Loading } from 'vtex.render-runtime'
+import { useCssHandles } from 'vtex.css-handles'
 
 const getImageUrl = (imageUrls: Item['imageUrls']) => {
   if (!imageUrls) {
@@ -22,8 +23,15 @@ const getImageUrl = (imageUrls: Item['imageUrls']) => {
   }
 }
 
+const CSS_HANDLES = [
+  'productImageContainer',
+  'productImageAnchor',
+  'productImage',
+] as const
+
 const Image: FunctionComponent = () => {
   const { item, loading } = useItemContext()
+  const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
     return <Loading />
@@ -34,12 +42,19 @@ const Image: FunctionComponent = () => {
   return (
     <div
       id={`image-${item.id}`}
-      className={opaque(item.availability)}
+      className={`${handles.productImageContainer} ${opaque(
+        item.availability
+      )}`}
       style={{ width: '96px' }}
     >
-      <a href={item.detailUrl}>
+      <a className={handles.productImageAnchor} href={item.detailUrl}>
         {imageUrl ? (
-          <img className="br2" alt={item.name} src={imageUrl} width="100%" />
+          <img
+            className={`${handles.productImage} br2`}
+            alt={item.name}
+            src={imageUrl}
+            width="100%"
+          />
         ) : (
           <NoImageIcon />
         )}

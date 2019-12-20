@@ -1,16 +1,24 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { FormattedCurrency } from 'vtex.format-currency'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './components/ItemContext'
 import styles from './styles.css'
 import { opaque } from './utils/opaque'
 import { parseTextAlign, TextAlignProp } from './utils/textAlign'
 
+const CSS_HANDLES = [
+  'unitPriceContainer',
+  'unitPricePerUnitCurrency',
+  'unitPriceMeasurementUnit',
+] as const
+
 const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
   textAlign,
 }) => {
   const { item, loading } = useItemContext()
+  const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
     return null
@@ -19,20 +27,20 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
   return item.quantity > 1 && item.sellingPrice > 0 ? (
     <div
       id={`unit-price-${item.id}`}
-      className={`t-mini c-muted-1 lh-title ${styles.quantity} ${opaque(
-        item.availability
-      )} ${parseTextAlign(textAlign)}`}
+      className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
+        styles.quantity
+      } ${opaque(item.availability)} ${parseTextAlign(textAlign)}`}
     >
       <FormattedMessage
         id="store/product-list.pricePerUnit"
         values={{
           price: (
-            <div className="dib">
+            <div className={`${handles.unitPricePerUnitCurrency} dib`}>
               <FormattedCurrency value={item.sellingPrice / 100} />
             </div>
           ),
           perMeasurementUnit: (
-            <div className="dib">
+            <div className={`${handles.unitPriceMeasurementUnit} dib`}>
               <FormattedMessage
                 id="store/product-list.pricePerUnit.measurementUnit"
                 values={{ measurementUnit: item.measurementUnit }}

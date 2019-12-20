@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './components/ItemContext'
 import { AVAILABLE, CANNOT_BE_DELIVERED } from './constants/Availability'
@@ -19,6 +20,12 @@ const setContainerLayout = (prop: string) => {
   }
 }
 
+const CSS_HANDLES = [
+  'availabilityMessageContainer',
+  'availabilityMessageTextContainer',
+  'availabilityMessageText',
+] as const
+
 const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
   layout,
 }) => {
@@ -27,17 +34,33 @@ const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
     loading,
   } = useItemContext()
 
+  const handles = useCssHandles(CSS_HANDLES)
+
   if (loading) {
     return null
   }
 
   return availability !== AVAILABLE ? (
-    <div className={`bg-warning--faded br2 ${setContainerLayout(layout)}`}>
-      <div className="lh-title pa4">
+    <div
+      className={`bg-warning--faded br2 ${
+        handles.availabilityMessageContainer
+      } ${setContainerLayout(layout)}`}
+    >
+      <div
+        className={`lh-title pa4 ${handles.availabilityMessageTextContainer}`}
+      >
         {availability === CANNOT_BE_DELIVERED ? (
-          <FormattedMessage id="store/product-list.message.cantBeDelivered" />
+          <FormattedMessage id="store/product-list.message.cantBeDelivered">
+            {message => (
+              <span className={handles.availabilityMessageText}>{message}</span>
+            )}
+          </FormattedMessage>
         ) : (
-          <FormattedMessage id="store/product-list.message.noLongerAvailable" />
+          <FormattedMessage id="store/product-list.message.noLongerAvailable">
+            {message => (
+              <span className={handles.availabilityMessageText}>{message}</span>
+            )}
+          </FormattedMessage>
         )}
       </div>
     </div>
