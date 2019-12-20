@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.15.0] - 2019-12-20
+
 ### Added
 
 - Support for CSS customization through the use of CSS handles.
