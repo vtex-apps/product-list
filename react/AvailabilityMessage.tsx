@@ -24,8 +24,6 @@ const CSS_HANDLES = [
   'availabilityMessageContainer',
   'availabilityMessageTextContainer',
   'availabilityMessageText',
-  'availabilityMessageButtonContainer',
-  'availabilityMessageButtonText',
 ] as const
 
 const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({

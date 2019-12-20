@@ -31,8 +31,6 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `availabilityMessageContainer`       |
 | `availabilityMessageTextContainer`   |
 | `availabilityMessageText`            |
-| `availabilityMessageButtonContainer` |
-| `availabilityMessageButtonText`      |
 | `productImageContainer`              |
 | `productImageAnchor`                 |
 | `productImage`                       |
