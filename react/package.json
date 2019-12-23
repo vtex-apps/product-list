@@ -31,5 +31,5 @@
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "3.7.3"
   },
-  "version": "0.15.0"
+  "version": "0.15.1"
 }

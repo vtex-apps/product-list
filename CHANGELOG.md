@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.15.1] - 2019-12-23
+
 ### Changed
 
 - Messages now reflect decisions made when implementing errors in shipping-calculator: `your cart` and `item` are now `the cart` and `product`.
