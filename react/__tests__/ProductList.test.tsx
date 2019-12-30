@@ -32,15 +32,17 @@ describe('Product List', () => {
     const { queryByText } = render(
       <ProductList
         items={mockItems}
+        loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
-    expect(queryByText(mockItems[0].name)).toBeTruthy()
-    expect(queryByText(mockItems[1].name)).toBeTruthy()
-    expect(queryByText(mockItems[2].name)).toBeTruthy()
+    expect(queryByText(mockItems[0].name as string)).toBeTruthy()
+    expect(queryByText(mockItems[1].name as string)).toBeTruthy()
+    expect(queryByText(mockItems[2].name as string)).toBeTruthy()
   })
 
   it('should call onRemove when remove button is clicked', () => {
@@ -49,10 +51,12 @@ describe('Product List', () => {
     const { getByTitle } = render(
       <ProductList
         items={[mockItems[2]]}
+        loading={false}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     const removeButton = getByTitle('remove')
@@ -66,10 +70,12 @@ describe('Product List', () => {
     const { getByText } = render(
       <ProductList
         items={mockItems}
+        loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(getByText('2 unavailable products')).toBeTruthy()
@@ -80,10 +86,12 @@ describe('Product List', () => {
     const { queryByText } = render(
       <ProductList
         items={[mockItems[1]]}
+        loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(queryByText(/no longer available/)).toBeTruthy()
@@ -93,10 +101,12 @@ describe('Product List', () => {
     const { queryByText } = render(
       <ProductList
         items={[mockItems[2]]}
+        loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
-        children={<ListItem />}
-      />
+      >
+        <ListItem />
+      </ProductList>
     )
 
     expect(queryByText(/cannot be delivered/)).toBeTruthy()

@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from 'react'
+import { Loading } from 'vtex.render-runtime'
+import { Item } from 'vtex.checkout-graphql'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './components/ItemContext'
 import { NoImageIcon } from './components/NoImageIcon'
 import { opaque } from './utils/opaque'
-import { Loading } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
 
 const getImageUrl = (imageUrls: Item['imageUrls']) => {
   if (!imageUrls) {
@@ -47,11 +48,14 @@ const Image: FunctionComponent = () => {
       )}`}
       style={{ width: '96px' }}
     >
-      <a className={handles.productImageAnchor} href={item.detailUrl}>
+      <a
+        className={handles.productImageAnchor}
+        href={item.detailUrl || undefined}
+      >
         {imageUrl ? (
           <img
             className={`${handles.productImage} br2`}
-            alt={item.name}
+            alt={item.name || undefined}
             src={imageUrl}
             width="100%"
           />

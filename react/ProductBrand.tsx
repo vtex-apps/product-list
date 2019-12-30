@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -23,7 +22,7 @@ const ProductBrand: FunctionComponent = () => {
         handles.productBrandName
       } ${opaque(item.availability)}`}
     >
-      {item.additionalInfo.brandName}
+      {item.additionalInfo?.brandName}
     </div>
   )
 }
