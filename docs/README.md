@@ -24,7 +24,7 @@ The Product List displays all items in the user's cart and informs the user when
 
 ### Advanced Configuration
 
-The `product-list` block is made up of other smalled blocks. Currently, its default implementation is as follows (props omited):
+The `product-list` block is made up of other smaller blocks. Currently, its default implementation is as follows (props omitted):
 
 ```json
 {
