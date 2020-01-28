@@ -22,44 +22,11 @@ The Product List displays all items in the user's cart and informs the user when
   }
 ```
 
-## Customization
+### Advanced Configuration
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+The `product-list` block is made up of other smalled blocks. Currently, its default implementation is as follows (props omited):
 
-| CSS Handles                          |
-| ------------------------------------ |
-| `availabilityMessageContainer`       |
-| `availabilityMessageTextContainer`   |
-| `availabilityMessageText`            |
-| `productImageContainer`              |
-| `productImageAnchor`                 |
-| `productImage`                       |
-| `productPriceContainer`              |
-| `productPriceCurrency`               |
-| `productPrice`                       |
-| `productBrandName`                   |
-| `productListItem`                    |
-| `productListUnavailableItemsMessage` |
-| `productListAvailableItemsMessage`   |
-| `productName`                        |
-| `productVariationsContainer`         |
-| `productVariationsItem`              |
-| `quantitySelectorContainer`          |
-| `removeButtonContainer`              |
-| `removeButton`                       |
-| `unitPriceContainer`                 |
-| `unitPricePerUnitCurrency`           |
-| `unitPriceMeasurementUnit`           |
-| `quantityDropdownMobileContainer`    |
-| `quantityDropdownContainer`          |
-| `quantityInputMobileContainer`       |
-| `quantityInputContainer`             |
-
-## Advanced Configuration
-
-The `product-list` block can be customized through its blocks structure. The default implementation is currently the following (props were omited):
-
-```jsonc
+```json
 {
   "product-list": {
     "blocks": [
@@ -89,11 +56,10 @@ The `product-list` block can be customized through its blocks structure. The def
 }
 ```
 
-### Desktop layout
+#### Desktop layout
 
-```jsonc
+```json
 {
-  // Desktop layout
   "product-list-content-desktop": {
     "children": ["flex-layout.row#list-row.desktop"]
   },
@@ -169,11 +135,10 @@ The `product-list` block can be customized through its blocks structure. The def
 }
 ```
 
-### Mobile layout
+#### Mobile layout
 
-```jsonc
+```json
 {
-  // Mobile layout (this is default one used by minicart.v2)
   "product-list-content-mobile": {
     "children": ["flex-layout.row#list-row.mobile"]
   },
@@ -234,4 +199,39 @@ The `product-list` block can be customized through its blocks structure. The def
 }
 ```
 
-This means that, when you use `product-list` in your store, you're actually using this default implementation. So, to customize the blocks being used in your own implementation, you could get this default and change it as you like by adding this blocks to your theme and changing their configuration. Just keep in mind that the blocks above will be added into your theme regardless, so you could use them the way you like.
+By default implementation we mean that whenever you use `product-list` in your store you're actually using the `json` above behind the scenes.
+
+Therefore, in order to customize the Product List configuration, you can simply use the default implementation in your code and change it as you wish.
+
+## Customization
+
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+
+| CSS Handles                          |
+| ------------------------------------ |
+| `availabilityMessageContainer`       |
+| `availabilityMessageTextContainer`   |
+| `availabilityMessageText`            |
+| `productBrandName`                   |
+| `productImageAnchor`                 |
+| `productImageContainer`              |
+| `productImage`                       |
+| `productListAvailableItemsMessage`   |
+| `productListItem`                    |
+| `productListUnavailableItemsMessage` |
+| `productName`                        |
+| `productPriceContainer`              |
+| `productPriceCurrency`               |
+| `productPrice`                       |
+| `productVariationsContainer`         |
+| `productVariationsItem`              |
+| `quantityDropdownContainer`          |
+| `quantityDropdownMobileContainer`    |
+| `quantityInputContainer`             |
+| `quantityInputMobileContainer`       |
+| `quantitySelectorContainer`          |
+| `removeButtonContainer`              |
+| `removeButton`                       |
+| `unitPriceContainer`                 |
+| `unitPriceMeasurementUnit`           |
+| `unitPricePerUnitCurrency`           |
