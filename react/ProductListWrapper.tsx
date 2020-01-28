@@ -1,7 +1,7 @@
 import React from 'react'
 import { SizeMe } from 'react-sizeme'
 import { Item } from 'vtex.checkout-graphql'
-import { ExtensionPoint } from 'vtex.render-runtime'
+import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useDevice } from 'vtex.device-detector'
 import { OrderForm } from 'vtex.order-manager'
 
@@ -18,6 +18,19 @@ interface Props {
 const ProductListWrapper: StorefrontFunctionComponent<Props> = props => {
   const { loading } = useOrderForm()
   const { device } = useDevice()
+  const hasMobileContent = Boolean(
+    useChildBlock({ id: 'product-list-content-mobile' })
+  )
+  const hasDesktopContent = Boolean(
+    useChildBlock({ id: 'product-list-content-desktop' })
+  )
+
+  if (!hasMobileContent) {
+    return <ExtensionPoint id="product-list-content-desktop" {...props} />
+  }
+  if (!hasDesktopContent) {
+    return <ExtensionPoint id="product-list-content-mobile" {...props} />
+  }
 
   return (
     <SizeMe noPlaceholder>
