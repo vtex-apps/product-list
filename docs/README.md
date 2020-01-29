@@ -22,6 +22,187 @@ The Product List displays all items in the user's cart and informs the user when
   }
 ```
 
+### Advanced Configuration
+
+The `product-list` block is made up of other smaller blocks. Currently, its default implementation is as follows (props omitted):
+
+```json
+{
+  "product-list": {
+    "blocks": [
+      "product-list-content-desktop",
+      "product-list-content-mobile"
+    ]
+  },
+  "flex-layout.col#product-description": {
+    "children": [
+      "flex-layout.row#product-brand",
+      "flex-layout.row#product-name",
+      "flex-layout.row#product-variations"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.row#product-brand": {
+    "children": ["product-brand"],
+    "props": { (...) }
+  },
+  "flex-layout.row#product-name": {
+    "children": ["product-name"]
+  },
+  "flex-layout.row#product-variations": {
+    "children": ["product-variations"],
+    "props": { (...) }
+  }
+}
+```
+
+#### Desktop layout
+
+```json
+{
+  "product-list-content-desktop": {
+    "children": ["flex-layout.row#list-row.desktop"]
+  },
+  "flex-layout.row#list-row.desktop": {
+    "children": [
+      "flex-layout.col#image.desktop",
+      "flex-layout.col#main-container.desktop"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.col#image.desktop": {
+    "children": ["product-list-image"],
+    "props": { (...) }
+  },
+  "flex-layout.col#main-container.desktop": {
+    "children": [
+      "flex-layout.row#sub-container.desktop",
+      "flex-layout.row#message.desktop"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.row#sub-container.desktop": {
+    "children": [
+      "flex-layout.col#product-description",
+      "flex-layout.col#quantity.desktop",
+      "flex-layout.row#price-remove"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.col#quantity.desktop": {
+    "children": [
+      "flex-layout.row#quantity-selector.desktop",
+      "flex-layout.row#unit-price.desktop"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.row#price-remove": {
+    "children": [
+      "flex-layout.col#price.desktop",
+      "flex-layout.col#remove-button.desktop"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.row#quantity-selector.desktop": {
+    "children": ["quantity-selector"],
+    "props": { (...) }
+  },
+  "flex-layout.row#unit-price.desktop": {
+    "children": ["unit-price#desktop"],
+    "props": { (...) }
+  },
+  "unit-price#desktop": {
+    "props": { (...) }
+  },
+  "flex-layout.col#price.desktop": {
+    "children": ["price#desktop"],
+    "props": { (...) }
+  },
+  "price#desktop": {
+    "props": { (...) }
+  },
+  "flex-layout.col#remove-button.desktop": {
+    "children": ["remove-button"],
+    "props": { (...) }
+  },
+  "flex-layout.row#message.desktop": {
+    "children": ["message#desktop"],
+    "props": { (...) }
+  },
+  "message#desktop": {
+    "props": { (...) }
+  }
+}
+```
+
+#### Mobile layout
+
+```json
+{
+  "product-list-content-mobile": {
+    "children": ["flex-layout.row#list-row.mobile"]
+  },
+  "flex-layout.row#list-row.mobile": {
+    "children": [
+      "flex-layout.col#image.mobile",
+      "flex-layout.col#main-container.mobile"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.col#image.mobile": {
+    "children": ["product-list-image"],
+    "props": { (...) }
+  },
+  "flex-layout.col#main-container.mobile": {
+    "children": [
+      "flex-layout.row#top.mobile",
+      "flex-layout.row#quantity-selector.mobile",
+      "flex-layout.row#unit-price.mobile",
+      "flex-layout.row#price.mobile",
+      "flex-layout.row#message.mobile"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.row#top.mobile": {
+    "children": [
+      "flex-layout.col#product-description",
+      "flex-layout.col#remove-button.mobile"
+    ],
+    "props": { (...) }
+  },
+  "flex-layout.row#quantity-selector.mobile": {
+    "children": ["quantity-selector"],
+    "props": { (...) }
+  },
+  "flex-layout.row#unit-price.mobile": {
+    "children": ["unit-price"],
+    "props": { (...) }
+  },
+  "flex-layout.row#price.mobile": {
+    "children": ["price#mobile"],
+    "props": { (...) }
+  },
+  "price#mobile": {
+    "props": { (...) }
+  },
+  "flex-layout.col#remove-button.mobile": {
+    "children": ["remove-button"],
+    "props": { (...) }
+  },
+  "flex-layout.row#message.mobile": {
+    "children": ["message#mobile"],
+    "props": { (...) }
+  },
+  "message#mobile": {
+    "props": { (...) }
+  }
+}
+```
+
+By default implementation we mean that whenever you use `product-list` in your store you're actually using the `json` above behind the scenes.
+
+Therefore, in order to customize the Product List configuration, you can simply use the default implementation in your code and change it as you wish.
+
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
@@ -31,26 +212,26 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `availabilityMessageContainer`       |
 | `availabilityMessageTextContainer`   |
 | `availabilityMessageText`            |
-| `productImageContainer`              |
+| `productBrandName`                   |
 | `productImageAnchor`                 |
+| `productImageContainer`              |
 | `productImage`                       |
+| `productListAvailableItemsMessage`   |
+| `productListItem`                    |
+| `productListUnavailableItemsMessage` |
+| `productName`                        |
 | `productPriceContainer`              |
 | `productPriceCurrency`               |
 | `productPrice`                       |
-| `productBrandName`                   |
-| `productListItem`                    |
-| `productListUnavailableItemsMessage` |
-| `productListAvailableItemsMessage`   |
-| `productName`                        |
 | `productVariationsContainer`         |
 | `productVariationsItem`              |
+| `quantityDropdownContainer`          |
+| `quantityDropdownMobileContainer`    |
+| `quantityInputContainer`             |
+| `quantityInputMobileContainer`       |
 | `quantitySelectorContainer`          |
 | `removeButtonContainer`              |
 | `removeButton`                       |
 | `unitPriceContainer`                 |
-| `unitPricePerUnitCurrency`           |
 | `unitPriceMeasurementUnit`           |
-| `quantityDropdownMobileContainer`    |
-| `quantityDropdownContainer`          |
-| `quantityInputMobileContainer`       |
-| `quantityInputContainer`             |
+| `unitPricePerUnitCurrency`           |
