@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { useItemContext } from './components/ItemContext'
+import { useItemContext } from './ItemContext'
 import { AVAILABLE, CANNOT_BE_DELIVERED } from './constants/Availability'
 
 interface Props {
