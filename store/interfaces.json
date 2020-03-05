@@ -53,6 +53,9 @@
   "product-variations": {
     "component": "ProductVariations"
   },
+  "product-quantity": {
+    "component": "ProductQuantity"
+  },
   "quantity-selector": {
     "component": "QuantitySelector",
     "preview": {
