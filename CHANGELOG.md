@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - New component `ProductQuantity`.
+- Prop `showListPrice` to `Price` component.
 
 ## [0.17.0] - 2020-01-29
 ### Added
