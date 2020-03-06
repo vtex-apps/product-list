@@ -15,7 +15,14 @@ const CSS_HANDLES = [
   'productPrice',
 ] as const
 
-const Price: StorefrontFunctionComponent<TextAlignProp> = ({ textAlign }) => {
+type PriceProps = TextAlignProp & {
+  showListPrice: boolean
+}
+
+const Price: StorefrontFunctionComponent<PriceProps> = ({
+  textAlign = 'left',
+  showListPrice = true,
+}) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -29,7 +36,7 @@ const Price: StorefrontFunctionComponent<TextAlignProp> = ({ textAlign }) => {
         handles.productPriceContainer
       } ${parseTextAlign(textAlign)}`}
     >
-      {item.listPrice !== item.price && (
+      {item.listPrice !== item.price && showListPrice && (
         <div
           id={`list-price-${item.id}`}
           className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
@@ -47,15 +54,11 @@ const Price: StorefrontFunctionComponent<TextAlignProp> = ({ textAlign }) => {
   )
 }
 
-Price.defaultProps = {
-  textAlign: 'left',
-}
-
 Price.schema = {
   properties: {
     textAlign: {
       type: 'string',
-      default: Price.defaultProps.textAlign,
+      default: 'left',
       isLayout: true,
     },
   },
