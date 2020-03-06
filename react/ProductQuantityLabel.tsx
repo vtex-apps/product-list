@@ -4,14 +4,14 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './components/ItemContext'
 
-const CSS_HANDLES = ['productQuantityUnit'] as const
+const CSS_HANDLES = ['productQuantityLabel'] as const
 
-const ProductQuantity: React.FC = () => {
+const ProductQuantityLabel: React.FC = () => {
   const { item } = useItemContext()
   const cssHandles = useCssHandles(CSS_HANDLES)
 
   return (
-    <span className={`${cssHandles.productQuantityUnit} c-muted-1 t-body`}>
+    <span className={`${cssHandles.productQuantityLabel} c-muted-1 t-body`}>
       <FormattedMessage
         id="store/product-list.quantity-units"
         values={{ quantity: item.quantity }}
@@ -20,4 +20,4 @@ const ProductQuantity: React.FC = () => {
   )
 }
 
-export default ProductQuantity
+export default ProductQuantityLabel
