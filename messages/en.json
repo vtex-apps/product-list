@@ -7,5 +7,5 @@
   "store/product-list.message.noLongerAvailable": "This product is no longer available.",
   "store/product-list.message.remove": "remove",
   "store/product-list.quantity-selector.remove": "Remove",
-  "store/product-list.quantity-units": "{quantity} un."
+  "store/product-list.quantity-label": "{quantity} un."
 }
