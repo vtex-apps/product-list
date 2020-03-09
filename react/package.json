@@ -30,7 +30,7 @@
     "eslint-config-vtex-react": "^5.1.0",
     "prettier": "^1.19.1",
     "tslint-eslint-rules": "^5.4.0",
-    "typescript": "3.7.3",
+    "typescript": "3.8.3",
     "vtex.styleguide": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.103.4/public/@types/vtex.styleguide",
     "vtex.render-runtime": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.87.2/public/@types/vtex.render-runtime",
     "vtex.device-detector": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.device-detector@0.2.4/public/@types/vtex.device-detector",
