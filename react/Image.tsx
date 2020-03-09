@@ -30,7 +30,11 @@ const CSS_HANDLES = [
   'productImage',
 ] as const
 
-const Image: FunctionComponent = () => {
+interface ImageProps {
+  width?: number
+}
+
+const Image: FunctionComponent<ImageProps> = ({ width = 96 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -46,7 +50,7 @@ const Image: FunctionComponent = () => {
       className={`${handles.productImageContainer} ${opaque(
         item.availability
       )}`}
-      style={{ width: '96px' }}
+      style={{ width }}
     >
       <a
         className={handles.productImageAnchor}
