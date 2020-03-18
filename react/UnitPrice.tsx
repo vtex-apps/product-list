@@ -12,6 +12,7 @@ const CSS_HANDLES = [
   'unitPriceContainer',
   'unitPricePerUnitCurrency',
   'unitPriceMeasurementUnit',
+  'unitListPrice',
 ] as const
 
 interface UnitPriceProps extends TextAlignProp {
@@ -26,6 +27,7 @@ type DisplayListPriceType = 'always' | 'never'
 const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   textAlign,
   unitPriceDisplay = 'default',
+  displayListPrice = 'never',
 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
@@ -42,6 +44,11 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
         styles.quantity
       } ${opaque(item.availability)} ${parseTextAlign(textAlign)}`}
     >
+      {item.price !== item.listPrice && displayListPrice === 'always' && (
+        <div className={`strike ${handles.unitListPrice}`}>
+          <FormattedCurrency value={item.listPrice / 100} />
+        </div>
+      )}
       <FormattedMessage
         id="store/product-list.pricePerUnit"
         values={{
