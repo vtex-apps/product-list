@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Prop `unitPriceDisplay` to `unit-price` block.
+- Prop `displayListPrice` to `unit-price` block.
+
 ## [0.19.1] - 2020-03-16
 
 ## [0.19.0] - 2020-03-09
