@@ -14,8 +14,18 @@ const CSS_HANDLES = [
   'unitPriceMeasurementUnit',
 ] as const
 
-const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
+interface UnitPriceProps extends TextAlignProp {
+  unitPriceDisplay: UnitPriceDisplayType
+  displayListPrice: DisplayListPriceType
+}
+
+type UnitPriceDisplayType = 'always' | 'default'
+
+type DisplayListPriceType = 'always' | 'never'
+
+const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   textAlign,
+  unitPriceDisplay = 'default',
 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
@@ -24,7 +34,8 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
     return null
   }
 
-  return item.quantity > 1 && item.sellingPrice > 0 ? (
+  return (item.quantity > 1 || unitPriceDisplay === 'always') &&
+    item.sellingPrice > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
