@@ -210,7 +210,7 @@ Therefore, in order to customize the Product List configuration, you can simply 
 | ---------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `unitPriceDisplay`     | `Enum` | Determines if the unit price should always appear or appears only when the product quantity is bigger than one. (values: `always`, `default`) | `'default'`   |
 | `displayUnitListPrice` | `Enum` | Display the unit list price when it's different from price. (values: `'always'` or `'never'`)                                                 | `'never'`     |
-| `textAlign`            | `Enum` | Enable to set a text alignment. (values: `'left'`. `'center'` or `'right'` )                                                                  | `''`          |
+| `textAlign`            | `Enum` | Enable to set a text alignment. The possible values are: `left`, `center` or `right` )                                                                  | `undefined`          |
 
 ## Customization
 
