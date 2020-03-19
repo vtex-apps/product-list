@@ -206,6 +206,12 @@ By default implementation we mean that whenever you use `product-list` in your s
 
 Therefore, in order to customize the Product List configuration, you can simply use the default implementation in your code and change it as you wish.
 
+| Prop name              | Type   | Description                                                                                                                                   | Default value |
+| ---------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `unitPriceDisplay`     | `Enum` | Determines if the unit price should always appear or appears only when the product quantity is bigger than one. (values: `always`, `default`) | `'default'`   |
+| `displayUnitListPrice` | `Enum` | Display the unit list price when it's different from price. (values: `'always'` or `'never'`)                                                 | `'never'`     |
+| `textAlign`            | `Enum` | Enable to set a text alignment. (values: `'left'`. `'center'` or `'right'` )                                                                  | `''`          |
+
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
@@ -237,6 +243,7 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `removeButtonContainer`              |
 | `removeButton`                       |
 | `unitPriceContainer`                 |
+| `unitListPrice`                      |
 | `unitPriceMeasurementUnit`           |
 | `unitPricePerUnitCurrency`           |
 
