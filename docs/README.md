@@ -208,7 +208,7 @@ Therefore, in order to customize the Product List configuration, you can simply 
 
 | Prop name              | Type   | Description                                                                                                                                   | Default value |
 | ---------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `unitPriceDisplay`     | `Enum` | Determines if the unit price should always appear or appears only when the product quantity is bigger than one. (values: `always`, `default`) | `'default'`   |
+| `unitPriceDisplay`     | `Enum` | Defines whether the unit price should always be displayed (`always`) or only when the product quantity is bigger than one (`default`) | `default`   |
 | `displayUnitListPrice` | `Enum` | Display the unit list price when it's different from price. (values: `'always'` or `'never'`)                                                 | `'never'`     |
 | `textAlign`            | `Enum` | Enable to set a text alignment. The possible values are: `left`, `center` or `right` )                                                                  | `undefined`          |
 
