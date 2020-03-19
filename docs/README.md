@@ -206,10 +206,10 @@ By default implementation we mean that whenever you use `product-list` in your s
 
 Therefore, in order to customize the Product List configuration, you can simply use the default implementation in your code and change it as you wish.
 
-| Prop name          | Type   | Description                                                                                                                                   | Default value |
-| ------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `unitPriceDisplay` | `Enum` | Determines if the unit price should always appear or appears only when the product quantity is bigger than one. (values: `always`, `default`) | `'default'`   |
-| `displayListPrice` | `Enum` | Display the unit list price when it's different from price. (values: `'always'` or `'never'`)                                                 | `'never'`     |
+| Prop name              | Type   | Description                                                                                                                                   | Default value |
+| ---------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `unitPriceDisplay`     | `Enum` | Determines if the unit price should always appear or appears only when the product quantity is bigger than one. (values: `always`, `default`) | `'default'`   |
+| `displayUnitListPrice` | `Enum` | Display the unit list price when it's different from price. (values: `'always'` or `'never'`)                                                 | `'never'`     |
 
 ## Customization
 
