@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { ItemContextProvider } from './components/ItemContext'
+import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
 
 interface Props {

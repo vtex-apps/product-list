@@ -3,7 +3,7 @@ import { IconDelete } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 import { Loading } from 'vtex.render-runtime'
 
-import { useItemContext } from './components/ItemContext'
+import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 
 const CSS_HANDLES = ['removeButtonContainer', 'removeButton'] as const
