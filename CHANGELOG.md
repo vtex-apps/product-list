@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.19.2] - 2020-03-25
+
 ### Changed
 - Moved `ItemContext` to react folder.
 
