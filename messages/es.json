@@ -6,5 +6,6 @@
   "store/product-list.message.cantBeDelivered": "Este producto no se puede entregar en la dirección proporcionada.",
   "store/product-list.message.noLongerAvailable": "Este producto no está disponible actualmente.",
   "store/product-list.message.remove": "retirar",
-  "store/product-list.quantity-selector.remove": "Retirar"
+  "store/product-list.quantity-selector.remove": "Retirar",
+  "store/product-list.quantity-label": "{quantity} un."
 }

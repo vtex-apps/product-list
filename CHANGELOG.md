@@ -10,6 +10,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Moved `ItemContext` to react folder.
 
+## [0.19.1] - 2020-03-16
+
+## [0.19.0] - 2020-03-09
+### Added
+- Prop `width` to `product-list-image` block.
+
+## [0.18.1] - 2020-03-09
+### Changed
+- Rename block `product-quantity` to `product-quantity-label`.
+
+## [0.18.0] - 2020-03-06 [YANKED]
+### Added
+- New component `ProductQuantity`.
+- Prop `showListPrice` to `Price` component.
+
 ## [0.17.0] - 2020-01-29
 ### Added
 - `Advanced configuration` section in the documentation.

@@ -6,5 +6,6 @@
   "store/product-list.message.cantBeDelivered": "This product cannot be delivered to the address provided.",
   "store/product-list.message.noLongerAvailable": "This product is no longer available.",
   "store/product-list.message.remove": "remove",
-  "store/product-list.quantity-selector.remove": "Remove"
+  "store/product-list.quantity-selector.remove": "Remove",
+  "store/product-list.quantity-label": "{quantity} un."
 }
