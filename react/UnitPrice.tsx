@@ -22,12 +22,12 @@ interface UnitPriceProps extends TextAlignProp {
 
 type UnitPriceDisplayType = 'always' | 'default'
 
-type DisplayUnitListPriceType = 'default' | 'never'
+type DisplayUnitListPriceType = 'showWhenDifferent' | 'notShow'
 
 const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   textAlign,
   unitPriceDisplay = 'default',
-  displayUnitListPrice = 'never',
+  displayUnitListPrice = 'notShow',
 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
@@ -44,11 +44,12 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
         styles.quantity
       } ${opaque(item.availability)} ${parseTextAlign(textAlign)}`}
     >
-      {item.price !== item.listPrice && displayUnitListPrice === 'always' && (
-        <div className={`strike ${handles.unitListPrice}`}>
-          <FormattedCurrency value={item.listPrice / 100} />
-        </div>
-      )}
+      {item.price !== item.listPrice &&
+        displayUnitListPrice === 'showWhenDifferent' && (
+          <div className={`strike ${handles.unitListPrice}`}>
+            <FormattedCurrency value={item.listPrice / 100} />
+          </div>
+        )}
       <FormattedMessage
         id="store/product-list.pricePerUnit"
         values={{
