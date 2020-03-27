@@ -22,7 +22,7 @@ interface UnitPriceProps extends TextAlignProp {
 
 type UnitPriceDisplayType = 'always' | 'default'
 
-type DisplayUnitListPriceType = 'always' | 'never'
+type DisplayUnitListPriceType = 'default' | 'never'
 
 const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   textAlign,
