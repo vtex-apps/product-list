@@ -24,7 +24,7 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
     return null
   }
 
-  return item.quantity > 1 && item.sellingPrice > 0 ? (
+  return item.quantity > 1 && item.price && item.price > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
@@ -36,7 +36,7 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
         values={{
           price: (
             <div className={`${handles.unitPricePerUnitCurrency} dib`}>
-              <FormattedCurrency value={item.sellingPrice / 100} />
+              <FormattedCurrency value={item.price / 100} />
             </div>
           ),
           perMeasurementUnit: (
