@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.20.0] - 2020-05-19
+### Added
+- Props `variation` and `displayMode` to `remove-button`.
+
+## [0.19.4] - 2020-05-08
+### Fixed
+- Item prices when `unitMultiplier` was different than `1`.
+
 ## [0.19.3] - 2020-03-25
 
 ## [0.19.2] - 2020-03-25
