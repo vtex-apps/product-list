@@ -43,5 +43,5 @@
     "vtex.store-icons": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-icons@0.17.0/public/@types/vtex.store-icons",
     "vtex.modal-layout": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.modal-layout@0.4.2/public/@types/vtex.modal-layout"
   },
-  "version": "0.20.0"
+  "version": "0.20.1"
 }
