@@ -9,7 +9,7 @@
 
 The Product List component displays all items in the user's cart and informs the user when some of them are unavailable. 
 
-Currently, the Product List only works with the [Minicart v2](https://vtex.io/docs/components/all/vtex.minicart/)
+:warning: Currently, the Product List only works with the [Minicart v2](https://vtex.io/docs/components/all/vtex.minicart/).
 
 ![product-list image](https://user-images.githubusercontent.com/52087100/83676314-de434880-a5b0-11ea-8590-3b823d72ef29.png)
 
@@ -264,37 +264,37 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | `quantity-selector` | Renders a selector that allows users to add a chosen number of a product in their cart. | 
 | `remove-button` | Renders a button that allows users to remove a product from the list. |  
 
-- **`message`'s props**
+### `message` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `layout` | `enum`    | Availability message position on the list. Possible values are: `rows` (displaying the message in the product row) or `cols` (displaying in the product column).  | `cols`    |
 
-- **`price`'s props**
+### `price` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `textAlign`            | `string`    | Product price position on the list.  | `left`    |
 | `showListPrice` | `boolean`  | Whether the product prices should be displayed on the list (`true`) or not (`false`). | `true` | 
 
-- **`unit-price`'s props**
+### `unit-price` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `textAlign`            | `string`    | Product unit prices position on the list.  | `left`    |
 
-- **`product-list-image`'s props**
+### `product-list-image` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `width`    | `number`    | Product image width (in pixels).  | `96`    |
 
-- **`remove-button`'s props**
+### `remove-button` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `variation`   | `enum`    | Variation for the button visual proeminence based on the[VTEX Styleguide](https://styleguide.vtex.com/#/Components/Forms/Button). Possible values are: `primary`, `secondary`, `tertiary`, `inverted-tertiary`, `danger` and `danger-tertiary`. | `danger`    |
-| `displayMode` | `enum`  | Defines how the remove button should be displayed. Possible values are: `icon-button` (to render an icon button) and `text-button` (to render a text message button). | `icon-button` | 
+| `displayMode` | `enum`  | Defines how the remove button should be displayed. Possible values are: `icon-button` (to render an icon button) and `text-button` (to render a text message button). If you desire to [create a modal in the remove button](https://vtex.io/docs/recipes/templates/creating-modals-using-icons/), use the `icon-button` value. | `icon-button` | 
 
 ## Customization
 
@@ -347,3 +347,5 @@ Thanks goes to these wonderful people:
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 <!-- DOCS-IGNORE:end -->
+
+
