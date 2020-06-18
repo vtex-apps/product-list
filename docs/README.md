@@ -23,7 +23,7 @@ The Product List component displays all items in the user's cart and informs the
   }
 ```
 
-2. Add the `product-list` block to the `minicart-product-list` block (exported by the Minicart app) or to the `product-list-wrapper` block. For example:
+2. Add the `product-list` block to the `minicart-product-list` block (exported by the Minicart app). For example:
 
 ```json
   "minicart-product-list#example": {
