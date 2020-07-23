@@ -4,7 +4,7 @@ import { FormattedPrice } from 'vtex.formatted-price'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { useItemContext } from './components/ItemContext'
+import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 import { parseTextAlign, TextAlignProp } from './utils/textAlign'
 import styles from './styles.css'
@@ -36,19 +36,26 @@ const Price: StorefrontFunctionComponent<PriceProps> = ({
         handles.productPriceContainer
       } ${parseTextAlign(textAlign)}`}
     >
-      {item.listPrice !== item.price && showListPrice && (
+      {item.listPrice && item.listPrice !== item.price && showListPrice && (
         <div
           id={`list-price-${item.id}`}
           className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
         >
-          <FormattedCurrency value={(item.listPrice * item.quantity) / 100} />
+          <FormattedCurrency
+            value={
+              (item.listPrice * (item.unitMultiplier || 1) * item.quantity) /
+              100
+            }
+          />
         </div>
       )}
       <div
         id={`price-${item.id}`}
         className={`${handles.productPrice} div fw6 fw5-m`}
       >
-        <FormattedPrice value={(item.sellingPrice * item.quantity) / 100} />
+        {item.sellingPrice && (
+          <FormattedPrice value={(item.sellingPrice * item.quantity) / 100} />
+        )}
       </div>
     </div>
   )

@@ -10,6 +10,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Prop `unitPriceDisplay` to `unit-price` block.
 - Prop `displayUnitListPrice` to `unit-price` block.
 
+## [0.20.2] - 2020-06-22
+### Changed
+- Add app prefix to `product-name` block usage to avoid conflicts.
+
+## [0.20.1] - 2020-06-18
+### Fixed
+- Updated README.md file 
+
+## [0.20.0] - 2020-05-19
+### Added
+- Props `variation` and `displayMode` to `remove-button`.
+
+## [0.19.4] - 2020-05-08
+### Fixed
+- Item prices when `unitMultiplier` was different than `1`.
+
+## [0.19.3] - 2020-03-25
+
+## [0.19.2] - 2020-03-25
+
+### Changed
+- Moved `ItemContext` to react folder.
+
 ## [0.19.1] - 2020-03-16
 
 ## [0.19.0] - 2020-03-09

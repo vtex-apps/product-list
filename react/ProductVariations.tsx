@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { SkuSpecification } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { useItemContext } from './components/ItemContext'
+import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 
 const CSS_HANDLES = [

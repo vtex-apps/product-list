@@ -31,15 +31,17 @@
     "prettier": "^1.19.1",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "3.8.3",
-    "vtex.styleguide": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.103.4/public/@types/vtex.styleguide",
-    "vtex.render-runtime": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.87.2/public/@types/vtex.render-runtime",
-    "vtex.device-detector": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.device-detector@0.2.4/public/@types/vtex.device-detector",
-    "vtex.flex-layout": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.flex-layout@0.13.1/public/@types/vtex.flex-layout",
-    "vtex.checkout-graphql": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.checkout-graphql@0.20.1/public/@types/vtex.checkout-graphql",
-    "vtex.css-handles": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.css-handles@0.4.1/public/@types/vtex.css-handles",
-    "vtex.order-manager": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.order-manager@0.6.8/public/@types/vtex.order-manager",
-    "vtex.format-currency": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.format-currency@0.1.3/public/@types/vtex.format-currency",
-    "vtex.formatted-price": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.formatted-price@0.3.2/public/@types/vtex.formatted-price"
+    "vtex.checkout-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.34.0/public/@types/vtex.checkout-graphql",
+    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.2/public/@types/vtex.css-handles",
+    "vtex.device-detector": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.4/public/@types/vtex.device-detector",
+    "vtex.flex-layout": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.flex-layout@0.15.0/public/@types/vtex.flex-layout",
+    "vtex.format-currency": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.format-currency@0.1.3/public/@types/vtex.format-currency",
+    "vtex.formatted-price": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.formatted-price@0.4.0/public/@types/vtex.formatted-price",
+    "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.4/public/@types/vtex.order-manager",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.100.4/public/@types/vtex.render-runtime",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.116.0/public/@types/vtex.styleguide",
+    "vtex.store-icons": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-icons@0.17.0/public/@types/vtex.store-icons",
+    "vtex.modal-layout": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.modal-layout@0.4.2/public/@types/vtex.modal-layout"
   },
-  "version": "0.19.1"
+  "version": "0.20.2"
 }

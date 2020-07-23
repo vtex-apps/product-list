@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import { FormattedCurrency } from 'vtex.format-currency'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { useItemContext } from './components/ItemContext'
+import { useItemContext } from './ItemContext'
 import styles from './styles.css'
 import { opaque } from './utils/opaque'
 import { parseTextAlign, TextAlignProp } from './utils/textAlign'
@@ -37,7 +37,7 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   }
 
   return (item.quantity > 1 || unitPriceDisplay === 'always') &&
-    item.sellingPrice > 0 ? (
+  item.price && item.price > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
@@ -55,7 +55,7 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
         values={{
           price: (
             <div className={`${handles.unitPricePerUnitCurrency} dib`}>
-              <FormattedCurrency value={item.sellingPrice / 100} />
+              <FormattedCurrency value={item.price / 100} />
             </div>
           ),
           perMeasurementUnit: (

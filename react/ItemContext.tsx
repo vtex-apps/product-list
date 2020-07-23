@@ -27,3 +27,5 @@ export const useItemContext = () => {
 
   return context
 }
+
+export default { useItemContext }

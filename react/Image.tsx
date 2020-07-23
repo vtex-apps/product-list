@@ -3,7 +3,7 @@ import { Loading } from 'vtex.render-runtime'
 import { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { useItemContext } from './components/ItemContext'
+import { useItemContext } from './ItemContext'
 import { NoImageIcon } from './components/NoImageIcon'
 import { opaque } from './utils/opaque'
 
