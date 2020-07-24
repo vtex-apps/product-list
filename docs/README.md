@@ -282,6 +282,8 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | Prop name   | Type     | Description                               | Default value |
 | ----------- | -------- | ----------------------------------------- | ------------- |
 | `textAlign` | `string` | Product unit prices position on the list. | `left`        |
+| `unitPriceDisplay` | `string` | Defines whether the unit price will always appear (`always`) or only when the quantity of products is greater than one (`default`). | `default`        |
+| `displayUnitListPrice` | `string` | Defines whether the list-price will appear when it is different from the price (`showWhenDifferent`) or if it should never appear (`notShow`). | `left`        |
 
 ### `product-list-image` props
 
