@@ -37,14 +37,16 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   }
 
   return (item.quantity > 1 || unitPriceDisplay === 'always') &&
-  item.price && item.price > 0 ? (
+    item.price &&
+    item.price > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
         styles.quantity
       } ${opaque(item.availability)} ${parseTextAlign(textAlign)}`}
     >
-      {item.price !== item.listPrice &&
+      {item.listPrice &&
+        item.price !== item.listPrice &&
         displayUnitListPrice === 'showWhenDifferent' && (
           <div className={`strike ${handles.unitListPrice}`}>
             <FormattedCurrency value={item.listPrice / 100} />
