@@ -36,9 +36,8 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
     return null
   }
 
-  return (item.quantity > 1 || unitPriceDisplay === 'always') &&
-    item.price &&
-    item.price > 0 ? (
+  return (item.quantity > 1 || unitPriceDisplay === 'always')
+  && item.price && item.price > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${

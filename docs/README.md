@@ -248,34 +248,34 @@ By default implementation we mean that whenever you declare the `product-list` b
 
 Therefore, in order to customize the `product-list` configuration, you can simply copy the code above, paste it and then change it as you wish.
 
-| Block name                     | Description                                                                                                                                                                                                                                             |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `product-list`                 | ![https://img.shields.io/badge/-Mandatory-red](https://img.shields.io/badge/-Mandatory-red)  Top level block that must be declared in the `minicart-product-list` block to render a default detailed list with all products added to the shopping cart. |
-| `product-list-content-desktop` | Creates the product list layout for desktop devices.                                                                                                                                                                                                    |
-| `product-list-content-mobile`  | Creates the product list layout for mobile devices.                                                                                                                                                                                                     |
-| `message`                      | Renders a message text about the product availability.                                                                                                                                                                                                  |
-| `product-name`                 | Renders the product names.                                                                                                                                                                                                                              |
-| `price`                        | Renders the product prices.                                                                                                                                                                                                                             |
-| `unit-price`                   | Renders the price for each product unit added to the cart.                                                                                                                                                                                              |
-| `product-list-image`           | Renders the product images.                                                                                                                                                                                                                             |
-| `product-brand`                | Renders the product brands.                                                                                                                                                                                                                             |
-| `product-variations`           | Renders the product variations.                                                                                                                                                                                                                         |
-| `product-quantity-label`       | Renders a product label that displays a sua quantidade de unidades added to the cart.                                                                                                                                                                   |
-| `quantity-selector`            | Renders a selector that allows users to add a chosen number of a product in their cart.                                                                                                                                                                 |
-| `remove-button`                | Renders a button that allows users to remove a product from the list.                                                                                                                                                                                   |
+| Block name     | Description                                     |
+| -------------- | ----------------------------------------------- |
+| `product-list` | ![https://img.shields.io/badge/-Mandatory-red](https://img.shields.io/badge/-Mandatory-red)  Top level block that must be declared in the `minicart-product-list` block to render a default detailed list with all products added to the shopping cart.   |
+| `product-list-content-desktop` | Creates the product list layout for desktop devices.  |
+| `product-list-content-mobile` | Creates the product list layout for mobile devices. |
+| `message` | Renders a message text about the product availability. | 
+| `product-name` | Renders the product names. | 
+| `price` | Renders the product prices. | 
+| `unit-price` | Renders the price for each product unit added to the cart. | 
+| `product-list-image` | Renders the product images. | 
+| `product-brand` | Renders the product brands. | 
+| `product-variations` | Renders the product variations. | 
+| `product-quantity-label` | Renders a product label that displays a sua quantidade de unidades added to the cart. | 
+| `quantity-selector` | Renders a selector that allows users to add a chosen number of a product in their cart. | 
+| `remove-button` | Renders a button that allows users to remove a product from the list. |  
 
 ### `message` props
 
-| Prop name | Type   | Description                                                                                                                                                      | Default value |
-| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `layout`  | `enum` | Availability message position on the list. Possible values are: `rows` (displaying the message in the product row) or `cols` (displaying in the product column). | `cols`        |
+| Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `layout` | `enum`    | Availability message position on the list. Possible values are: `rows` (displaying the message in the product row) or `cols` (displaying in the product column).  | `cols`    |
 
 ### `price` props
 
-| Prop name       | Type      | Description                                                                           | Default value |
-| --------------- | --------- | ------------------------------------------------------------------------------------- | ------------- |
-| `textAlign`     | `string`  | Product price position on the list.                                                   | `left`        |
-| `showListPrice` | `boolean` | Whether the product prices should be displayed on the list (`true`) or not (`false`). | `true`        |
+| Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `textAlign`            | `string`    | Product price position on the list.  | `left`    |
+| `showListPrice` | `boolean`  | Whether the product prices should be displayed on the list (`true`) or not (`false`). | `true` | 
 
 ### `unit-price` props
 
@@ -287,22 +287,16 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 
 ### `product-list-image` props
 
-| Prop name | Type     | Description                      | Default value |
-| --------- | -------- | -------------------------------- | ------------- |
-| `width`   | `number` | Product image width (in pixels). | `96`          |
+| Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `width`    | `number`    | Product image width (in pixels).  | `96`    |
 
 ### `remove-button` props
 
-| Prop name     | Type   | Description                                                                                                                                                                                                                                                                                                                     | Default value |
-| ------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `variation`   | `enum` | Variation for the button visual proeminence based on the[VTEX Styleguide](https://styleguide.vtex.com/#/Components/Forms/Button). Possible values are: `primary`, `secondary`, `tertiary`, `inverted-tertiary`, `danger` and `danger-tertiary`.                                                                                 | `danger`      |
-| `displayMode` | `enum` | Defines how the remove button should be displayed. Possible values are: `icon-button` (to render an icon button) and `text-button` (to render a text message button). If you desire to [create a modal in the remove button](https://vtex.io/docs/recipes/templates/creating-modals-using-icons/), use the `icon-button` value. | `icon-button` |
-
-| Prop name              | Type   | Description                                                                                                                           | Default value |
-| ---------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `unitPriceDisplay`     | `Enum` | Defines whether the unit price should always be displayed (`always`) or only when the product quantity is bigger than one (`default`) | `default`     |
-| `displayUnitListPrice` | `Enum` | Defines if the unit list price should be displayed when different from price (`showWhenDifferent`) or not (`notShow`)                 | `notShow`     |
-| `textAlign`            | `Enum` | Enable to set a text alignment. The possible values are: `left`, `center` or `right` )                                                | `undefined`   |
+| Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `variation`   | `enum`    | Variation for the button visual proeminence based on the[VTEX Styleguide](https://styleguide.vtex.com/#/Components/Forms/Button). Possible values are: `primary`, `secondary`, `tertiary`, `inverted-tertiary`, `danger` and `danger-tertiary`. | `danger`    |
+| `displayMode` | `enum`  | Defines how the remove button should be displayed. Possible values are: `icon-button` (to render an icon button) and `text-button` (to render a text message button). If you desire to [create a modal in the remove button](https://vtex.io/docs/recipes/templates/creating-modals-using-icons/), use the `icon-button` value. | `icon-button` | 
 
 ## Customization
 
