@@ -12,10 +12,22 @@ const CSS_HANDLES = [
   'unitPriceContainer',
   'unitPricePerUnitCurrency',
   'unitPriceMeasurementUnit',
+  'unitListPrice',
 ] as const
 
-const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
+interface UnitPriceProps extends TextAlignProp {
+  unitPriceDisplay: UnitPriceDisplayType
+  displayUnitListPrice: DisplayUnitListPriceType
+}
+
+type UnitPriceDisplayType = 'always' | 'default'
+
+type DisplayUnitListPriceType = 'showWhenDifferent' | 'notShow'
+
+const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   textAlign,
+  unitPriceDisplay = 'default',
+  displayUnitListPrice = 'notShow',
 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
@@ -24,13 +36,22 @@ const UnitPrice: StorefrontFunctionComponent<TextAlignProp> = ({
     return null
   }
 
-  return item.quantity > 1 && item.price && item.price > 0 ? (
+  return (item.quantity > 1 || unitPriceDisplay === 'always') &&
+    item.price &&
+    item.price > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
         styles.quantity
       } ${opaque(item.availability)} ${parseTextAlign(textAlign)}`}
     >
+      {item.listPrice &&
+        item.price !== item.listPrice &&
+        displayUnitListPrice === 'showWhenDifferent' && (
+          <div className={`strike ${handles.unitListPrice}`}>
+            <FormattedCurrency value={item.listPrice / 100} />
+          </div>
+        )}
       <FormattedMessage
         id="store/product-list.pricePerUnit"
         values={{
