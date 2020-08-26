@@ -53,9 +53,13 @@ const Price: StorefrontFunctionComponent<PriceProps> = ({
         id={`price-${item.id}`}
         className={`${handles.productPrice} div fw6 fw5-m`}
       >
-        {item.sellingPrice != null && (
-          <FormattedPrice value={(item.sellingPrice * item.quantity) / 100} />
-        )}
+        <FormattedPrice
+          value={
+            item.sellingPrice != null
+              ? (item.sellingPrice * item.quantity) / 100
+              : item.sellingPrice
+          }
+        />
       </div>
     </div>
   )
