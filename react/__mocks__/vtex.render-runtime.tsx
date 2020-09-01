@@ -5,5 +5,5 @@ export const Loading: FunctionComponent = () => <div />
 
 export const useRuntime = () => {
   const [rootPath, setRootPath] = useState('')
-  return rootPath
+  return { rootPath }
 }
