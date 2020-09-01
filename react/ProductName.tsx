@@ -23,7 +23,7 @@ const ProductName: FunctionComponent = () => {
       className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
         handles.productName
       } ${opaque(item.availability)}`}
-      href={rootPath + item.detailUrl || undefined}
+      href={item.detailUrl ? rootPath + item.detailUrl : undefined}
     >
       {item.name}
     </a>
