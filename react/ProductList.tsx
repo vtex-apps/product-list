@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, memo, ReactNode } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
@@ -19,6 +19,34 @@ const CSS_HANDLES = [
   'productListAvailableItemsMessage',
 ] as const
 
+interface ItemWrapperProps
+  extends Pick<Props, 'onQuantityChange' | 'onRemove'> {
+  item: Item
+  loading: boolean
+  children: ReactNode
+}
+
+const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
+  item,
+  loading,
+  onQuantityChange,
+  onRemove,
+  children,
+}) {
+  const context = useMemo(
+    () => ({
+      item,
+      loading,
+      onQuantityChange: (value: number) =>
+        onQuantityChange(item.uniqueId, value, item),
+      onRemove: () => onRemove(item.uniqueId, item),
+    }),
+    [item, loading, onQuantityChange, onRemove]
+  )
+
+  return <ItemContextProvider value={context}>{children}</ItemContextProvider>
+})
+
 const ProductList: StorefrontFunctionComponent<Props> = ({
   items,
   loading,
@@ -28,30 +56,25 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
 
-  const [availableItems, unavailableItems] = items.reduce(
-    (acc: any, item: Item) => {
+  const [availableItems, unavailableItems] = items.reduce<Item[][]>(
+    (acc, item) => {
       acc[item.availability === AVAILABLE ? 0 : 1].push(item)
       return acc
     },
-    [[], []] as Item[][]
+    [[], []]
   )
 
   const productList = (itemList: Item[]) =>
     itemList.map((item: Item) => (
-      <ItemContextProvider
-        key={item.uniqueId}
-        value={{
-          item,
-          loading,
-          onQuantityChange: (value: number) =>
-            onQuantityChange(item.uniqueId, value, item),
-          onRemove: () => onRemove(item.uniqueId, item),
-        }}
+      <ItemContextWrapper
+        key={item.uniqueId + item.sellingPrice}
+        item={item}
+        loading={loading}
+        onQuantityChange={onQuantityChange}
+        onRemove={onRemove}
       >
-        <div className={`${handles.productListItem} c-on-base bb b--muted-4`}>
-          {children}
-        </div>
-      </ItemContextProvider>
+        {children}
+      </ItemContextWrapper>
     ))
 
   return (
@@ -85,4 +108,4 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
   )
 }
 
-export default ProductList
+export default React.memo(ProductList)
