@@ -119,6 +119,11 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
     }
 
     const validatedValue = validateValue(curDisplayValue, maxValue)
+
+    if (validatedValue < 10 && curSelector === SelectorType.Input) {
+      setSelector(SelectorType.Dropdown)
+    }
+
     onChange(validatedValue)
   }
 
