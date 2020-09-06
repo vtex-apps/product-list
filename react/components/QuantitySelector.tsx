@@ -16,6 +16,7 @@ const messages = defineMessages({
   },
 })
 
+const MAX_DROPDOWN_VALUE = 10
 const MAX_INPUT_LENGTH = 5
 
 enum SelectorType {
@@ -61,8 +62,8 @@ const getDropdownOptions = (maxValue: number, intl: InjectedIntl) => {
     ...range(1, limit + 1).map(idx => ({ value: idx, label: `${idx}` })),
   ]
 
-  if (maxValue >= 10) {
-    options.push({ value: 10, label: '10+' })
+  if (maxValue >= MAX_DROPDOWN_VALUE) {
+    options.push({ value: MAX_DROPDOWN_VALUE, label: `${MAX_DROPDOWN_VALUE}+` })
   }
 
   return options
@@ -84,7 +85,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
   intl,
 }) => {
   const [curSelector, setSelector] = useState(
-    value < 10 ? SelectorType.Dropdown : SelectorType.Input
+    value < MAX_DROPDOWN_VALUE ? SelectorType.Dropdown : SelectorType.Input
   )
   const [activeInput, setActiveInput] = useState(false)
 
@@ -98,7 +99,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
     const validatedValue = validateValue(value, maxValue)
     const displayValue = validateDisplayValue(value, maxValue)
 
-    if (validatedValue >= 10 && curSelector === SelectorType.Dropdown) {
+    if (validatedValue >= MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Input)
     }
 
@@ -120,7 +121,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
 
     const validatedValue = validateValue(curDisplayValue, maxValue)
 
-    if (validatedValue < 10 && curSelector === SelectorType.Input) {
+    if (validatedValue < MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Dropdown)
     }
 
@@ -133,7 +134,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
     !activeInput &&
     normalizedValue !== validateValue(curDisplayValue, maxValue)
   ) {
-    if (normalizedValue >= 10) {
+    if (normalizedValue >= MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Input)
     }
     setDisplayValue(validateDisplayValue(`${normalizedValue}`, maxValue))
