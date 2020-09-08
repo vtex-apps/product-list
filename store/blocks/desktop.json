@@ -33,11 +33,20 @@
   "flex-layout.row#sub-container.desktop": {
     "children": [
       "flex-layout.col#product-description",
-      "flex-layout.col#quantity.desktop",
+      "flex-layout.col#quantity-pricing.desktop",
       "flex-layout.row#price-remove"
     ],
     "props": {
       "preserveLayoutOnMobile": "true",
+      "colSizing": "auto"
+    }
+  },
+  "flex-layout.col#quantity-pricing.desktop": {
+    "children": [
+      "flex-layout.col#quantity.desktop",
+      "flex-layout.col#manual-pricing"
+    ],
+    "props": {
       "colSizing": "auto"
     }
   },
@@ -107,6 +116,12 @@
   "message#desktop": {
     "props": {
       "layout": "cols"
+    }
+  },
+  "flex-layout.col#manual-pricing": {
+    "children": ["manual-pricing"],
+    "props": {
+      "marginLeft": "6"
     }
   }
 }

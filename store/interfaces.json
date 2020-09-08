@@ -91,5 +91,10 @@
         "padding": 0
       }
     }
+  },
+  "manual-pricing": {
+    "component": "ManualPricing",
+    "composition": "children",
+    "allowed": "*"
   }
 }
