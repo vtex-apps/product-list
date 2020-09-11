@@ -2,7 +2,8 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import { IconDelete, Button } from 'vtex.styleguide'
+import { Button } from 'vtex.styleguide'
+import { IconDelete } from 'vtex.store-icons'
 
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
@@ -48,11 +49,12 @@ function RemoveButton(props: Props) {
     >
       <button
         id={`remove-button-${item.id}`}
+        style={{ color: '#727273' }}
         className={`${handles.removeButton} pointer bg-transparent bn pa2`}
         title="remove"
         onClick={onRemove}
       >
-        <IconDelete color="#727273" />
+        <IconDelete />
       </button>
     </div>
   )
