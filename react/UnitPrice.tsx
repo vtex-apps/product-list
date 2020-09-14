@@ -16,6 +16,7 @@ const CSS_HANDLES = [
 ] as const
 
 interface UnitPriceProps extends TextAlignProp {
+  unitPriceType: UnitPriceType
   unitPriceDisplay: UnitPriceDisplayType
   displayUnitListPrice: DisplayUnitListPriceType
 }
@@ -24,8 +25,11 @@ type UnitPriceDisplayType = 'always' | 'default'
 
 type DisplayUnitListPriceType = 'showWhenDifferent' | 'notShow'
 
+type UnitPriceType = 'price' | 'sellingPrice'
+
 const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
-  textAlign,
+  textAlign = 'left',
+  unitPriceType = 'price',
   unitPriceDisplay = 'default',
   displayUnitListPrice = 'notShow',
 }) => {
@@ -36,9 +40,10 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
     return null
   }
 
+  const unitPrice = item[unitPriceType] ?? 0
+
   return (item.quantity > 1 || unitPriceDisplay === 'always') &&
-    item.price &&
-    item.price > 0 ? (
+    unitPrice > 0 ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
@@ -46,7 +51,7 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
       } ${opaque(item.availability)} ${parseTextAlign(textAlign)}`}
     >
       {item.listPrice &&
-        item.price !== item.listPrice &&
+        unitPrice !== item.listPrice &&
         displayUnitListPrice === 'showWhenDifferent' && (
           <div className={`strike ${handles.unitListPrice}`}>
             <FormattedCurrency value={item.listPrice / 100} />
@@ -57,7 +62,7 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
         values={{
           price: (
             <div className={`${handles.unitPricePerUnitCurrency} dib`}>
-              <FormattedCurrency value={item.price / 100} />
+              <FormattedCurrency value={unitPrice / 100} />
             </div>
           ),
           perMeasurementUnit: (
@@ -74,15 +79,11 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   ) : null
 }
 
-UnitPrice.defaultProps = {
-  textAlign: 'left',
-}
-
 UnitPrice.schema = {
   properties: {
     textAlign: {
       type: 'string',
-      default: UnitPrice.defaultProps.textAlign,
+      default: 'left',
       isLayout: true,
     },
   },
