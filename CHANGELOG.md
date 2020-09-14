@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Prop `unitPriceType` to `unit-price` block.
+
 ## [0.22.0] - 2020-09-11
 ### Added
 - Support for customization of the `IconRemove` icon, since it now comes from `vtex.store-icons`.
