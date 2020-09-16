@@ -28,4 +28,4 @@ export const useItemContext = () => {
   return context
 }
 
-export default { useItemContext }
+export default { useItemContext, ItemContextProvider }
