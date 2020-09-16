@@ -59,6 +59,7 @@ const Image: FunctionComponent<ImageProps> = ({ width = 96 }) => {
         {imageUrl ? (
           <img
             className={`${handles.productImage} br2`}
+            loading="lazy"
             alt={item.name || undefined}
             src={imageUrl}
             width="100%"
