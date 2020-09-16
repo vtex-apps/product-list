@@ -5,6 +5,8 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
+import { chunkArray } from './utils/chunkArray'
+import { useRenderOnView } from './hooks/useRenderOnView'
 
 interface Props {
   items: Item[]
@@ -47,13 +49,40 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   return <ItemContextProvider value={context}>{children}</ItemContextProvider>
 })
 
-const ProductList: StorefrontFunctionComponent<Props> = ({
-  items,
-  loading,
-  onQuantityChange,
-  onRemove,
-  children,
-}) => {
+
+const productGroup = (group: Item[], props: any) => {
+  const { items, loading, onQuantityChange, onRemove, children } = props
+
+  const { hasBeenViewed, dummyElement } = useRenderOnView({
+    lazyRender: true,
+    offset: 900,
+  })
+
+  if (!hasBeenViewed || group.length === 0) {
+    return dummyElement
+  }
+  
+  return items.map((item: Item) => (
+    <ItemContextWrapper
+      key={item.uniqueId + item.sellingPrice}
+      item={item}
+      loading={loading}
+      onQuantityChange={onQuantityChange}
+      onRemove={onRemove}
+    >
+      {children}
+    </ItemContextWrapper>
+  ))
+}
+
+// items,
+// loading,
+// onQuantityChange,
+// onRemove,
+// children
+
+const ProductList: StorefrontFunctionComponent<Props> = (props) => {
+  const { items } = props
   const handles = useCssHandles(CSS_HANDLES)
 
   const [availableItems, unavailableItems] = items.reduce<Item[][]>(
@@ -63,19 +92,9 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
     },
     [[], []]
   )
-
-  const productList = (itemList: Item[]) =>
-    itemList.map((item: Item) => (
-      <ItemContextWrapper
-        key={item.uniqueId + item.sellingPrice}
-        item={item}
-        loading={loading}
-        onQuantityChange={onQuantityChange}
-        onRemove={onRemove}
-      >
-        {children}
-      </ItemContextWrapper>
-    ))
+  
+  let availableGroups = chunkArray(availableItems, 10)
+  let unavailableGroups = chunkArray(unavailableItems, 10)
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
@@ -92,7 +111,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
           />
         </div>
       ) : null}
-      {productList(unavailableItems)}
+      {unavailableGroups.length ? unavailableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) }
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
         <div
           className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
@@ -103,7 +122,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
           />
         </div>
       ) : null}
-      {productList(availableItems)}
+      {/* {availableGroups.length ? availableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) } */}
     </div>
   )
 }
