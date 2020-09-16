@@ -147,7 +147,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
             size="small"
             value={normalizedValue}
             onChange={(event: any) => handleDropdownChange(event.target.value)}
-            placeholder=""
+            placeholder=" "
             disabled={disabled}
           />
         </div>
@@ -158,7 +158,7 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
             options={dropdownOptions}
             value={normalizedValue}
             onChange={(event: any) => handleDropdownChange(event.target.value)}
-            placeholder=""
+            placeholder=" "
             disabled={disabled}
           />
         </div>
