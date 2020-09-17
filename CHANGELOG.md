@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - ItemContextProvider as a default import
 
+## [0.23.3] - 2020-09-17
+### Fixed
+- Consistency when changing `QuantitySelector` combobox and input
+
 ## [0.23.2] - 2020-09-16
 ### Added
 - Attribute `lazy` to product images.
