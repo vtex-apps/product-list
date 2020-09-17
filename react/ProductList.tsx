@@ -50,7 +50,7 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
 })
 
 
-const productGroup = (group: Item[], props: any) => {
+const ProductGroup: StorefrontFunctionComponent<Props> = (props) => {
   const { items, loading, onQuantityChange, onRemove, children } = props
 
   const { hasBeenViewed, dummyElement } = useRenderOnView({
@@ -58,28 +58,26 @@ const productGroup = (group: Item[], props: any) => {
     offset: 900,
   })
 
-  if (!hasBeenViewed || group.length === 0) {
+  if (!hasBeenViewed || items.length === 0) {
     return dummyElement
   }
   
-  return items.map((item: Item) => (
-    <ItemContextWrapper
-      key={item.uniqueId + item.sellingPrice}
-      item={item}
-      loading={loading}
-      onQuantityChange={onQuantityChange}
-      onRemove={onRemove}
-    >
-      {children}
-    </ItemContextWrapper>
-  ))
+  return <>
+    {
+      items.map((item: Item) => (
+        <ItemContextWrapper
+          key={item.uniqueId + item.sellingPrice}
+          item={item}
+          loading={loading}
+          onQuantityChange={onQuantityChange}
+          onRemove={onRemove}
+        >
+          {children}
+        </ItemContextWrapper>
+      ))
+    }
+  </>
 }
-
-// items,
-// loading,
-// onQuantityChange,
-// onRemove,
-// children
 
 const ProductList: StorefrontFunctionComponent<Props> = (props) => {
   const { items } = props
@@ -111,7 +109,7 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
           />
         </div>
       ) : null}
-      {/* {unavailableGroups.length ? unavailableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) } */}
+      {unavailableGroups.map(group => <ProductGroup {...props} items={group} />)}
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
         <div
           className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
@@ -122,7 +120,7 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
           />
         </div>
       ) : null}
-      {availableGroups.length ? availableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) }
+      {availableGroups.map(group => <ProductGroup {...props} items={group} />)}
     </div>
   )
 }
