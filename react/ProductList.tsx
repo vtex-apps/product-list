@@ -111,7 +111,7 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
           />
         </div>
       ) : null}
-      {unavailableGroups.length ? unavailableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) }
+      {/* {unavailableGroups.length ? unavailableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) } */}
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
         <div
           className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
@@ -122,7 +122,7 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
           />
         </div>
       ) : null}
-      {/* {availableGroups.length ? availableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) } */}
+      {availableGroups.length ? availableGroups.map(group => productGroup(group, props)) : [[]].map(group => productGroup(group, props)) }
     </div>
   )
 }
