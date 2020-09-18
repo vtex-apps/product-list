@@ -50,9 +50,7 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
 })
 
 
-const ProductGroup: StorefrontFunctionComponent<Props> = (props) => {
-  const { items, loading, onQuantityChange, onRemove, children } = props
-
+const ProductGroup: StorefrontFunctionComponent<Props> = ({ items, loading, onQuantityChange, onRemove, children }) => {
   const { hasBeenViewed, dummyElement } = useRenderOnView({
     lazyRender: true,
     offset: 900,
@@ -62,24 +60,26 @@ const ProductGroup: StorefrontFunctionComponent<Props> = (props) => {
     return dummyElement
   }
   
-  return <>
-    {
-      items.map((item: Item) => (
-        <ItemContextWrapper
-          key={item.uniqueId + item.sellingPrice}
-          item={item}
-          loading={loading}
-          onQuantityChange={onQuantityChange}
-          onRemove={onRemove}
-        >
-          {children}
-        </ItemContextWrapper>
-      ))
-    }
-  </>
+  return (
+    <>
+      {
+        items.map((item: Item) => (
+          <ItemContextWrapper
+            key={item.uniqueId + item.sellingPrice}
+            item={item}
+            loading={loading}
+            onQuantityChange={onQuantityChange}
+            onRemove={onRemove}
+          >
+            {children}
+          </ItemContextWrapper>
+        ))
+      }
+    </>
+  )
 }
 
-const ProductList: StorefrontFunctionComponent<Props> = (props) => {
+const ProductList: StorefrontFunctionComponent<Props> = props => {
   const { items } = props
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -90,9 +90,9 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
     },
     [[], []]
   )
-  
-  let availableGroups = chunkArray(availableItems, 10)
-  let unavailableGroups = chunkArray(unavailableItems, 10)
+
+  let availableGroups: Item[][] = chunkArray(availableItems, 10)
+  let unavailableGroups: Item[][] = chunkArray(unavailableItems, 10)
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
@@ -109,7 +109,15 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
           />
         </div>
       ) : null}
-      {unavailableGroups.map(group => <ProductGroup {...props} items={group} />)}
+      {
+        unavailableGroups.map(group =>
+          <ProductGroup
+            key={group.reduce((result, item) => `${result}#${item.id}`, '')}
+            {...props}
+            items={group}
+          />
+        )
+      }
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
         <div
           className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
@@ -120,7 +128,15 @@ const ProductList: StorefrontFunctionComponent<Props> = (props) => {
           />
         </div>
       ) : null}
-      {availableGroups.map(group => <ProductGroup {...props} items={group} />)}
+      {
+        availableGroups.map(group =>
+          <ProductGroup
+            key={group.reduce((result, item) => `${result}#${item.id}`, '')}
+            {...props}
+            items={group}
+          />
+        )
+      }
     </div>
   )
 }
