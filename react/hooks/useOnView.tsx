@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /** Code borrowed from vtex.render-runtime. Maybe it should export this in the future */
 import { useEffect, useRef, MutableRefObject } from 'react'
 

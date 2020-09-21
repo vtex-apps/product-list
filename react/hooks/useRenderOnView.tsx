@@ -1,5 +1,7 @@
-import { useOnView } from './useOnView'
+/** Code borrowed from vtex.search-result. */
 import React, { useState, useRef } from 'react'
+
+import { useOnView } from './useOnView'
 
 const useRenderOnView = ({
   lazyRender = false,
