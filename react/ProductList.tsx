@@ -13,6 +13,7 @@ interface Props {
   loading: boolean
   onQuantityChange: (uniqueId: string, value: number, item?: Item) => void
   onRemove: (uniqueId: string, item?: Item) => void
+  renderOnView: boolean
 }
 
 const CSS_HANDLES = [
@@ -54,6 +55,7 @@ const ProductGroup: StorefrontFunctionComponent<Props> = ({
   loading,
   onQuantityChange,
   onRemove,
+  renderOnView,
   children,
 }) => {
   const { hasBeenViewed, dummyElement } = useRenderOnView({
@@ -61,7 +63,7 @@ const ProductGroup: StorefrontFunctionComponent<Props> = ({
     offset: 900,
   })
 
-  if (!hasBeenViewed || items.length === 0) {
+  if (renderOnView && (!hasBeenViewed || items.length === 0)) {
     return dummyElement
   }
 
@@ -138,6 +140,10 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
       ))}
     </div>
   )
+}
+
+ProductList.defaultProps = {
+  renderOnView: true,
 }
 
 export default React.memo(ProductList)

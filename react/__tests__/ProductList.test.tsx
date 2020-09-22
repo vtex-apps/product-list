@@ -35,6 +35,7 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        renderOnView={false}
       >
         <ListItem />
       </ProductList>
@@ -54,6 +55,7 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
+        renderOnView={false}
       >
         <ListItem />
       </ProductList>
@@ -73,6 +75,7 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        renderOnView={false}
       >
         <ListItem />
       </ProductList>
@@ -89,6 +92,7 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        renderOnView={false}
       >
         <ListItem />
       </ProductList>
@@ -104,6 +108,7 @@ describe('Product List', () => {
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
+        renderOnView={false}
       >
         <ListItem />
       </ProductList>
