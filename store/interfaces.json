@@ -93,7 +93,7 @@
     }
   },
   "manual-pricing": {
-    "component": "ManualPricing",
+    "component": "ManualPrice",
     "composition": "children",
     "allowed": "*"
   }

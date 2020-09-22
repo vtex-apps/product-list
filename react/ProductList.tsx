@@ -5,12 +5,16 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
+import { CALL_CENTER_OPERATOR } from './constants/User'
 
 interface Props {
+  allowManualPrice: boolean
   items: Item[]
   loading: boolean
+  userType: string
   onQuantityChange: (uniqueId: string, value: number, item?: Item) => void
   onRemove: (uniqueId: string, item?: Item) => void
+  onSetManualPrice: (price: number, itemIndex: number) => void
 }
 
 const CSS_HANDLES = [
@@ -22,24 +26,34 @@ const CSS_HANDLES = [
 interface ItemWrapperProps
   extends Pick<Props, 'onQuantityChange' | 'onRemove'> {
   item: Item
+  itemIndex: number
   loading: boolean
   children: ReactNode
+  shouldAllowManualPrice: boolean
+  onSetManualPrice: (price: number, itemIndex: number) => void
 }
 
 const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   item,
+  itemIndex,
   loading,
   onQuantityChange,
   onRemove,
   children,
+  shouldAllowManualPrice,
+  onSetManualPrice,
 }) {
   const context = useMemo(
     () => ({
       item,
+      itemIndex,
       loading,
+      shouldAllowManualPrice,
       onQuantityChange: (value: number) =>
         onQuantityChange(item.uniqueId, value, item),
       onRemove: () => onRemove(item.uniqueId, item),
+      onSetManualPrice: (price: number, itemIndex: number) =>
+        onSetManualPrice(price, itemIndex),
     }),
     [item, loading, onQuantityChange, onRemove]
   )
@@ -48,13 +62,18 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
 })
 
 const ProductList: StorefrontFunctionComponent<Props> = ({
+  allowManualPrice,
   items,
   loading,
+  userType,
   onQuantityChange,
   onRemove,
+  onSetManualPrice,
   children,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
+  const shouldAllowManualPrice =
+    allowManualPrice && userType === CALL_CENTER_OPERATOR
 
   const [availableItems, unavailableItems] = items.reduce<Item[][]>(
     (acc, item) => {
@@ -65,13 +84,16 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
   )
 
   const productList = (itemList: Item[]) =>
-    itemList.map((item: Item) => (
+    itemList.map((item: Item, itemIndex: number) => (
       <ItemContextWrapper
         key={item.uniqueId + item.sellingPrice}
         item={item}
+        itemIndex={itemIndex}
         loading={loading}
+        shouldAllowManualPrice={shouldAllowManualPrice}
         onQuantityChange={onQuantityChange}
         onRemove={onRemove}
+        onSetManualPrice={onSetManualPrice}
       >
         {children}
       </ItemContextWrapper>

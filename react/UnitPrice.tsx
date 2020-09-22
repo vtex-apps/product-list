@@ -35,6 +35,7 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
+  const isManualPriceDefined = item.price !== item.sellingPrice
 
   if (loading) {
     return null
@@ -43,7 +44,8 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   const unitPrice = item[unitPriceType] ?? 0
 
   return (item.quantity > 1 || unitPriceDisplay === 'always') &&
-    unitPrice > 0 ? (
+    unitPrice > 0 &&
+    !isManualPriceDefined ? (
     <div
       id={`unit-price-${item.id}`}
       className={`t-mini c-muted-1 lh-title ${handles.unitPriceContainer} ${
