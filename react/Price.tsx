@@ -23,7 +23,7 @@ const Price: StorefrontFunctionComponent<PriceProps> = ({
   textAlign = 'left',
   showListPrice = true,
 }) => {
-  const { item, loading } = useItemContext()
+  const { item, loading, shouldAllowManualPrice } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
@@ -36,19 +36,22 @@ const Price: StorefrontFunctionComponent<PriceProps> = ({
         handles.productPriceContainer
       } ${parseTextAlign(textAlign)}`}
     >
-      {item.listPrice && item.listPrice !== item.price && showListPrice && (
-        <div
-          id={`list-price-${item.id}`}
-          className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
-        >
-          <FormattedCurrency
-            value={
-              (item.listPrice * (item.unitMultiplier || 1) * item.quantity) /
-              100
-            }
-          />
-        </div>
-      )}
+      {item.listPrice &&
+        item.listPrice !== item.price &&
+        showListPrice &&
+        !shouldAllowManualPrice && (
+          <div
+            id={`list-price-${item.id}`}
+            className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
+          >
+            <FormattedCurrency
+              value={
+                (item.listPrice * (item.unitMultiplier || 1) * item.quantity) /
+                100
+              }
+            />
+          </div>
+        )}
       <div
         id={`price-${item.id}`}
         className={`${handles.productPrice} div fw6 fw5-m`}

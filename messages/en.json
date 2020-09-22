@@ -8,5 +8,11 @@
   "store/product-list.message.remove": "remove",
   "store/product-list.quantity-selector.remove": "Remove",
   "store/product-list.quantity-label": "{quantity} un.",
-  "store/product-list.delete-button.default-label": "Remove Product"
+  "store/product-list.delete-button.default-label": "Remove Product",
+  "store/product-list.priceChanged": "Changed",
+  "store/product-list.priceOptions": "Price options",
+  "store/product-list.changePrice": "Change price",
+  "store/product-list.revertToOriginal": "Revert to original",
+  "store/product-list.originalPrice": "Original price",
+  "store/product-list.changeTo": "Change to"
 }
