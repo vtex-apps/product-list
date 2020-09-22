@@ -84,8 +84,22 @@ const ProductGroup: StorefrontFunctionComponent<Props> = ({
   )
 }
 
-const ProductList: StorefrontFunctionComponent<Props> = props => {
-  const { items } = props
+const ProductList: StorefrontFunctionComponent<Props> = ({
+  items,
+  loading,
+  onQuantityChange,
+  onRemove,
+  renderOnView = true,
+  children,
+}) => {
+  const props = {
+    items,
+    loading,
+    onQuantityChange,
+    onRemove,
+    renderOnView,
+    children,
+  }
   const handles = useCssHandles(CSS_HANDLES)
 
   const [availableItems, unavailableItems] = items.reduce<Item[][]>(
@@ -140,10 +154,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
       ))}
     </div>
   )
-}
-
-ProductList.defaultProps = {
-  renderOnView: true,
 }
 
 export default React.memo(ProductList)
