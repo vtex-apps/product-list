@@ -1,7 +1,8 @@
 import React, { FunctionComponent, Fragment, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { FormattedPrice } from 'vtex.formatted-price'
 import { Button, ButtonPlain, InputCurrency, Modal, Tag } from 'vtex.styleguide'
+import { useRuntime } from 'vtex.render-runtime'
 
 import { useItemContext } from './ItemContext'
 import { getFormattedPrice } from './utils/price'
@@ -16,6 +17,10 @@ const ManualPrice: FunctionComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [manualPrice, setManualPrice] = useState(item.sellingPrice)
   const priceChanged = item.price !== item.sellingPrice
+  const {
+    culture: { currency, locale },
+  } = useRuntime()
+  const intl = useIntl()
 
   const submitManualPrice = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
@@ -79,9 +84,7 @@ const ManualPrice: FunctionComponent = () => {
             <FormattedMessage id="store/product-list.originalPrice"></FormattedMessage>
           </span>
           <div className={`c-muted-1 mb3 ${priceChanged ? 'strike' : ''}`}>
-            <FormattedPrice
-              value={item.price != null ? item.price / 100 : item.price}
-            />
+            <FormattedPrice value={getFormattedPrice(item.price)} />
           </div>
 
           <label className="t-small mw9 mb2">
@@ -91,9 +94,11 @@ const ManualPrice: FunctionComponent = () => {
             <div className="mr2">
               <InputCurrency
                 id="manual-price-input"
-                placeholder="Type a monetary value"
-                locale="pt-BR"
-                currencyCode="BRL"
+                placeholder={intl.formatMessage({
+                  id: 'store/product-list.manualPriceLabel',
+                })}
+                locale={locale}
+                currencyCode={currency}
                 value={getFormattedPrice(manualPrice)}
                 onChange={handleManualPriceChange}
               />
