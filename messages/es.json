@@ -9,11 +9,11 @@
   "store/product-list.quantity-selector.remove": "Retirar",
   "store/product-list.quantity-label": "{quantity} un.",
   "store/product-list.delete-button.default-label": "Eliminar Producto",
-  "store/product-list.priceChanged": "Changed",
-  "store/product-list.priceOptions": "Price options",
-  "store/product-list.changePrice": "Change price",
-  "store/product-list.revertToOriginal": "Revert to original",
-  "store/product-list.originalPrice": "Original price",
-  "store/product-list.changeTo": "Change to",
-  "store/product-list.manualPriceLabel": "Type a monetary value"
+  "store/product-list.priceChanged": "Cambiado",
+  "store/product-list.priceOptions": "Opciones",
+  "store/product-list.changePrice": "Cambio de precio",
+  "store/product-list.revertToOriginal": "Volver al original",
+  "store/product-list.originalPrice": "Original precio",
+  "store/product-list.changeTo": "Cambiar a",
+  "store/product-list.manualPriceLabel": "Ingrese un valor monetario"
 }
