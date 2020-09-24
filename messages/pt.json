@@ -15,5 +15,5 @@
   "store/product-list.revertToOriginal": "Reverter preço",
   "store/product-list.originalPrice": "Preço original",
   "store/product-list.changeTo": "Alterar para",
-  "store/product-list.manualPriceLabel": "Digite um valor"
+  "store/product-list.manualPricePlaceholder": "Digite um valor"
 }

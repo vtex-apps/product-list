@@ -16,11 +16,11 @@ const ManualPrice: FunctionComponent = () => {
   } = useItemContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [manualPrice, setManualPrice] = useState(item.sellingPrice)
-  const priceChanged = item.price !== item.sellingPrice
   const {
     culture: { currency, locale },
   } = useRuntime()
   const intl = useIntl()
+  const priceChanged = item.price !== item.sellingPrice
 
   const submitManualPrice = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
@@ -56,23 +56,21 @@ const ManualPrice: FunctionComponent = () => {
         <div className="flex flex-column items-center mt3">
           {priceChanged ? (
             <div>
-              <div className={`flex-grow-0 tc mb2 c-muted-1`}>
-                <FormattedPrice
-                  value={manualPrice != null ? manualPrice / 100 : manualPrice}
-                />
+              <div className="flex-grow-0 tc mb2 c-muted-1">
+                <FormattedPrice value={getFormattedPrice(manualPrice)} />
               </div>
               <div className="flex-grow-0 mb3 tc">
                 <Tag size="small" bgColor="#3F3F40" className="fw5">
-                  <FormattedMessage id="store/product-list.priceChanged"></FormattedMessage>
+                  <FormattedMessage id="store/product-list.priceChanged" />
                 </Tag>
               </div>
               <ButtonPlain size="small" onClick={handleOpenModal}>
-                <FormattedMessage id="store/product-list.priceOptions"></FormattedMessage>
+                <FormattedMessage id="store/product-list.priceOptions" />
               </ButtonPlain>
             </div>
           ) : (
             <ButtonPlain size="small" onClick={handleOpenModal}>
-              <FormattedMessage id="store/product-list.changePrice"></FormattedMessage>
+              <FormattedMessage id="store/product-list.changePrice" />
             </ButtonPlain>
           )}
         </div>
@@ -81,21 +79,21 @@ const ManualPrice: FunctionComponent = () => {
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} className="w-25">
         <div className="flex flex-column">
           <span className="t-small mw9 mb1">
-            <FormattedMessage id="store/product-list.originalPrice"></FormattedMessage>
+            <FormattedMessage id="store/product-list.originalPrice" />
           </span>
           <div className={`c-muted-1 mb3 ${priceChanged ? 'strike' : ''}`}>
             <FormattedPrice value={getFormattedPrice(item.price)} />
           </div>
 
           <label className="t-small mw9 mb2">
-            <FormattedMessage id="store/product-list.changeTo"></FormattedMessage>
+            <FormattedMessage id="store/product-list.changeTo" />
           </label>
           <div className="flex flex-row flex-grow mb3">
             <div className="mr2">
               <InputCurrency
                 id="manual-price-input"
                 placeholder={intl.formatMessage({
-                  id: 'store/product-list.manualPriceLabel',
+                  id: 'store/product-list.manualPricePlaceholder',
                 })}
                 locale={locale}
                 currencyCode={currency}
@@ -116,7 +114,7 @@ const ManualPrice: FunctionComponent = () => {
           {priceChanged && (
             <div>
               <ButtonPlain onClick={revertToOriginalPrice}>
-                <FormattedMessage id="store/product-list.revertToOriginal"></FormattedMessage>
+                <FormattedMessage id="store/product-list.revertToOriginal" />
               </ButtonPlain>
             </div>
           )}

@@ -6211,9 +6211,17 @@ vtex-tachyons@^3.2.0:
   version "0.4.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.formatted-price@0.4.0/public/@types/vtex.formatted-price#821e3f087065704d02ee28e4f41aada3d6cb46da"
 
-"vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.6/public/@types/vtex.order-manager":
-  version "0.8.6"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.6/public/@types/vtex.order-manager#7439a66d02f5d79fd48ff3b87f6e3c8586259396"
+"vtex.modal-layout@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.modal-layout@0.4.2/public/@types/vtex.modal-layout":
+  version "0.4.2"
+  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.modal-layout@0.4.2/public/@types/vtex.modal-layout#5b65c9daa51ace58ed29f768a938d0811b3f0091"
+
+"vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.4/public/@types/vtex.order-manager":
+  version "0.8.4"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.4/public/@types/vtex.order-manager#3a4761c73364853954dd61a61d1d01260cbbf634"
+
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.100.4/public/@types/vtex.render-runtime":
+  version "8.100.4"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.100.4/public/@types/vtex.render-runtime#b94c966be2d1c3d8bc9f1caf2dd9f462d88e98d2"
 
 "vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.116.0/public/@types/vtex.styleguide":
   version "9.116.0"
