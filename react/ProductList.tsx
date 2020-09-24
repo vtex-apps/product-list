@@ -7,6 +7,7 @@ import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
 import { chunkArray } from './utils/chunkArray'
 import { useRenderOnView } from './hooks/useRenderOnView'
+import { render } from '@vtex/test-tools/react'
 
 interface Props {
   items: Item[]
@@ -52,11 +53,9 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
 
 const ProductGroup: StorefrontFunctionComponent<Props> = ({
   items,
-  loading,
-  onQuantityChange,
-  onRemove,
   renderOnView,
   children,
+  ...props
 }) => {
   const { hasBeenViewed, dummyElement } = useRenderOnView({
     lazyRender: true,
@@ -73,9 +72,7 @@ const ProductGroup: StorefrontFunctionComponent<Props> = ({
         <ItemContextWrapper
           key={item.uniqueId + item.sellingPrice}
           item={item}
-          loading={loading}
-          onQuantityChange={onQuantityChange}
-          onRemove={onRemove}
+          {...props}
         >
           {children}
         </ItemContextWrapper>
@@ -84,22 +81,9 @@ const ProductGroup: StorefrontFunctionComponent<Props> = ({
   )
 }
 
-const ProductList: StorefrontFunctionComponent<Props> = ({
-  items,
-  loading,
-  onQuantityChange,
-  onRemove,
-  renderOnView = true,
-  children,
-}) => {
-  const props = {
-    items,
-    loading,
-    onQuantityChange,
-    onRemove,
-    renderOnView,
-    children,
-  }
+const ProductList: StorefrontFunctionComponent<Props> = props => {
+  const { items, renderOnView = true } = props
+
   const handles = useCssHandles(CSS_HANDLES)
 
   const [availableItems, unavailableItems] = items.reduce<Item[][]>(
@@ -132,6 +116,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
+          renderOnView={renderOnView}
           items={group}
         />
       ))}
@@ -149,6 +134,7 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
+          renderOnView={renderOnView}
           items={group}
         />
       ))}
