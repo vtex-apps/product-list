@@ -7,7 +7,6 @@ import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
 import { chunkArray } from './utils/chunkArray'
 import { useRenderOnView } from './hooks/useRenderOnView'
-import { render } from '@vtex/test-tools/react'
 
 interface Props {
   items: Item[]
