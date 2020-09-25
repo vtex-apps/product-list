@@ -6187,9 +6187,9 @@ vtex-tachyons@^3.2.0:
   resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-3.2.0.tgz#81cf3491fea110e50ca91c318c02c714b6d0ae62"
   integrity sha512-RUK2HX/Z2+GTrFHcA3+gfl1Tib33WL49i6pnUZhE6/imHmiUBMfWQL7qQbYDhI9Pws57KFgdF+qSnla3Jjg6Fw==
 
-"vtex.checkout-graphql@https://jeff--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.checkout-graphql@0.39.1+build1601057525/public/@types/vtex.checkout-graphql":
-  version "0.39.1"
-  resolved "https://jeff--checkoutio.myvtex.com/_v/private/typings/linked/v1/vtex.checkout-graphql@0.39.1+build1601057525/public/@types/vtex.checkout-graphql#ad3ac3549f465d47af5aa0f346124a5adaee3bdf"
+"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.40.0/public/@types/vtex.checkout-graphql":
+  version "0.40.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.40.0/public/@types/vtex.checkout-graphql#15b4a7453308e2789bace3524774d3924f4c87e0"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"
@@ -6215,9 +6215,9 @@ vtex-tachyons@^3.2.0:
   version "0.8.6"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.6/public/@types/vtex.order-manager#7439a66d02f5d79fd48ff3b87f6e3c8586259396"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.121.0/public/@types/vtex.render-runtime":
-  version "8.121.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.121.0/public/@types/vtex.render-runtime#2d5cfba8888df1844a808828b87e5331ab5baa59"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.122.1/public/@types/vtex.render-runtime":
+  version "8.122.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.122.1/public/@types/vtex.render-runtime#d790c20d157b42a08f1b90085e1347a52b87441e"
 
 "vtex.store-icons@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.17.1/public/@types/vtex.store-icons":
   version "0.17.1"
