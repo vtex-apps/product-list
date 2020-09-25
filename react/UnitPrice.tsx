@@ -35,7 +35,8 @@ const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
-  const isManualPriceDefined = item.price !== item.sellingPrice
+  const isManualPriceDefined =
+    item.sellingPrice === item.manualPrice && item.sellingPrice !== item.price
 
   if (loading) {
     return null
