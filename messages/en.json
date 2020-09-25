@@ -15,5 +15,6 @@
   "store/product-list.revertToOriginal": "Revert to original",
   "store/product-list.originalPrice": "Original price",
   "store/product-list.changeTo": "Change to",
-  "store/product-list.manualPricePlaceholder": "Type a monetary value"
+  "store/product-list.manualPricePlaceholder": "Type a monetary value",
+  "store/product-list.applyManualPrice": "ok"
 }

@@ -108,7 +108,7 @@ const ManualPrice: FunctionComponent = () => {
               size="regular"
               onClick={submitManualPrice}
             >
-              ok
+              <FormattedMessage id="store/product-list.applyManualPrice" />
             </Button>
           </div>
 
