@@ -15,9 +15,7 @@ const ManualPrice: FunctionComponent = () => {
     onSetManualPrice,
   } = useItemContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [manualPrice, setManualPrice] = useState(
-    item.manualPrice ?? item.sellingPrice
-  )
+  const [manualPrice, setManualPrice] = useState(item.manualPrice)
   const {
     culture: { currency, locale },
   } = useRuntime()
@@ -27,7 +25,11 @@ const ManualPrice: FunctionComponent = () => {
 
   const submitManualPrice = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
-    onSetManualPrice(manualPrice!, itemIndex)
+
+    if (manualPrice != null && !isNaN(manualPrice)) {
+      onSetManualPrice(manualPrice!, itemIndex)
+    }
+
     setIsModalOpen(false)
   }
 
