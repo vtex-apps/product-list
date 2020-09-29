@@ -3,9 +3,12 @@ import { Item } from 'vtex.checkout-graphql'
 
 interface Context {
   item: Item
+  itemIndex: number
   loading: boolean
+  shouldAllowManualPrice: boolean
   onQuantityChange: (value: number) => void
   onRemove: () => void
+  onSetManualPrice: (price: number, itemIndex: number) => void
 }
 
 interface ItemContextProviderProps {

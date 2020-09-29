@@ -91,5 +91,8 @@
         "padding": 0
       }
     }
+  },
+  "manual-pricing": {
+    "component": "ManualPrice"
   }
 }
