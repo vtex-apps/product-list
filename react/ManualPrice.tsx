@@ -36,8 +36,9 @@ const ManualPrice: FunctionComponent = () => {
   const handleManualPriceChange = (
     evt: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const newManualPrice = evt.target.value
-    setManualPrice(parseFloat(newManualPrice) * 100)
+    const newManualPrice = parseFloat(evt.target.value)
+
+    setManualPrice(Math.floor(newManualPrice * 100))
   }
 
   const handleOpenModal = () => {
