@@ -26,7 +26,7 @@ const ManualPrice: FunctionComponent = () => {
   const submitManualPrice = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
 
-    if (manualPrice != null && !isNaN(manualPrice)) {
+    if (manualPrice != null && !Number.isNaN(manualPrice)) {
       onSetManualPrice(manualPrice!, itemIndex)
     }
 
@@ -36,8 +36,7 @@ const ManualPrice: FunctionComponent = () => {
   const handleManualPriceChange = (
     evt: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const newManualPrice = parseFloat(evt.target.value)
-
+    const newManualPrice = (evt.target.value as unknown) as number
     setManualPrice(Math.floor(newManualPrice * 100))
   }
 
@@ -63,7 +62,7 @@ const ManualPrice: FunctionComponent = () => {
           {priceChanged ? (
             <div>
               <div className="flex-grow-0 tc mb2 c-muted-1">
-                <FormattedPrice value={getFormattedPrice(manualPrice)} />
+                <FormattedPrice value={getFormattedPrice(item.manualPrice)} />
               </div>
               <div className="flex-grow-0 mb3 tc">
                 <Tag size="small" bgColor="#3F3F40" className="fw5">
