@@ -8,5 +8,13 @@
   "store/product-list.message.remove": "retirar",
   "store/product-list.quantity-selector.remove": "Retirar",
   "store/product-list.quantity-label": "{quantity} un.",
-  "store/product-list.delete-button.default-label": "Eliminar Producto"
+  "store/product-list.delete-button.default-label": "Eliminar Producto",
+  "store/product-list.priceChanged": "Cambiado",
+  "store/product-list.priceOptions": "Opciones",
+  "store/product-list.changePrice": "Cambio de precio",
+  "store/product-list.revertToOriginal": "Volver al original",
+  "store/product-list.originalPrice": "Original precio",
+  "store/product-list.changeTo": "Cambiar a",
+  "store/product-list.manualPricePlaceholder": "Ingrese un valor monetario",
+  "store/product-list.applyManualPrice": "Aplicar"
 }

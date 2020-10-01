@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Optimize ProductList initial render time with useRenderOnView hook.
 
+## [0.24.0] - 2020-09-29
+### Added
+- Now the price can be manually defined.
+
+### Changed
+- Hides unit price when the price is defined manually.
+
+## [0.23.3] - 2020-09-17
+### Fixed
+- Consistency when changing `QuantitySelector` combobox and input
+
 ## [0.23.2] - 2020-09-16
 ### Added
 - Attribute `lazy` to product images.

@@ -44,7 +44,8 @@
   "flex-layout.col#quantity.desktop": {
     "children": [
       "flex-layout.row#quantity-selector.desktop",
-      "flex-layout.row#unit-price.desktop"
+      "flex-layout.row#unit-price.desktop",
+      "flex-layout.col#manual-pricing"
     ],
     "props": {
       "marginLeft": "8"
@@ -108,5 +109,8 @@
     "props": {
       "layout": "cols"
     }
+  },
+  "flex-layout.col#manual-pricing": {
+    "children": ["manual-pricing"]
   }
 }

@@ -7,13 +7,25 @@ import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
 import { chunkArray } from './utils/chunkArray'
 import { useRenderOnView } from './hooks/useRenderOnView'
+import { CALL_CENTER_OPERATOR } from './constants/User'
 
 interface Props {
-  items: Item[]
+  allowManualPrice: boolean
+  items: ItemWithIndex[]
   loading: boolean
-  onQuantityChange: (uniqueId: string, value: number, item?: Item) => void
-  onRemove: (uniqueId: string, item?: Item) => void
+  userType: string
+  onQuantityChange: (
+    uniqueId: string,
+    value: number,
+    item?: ItemWithIndex
+  ) => void
+  onRemove: (uniqueId: string, item?: ItemWithIndex) => void
   renderOnView: boolean
+  onSetManualPrice: (price: number, itemIndex: number) => void
+}
+
+interface ItemWithIndex extends Item {
+  index: number
 }
 
 const CSS_HANDLES = [
@@ -24,38 +36,55 @@ const CSS_HANDLES = [
 
 interface ItemWrapperProps
   extends Pick<Props, 'onQuantityChange' | 'onRemove'> {
-  item: Item
+  item: ItemWithIndex
+  itemIndex: number
   loading: boolean
   children: ReactNode
+  shouldAllowManualPrice: boolean
+  onSetManualPrice: (price: number, itemIndex: number) => void
 }
 
 const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   item,
+  itemIndex,
   loading,
   onQuantityChange,
   onRemove,
   children,
+  shouldAllowManualPrice,
+  onSetManualPrice,
 }) {
   const context = useMemo(
     () => ({
       item,
+      itemIndex,
       loading,
+      shouldAllowManualPrice,
       onQuantityChange: (value: number) =>
         onQuantityChange(item.uniqueId, value, item),
       onRemove: () => onRemove(item.uniqueId, item),
+      onSetManualPrice: (price: number, itemIndex: number) =>
+        onSetManualPrice(price, itemIndex),
     }),
-    [item, loading, onQuantityChange, onRemove]
+    [
+      item,
+      itemIndex,
+      loading,
+      onQuantityChange,
+      onRemove,
+      onSetManualPrice,
+      shouldAllowManualPrice,
+    ]
   )
 
   return <ItemContextProvider value={context}>{children}</ItemContextProvider>
 })
 
-const ProductGroup: StorefrontFunctionComponent<Props> = ({
-  items,
-  renderOnView,
-  children,
-  ...props
-}) => {
+const ProductGroup: StorefrontFunctionComponent<Props> = props => {
+  const { items, renderOnView, userType, allowManualPrice, children } = props
+  const shouldAllowManualPrice =
+    allowManualPrice && userType === CALL_CENTER_OPERATOR
+
   const { hasBeenViewed, dummyElement } = useRenderOnView({
     lazyRender: true,
     offset: 900,
@@ -67,10 +96,12 @@ const ProductGroup: StorefrontFunctionComponent<Props> = ({
 
   return (
     <>
-      {items.map((item: Item) => (
+      {items.map((item: ItemWithIndex) => (
         <ItemContextWrapper
           key={item.uniqueId + item.sellingPrice}
           item={item}
+          itemIndex={item.index}
+          shouldAllowManualPrice={shouldAllowManualPrice}
           {...props}
         >
           {children}
@@ -85,16 +116,18 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  const [availableItems, unavailableItems] = items.reduce<Item[][]>(
-    (acc, item) => {
-      acc[item.availability === AVAILABLE ? 0 : 1].push(item)
-      return acc
-    },
-    [[], []]
-  )
+  const [availableItems, unavailableItems] = items
+    .map((item, index) => ({ ...item, index }))
+    .reduce<ItemWithIndex[][]>(
+      (acc, item) => {
+        acc[item.availability === AVAILABLE ? 0 : 1].push(item)
+        return acc
+      },
+      [[], []]
+    )
 
-  const availableGroups: Item[][] = chunkArray(availableItems, 10)
-  const unavailableGroups: Item[][] = chunkArray(unavailableItems, 10)
+  const availableGroups: ItemWithIndex[][] = chunkArray(availableItems, 10)
+  const unavailableGroups: ItemWithIndex[][] = chunkArray(unavailableItems, 10)
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
