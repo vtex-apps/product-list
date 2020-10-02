@@ -5,16 +5,27 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
+import { chunkArray } from './utils/chunkArray'
+import { useRenderOnView } from './hooks/useRenderOnView'
 import { CALL_CENTER_OPERATOR } from './constants/User'
 
 interface Props {
   allowManualPrice: boolean
-  items: Item[]
+  items: ItemWithIndex[]
   loading: boolean
   userType: string
-  onQuantityChange: (uniqueId: string, value: number, item?: Item) => void
-  onRemove: (uniqueId: string, item?: Item) => void
+  onQuantityChange: (
+    uniqueId: string,
+    value: number,
+    item?: ItemWithIndex
+  ) => void
+  onRemove: (uniqueId: string, item?: ItemWithIndex) => void
+  renderOnView: boolean
   onSetManualPrice: (price: number, itemIndex: number) => void
+}
+
+interface ItemWithIndex extends Item {
+  index: number
 }
 
 const CSS_HANDLES = [
@@ -25,7 +36,7 @@ const CSS_HANDLES = [
 
 interface ItemWrapperProps
   extends Pick<Props, 'onQuantityChange' | 'onRemove'> {
-  item: Item
+  item: ItemWithIndex
   itemIndex: number
   loading: boolean
   children: ReactNode
@@ -55,49 +66,68 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
       onSetManualPrice: (price: number, itemIndex: number) =>
         onSetManualPrice(price, itemIndex),
     }),
-    [item, loading, onQuantityChange, onRemove]
+    [
+      item,
+      itemIndex,
+      loading,
+      onQuantityChange,
+      onRemove,
+      onSetManualPrice,
+      shouldAllowManualPrice,
+    ]
   )
 
   return <ItemContextProvider value={context}>{children}</ItemContextProvider>
 })
 
-const ProductList: StorefrontFunctionComponent<Props> = ({
-  allowManualPrice,
-  items,
-  loading,
-  userType,
-  onQuantityChange,
-  onRemove,
-  onSetManualPrice,
-  children,
-}) => {
-  const handles = useCssHandles(CSS_HANDLES)
+const ProductGroup: StorefrontFunctionComponent<Props> = props => {
+  const { items, renderOnView, userType, allowManualPrice, children } = props
   const shouldAllowManualPrice =
     allowManualPrice && userType === CALL_CENTER_OPERATOR
 
-  const [availableItems, unavailableItems] = items.reduce<Item[][]>(
-    (acc, item) => {
-      acc[item.availability === AVAILABLE ? 0 : 1].push(item)
-      return acc
-    },
-    [[], []]
-  )
+  const { hasBeenViewed, dummyElement } = useRenderOnView({
+    lazyRender: true,
+    offset: 900,
+  })
 
-  const productList = (itemList: Item[]) =>
-    itemList.map((item: Item, itemIndex: number) => (
-      <ItemContextWrapper
-        key={item.uniqueId + item.sellingPrice}
-        item={item}
-        itemIndex={itemIndex}
-        loading={loading}
-        shouldAllowManualPrice={shouldAllowManualPrice}
-        onQuantityChange={onQuantityChange}
-        onRemove={onRemove}
-        onSetManualPrice={onSetManualPrice}
-      >
-        {children}
-      </ItemContextWrapper>
-    ))
+  if (renderOnView && (!hasBeenViewed || items.length === 0)) {
+    return dummyElement
+  }
+
+  return (
+    <>
+      {items.map((item: ItemWithIndex) => (
+        <ItemContextWrapper
+          key={item.uniqueId + item.sellingPrice}
+          item={item}
+          itemIndex={item.index}
+          shouldAllowManualPrice={shouldAllowManualPrice}
+          {...props}
+        >
+          {children}
+        </ItemContextWrapper>
+      ))}
+    </>
+  )
+}
+
+const ProductList: StorefrontFunctionComponent<Props> = props => {
+  const { items, renderOnView = true } = props
+
+  const handles = useCssHandles(CSS_HANDLES)
+
+  const [availableItems, unavailableItems] = items
+    .map((item, index) => ({ ...item, index }))
+    .reduce<ItemWithIndex[][]>(
+      (acc, item) => {
+        acc[item.availability === AVAILABLE ? 0 : 1].push(item)
+        return acc
+      },
+      [[], []]
+    )
+
+  const availableGroups: ItemWithIndex[][] = chunkArray(availableItems, 10)
+  const unavailableGroups: ItemWithIndex[][] = chunkArray(unavailableItems, 10)
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
@@ -114,7 +144,14 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
           />
         </div>
       ) : null}
-      {productList(unavailableItems)}
+      {unavailableGroups.map(group => (
+        <ProductGroup
+          key={group.reduce((result, item) => `${result}#${item.id}`, '')}
+          {...props}
+          renderOnView={renderOnView}
+          items={group}
+        />
+      ))}
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
         <div
           className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
@@ -125,7 +162,14 @@ const ProductList: StorefrontFunctionComponent<Props> = ({
           />
         </div>
       ) : null}
-      {productList(availableItems)}
+      {availableGroups.map(group => (
+        <ProductGroup
+          key={group.reduce((result, item) => `${result}#${item.id}`, '')}
+          {...props}
+          renderOnView={renderOnView}
+          items={group}
+        />
+      ))}
     </div>
   )
 }
