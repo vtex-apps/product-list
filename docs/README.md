@@ -264,6 +264,12 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | `quantity-selector` | Renders a selector that allows users to add a chosen number of a product in their cart. | 
 | `remove-button` | Renders a button that allows users to remove a product from the list. |  
 
+### `product-list` props
+
+| Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `itemCountMode` | `enum` | Quantity badge behavior when displaying the number of total items added in Minicart. Possible values are: `total`  (quantity badge displays the number of items added to the cart), `distinct` (quantity badge only displays the number of different products added to the cart), `totalAvailable`  (quantity badge displays the number of available items added to the cart) or `distinctAvailable` (quantity badge only displays the number of different and available products added to the cart). | `distinct` |
+
 ### `message` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
