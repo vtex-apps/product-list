@@ -14,6 +14,7 @@ interface Props {
   items: ItemWithIndex[]
   loading: boolean
   userType: string
+  itemCountMode: TotalItemsType
   onQuantityChange: (
     uniqueId: string,
     value: number,
@@ -111,8 +112,37 @@ const ProductGroup: StorefrontFunctionComponent<Props> = props => {
   )
 }
 
+type TotalItemsType =
+  | 'total'
+  | 'distinct'
+  | 'totalAvailable'
+  | 'distinctAvailable'
+
+const countModeHandle = (countMode: TotalItemsType, arr: Item[]) => {
+  const options = {
+    distinctAvailable: arr.reduce((itemQuantity: number, item: Item) => {
+      if (item.availability === 'available') {
+        return ++itemQuantity
+      }
+      return itemQuantity
+    }, 0),
+    totalAvailable: arr.reduce((itemQuantity: number, item: Item) => {
+      if (item.availability === 'available') {
+        return itemQuantity + item.quantity
+      }
+      return itemQuantity
+    }, 0),
+    total: arr.reduce((itemQuantity: number, item: Item) => {
+      return itemQuantity + item.quantity
+    }, 0),
+    distinct: arr.length,
+  }
+
+  return options[countMode] ?? options.distinct
+}
+
 const ProductList: StorefrontFunctionComponent<Props> = props => {
-  const { items, renderOnView = true } = props
+  const { items, renderOnView = true, itemCountMode } = props
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -140,7 +170,9 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         >
           <FormattedMessage
             id="store/product-list.unavailableItems"
-            values={{ quantity: unavailableItems.length }}
+            values={{
+              quantity: countModeHandle(itemCountMode, unavailableItems),
+            }}
           />
         </div>
       ) : null}
@@ -158,7 +190,9 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         >
           <FormattedMessage
             id="store/product-list.availableItems"
-            values={{ quantity: availableItems.length }}
+            values={{
+              quantity: countModeHandle(itemCountMode, availableItems),
+            }}
           />
         </div>
       ) : null}
