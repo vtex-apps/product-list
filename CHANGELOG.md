@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Set useRenderOnView false by default.
+- Set useRenderOnView false by default to make it compatible with previous ProductList instances.
 
 ## [0.24.1] - 2020-10-02
 ### Fixed
