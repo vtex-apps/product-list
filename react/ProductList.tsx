@@ -112,7 +112,7 @@ const ProductGroup: StorefrontFunctionComponent<Props> = props => {
 }
 
 const ProductList: StorefrontFunctionComponent<Props> = props => {
-  const { items, renderOnView = true } = props
+  const { items } = props
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -148,7 +148,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
-          renderOnView={renderOnView}
           items={group}
         />
       ))}
@@ -166,7 +165,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
-          renderOnView={renderOnView}
           items={group}
         />
       ))}
