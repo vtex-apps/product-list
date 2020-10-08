@@ -1,6 +1,6 @@
 import React, { useMemo, memo, ReactNode } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Item } from 'vtex.checkout-graphql'
+import { Item, TotalItemsType } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
@@ -111,12 +111,6 @@ const ProductGroup: StorefrontFunctionComponent<Props> = props => {
     </>
   )
 }
-
-type TotalItemsType =
-  | 'total'
-  | 'distinct'
-  | 'totalAvailable'
-  | 'distinctAvailable'
 
 const countModeHandle = (countMode: TotalItemsType, arr: Item[]) => {
   if (countMode === 'distinctAvailable') {
