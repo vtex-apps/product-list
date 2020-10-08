@@ -119,26 +119,32 @@ type TotalItemsType =
   | 'distinctAvailable'
 
 const countModeHandle = (countMode: TotalItemsType, arr: Item[]) => {
-  const options = {
-    distinctAvailable: arr.reduce((itemQuantity: number, item: Item) => {
+  if (countMode === 'distinctAvailable') {
+    return arr.reduce((itemQuantity: number, item: Item) => {
       if (item.availability === 'available') {
-        return ++itemQuantity
+        return itemQuantity + 1
       }
       return itemQuantity
-    }, 0),
-    totalAvailable: arr.reduce((itemQuantity: number, item: Item) => {
+    }, 0)
+  }
+
+  if (countMode === 'totalAvailable') {
+    return arr.reduce((itemQuantity: number, item: Item) => {
       if (item.availability === 'available') {
         return itemQuantity + item.quantity
       }
       return itemQuantity
-    }, 0),
-    total: arr.reduce((itemQuantity: number, item: Item) => {
-      return itemQuantity + item.quantity
-    }, 0),
-    distinct: arr.length,
+    }, 0)
   }
 
-  return options[countMode] ?? options.distinct
+  if (countMode === 'total') {
+    return arr.reduce((itemQuantity: number, item: Item) => {
+      return itemQuantity + item.quantity
+    }, 0)
+  }
+
+  // countMode === 'distinct'
+  return arr.length
 }
 
 const ProductList: StorefrontFunctionComponent<Props> = props => {
@@ -161,7 +167,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
-
     <div>
       {unavailableItems.length > 0 ? (
         <div
