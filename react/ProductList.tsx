@@ -142,7 +142,7 @@ const countModeHandle = (countMode: TotalItemsType, arr: Item[]) => {
 }
 
 const ProductList: StorefrontFunctionComponent<Props> = props => {
-  const { items, renderOnView = true, itemCountMode } = props
+  const { items, itemCountMode } = props
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -179,7 +179,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
-          renderOnView={renderOnView}
           items={group}
         />
       ))}
@@ -199,7 +198,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
-          renderOnView={renderOnView}
           items={group}
         />
       ))}
