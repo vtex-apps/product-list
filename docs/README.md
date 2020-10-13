@@ -268,7 +268,7 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `itemCountMode` | `enum` | Quantity badge behavior when displaying the number of total items added in Minicart. Possible values are: `total`  (quantity badge displays the number of items added to the cart), `distinct` (quantity badge only displays the number of different products added to the cart), `totalAvailable`  (quantity badge displays the number of available items added to the cart) or `distinctAvailable` (quantity badge only displays the number of different and available products added to the cart). | `distinct` |
+| `itemCountMode` | `enum` | Quantity badge behavior when displaying the number of total items added in Minicart. Possible values are: `total`  (quantity badge displays the number of items added to the cart), `distinct` (quantity badge only displays the number of different products added to the cart), `totalAvailable`  (quantity badge displays the number of available items added to the cart), and `distinctAvailable` (quantity badge only displays the number of different and available products added to the cart). | `distinct` |
 
 ### `message` props
 
@@ -357,4 +357,3 @@ Thanks goes to these wonderful people:
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 <!-- DOCS-IGNORE:end -->
-
