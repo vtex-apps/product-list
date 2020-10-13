@@ -29,7 +29,7 @@ type UnitPriceType = 'price' | 'sellingPrice'
 
 const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
   textAlign = 'left',
-  unitPriceType = 'price',
+  unitPriceType = 'sellingPrice',
   unitPriceDisplay = 'default',
   displayUnitListPrice = 'notShow',
 }) => {
