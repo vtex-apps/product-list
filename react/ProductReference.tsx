@@ -5,9 +5,9 @@ import { useCssHandles } from 'vtex.css-handles'
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 
-const CSS_HANDLES = ['productName'] as const
+const CSS_HANDLES = ['productReference'] as const
 
-const ProductName: FunctionComponent = () => {
+const ProductReference: FunctionComponent = () => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -21,13 +21,13 @@ const ProductName: FunctionComponent = () => {
     <a
       id={`name-${item.id}`}
       className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
-        handles.productName
+        handles.productReference
       } ${opaque(item.availability)}`}
       href={item.detailUrl || undefined}
     >
-      {item.name}
+      {item.productRefId}
     </a>
   )
 }
 
-export default ProductName
+export default ProductReference

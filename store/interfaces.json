@@ -39,6 +39,9 @@
       }
     }
   },
+  "product-reference": {
+    "component": "ProductReference"
+  },
   "product-brand": {
     "component": "ProductBrand",
     "preview": {
