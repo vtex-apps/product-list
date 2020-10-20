@@ -15,8 +15,6 @@ const ProductName: FunctionComponent = () => {
     return <Loading />
   }
 
-  console.log(item)
-
   return (
     <a
       id={`name-${item.id}`}
