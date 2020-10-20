@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `totalAvailable` and `distinctAvailable` values for `itemCountMode`.
 
+## [0.24.3] - 2020-10-13
+### Changed
+- Change unitPriceType prop from UnitPrice default value to 'sellingPrice'.
+
 ## [0.24.2] - 2020-10-06
 ### Fixed
 - Set useRenderOnView false by default to make it compatible with previous ProductList instances.
