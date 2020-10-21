@@ -112,7 +112,7 @@ const ProductGroup: StorefrontFunctionComponent<Props> = props => {
   )
 }
 
-const countModeHandle = (countMode: TotalItemsType, arr: Item[]) => {
+const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
   if (countMode === 'distinctAvailable') {
     return arr.reduce((itemQuantity: number, item: Item) => {
       if (item.availability === 'available') {
@@ -170,7 +170,7 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
           <FormattedMessage
             id="store/product-list.unavailableItems"
             values={{
-              quantity: countModeHandle(itemCountMode, unavailableItems),
+              quantity: countCartItems(itemCountMode, unavailableItems),
             }}
           />
         </div>
@@ -189,7 +189,7 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
           <FormattedMessage
             id="store/product-list.availableItems"
             values={{
-              quantity: countModeHandle(itemCountMode, availableItems),
+              quantity: countCartItems(itemCountMode, availableItems),
             }}
           />
         </div>
