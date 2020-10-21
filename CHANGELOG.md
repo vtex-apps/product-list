@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- New component called 'product-reference', where is possible to pull an identifier product information.
+
 ## [0.24.3] - 2020-10-13
 ### Changed
 - Change unitPriceType prop from UnitPrice default value to 'sellingPrice'.
