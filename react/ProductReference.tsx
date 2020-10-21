@@ -12,7 +12,7 @@ import {
 } from './constants/Identifiers'
 
 const CSS_HANDLES = [
-  'productReferenceId',
+  'productIdentifier',
   'productIdentifierValue',
   'productIdentifierLabelValue',
 ] as const
@@ -50,7 +50,7 @@ const ProductReference: FunctionComponent<Props> = props => {
   return identifierValue ? (
     <div
       className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
-        handles.productReferenceId
+        handles.productIdentifier
       } ${opaque(item.availability)}`}
     >
       {identifierLabel && (
