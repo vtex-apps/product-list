@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `totalAvailable` and `distinctAvailable` values for `itemCountMode`.
+
 ## [0.24.3] - 2020-10-13
 ### Changed
 - Change unitPriceType prop from UnitPrice default value to 'sellingPrice'.
