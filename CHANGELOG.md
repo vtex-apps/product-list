@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- `ItemContextWrapper` key.
 ## [0.27.1] - 2020-12-18
 ### Fixed
 - Item not being removed when changing quantity to zero in dropdown.

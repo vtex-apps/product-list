@@ -106,7 +106,7 @@ const ProductGroup: React.FC<Props> = (props) => {
     <>
       {items.map((item: ItemWithIndex) => (
         <ItemContextWrapper
-          key={item.uniqueId + (item.sellingPrice?.toString() ?? '')}
+          key={`${item.uniqueId}-${item.sellingPrice}-${item.index}`}
           item={item}
           itemIndex={item.index}
           shouldAllowManualPrice={shouldAllowManualPrice}
