@@ -295,10 +295,10 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 
 ### `product-reference` props
 
-| Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
-| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `identifierLabel`    | `string`    | Label to insert before the main reference information   | no default value    |
-| `identifierOption`    | `string`    | You can pull reference information through the following options: product id (`ProductId`), SKU ID (`ProductSkuItemId`), product reference ID (`ProductReferenceId`) and SKU reference ID (`ProductSkuReferenceId`). | `ProductReferenceId`    |
+| Prop name               |  Type         | Description                                        | Default value   |
+| :------------------: | :---------: | :---------------------------------: | :-------------: |
+| `identifierLabel`    | `string`    | Text label to be displayed to the left of the product reference value.  | `undefined`    |
+| `identifierOption`    | `enum`    | Desired product reference data i.e. product identifier to be displayed. Possible options are: `ProductId`, `ProductSkuItemId`, `ProductReferenceId`, and `ProductSkuReferenceId`. | `ProductReferenceId`    |
 
 ### `remove-button` props
 
@@ -361,4 +361,3 @@ Thanks goes to these wonderful people:
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 <!-- DOCS-IGNORE:end -->
-
