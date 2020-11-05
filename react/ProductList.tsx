@@ -1,6 +1,6 @@
 import React, { useMemo, memo, ReactNode } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Item } from 'vtex.checkout-graphql'
+import { Item, TotalItemsType } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
@@ -14,6 +14,7 @@ interface Props {
   items: ItemWithIndex[]
   loading: boolean
   userType: string
+  itemCountMode: TotalItemsType
   onQuantityChange: (
     uniqueId: string,
     value: number,
@@ -111,8 +112,37 @@ const ProductGroup: StorefrontFunctionComponent<Props> = props => {
   )
 }
 
+const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
+  if (countMode === 'distinctAvailable') {
+    return arr.reduce((itemQuantity: number, item: Item) => {
+      if (item.availability === 'available') {
+        return itemQuantity + 1
+      }
+      return itemQuantity
+    }, 0)
+  }
+
+  if (countMode === 'totalAvailable') {
+    return arr.reduce((itemQuantity: number, item: Item) => {
+      if (item.availability === 'available') {
+        return itemQuantity + item.quantity
+      }
+      return itemQuantity
+    }, 0)
+  }
+
+  if (countMode === 'total') {
+    return arr.reduce((itemQuantity: number, item: Item) => {
+      return itemQuantity + item.quantity
+    }, 0)
+  }
+
+  // countMode === 'distinct'
+  return arr.length
+}
+
 const ProductList: StorefrontFunctionComponent<Props> = props => {
-  const { items } = props
+  const { items, itemCountMode } = props
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -131,7 +161,6 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
-
     <div>
       {unavailableItems.length > 0 ? (
         <div
@@ -140,7 +169,9 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         >
           <FormattedMessage
             id="store/product-list.unavailableItems"
-            values={{ quantity: unavailableItems.length }}
+            values={{
+              quantity: countCartItems(itemCountMode, unavailableItems),
+            }}
           />
         </div>
       ) : null}
@@ -157,7 +188,9 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
         >
           <FormattedMessage
             id="store/product-list.availableItems"
-            values={{ quantity: availableItems.length }}
+            values={{
+              quantity: countCartItems(itemCountMode, availableItems),
+            }}
           />
         </div>
       ) : null}
