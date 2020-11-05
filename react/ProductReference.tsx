@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -23,31 +23,23 @@ interface Props {
 }
 
 const ProductReference: FunctionComponent<Props> = props => {
-  const { identifierOption = PRODUCT_REFERENCE_ID, identifierLabel } = props
+  const { identifierOption, identifierLabel } = props
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
-  const [identifierValue, setIdentifierValue] = useState<
-    string | null | undefined
-  >()
+  const identifierValue = useMemo(() => {
+    if (identifierOption === PRODUCT_REFERENCE_ID) return item.productRefId
+    if (identifierOption === PRODUCT_SKU_REFERENCE_ID) return item.refId
+    if (identifierOption === PRODUCT_SKU_ITEM_ID) return item.id
+    if (identifierOption === PRODUCT_ID) return item.productId
 
-  useEffect(() => {
-    if (identifierOption === PRODUCT_REFERENCE_ID) {
-      setIdentifierValue(item.productRefId)
-    } else if (identifierOption === PRODUCT_SKU_REFERENCE_ID) {
-      setIdentifierValue(item.refId)
-    } else if (identifierOption === PRODUCT_SKU_ITEM_ID) {
-      setIdentifierValue(item.id)
-    } else if (identifierOption === PRODUCT_ID) {
-      setIdentifierValue(item.productId)
-    }
+    return item.productRefId
   }, [item.productRefId, identifierOption, item.id, item.productId, item.refId])
 
-  if (loading) {
-    return <Loading />
-  }
+  if (loading) return <Loading />
+  if (!identifierValue) return null
 
-  return identifierValue ? (
+  return (
     <div
       className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
         handles.productIdentifier
@@ -62,7 +54,7 @@ const ProductReference: FunctionComponent<Props> = props => {
         {identifierValue}
       </span>
     </div>
-  ) : null
+  )
 }
 
 export default ProductReference
