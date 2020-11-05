@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
-
 import {
   PRODUCT_REFERENCE_ID,
   PRODUCT_SKU_REFERENCE_ID,
@@ -18,8 +18,8 @@ const CSS_HANDLES = [
 ] as const
 
 interface Props {
-  identifierLabel?: String
-  identifierOption?: String
+  identifierLabel?: string
+  identifierOption?: string
 }
 
 const ProductReference: FunctionComponent<Props> = props => {
@@ -27,12 +27,8 @@ const ProductReference: FunctionComponent<Props> = props => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
-  if (loading) {
-    return <Loading />
-  }
-
   const [identifierValue, setIdentifierValue] = useState<
-    String | null | undefined
+    string | null | undefined
   >()
 
   useEffect(() => {
@@ -45,7 +41,11 @@ const ProductReference: FunctionComponent<Props> = props => {
     } else if (identifierOption === PRODUCT_ID) {
       setIdentifierValue(item.productId)
     }
-  }, [item.productRefId])
+  }, [item.productRefId, identifierOption, item.id, item.productId, item.refId])
+
+  if (loading) {
+    return <Loading />
+  }
 
   return identifierValue ? (
     <div
