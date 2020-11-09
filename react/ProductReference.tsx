@@ -38,7 +38,7 @@ const ProductReference: FunctionComponent<Props> = props => {
 
   return (
     <div
-      className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
+      className={`c-on-base t-title lh-copy fw6 fw5-m ${
         handles.productIdentifier
       } ${opaque(item.availability)}`}
     >
