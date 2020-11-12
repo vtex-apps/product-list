@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- New component called 'product-reference', where is possible to pull an identifier product information.
+
 ## [0.25.0] - 2020-10-27
 
 ### Added

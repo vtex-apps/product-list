@@ -255,6 +255,7 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | `product-list-content-mobile` | Creates the product list layout for mobile devices. |
 | `message` | Renders a message text about the product availability. | 
 | `product-name` | Renders the product names. | 
+| `product-reference` | Renders the product reference information. | 
 | `price` | Renders the product prices. | 
 | `unit-price` | Renders the price for each product unit added to the cart. | 
 | `product-list-image` | Renders the product images. | 
@@ -298,6 +299,13 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `width`    | `number`    | Product image width (in pixels).  | `96`    |
 
+### `product-reference` props
+
+| Prop name               |  Type         | Description                                        | Default value   |
+| :------------------: | :---------: | :---------------------------------: | :-------------: |
+| `identifierLabel`    | `string`    | Text label to be displayed to the left of the product reference value.  | `undefined`    |
+| `identifierOption`    | `enum`    | Desired product reference data i.e. product identifier to be displayed. Possible options are: `ProductId`, `ProductSkuItemId`, `ProductReferenceId`, and `ProductSkuReferenceId`. | `ProductReferenceId`    |
+
 ### `remove-button` props
 
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
@@ -326,6 +334,9 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `productPriceCurrency`               |
 | `productPrice`                       |
 | `productQuantityLabel`               |
+| `productIdentifier`                  |
+| `productIdentifierValue`             |
+| `productIdentifierLabelValue`        |
 | `productVariationsContainer`         |
 | `productVariationsItem`              |
 | `quantityDropdownContainer`          |
@@ -339,7 +350,6 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `unitListPrice`                      |
 | `unitPriceMeasurementUnit`           |
 | `unitPricePerUnitCurrency`           |
-
 
 <!-- DOCS-IGNORE:start -->
 
