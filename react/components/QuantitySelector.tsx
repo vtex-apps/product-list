@@ -1,13 +1,17 @@
-import { range } from 'ramda'
-import React, { FunctionComponent, useState, Fragment } from 'react'
-import {
-  defineMessages,
-  InjectedIntl,
-  InjectedIntlProps,
-  injectIntl,
-} from 'react-intl'
-import { Dropdown, Input } from 'vtex.styleguide'
+import React, { useState, Fragment, FC, useEffect, useContext } from 'react'
+import { defineMessages, useIntl, IntlShape } from 'react-intl'
+import { Dropdown, Input, ToastContext } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
+
+const range = (startValue: number, endNumber: number) => {
+  const array = []
+
+  for (let i = startValue; i < endNumber; i++) {
+    array.push(i)
+  }
+
+  return array
+}
 
 const messages = defineMessages({
   remove: {
@@ -19,51 +23,88 @@ const messages = defineMessages({
 const MAX_DROPDOWN_VALUE = 10
 const MAX_INPUT_LENGTH = 5
 
-enum SelectorType {
-  Dropdown,
-  Input,
+/* eslint-disable no-shadow */
+const enum SelectorType {
+  Dropdown = 'Dropdown',
+  Input = 'Input',
 }
+/* eslint-enable no-shadow */
 
 interface Props {
-  id: string
+  id?: string
   value: number
   maxValue: number
   onChange: (value: number) => void
-  disabled: boolean
+  disabled?: boolean
+  unitMultiplier?: number
+  measurementUnit?: string
 }
 
-const normalizeValue = (value: number, maxValue: number) =>
-  value > maxValue ? maxValue : value
+const normalizeValue = (value: number, maxValue: number) => {
+  const normalizedValue = value > maxValue ? maxValue : value
 
-const validateValue = (value: string, maxValue: number) => {
-  const parsedValue = parseInt(value, 10)
+  return normalizedValue
+}
 
-  if (isNaN(parsedValue)) {
+const validateValue = (
+  value: string,
+  maxValue: number,
+  unitMultiplier: number
+) => {
+  const parsedValue = parseFloat(value.replace(',', '.'))
+
+  if (Number.isNaN(parsedValue)) {
     return 1
   }
 
-  return normalizeValue(parseInt(value, 10), maxValue)
+  return normalizeValue(Math.round(parsedValue / unitMultiplier), maxValue)
 }
 
-const validateDisplayValue = (value: string, maxValue: number) => {
-  const parsedValue = parseInt(value, 10)
+const validateDisplayValue = (
+  value: string,
+  maxValue: number,
+  unitMultiplier: number
+) => {
+  const parsedValue = parseFloat(value.replace(',', '.'))
 
-  if (isNaN(parsedValue) || parsedValue < 0) {
-    return ''
+  if (Number.isNaN(parsedValue) || parsedValue < 0) {
+    return 1
   }
 
-  return `${normalizeValue(parsedValue, maxValue)}`
+  const normalizedValue = normalizeValue(parsedValue, maxValue) * unitMultiplier
+
+  return normalizedValue
 }
 
-const getDropdownOptions = (maxValue: number, intl: InjectedIntl) => {
+const getDropdownOptions = ({
+  maxValue,
+  intl,
+  unitMultiplier,
+  measurementUnit,
+}: {
+  maxValue: number
+  intl: IntlShape
+  unitMultiplier: number
+  measurementUnit?: string
+}) => {
   const limit = Math.min(9, maxValue)
   const options = [
     { value: 0, label: `0 - ${intl.formatMessage(messages.remove)}` },
-    ...range(1, limit + 1).map(idx => ({ value: idx, label: `${idx}` })),
+    ...range(1, limit + 1).map(idx => ({
+      value: idx,
+      label: `${intl.formatNumber(idx * unitMultiplier)}${
+        measurementUnit ? ` ${measurementUnit}` : ''
+      }`,
+    })),
   ]
 
   if (maxValue >= MAX_DROPDOWN_VALUE) {
-    options.push({ value: MAX_DROPDOWN_VALUE, label: `${MAX_DROPDOWN_VALUE}+` })
+    options.push({
+      value: MAX_DROPDOWN_VALUE,
+      label: `${intl.formatNumber(MAX_DROPDOWN_VALUE * unitMultiplier)}${
+        measurementUnit ? ` ${measurementUnit}` : ''
+      } +`,
+    })
   }
 
   return options
@@ -76,28 +117,44 @@ const CSS_HANDLES = [
   'quantityInputContainer',
 ] as const
 
-const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
+const QuantitySelector: FC<Props> = ({
   id,
   value,
   maxValue,
   onChange,
-  disabled,
-  intl,
+  disabled = false,
+  unitMultiplier = 1,
+  measurementUnit: itemMeasurementUnit,
 }) => {
+  const measurementUnit =
+    itemMeasurementUnit && itemMeasurementUnit !== 'un'
+      ? itemMeasurementUnit
+      : undefined
+
+  const intl = useIntl()
+
   const [curSelector, setSelector] = useState(
     value < MAX_DROPDOWN_VALUE ? SelectorType.Dropdown : SelectorType.Input
   )
-  const [activeInput, setActiveInput] = useState(false)
+
+  const [inputFocused, setInputFocused] = useState(false)
 
   const normalizedValue = normalizeValue(value, maxValue)
 
-  const [curDisplayValue, setDisplayValue] = useState(`${normalizedValue}`)
+  const [curDisplayValue, setDisplayValue] = useState(
+    intl.formatNumber(
+      validateDisplayValue(normalizedValue.toString(), maxValue, unitMultiplier)
+    )
+  )
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  const handleDropdownChange = (value: string) => {
-    const validatedValue = validateValue(value, maxValue)
-    const displayValue = validateDisplayValue(value, maxValue)
+  const handleDropdownChange = (inputValue: string) => {
+    const validatedValue = validateValue(inputValue, maxValue, 1)
+
+    const displayValue = intl.formatNumber(
+      validateDisplayValue(inputValue, maxValue, unitMultiplier)
+    )
 
     if (validatedValue >= MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Input)
@@ -107,41 +164,90 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
     onChange(validatedValue)
   }
 
-  const handleInputChange = (value: string) => {
-    const displayValue = validateDisplayValue(value, maxValue)
-
-    setDisplayValue(displayValue)
+  const handleInputChange = (inputValue: string) => {
+    setDisplayValue(inputValue)
   }
 
+  const { showToast } = useContext(ToastContext)
+
   const handleInputBlur = () => {
-    setActiveInput(false)
+    setInputFocused(false)
+
     if (curDisplayValue === '') {
-      setDisplayValue('1')
+      setDisplayValue(
+        intl.formatNumber(validateDisplayValue('1', maxValue, unitMultiplier))
+      )
     }
 
-    const validatedValue = validateValue(curDisplayValue, maxValue)
+    const validatedValue = validateValue(
+      curDisplayValue,
+      maxValue,
+      unitMultiplier
+    )
+
+    onChange(validatedValue)
 
     if (validatedValue < MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Dropdown)
+
+      return
     }
 
-    onChange(validatedValue)
+    const validatedDisplayValue = intl.formatNumber(
+      validateDisplayValue(validatedValue.toString(), maxValue, unitMultiplier)
+    )
+
+    if (validatedDisplayValue !== curDisplayValue) {
+      setDisplayValue(validatedDisplayValue)
+      showToast(
+        intl.formatMessage(
+          {
+            id: 'store/product-list.quantityUnitMultiplierMismatch',
+          },
+          {
+            unitMultiplier: intl.formatNumber(unitMultiplier),
+            measurementUnit,
+            roundedValue: intl.formatNumber(validatedValue * unitMultiplier),
+          }
+        )
+      )
+    }
   }
 
-  const handleInputFocus = () => setActiveInput(true)
+  const handleInputFocus = () => {
+    setInputFocused(true)
+  }
 
-  if (
-    !activeInput &&
-    normalizedValue !== validateValue(curDisplayValue, maxValue)
-  ) {
+  useEffect(() => {
+    if (inputFocused) {
+      return
+    }
+
     if (normalizedValue >= MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Input)
     }
-    setDisplayValue(validateDisplayValue(`${normalizedValue}`, maxValue))
-  }
+
+    setDisplayValue(
+      intl.formatNumber(
+        validateDisplayValue(`${normalizedValue}`, maxValue, unitMultiplier)
+      )
+    )
+  }, [
+    inputFocused,
+    maxValue,
+    measurementUnit,
+    unitMultiplier,
+    normalizedValue,
+    intl,
+  ])
 
   if (curSelector === SelectorType.Dropdown) {
-    const dropdownOptions = getDropdownOptions(maxValue, intl)
+    const dropdownOptions = getDropdownOptions({
+      maxValue,
+      intl,
+      unitMultiplier,
+      measurementUnit,
+    })
 
     return (
       <Fragment>
@@ -170,37 +276,39 @@ const QuantitySelector: FunctionComponent<Props & InjectedIntlProps> = ({
         </div>
       </Fragment>
     )
-  } else {
-    return (
-      <Fragment>
-        <div className={`${handles.quantityInputMobileContainer} dn-m`}>
-          <Input
-            id={`quantity-input-mobile-${id}`}
-            size="small"
-            value={curDisplayValue}
-            maxLength={MAX_INPUT_LENGTH}
-            onChange={(event: any) => handleInputChange(event.target.value)}
-            onBlur={handleInputBlur}
-            onFocus={handleInputFocus}
-            placeholder=""
-            disabled={disabled}
-          />
-        </div>
-        <div className={`${handles.quantityInputContainer} dn db-m`}>
-          <Input
-            id={`quantity-input-${id}`}
-            value={curDisplayValue}
-            maxLength={MAX_INPUT_LENGTH}
-            onChange={(event: any) => handleInputChange(event.target.value)}
-            onBlur={handleInputBlur}
-            onFocus={handleInputFocus}
-            placeholder=""
-            disabled={disabled}
-          />
-        </div>
-      </Fragment>
-    )
   }
+
+  return (
+    <Fragment>
+      <div className={`${handles.quantityInputMobileContainer} dn-m`}>
+        <Input
+          id={`quantity-input-mobile-${id}`}
+          size="small"
+          value={curDisplayValue}
+          maxLength={MAX_INPUT_LENGTH}
+          onChange={(event: any) => handleInputChange(event.target.value)}
+          onBlur={handleInputBlur}
+          onFocus={handleInputFocus}
+          placeholder=""
+          disabled={disabled}
+          suffix={measurementUnit}
+        />
+      </div>
+      <div className={`${handles.quantityInputContainer} dn db-m`}>
+        <Input
+          id={`quantity-input-${id}`}
+          value={curDisplayValue}
+          maxLength={MAX_INPUT_LENGTH}
+          onChange={(event: any) => handleInputChange(event.target.value)}
+          onBlur={handleInputBlur}
+          onFocus={handleInputFocus}
+          placeholder=""
+          disabled={disabled}
+          suffix={measurementUnit}
+        />
+      </div>
+    </Fragment>
+  )
 }
 
-export default injectIntl(QuantitySelector)
+export default QuantitySelector

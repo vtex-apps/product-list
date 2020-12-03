@@ -31,6 +31,8 @@ const QuantitySelector: FunctionComponent = () => {
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
         disabled={item.availability !== AVAILABLE}
+        unitMultiplier={item.unitMultiplier ?? undefined}
+        measurementUnit={item.measurementUnit ?? undefined}
       />
     </div>
   )

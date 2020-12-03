@@ -48,7 +48,8 @@
       "flex-layout.col#manual-pricing"
     ],
     "props": {
-      "marginLeft": "8"
+      "marginLeft": "8",
+      "horizontalAlign": "center"
     }
   },
   "flex-layout.row#price-remove": {

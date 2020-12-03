@@ -16,5 +16,6 @@
   "store/product-list.originalPrice": "Original precio",
   "store/product-list.changeTo": "Cambiar a",
   "store/product-list.manualPricePlaceholder": "Ingrese un valor monetario",
-  "store/product-list.applyManualPrice": "Aplicar"
+  "store/product-list.applyManualPrice": "Aplicar",
+  "store/product-list.quantityUnitMultiplierMismatch": "Este producto se vende por fracciones de {unitMultiplier}{measurementUnit}. Por lo tanto, la cantidad ingresada se ha redondeado a {roundedValue}{measurementUnit}."
 }

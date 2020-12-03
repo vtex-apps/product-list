@@ -16,5 +16,6 @@
   "store/product-list.originalPrice": "Original price",
   "store/product-list.changeTo": "Change to",
   "store/product-list.manualPricePlaceholder": "Type a monetary value",
-  "store/product-list.applyManualPrice": "ok"
+  "store/product-list.applyManualPrice": "ok",
+  "store/product-list.quantityUnitMultiplierMismatch": "This product is sold by fractions of {unitMultiplier}{measurementUnit}. Given that, the inserted quantity has been rounded to {roundedValue}{measurementUnit}."
 }
