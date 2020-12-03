@@ -1,6 +1,6 @@
 {
   "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
-  "store/product-list.pricePerUnit.measurementUnit": "per {measurementUnit}.",
+  "store/product-list.pricePerUnit.measurementUnit": "per {unitMultiplier} {measurementUnit}.",
   "store/product-list.availableItems": "{quantity, plural, one {# available product} other {# available products}}",
   "store/product-list.unavailableItems": "{quantity, plural, one {# unavailable product} other {# unavailable products}}",
   "store/product-list.message.cantBeDelivered": "This product cannot be delivered to the address provided.",
@@ -17,5 +17,7 @@
   "store/product-list.changeTo": "Change to",
   "store/product-list.manualPricePlaceholder": "Type a monetary value",
   "store/product-list.applyManualPrice": "ok",
+  "store/product-list.quantitySelector.label": "{quantity} {measurementUnit}",
+  "store/product-list.quantitySelector.maxValueLabel": "{quantity} {measurementUnit} +",
   "store/product-list.quantityUnitMultiplierMismatch": "This product is sold by fractions of {unitMultiplier}{measurementUnit}. Given that, the inserted quantity has been rounded to {roundedValue}{measurementUnit}."
 }

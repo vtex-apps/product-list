@@ -9,11 +9,15 @@
     width: 7.25rem;
   }
   .quantity {
-    max-width: 7rem;
+    max-width: 7.25rem;
   }
 }
 
 .quantity :global(.vtex-input) input {
   flex-shrink: 1;
   min-width: 0;
+}
+
+.unitPrice {
+  max-width: 100%;
 }

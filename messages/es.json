@@ -1,6 +1,6 @@
 {
   "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
-  "store/product-list.pricePerUnit.measurementUnit": "por {measurementUnit}.",
+  "store/product-list.pricePerUnit.measurementUnit": "por {unitMultiplier} {measurementUnit}.",
   "store/product-list.availableItems": "{quantity, plural, one {# producto disponible} other {# productos disponibles}}",
   "store/product-list.unavailableItems": "{quantity, plural, one {# producto no disponible} other {# productos no disponibles}}",
   "store/product-list.message.cantBeDelivered": "Este producto no se puede entregar en la dirección proporcionada.",
@@ -17,5 +17,7 @@
   "store/product-list.changeTo": "Cambiar a",
   "store/product-list.manualPricePlaceholder": "Ingrese un valor monetario",
   "store/product-list.applyManualPrice": "Aplicar",
+  "store/product-list.quantitySelector.label": "{quantity} {measurementUnit}",
+  "store/product-list.quantitySelector.maxValueLabel": "{quantity} {measurementUnit} +",
   "store/product-list.quantityUnitMultiplierMismatch": "Este producto se vende por fracciones de {unitMultiplier}{measurementUnit}. Por lo tanto, la cantidad ingresada se ha redondeado a {roundedValue}{measurementUnit}."
 }

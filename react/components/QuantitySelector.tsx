@@ -18,6 +18,8 @@ const messages = defineMessages({
     defaultMessage: '',
     id: 'store/product-list.quantity-selector.remove',
   },
+  label: { id: 'store/product-list.quantitySelector.label' },
+  maxValueLabel: { id: 'store/product-list.quantitySelector.maxValueLabel' },
 })
 
 const MAX_DROPDOWN_VALUE = 10
@@ -92,18 +94,20 @@ const getDropdownOptions = ({
     { value: 0, label: `0 - ${intl.formatMessage(messages.remove)}` },
     ...range(1, limit + 1).map(idx => ({
       value: idx,
-      label: `${intl.formatNumber(idx * unitMultiplier)}${
-        measurementUnit ? ` ${measurementUnit}` : ''
-      }`,
+      label: intl.formatMessage(messages.label, {
+        quantity: intl.formatNumber(idx * unitMultiplier),
+        measurementUnit,
+      }),
     })),
   ]
 
   if (maxValue >= MAX_DROPDOWN_VALUE) {
     options.push({
       value: MAX_DROPDOWN_VALUE,
-      label: `${intl.formatNumber(MAX_DROPDOWN_VALUE * unitMultiplier)}${
-        measurementUnit ? ` ${measurementUnit}` : ''
-      } +`,
+      label: intl.formatMessage(messages.maxValueLabel, {
+        quantity: intl.formatNumber(MAX_DROPDOWN_VALUE * unitMultiplier),
+        measurementUnit,
+      }),
     })
   }
 
