@@ -206,4 +206,31 @@ describe('<QuantitySelector />', () => {
 
     expect(showToast).not.toHaveBeenCalled()
   })
+
+  it('should show toast if number is rounded to below MAX_DROPDOWN_VALUE threshold', () => {
+    const onChange = jest.fn()
+    const showToast = jest.fn()
+
+    render(
+      <ToastContext.Provider
+        value={{ showToast, hideToast: jest.fn(), toastState: {} }}
+      >
+        <QuantitySelector
+          id="1"
+          value={10}
+          maxValue={50}
+          onChange={onChange}
+          unitMultiplier={0.5}
+          measurementUnit="kg"
+        />
+      </ToastContext.Provider>
+    )
+
+    const [input] = screen.getAllByRole('textbox')
+
+    fireEvent.change(input, { target: { value: '0.1' } })
+    fireEvent.blur(input)
+
+    expect(showToast).toHaveBeenCalled()
+  })
 })

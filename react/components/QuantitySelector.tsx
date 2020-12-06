@@ -204,8 +204,6 @@ const QuantitySelector: FC<Props> = ({
 
     if (validatedValue < MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Dropdown)
-
-      return
     }
 
     const validatedDisplayValue = intl.formatNumber(
