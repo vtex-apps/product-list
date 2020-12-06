@@ -59,7 +59,10 @@ const validateValue = (
     return 1
   }
 
-  return normalizeValue(Math.round(parsedValue / unitMultiplier), maxValue)
+  return normalizeValue(
+    Math.max(Math.round(parsedValue / unitMultiplier), 1),
+    maxValue
+  )
 }
 
 const validateDisplayValue = (

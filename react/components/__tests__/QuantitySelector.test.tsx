@@ -164,4 +164,19 @@ describe('<QuantitySelector />', () => {
     expect(input).toHaveValue('1000')
     expect(onChange).toHaveBeenLastCalledWith(1000)
   })
+
+  it('should not remove the product when rounding down the value', () => {
+    const onChange = jest.fn()
+
+    render(
+      <QuantitySelector id="1" value={10} maxValue={50} onChange={onChange} />
+    )
+
+    const [input] = screen.getAllByRole('textbox')
+
+    fireEvent.change(input, { target: { value: '0.1' } })
+    fireEvent.blur(input)
+
+    expect(onChange).toHaveBeenLastCalledWith(1)
+  })
 })
