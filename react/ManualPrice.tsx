@@ -1,4 +1,5 @@
-import React, { FunctionComponent, Fragment, useState } from 'react'
+import type { FunctionComponent } from 'react'
+import React, { Fragment, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { FormattedPrice } from 'vtex.formatted-price'
 import { Button, ButtonPlain, InputCurrency, Modal, Tag } from 'vtex.styleguide'
@@ -14,11 +15,13 @@ const ManualPrice: FunctionComponent = () => {
     shouldAllowManualPrice,
     onSetManualPrice,
   } = useItemContext()
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [manualPrice, setManualPrice] = useState(item.manualPrice)
   const {
     culture: { currency, locale },
   } = useRuntime()
+
   const intl = useIntl()
   const priceChanged =
     item.sellingPrice === item.manualPrice && item.sellingPrice !== item.price
@@ -37,6 +40,7 @@ const ManualPrice: FunctionComponent = () => {
     evt: React.ChangeEvent<HTMLInputElement>
   ) => {
     const newManualPrice = (evt.target.value as unknown) as number
+
     setManualPrice(Math.floor(newManualPrice * 100))
   }
 
@@ -90,7 +94,7 @@ const ManualPrice: FunctionComponent = () => {
             <FormattedPrice value={getFormattedPrice(item.price)} />
           </div>
 
-          <label className="t-small mw9 mb2">
+          <label className="t-small mw9 mb2" htmlFor="manual-price-input">
             <FormattedMessage id="store/product-list.changeTo" />
           </label>
           <div className="flex flex-row flex-grow mb3">

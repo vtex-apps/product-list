@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useMemo } from 'react'
+import type { FunctionComponent } from 'react'
+import React, { useMemo } from 'react'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -17,7 +18,7 @@ interface Props {
   identifierOption?: string
 }
 
-const ProductReference: FunctionComponent<Props> = props => {
+const ProductReference: FunctionComponent<Props> = (props) => {
   const { identifierOption, identifierLabel } = props
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)

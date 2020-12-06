@@ -6,7 +6,8 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
-import { parseTextAlign, TextAlignProp } from './utils/textAlign'
+import type { TextAlignProp } from './utils/textAlign'
+import { parseTextAlign } from './utils/textAlign'
 import styles from './styles.css'
 
 const CSS_HANDLES = [
@@ -17,9 +18,9 @@ const CSS_HANDLES = [
 ] as const
 
 interface UnitPriceProps extends TextAlignProp {
-  unitPriceType: UnitPriceType
-  unitPriceDisplay: UnitPriceDisplayType
-  displayUnitListPrice: DisplayUnitListPriceType
+  unitPriceType?: UnitPriceType
+  unitPriceDisplay?: UnitPriceDisplayType
+  displayUnitListPrice?: DisplayUnitListPriceType
 }
 
 type UnitPriceDisplayType = 'always' | 'default'
@@ -28,7 +29,7 @@ type DisplayUnitListPriceType = 'showWhenDifferent' | 'notShow'
 
 type UnitPriceType = 'price' | 'sellingPrice'
 
-const UnitPrice: StorefrontFunctionComponent<UnitPriceProps> = ({
+const UnitPrice: React.FC<UnitPriceProps> = ({
   textAlign = 'left',
   unitPriceType = 'sellingPrice',
   unitPriceDisplay = 'default',

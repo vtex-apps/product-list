@@ -1,6 +1,7 @@
-import React, { useMemo, memo, ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React, { useMemo, memo } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Item, TotalItemsType } from 'vtex.checkout-graphql'
+import type { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
@@ -8,6 +9,12 @@ import { AVAILABLE } from './constants/Availability'
 import { chunkArray } from './utils/chunkArray'
 import { useRenderOnView } from './hooks/useRenderOnView'
 import { CALL_CENTER_OPERATOR } from './constants/User'
+
+type TotalItemsType =
+  | 'total'
+  | 'distinct'
+  | 'totalAvailable'
+  | 'distinctAvailable'
 
 interface Props {
   allowManualPrice: boolean
@@ -64,8 +71,8 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
       onQuantityChange: (value: number) =>
         onQuantityChange(item.uniqueId, value, item),
       onRemove: () => onRemove(item.uniqueId, item),
-      onSetManualPrice: (price: number, itemIndex: number) =>
-        onSetManualPrice(price, itemIndex),
+      onSetManualPrice: (price: number, index: number) =>
+        onSetManualPrice(price, index),
     }),
     [
       item,
@@ -81,7 +88,7 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   return <ItemContextProvider value={context}>{children}</ItemContextProvider>
 })
 
-const ProductGroup: StorefrontFunctionComponent<Props> = props => {
+const ProductGroup: React.FC<Props> = (props) => {
   const { items, renderOnView, userType, allowManualPrice, children } = props
   const shouldAllowManualPrice =
     allowManualPrice && userType === CALL_CENTER_OPERATOR
@@ -99,7 +106,7 @@ const ProductGroup: StorefrontFunctionComponent<Props> = props => {
     <>
       {items.map((item: ItemWithIndex) => (
         <ItemContextWrapper
-          key={item.uniqueId + item.sellingPrice}
+          key={item.uniqueId + (item.sellingPrice?.toString() ?? '')}
           item={item}
           itemIndex={item.index}
           shouldAllowManualPrice={shouldAllowManualPrice}
@@ -118,6 +125,7 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
       if (item.availability === 'available') {
         return itemQuantity + 1
       }
+
       return itemQuantity
     }, 0)
   }
@@ -127,6 +135,7 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
       if (item.availability === 'available') {
         return itemQuantity + item.quantity
       }
+
       return itemQuantity
     }, 0)
   }
@@ -141,7 +150,7 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
   return arr.length
 }
 
-const ProductList: StorefrontFunctionComponent<Props> = props => {
+const ProductList: React.FC<Props> = (props) => {
   const { items, itemCountMode } = props
 
   const handles = useCssHandles(CSS_HANDLES)
@@ -151,6 +160,7 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
     .reduce<ItemWithIndex[][]>(
       (acc, item) => {
         acc[item.availability === AVAILABLE ? 0 : 1].push(item)
+
         return acc
       },
       [[], []]
@@ -175,7 +185,7 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
           />
         </div>
       ) : null}
-      {unavailableGroups.map(group => (
+      {unavailableGroups.map((group) => (
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
@@ -194,7 +204,7 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
           />
         </div>
       ) : null}
-      {availableGroups.map(group => (
+      {availableGroups.map((group) => (
         <ProductGroup
           key={group.reduce((result, item) => `${result}#${item.id}`, '')}
           {...props}
@@ -205,4 +215,4 @@ const ProductList: StorefrontFunctionComponent<Props> = props => {
   )
 }
 
-export default React.memo(ProductList)
+export default memo(ProductList)

@@ -5968,9 +5968,9 @@ vtex-tachyons@^3.2.0:
   resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-3.2.2.tgz#e9e39d939778ef7d80a92c476cecf7417f79a6e8"
   integrity sha512-4M53uuvV+2XEjplVYiPgpBuaI5dtGksVgz/20NNjbZkXklJM7Lwgod/hOoh3PtIn36+95zZVVgXYfs3e6EU8YA==
 
-"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.41.0/public/@types/vtex.checkout-graphql":
-  version "0.41.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.41.0/public/@types/vtex.checkout-graphql#eca2f62e068543f00ec43a949197b6ba647fefb9"
+"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.50.0/public/@types/vtex.checkout-graphql":
+  version "0.50.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.50.0/public/@types/vtex.checkout-graphql#3a07db135dfb2fe51a7d8c4308891e88a13f026a"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"
@@ -5984,29 +5984,29 @@ vtex-tachyons@^3.2.0:
   version "0.15.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.flex-layout@0.15.1/public/@types/vtex.flex-layout#b5e99e063dc79cf86c4a1167383e6661cfbc8e61"
 
-"vtex.format-currency@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.format-currency@0.1.4/public/@types/vtex.format-currency":
-  version "0.1.4"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.format-currency@0.1.4/public/@types/vtex.format-currency#a36aa61ff95701388c0c793b8a7539b0c3d9dcf3"
+"vtex.format-currency@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.format-currency@0.2.0/public/@types/vtex.format-currency":
+  version "0.2.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.format-currency@0.2.0/public/@types/vtex.format-currency#764e70df27af6a2e2b2a828c5870a5008b5ef28e"
 
 "vtex.formatted-price@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.formatted-price@0.4.0/public/@types/vtex.formatted-price":
   version "0.4.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.formatted-price@0.4.0/public/@types/vtex.formatted-price#821e3f087065704d02ee28e4f41aada3d6cb46da"
 
-"vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.7/public/@types/vtex.order-manager":
-  version "0.8.7"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.7/public/@types/vtex.order-manager#d666dbf9c6d630dba38ac26e815ffaa3811933df"
+"vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.8/public/@types/vtex.order-manager":
+  version "0.8.8"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.8.8/public/@types/vtex.order-manager#a84ac706a21afee00afad961670323b8aa3fc3a5"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.122.1/public/@types/vtex.render-runtime":
-  version "8.122.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.122.1/public/@types/vtex.render-runtime#d790c20d157b42a08f1b90085e1347a52b87441e"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.3/public/@types/vtex.render-runtime":
+  version "8.126.3"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.3/public/@types/vtex.render-runtime#ae20f3b7ca9c4e2b424e1fa7759f7212bf28d644"
 
-"vtex.store-icons@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.17.1/public/@types/vtex.store-icons":
-  version "0.17.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.17.1/public/@types/vtex.store-icons#66df90ed7efdac5b752521b935e3a09f89e4ad1d"
+"vtex.store-icons@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.18.0/public/@types/vtex.store-icons":
+  version "0.18.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.18.0/public/@types/vtex.store-icons#0ee94d549aa283ce3a13ab987c13eac4fdfd1bba"
 
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.129.0/public/@types/vtex.styleguide":
-  version "9.129.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.129.0/public/@types/vtex.styleguide#916e6fbd7f14585c9e07e040d41d8966860affba"
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.0/public/@types/vtex.styleguide":
+  version "9.134.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.0/public/@types/vtex.styleguide#9ce9062c2a0f9925d7a926a9c4d544b4f0409590"
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"

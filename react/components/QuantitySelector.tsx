@@ -1,5 +1,7 @@
-import React, { useState, Fragment, FC, useEffect, useContext } from 'react'
-import { defineMessages, useIntl, IntlShape } from 'react-intl'
+import type { FC } from 'react'
+import React, { useState, Fragment, useEffect, useContext } from 'react'
+import type { IntlShape } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 import { Dropdown, Input, ToastContext } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -25,12 +27,12 @@ const messages = defineMessages({
 const MAX_DROPDOWN_VALUE = 10
 const MAX_INPUT_LENGTH = 5
 
-/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-shadow */
 const enum SelectorType {
   Dropdown = 'Dropdown',
   Input = 'Input',
 }
-/* eslint-enable no-shadow */
+/* eslint-enable @typescript-eslint/no-shadow */
 
 interface Props {
   id?: string
@@ -95,7 +97,7 @@ const getDropdownOptions = ({
   const limit = Math.min(9, maxValue)
   const options = [
     { value: 0, label: `0 - ${intl.formatMessage(messages.remove)}` },
-    ...range(1, limit + 1).map(idx => ({
+    ...range(1, limit + 1).map((idx) => ({
       value: idx,
       label: intl.formatMessage(messages.label, {
         quantity: intl.formatNumber(idx * unitMultiplier),

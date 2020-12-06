@@ -1,6 +1,7 @@
 export const useCssHandles = (cssHandles: string[]) => {
   const handles: Record<string, string> = {}
-  cssHandles.forEach(handle => {
+
+  cssHandles.forEach((handle) => {
     handles[handle] = handle
   })
 
