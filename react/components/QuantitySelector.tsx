@@ -147,7 +147,12 @@ const QuantitySelector: FC<Props> = ({
 
   const [curDisplayValue, setDisplayValue] = useState(
     intl.formatNumber(
-      validateDisplayValue(normalizedValue.toString(), maxValue, unitMultiplier)
+      validateDisplayValue(
+        normalizedValue.toString(),
+        maxValue,
+        unitMultiplier
+      ),
+      { useGrouping: false }
     )
   )
 
@@ -157,7 +162,8 @@ const QuantitySelector: FC<Props> = ({
     const validatedValue = validateValue(inputValue, maxValue, 1)
 
     const displayValue = intl.formatNumber(
-      validateDisplayValue(inputValue, maxValue, unitMultiplier)
+      validateDisplayValue(inputValue, maxValue, unitMultiplier),
+      { useGrouping: false }
     )
 
     if (validatedValue >= MAX_DROPDOWN_VALUE) {
@@ -179,7 +185,9 @@ const QuantitySelector: FC<Props> = ({
 
     if (curDisplayValue === '') {
       setDisplayValue(
-        intl.formatNumber(validateDisplayValue('1', maxValue, unitMultiplier))
+        intl.formatNumber(validateDisplayValue('1', maxValue, unitMultiplier), {
+          useGrouping: false,
+        })
       )
     }
 
@@ -198,7 +206,8 @@ const QuantitySelector: FC<Props> = ({
     }
 
     const validatedDisplayValue = intl.formatNumber(
-      validateDisplayValue(validatedValue.toString(), maxValue, unitMultiplier)
+      validateDisplayValue(validatedValue.toString(), maxValue, unitMultiplier),
+      { useGrouping: false }
     )
 
     if (validatedDisplayValue !== curDisplayValue) {
@@ -233,7 +242,8 @@ const QuantitySelector: FC<Props> = ({
 
     setDisplayValue(
       intl.formatNumber(
-        validateDisplayValue(`${normalizedValue}`, maxValue, unitMultiplier)
+        validateDisplayValue(`${normalizedValue}`, maxValue, unitMultiplier),
+        { useGrouping: false }
       )
     )
   }, [

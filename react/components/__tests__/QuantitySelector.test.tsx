@@ -148,4 +148,20 @@ describe('<QuantitySelector />', () => {
 
     expect(onChange).toHaveBeenLastCalledWith(13)
   })
+
+  it('should not include grouping separators on large numbers', () => {
+    const onChange = jest.fn()
+
+    render(
+      <QuantitySelector id="1" value={10} maxValue={1000} onChange={onChange} />
+    )
+
+    const [input] = screen.getAllByRole('textbox')
+
+    fireEvent.change(input, { target: { value: '1000' } })
+    fireEvent.blur(input)
+
+    expect(input).toHaveValue('1000')
+    expect(onChange).toHaveBeenLastCalledWith(1000)
+  })
 })
