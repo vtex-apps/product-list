@@ -179,4 +179,31 @@ describe('<QuantitySelector />', () => {
 
     expect(onChange).toHaveBeenLastCalledWith(1)
   })
+
+  it('should not show toast if typed number is the same', () => {
+    const onChange = jest.fn()
+    const showToast = jest.fn()
+
+    render(
+      <ToastContext.Provider
+        value={{ showToast, hideToast: jest.fn(), toastState: {} }}
+      >
+        <QuantitySelector
+          id="1"
+          value={11}
+          maxValue={50}
+          onChange={onChange}
+          unitMultiplier={0.5}
+          measurementUnit="kg"
+        />
+      </ToastContext.Provider>
+    )
+
+    const [input] = screen.getAllByRole('textbox')
+
+    fireEvent.change(input, { target: { value: '5,5' } })
+    fireEvent.blur(input)
+
+    expect(showToast).not.toHaveBeenCalled()
+  })
 })

@@ -213,7 +213,12 @@ const QuantitySelector: FC<Props> = ({
       { useGrouping: false }
     )
 
-    if (validatedDisplayValue !== curDisplayValue) {
+    const validatedCurrentDisplayValue = intl.formatNumber(
+      validateDisplayValue(curDisplayValue, maxValue, 1),
+      { useGrouping: false }
+    )
+
+    if (validatedDisplayValue !== validatedCurrentDisplayValue) {
       setDisplayValue(validatedDisplayValue)
       showToast(
         intl.formatMessage(
