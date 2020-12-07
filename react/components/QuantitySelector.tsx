@@ -5,6 +5,9 @@ import { defineMessages, useIntl } from 'react-intl'
 import { Dropdown, Input, ToastContext } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 
+import { parseValue, parseDisplayValue, normalizeValue } from './utils'
+import useQuantitySelectorState from './useQuantitySelectorState'
+
 const range = (startValue: number, endNumber: number) => {
   const array = []
 
@@ -42,45 +45,6 @@ interface Props {
   disabled?: boolean
   unitMultiplier?: number
   measurementUnit?: string
-}
-
-const normalizeValue = (value: number, maxValue: number) => {
-  const normalizedValue = value > maxValue ? maxValue : value
-
-  return normalizedValue
-}
-
-const validateValue = (
-  value: string,
-  maxValue: number,
-  unitMultiplier: number
-) => {
-  const parsedValue = parseFloat(value.replace(',', '.'))
-
-  if (Number.isNaN(parsedValue)) {
-    return 1
-  }
-
-  return normalizeValue(
-    Math.max(Math.round(parsedValue / unitMultiplier), 1),
-    maxValue
-  )
-}
-
-const validateDisplayValue = (
-  value: string,
-  maxValue: number,
-  unitMultiplier: number
-) => {
-  const parsedValue = parseFloat(value.replace(',', '.'))
-
-  if (Number.isNaN(parsedValue) || parsedValue < 0) {
-    return 1
-  }
-
-  const normalizedValue = normalizeValue(parsedValue, maxValue) * unitMultiplier
-
-  return normalizedValue
 }
 
 const getDropdownOptions = ({
@@ -147,16 +111,21 @@ const QuantitySelector: FC<Props> = ({
   )
 
   const [inputFocused, setInputFocused] = useState(false)
+  const [getUpdatedValue] = useQuantitySelectorState({
+    maxValue,
+    measurementUnit,
+    minValue: 1,
+  })
 
   const normalizedValue = normalizeValue(value, maxValue)
 
   const [curDisplayValue, setDisplayValue] = useState(
     intl.formatNumber(
-      validateDisplayValue(
-        normalizedValue.toString(),
+      parseDisplayValue({
+        value: normalizedValue.toString(),
         maxValue,
-        unitMultiplier
-      ),
+        unitMultiplier,
+      }),
       { useGrouping: false }
     )
   )
@@ -164,18 +133,17 @@ const QuantitySelector: FC<Props> = ({
   const handles = useCssHandles(CSS_HANDLES)
 
   const handleDropdownChange = (inputValue: string) => {
-    const validatedValue = validateValue(inputValue, maxValue, 1)
-
-    const displayValue = intl.formatNumber(
-      validateDisplayValue(inputValue, maxValue, unitMultiplier),
-      { useGrouping: false }
-    )
+    const { validatedValue, validatedDisplayValue } = getUpdatedValue({
+      value: inputValue,
+      unitMultiplier: 1,
+      displayUnitMultiplier: unitMultiplier,
+    })
 
     if (validatedValue >= MAX_DROPDOWN_VALUE) {
       setSelector(SelectorType.Input)
     }
 
-    setDisplayValue(displayValue)
+    setDisplayValue(validatedDisplayValue)
     onChange(validatedValue)
   }
 
@@ -183,24 +151,24 @@ const QuantitySelector: FC<Props> = ({
     setDisplayValue(inputValue)
   }
 
-  const { showToast } = useContext(ToastContext)
-
   const handleInputBlur = () => {
     setInputFocused(false)
 
     if (curDisplayValue === '') {
       setDisplayValue(
-        intl.formatNumber(validateDisplayValue('1', maxValue, unitMultiplier), {
-          useGrouping: false,
-        })
+        intl.formatNumber(
+          parseDisplayValue({ value: '1', maxValue, unitMultiplier }),
+          {
+            useGrouping: false,
+          }
+        )
       )
     }
 
-    const validatedValue = validateValue(
-      curDisplayValue,
-      maxValue,
-      unitMultiplier
-    )
+    const { validatedValue, validatedDisplayValue } = getUpdatedValue({
+      value: curDisplayValue,
+      unitMultiplier,
+    })
 
     onChange(validatedValue)
 
@@ -208,31 +176,7 @@ const QuantitySelector: FC<Props> = ({
       setSelector(SelectorType.Dropdown)
     }
 
-    const validatedDisplayValue = intl.formatNumber(
-      validateDisplayValue(validatedValue.toString(), maxValue, unitMultiplier),
-      { useGrouping: false }
-    )
-
-    const validatedCurrentDisplayValue = intl.formatNumber(
-      validateDisplayValue(curDisplayValue, maxValue, 1),
-      { useGrouping: false }
-    )
-
-    if (validatedDisplayValue !== validatedCurrentDisplayValue) {
-      setDisplayValue(validatedDisplayValue)
-      showToast(
-        intl.formatMessage(
-          {
-            id: 'store/product-list.quantityUnitMultiplierMismatch',
-          },
-          {
-            unitMultiplier: intl.formatNumber(unitMultiplier),
-            measurementUnit,
-            roundedValue: intl.formatNumber(validatedValue * unitMultiplier),
-          }
-        )
-      )
-    }
+    setDisplayValue(validatedDisplayValue)
   }
 
   const handleInputFocus = () => {
@@ -250,7 +194,11 @@ const QuantitySelector: FC<Props> = ({
 
     setDisplayValue(
       intl.formatNumber(
-        validateDisplayValue(`${normalizedValue}`, maxValue, unitMultiplier),
+        parseDisplayValue({
+          value: normalizedValue.toString(),
+          maxValue,
+          unitMultiplier,
+        }),
         { useGrouping: false }
       )
     )
