@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+import React from 'react'
 import { Loading } from 'vtex.render-runtime'
-import { Item } from 'vtex.checkout-graphql'
+import type { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './ItemContext'
@@ -11,17 +12,20 @@ const getImageUrl = (imageUrls: Item['imageUrls']) => {
   if (!imageUrls) {
     return null
   }
+
   if (!window || !window.devicePixelRatio) {
     return imageUrls.at1x
   }
 
   if (window.devicePixelRatio <= 1.25) {
     return imageUrls.at1x
-  } else if (window.devicePixelRatio <= 2.25) {
-    return imageUrls.at2x
-  } else {
-    return imageUrls.at3x
   }
+
+  if (window.devicePixelRatio <= 2.25) {
+    return imageUrls.at2x
+  }
+
+  return imageUrls.at3x
 }
 
 const CSS_HANDLES = [

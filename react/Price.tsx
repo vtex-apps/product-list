@@ -6,7 +6,8 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
-import { parseTextAlign, TextAlignProp } from './utils/textAlign'
+import type { TextAlignProp } from './utils/textAlign'
+import { parseTextAlign } from './utils/textAlign'
 import styles from './styles.css'
 
 const CSS_HANDLES = [
@@ -16,10 +17,10 @@ const CSS_HANDLES = [
 ] as const
 
 type PriceProps = TextAlignProp & {
-  showListPrice: boolean
+  showListPrice?: boolean
 }
 
-const Price: StorefrontFunctionComponent<PriceProps> = ({
+const Price: React.FC<PriceProps> = ({
   textAlign = 'left',
   showListPrice = true,
 }) => {

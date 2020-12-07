@@ -13,8 +13,10 @@ const setContainerLayout = (prop: string) => {
   switch (prop) {
     case 'cols':
       return 'flex justify-between items-center'
+
     case 'rows':
       return ''
+
     default:
       return ''
   }
@@ -26,9 +28,7 @@ const CSS_HANDLES = [
   'availabilityMessageText',
 ] as const
 
-const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
-  layout,
-}) => {
+const AvailabilityMessage: React.FC<Props> = ({ layout }) => {
   const {
     item: { availability },
     loading,
@@ -51,13 +51,13 @@ const AvailabilityMessage: StorefrontFunctionComponent<Props> = ({
       >
         {availability === CANNOT_BE_DELIVERED ? (
           <FormattedMessage id="store/product-list.message.cantBeDelivered">
-            {message => (
+            {(message) => (
               <span className={handles.availabilityMessageText}>{message}</span>
             )}
           </FormattedMessage>
         ) : (
           <FormattedMessage id="store/product-list.message.noLongerAvailable">
-            {message => (
+            {(message) => (
               <span className={handles.availabilityMessageText}>{message}</span>
             )}
           </FormattedMessage>

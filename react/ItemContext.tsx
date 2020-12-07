@@ -1,5 +1,6 @@
-import React, { createContext, FC, useContext } from 'react'
-import { Item } from 'vtex.checkout-graphql'
+import type { FC } from 'react'
+import React, { createContext, useContext } from 'react'
+import type { Item } from 'vtex.checkout-graphql'
 
 interface Context {
   item: Item
@@ -24,6 +25,7 @@ export const ItemContextProvider: FC<ItemContextProviderProps> = ({
 
 export const useItemContext = () => {
   const context = useContext(ItemContext)
+
   if (context === undefined) {
     throw new Error('useItemContext must be used within a ItemContextProvider')
   }

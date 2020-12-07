@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+import React from 'react'
 import { render, fireEvent } from '@vtex/test-tools/react'
 
-import { mockItems } from '../__mocks__/mockItems'
+import { items } from '../__fixtures__/items'
 import AvailabilityMessage from '../AvailabilityMessage'
 import Image from '../Image'
 import Price from '../Price'
@@ -31,7 +32,7 @@ describe('Product List', () => {
   it('should display the list of products', () => {
     const { queryByText } = render(
       <ProductList
-        items={mockItems}
+        items={items}
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
@@ -40,9 +41,9 @@ describe('Product List', () => {
       </ProductList>
     )
 
-    expect(queryByText(mockItems[0].name as string)).toBeTruthy()
-    expect(queryByText(mockItems[1].name as string)).toBeTruthy()
-    expect(queryByText(mockItems[2].name as string)).toBeTruthy()
+    expect(queryByText(items[0].name as string)).toBeTruthy()
+    expect(queryByText(items[1].name as string)).toBeTruthy()
+    expect(queryByText(items[2].name as string)).toBeTruthy()
   })
 
   it('should call onRemove when remove button is clicked', () => {
@@ -50,7 +51,7 @@ describe('Product List', () => {
 
     const { getByTitle } = render(
       <ProductList
-        items={[mockItems[2]]}
+        items={[items[2]]}
         loading={false}
         onQuantityChange={() => {}}
         onRemove={mockHandleRemove}
@@ -60,16 +61,17 @@ describe('Product List', () => {
     )
 
     const removeButton = getByTitle('remove')
+
     fireEvent.click(removeButton)
 
     expect(mockHandleRemove).toHaveBeenCalledTimes(1)
-    expect(mockHandleRemove.mock.calls[0][0]).toBe(mockItems[2].uniqueId)
+    expect(mockHandleRemove.mock.calls[0][0]).toBe(items[2].uniqueId)
   })
 
   it('should display unavailable items separately', () => {
     const { getByText } = render(
       <ProductList
-        items={mockItems}
+        items={items}
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
@@ -85,7 +87,7 @@ describe('Product List', () => {
   it('should display a message when item is out of stock', () => {
     const { queryByText } = render(
       <ProductList
-        items={[mockItems[1]]}
+        items={[items[1]]}
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}
@@ -100,7 +102,7 @@ describe('Product List', () => {
   it('should display a message when item cannot be delivered', () => {
     const { queryByText } = render(
       <ProductList
-        items={[mockItems[2]]}
+        items={[items[2]]}
         loading={false}
         onQuantityChange={() => {}}
         onRemove={() => {}}

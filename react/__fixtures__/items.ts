@@ -1,7 +1,8 @@
-import { Item } from 'vtex.checkout-graphql'
+import type { Item } from 'vtex.checkout-graphql'
 
-export const mockItems: Item[] = [
+export const items: Array<Item & { index: number }> = [
   {
+    index: 0,
     additionalInfo: {
       brandName: 'Test Brand 0',
     },
@@ -18,8 +19,14 @@ export const mockItems: Item[] = [
     skuName: 'Test SKU 0',
     skuSpecifications: [],
     uniqueId: 'SomeUniqueId0',
+    attachmentOfferings: [],
+    priceTags: [],
+    bundleItems: [],
+    offerings: [],
+    attachments: [],
   },
   {
+    index: 1,
     additionalInfo: {
       brandName: 'Test Brand 1',
     },
@@ -36,8 +43,14 @@ export const mockItems: Item[] = [
     skuName: 'Test SKU 1',
     skuSpecifications: [],
     uniqueId: 'SomeUniqueId1',
+    attachmentOfferings: [],
+    priceTags: [],
+    bundleItems: [],
+    offerings: [],
+    attachments: [],
   },
   {
+    index: 2,
     additionalInfo: {
       brandName: 'Test Brand 2',
     },
@@ -54,5 +67,10 @@ export const mockItems: Item[] = [
     skuName: 'Test SKU 2',
     skuSpecifications: [],
     uniqueId: 'SomeUniqueId2',
+    attachmentOfferings: [],
+    priceTags: [],
+    bundleItems: [],
+    offerings: [],
+    attachments: [],
   },
 ]

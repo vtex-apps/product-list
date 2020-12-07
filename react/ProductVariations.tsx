@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react'
-import { SkuSpecification } from 'vtex.checkout-graphql'
+import type { FunctionComponent } from 'react'
+import React from 'react'
+import type { SkuSpecification } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './ItemContext'

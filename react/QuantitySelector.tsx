@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+import React from 'react'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -31,6 +32,8 @@ const QuantitySelector: FunctionComponent = () => {
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
         disabled={item.availability !== AVAILABLE}
+        unitMultiplier={item.unitMultiplier ?? undefined}
+        measurementUnit={item.measurementUnit ?? undefined}
       />
     </div>
   )
