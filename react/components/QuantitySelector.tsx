@@ -1,11 +1,11 @@
 import type { FC } from 'react'
-import React, { useState, Fragment, useEffect, useContext } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import type { IntlShape } from 'react-intl'
 import { defineMessages, useIntl } from 'react-intl'
-import { Dropdown, Input, ToastContext } from 'vtex.styleguide'
+import { Dropdown, Input } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { parseValue, parseDisplayValue, normalizeValue } from './utils'
+import { parseDisplayValue } from './utils'
 import useQuantitySelectorState from './useQuantitySelectorState'
 
 const range = (startValue: number, endNumber: number) => {
@@ -117,7 +117,7 @@ const QuantitySelector: FC<Props> = ({
     minValue: 1,
   })
 
-  const normalizedValue = normalizeValue(value, maxValue)
+  const normalizedValue = Math.min(value, maxValue)
 
   const [curDisplayValue, setDisplayValue] = useState(
     intl.formatNumber(

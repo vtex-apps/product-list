@@ -1,7 +1,3 @@
-export const normalizeValue = (value: number, maxValue?: number) => {
-  return maxValue ? Math.min(value, maxValue) : value
-}
-
 export const parseValue = ({
   value,
   maxValue,
@@ -21,13 +17,12 @@ export const parseValue = ({
     return 1
   }
 
-  return normalizeValue(
-    Math.max(
-      (round ? Math.round : (n: number) => n)(parsedValue / unitMultiplier),
-      minValue
-    ),
-    maxValue
+  const roundedValue = Math.max(
+    (round ? Math.round : (n: number) => n)(parsedValue / unitMultiplier),
+    minValue
   )
+
+  return Math.min(roundedValue, maxValue ?? roundedValue)
 }
 
 export const parseDisplayValue = ({
@@ -45,7 +40,5 @@ export const parseDisplayValue = ({
     return unitMultiplier
   }
 
-  const normalizedValue = normalizeValue(parsedValue, maxValue) * unitMultiplier
-
-  return normalizedValue
+  return Math.min(parsedValue, maxValue ?? parsedValue) * unitMultiplier
 }

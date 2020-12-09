@@ -6,7 +6,7 @@ import classnames from 'classnames'
 import VisuallyHidden from './VisuallyHidden'
 import IncreaseIcon from './IncreaseIcon'
 import DecreaseIcon from './DecreaseIcon'
-import { normalizeValue, parseDisplayValue } from './utils'
+import { parseDisplayValue } from './utils'
 import useQuantitySelectorState from './useQuantitySelectorState'
 import styles from './QuantityStepper.css'
 
@@ -40,7 +40,7 @@ const QuantityStepper: VFC<Props> = ({
 }) => {
   const intl = useIntl()
 
-  const normalizedValue = normalizeValue(value, maxValue)
+  const normalizedValue = Math.min(value, maxValue ?? value)
 
   const [getUpdatedValue] = useQuantitySelectorState({
     maxValue,
