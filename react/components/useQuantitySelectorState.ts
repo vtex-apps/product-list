@@ -7,7 +7,7 @@ import { parseValue, parseDisplayValue } from './utils'
 const useQuantitySelectorState = ({
   maxValue,
   measurementUnit,
-  minValue = 0,
+  minValue: propMinValue = 0,
 }: {
   maxValue?: number
   minValue?: number
@@ -21,16 +21,26 @@ const useQuantitySelectorState = ({
       value,
       unitMultiplier,
       displayUnitMultiplier = unitMultiplier,
+      minValue = propMinValue,
     }: {
       value: string
       unitMultiplier: number
       displayUnitMultiplier?: number
+      minValue?: number
     }) => {
       const validatedValue = parseValue({
         value,
         maxValue,
         unitMultiplier,
         minValue,
+      })
+
+      const rawParsedValue = parseValue({
+        value,
+        maxValue,
+        unitMultiplier,
+        minValue: 0,
+        round: false,
       })
 
       const validatedDisplayValue = intl.formatNumber(
@@ -42,16 +52,7 @@ const useQuantitySelectorState = ({
         { useGrouping: false }
       )
 
-      const validatedCurrentDisplayValue = intl.formatNumber(
-        parseDisplayValue({
-          value,
-          maxValue,
-          unitMultiplier: 1,
-        }),
-        { useGrouping: false }
-      )
-
-      if (validatedDisplayValue !== validatedCurrentDisplayValue) {
+      if (validatedValue !== rawParsedValue) {
         showToast(
           intl.formatMessage(
             {
@@ -68,7 +69,7 @@ const useQuantitySelectorState = ({
 
       return { validatedValue, validatedDisplayValue }
     },
-    [intl, maxValue, minValue, measurementUnit, showToast]
+    [intl, maxValue, propMinValue, measurementUnit, showToast]
   )
 
   return [onChange] as const

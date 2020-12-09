@@ -45,6 +45,7 @@ const QuantityStepper: VFC<Props> = ({
   const [getUpdatedValue] = useQuantitySelectorState({
     maxValue,
     measurementUnit,
+    minValue: 1,
   })
 
   const [focused, setFocused] = useState(false)
@@ -90,6 +91,7 @@ const QuantityStepper: VFC<Props> = ({
     const { validatedValue, validatedDisplayValue } = getUpdatedValue({
       value: (parsedValue - unitMultiplier).toString(),
       unitMultiplier,
+      minValue: 0,
     })
 
     onChange?.(validatedValue)

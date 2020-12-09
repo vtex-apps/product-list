@@ -192,4 +192,53 @@ describe('<QuantityStepper />', () => {
 
     expect(screen.getByText('kg')).toBeInTheDocument()
   })
+
+  it('should remove item when decreasing quantity with button', () => {
+    const onChange = jest.fn()
+
+    render(<QuantityStepper id="1" value={1} onChange={onChange} />)
+
+    const decreaseButton = screen.getByLabelText(/decrease quantity/i)
+
+    fireEvent.click(decreaseButton)
+
+    expect(onChange).toHaveBeenCalledWith(0)
+  })
+
+  it("shouldn't show toast when typed number isn't a number", () => {
+    const showToast = jest.fn()
+    const onChange = jest.fn()
+
+    render(
+      <ToastContext.Provider value={{ showToast }}>
+        <QuantityStepper
+          id="1"
+          value={1}
+          unitMultiplier={0.5}
+          onChange={onChange}
+        />
+      </ToastContext.Provider>
+    )
+
+    const input = screen.getByLabelText(/product quantity/i)
+
+    fireEvent.change(input, { target: { value: 'abc' } })
+    fireEvent.blur(input)
+
+    expect(onChange).toHaveBeenCalledWith(1)
+    expect(showToast).not.toHaveBeenCalled()
+  })
+
+  it("shouldn't remove product when quantity is rounded to minimum value", () => {
+    const onChange = jest.fn()
+
+    render(<QuantityStepper id="1" value={1} onChange={onChange} />)
+
+    const input = screen.getByLabelText(/product quantity/i)
+
+    fireEvent.change(input, { target: { value: '0.1' } })
+    fireEvent.blur(input)
+
+    expect(onChange).toHaveBeenCalledWith(1)
+  })
 })

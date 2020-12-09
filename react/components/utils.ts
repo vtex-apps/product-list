@@ -7,11 +7,13 @@ export const parseValue = ({
   maxValue,
   minValue,
   unitMultiplier,
+  round = true,
 }: {
   value: string
   maxValue?: number
   minValue: number
   unitMultiplier: number
+  round?: boolean
 }) => {
   const parsedValue = parseFloat(value.replace(',', '.'))
 
@@ -20,7 +22,10 @@ export const parseValue = ({
   }
 
   return normalizeValue(
-    Math.max(Math.round(parsedValue / unitMultiplier), minValue),
+    Math.max(
+      (round ? Math.round : (n: number) => n)(parsedValue / unitMultiplier),
+      minValue
+    ),
     maxValue
   )
 }
@@ -37,7 +42,7 @@ export const parseDisplayValue = ({
   const parsedValue = parseFloat(value.replace(',', '.'))
 
   if (Number.isNaN(parsedValue) || parsedValue < 0) {
-    return 1
+    return unitMultiplier
   }
 
   const normalizedValue = normalizeValue(parsedValue, maxValue) * unitMultiplier
