@@ -21,3 +21,7 @@
 .unitPrice {
   max-width: 100%;
 }
+
+.quantityStepper {
+  max-width: none;
+}

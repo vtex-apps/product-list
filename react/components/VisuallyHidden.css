@@ -1,0 +1,15 @@
+.visuallyHidden {
+  /**
+   * Visually hidden styles, equivalent to
+   * the `sr-only` class of TailwindCSS: https://tailwindcss.com/docs/screen-readers#class-reference
+   */
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip: rect(0 0 0 0);
+  width: 2px;
+  height: 2px;
+  margin: -2px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}

@@ -19,5 +19,8 @@
   "store/product-list.applyManualPrice": "Aplicar",
   "store/product-list.quantitySelector.label": "{quantity} {measurementUnit}",
   "store/product-list.quantitySelector.maxValueLabel": "{quantity} {measurementUnit} +",
-  "store/product-list.quantityUnitMultiplierMismatch": "Este producto se vende por fracciones de {unitMultiplier}{measurementUnit}. Por lo tanto, la cantidad ingresada se ha redondeado a {roundedValue}{measurementUnit}."
+  "store/product-list.quantityUnitMultiplierMismatch": "Este producto se vende por fracciones de {unitMultiplier}{measurementUnit}. Por lo tanto, la cantidad ingresada se ha redondeado a {roundedValue}{measurementUnit}.",
+  "store/product-list.quantityStepper.label": "Cantidad de producto",
+  "store/product-list.quantityStepper.increaseQuantity": "Aumentar la cantidad",
+  "store/product-list.quantityStepper.decreaseQuantity": "Cantidad decreciente"
 }
