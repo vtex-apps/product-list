@@ -137,6 +137,7 @@ const QuantitySelector: FC<Props> = ({
       value: inputValue,
       unitMultiplier: 1,
       displayUnitMultiplier: unitMultiplier,
+      minValue: 0,
     })
 
     if (validatedValue >= MAX_DROPDOWN_VALUE) {
