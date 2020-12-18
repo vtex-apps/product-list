@@ -233,4 +233,24 @@ describe('<QuantitySelector />', () => {
 
     expect(showToast).toHaveBeenCalled()
   })
+
+  it('should remove item when changing quantity in dropdown to 0', () => {
+    const onChange = jest.fn()
+    const showToast = jest.fn()
+
+    render(
+      <ToastContext.Provider
+        value={{ showToast, hideToast: jest.fn(), toastState: {} }}
+      >
+        <QuantitySelector id="1" value={1} maxValue={50} onChange={onChange} />
+      </ToastContext.Provider>
+    )
+
+    const [input] = screen.getAllByRole('combobox')
+
+    fireEvent.change(input, { target: { value: '0' } })
+
+    expect(showToast).not.toHaveBeenCalled()
+    expect(onChange).toHaveBeenCalledWith(0)
+  })
 })
