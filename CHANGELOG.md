@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.27.2] - 2020-12-21
+
 ### Fixed
 - `ItemContextWrapper` key.
 ## [0.27.1] - 2020-12-18
