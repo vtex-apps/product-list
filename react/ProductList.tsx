@@ -6,9 +6,8 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
-import { chunkArray } from './utils/chunkArray'
-import { useRenderOnView } from './hooks/useRenderOnView'
 import { CALL_CENTER_OPERATOR } from './constants/User'
+import LazyRender from './LazyRender'
 
 type TotalItemsType =
   | 'total'
@@ -85,39 +84,12 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
     ]
   )
 
-  return <ItemContextProvider value={context}>{children}</ItemContextProvider>
-})
-
-const ProductGroup: React.FC<Props> = (props) => {
-  const { items, renderOnView, userType, allowManualPrice, children } = props
-  const shouldAllowManualPrice =
-    allowManualPrice && userType === CALL_CENTER_OPERATOR
-
-  const { hasBeenViewed, dummyElement } = useRenderOnView({
-    lazyRender: true,
-    offset: 900,
-  })
-
-  if (renderOnView && (!hasBeenViewed || items.length === 0)) {
-    return dummyElement
-  }
-
   return (
-    <>
-      {items.map((item: ItemWithIndex) => (
-        <ItemContextWrapper
-          key={`${item.uniqueId}-${item.sellingPrice}-${item.index}`}
-          item={item}
-          itemIndex={item.index}
-          shouldAllowManualPrice={shouldAllowManualPrice}
-          {...props}
-        >
-          {children}
-        </ItemContextWrapper>
-      ))}
-    </>
+    <LazyRender height={100} offset={300}>
+      <ItemContextProvider value={context}>{children}</ItemContextProvider>
+    </LazyRender>
   )
-}
+})
 
 const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
   if (countMode === 'distinctAvailable') {
@@ -166,9 +138,6 @@ const ProductList: React.FC<Props> = (props) => {
       [[], []]
     )
 
-  const availableGroups: ItemWithIndex[][] = chunkArray(availableItems, 10)
-  const unavailableGroups: ItemWithIndex[][] = chunkArray(unavailableItems, 10)
-
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
     <div>
@@ -185,13 +154,22 @@ const ProductList: React.FC<Props> = (props) => {
           />
         </div>
       ) : null}
-      {unavailableGroups.map((group) => (
-        <ProductGroup
-          key={group.reduce((result, item) => `${result}#${item.id}`, '')}
-          {...props}
-          items={group}
-        />
-      ))}
+      {unavailableItems.map((item) => { 
+        const { userType, allowManualPrice, children } = props
+        const shouldAllowManualPrice = allowManualPrice && userType === CALL_CENTER_OPERATOR
+
+        return (
+          <ItemContextWrapper
+            key={`${item.uniqueId}-${item.sellingPrice}`}
+            item={item}
+            itemIndex={item.index}
+            shouldAllowManualPrice={shouldAllowManualPrice}
+            {...props}
+          >
+            {children}
+          </ItemContextWrapper>
+        )
+      })}
       {unavailableItems.length > 0 && availableItems.length > 0 ? (
         <div
           className={`${handles.productListAvailableItemsMessage} c-muted-1 bb b--muted-4 fw5 mt7 pv5 pl5 pl6-m pl0-l t-heading-5-l`}
@@ -204,13 +182,21 @@ const ProductList: React.FC<Props> = (props) => {
           />
         </div>
       ) : null}
-      {availableGroups.map((group) => (
-        <ProductGroup
-          key={group.reduce((result, item) => `${result}#${item.id}`, '')}
-          {...props}
-          items={group}
-        />
-      ))}
+      {availableItems.map(item => {
+        const { userType, allowManualPrice, children } = props
+        const shouldAllowManualPrice = allowManualPrice && userType === CALL_CENTER_OPERATOR
+        return (
+          <ItemContextWrapper
+            key={`${item.uniqueId}-${item.sellingPrice}`}
+            item={item}
+            itemIndex={item.index}
+            shouldAllowManualPrice={shouldAllowManualPrice}
+            {...props}
+          >
+            {children}
+          </ItemContextWrapper>
+        )
+      })}
     </div>
   )
 }
