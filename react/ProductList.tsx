@@ -31,7 +31,7 @@ interface Props {
   onSetManualPrice: (price: number, itemIndex: number) => void
 }
 
-interface ItemWithIndex extends Item {
+export interface ItemWithIndex extends Item {
   index: number
 }
 
