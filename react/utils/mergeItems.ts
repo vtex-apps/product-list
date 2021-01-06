@@ -1,16 +1,13 @@
 import { Item } from 'vtex.checkout-graphql'
 
-import { ItemWithIndex } from '../ProductList'
-
 type GroupedItems = {
   [key: string]: Item[]
 }
 
 const mergeItems = (arr: Item[]) => {
   const groupedItems: GroupedItems = arr
-    .map((item, index) => ({ ...item, index })) // It should preserve it's index
+    .map((item, index) => ({ ...item, index })) // It should preserve it's index as a property
     .reduce(
-      // (obj, item) => ({ ...obj, [item.id]: [...(obj[item.id] ?? []), item] }), // Group by id (sku)
       (obj, item) => ({
         ...obj,
         [item.uniqueId]: [...(obj[item.uniqueId] ?? []), item],
@@ -19,21 +16,31 @@ const mergeItems = (arr: Item[]) => {
     )
 
   const mergedItems = Object.keys(groupedItems).map(uniqueId =>
-    Object.assign({}, ...groupedItems[uniqueId], {
-      quantity: groupedItems[uniqueId].reduce(
-        (res, item) => item.quantity + res,
-        0
-      ),
-      priceTags: // Merge by identifier
-    })
+    Object.assign(
+      {},
+      ...groupedItems[uniqueId],
+      groupedItems[uniqueId].reduce(
+        (mergedItem, item) => ({
+          quantity: mergedItem.quantity + item.quantity,
+          sellingPrice: mergedItem.sellingPrice,
+          priceTags: mergedItem.priceTags,
+        }),
+        {
+          quantity: 0,
+          sellingPrice: 0,
+          priceTags: [],
+        }
+      )
+      // priceTags: groupedItems[uniqueId].reduce((tags, tag) => , []) // Merge by identifier
+      // sellingPrice: // Sum all (sellingPrice * quantity) and divide by totalQuantity
+    )
   )
 
-  return groupedItems
+  return mergedItems
 }
 
 // How to merge priceTags?
 
 // How to merge items with attachments?
-const shouldMerge = !item.attachmentOferings.length
 
 export default mergeItems
