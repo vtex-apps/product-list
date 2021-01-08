@@ -22,13 +22,9 @@ const mergeItems = (arr: Item[]) => {
       groupedItems[uniqueId].reduce(
         (mergedItem, item) => ({
           quantity: mergedItem.quantity + item.quantity,
-          sellingPrice: mergedItem.sellingPrice,
-          priceTags: mergedItem.priceTags,
         }),
         {
           quantity: 0,
-          sellingPrice: 0,
-          priceTags: [],
         }
       )
       // priceTags: groupedItems[uniqueId].reduce((tags, tag) => , []) // Merge by identifier
