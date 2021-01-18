@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useRef, useState } from 'react'
+
 import { useOnView } from './hooks/useOnView'
 
 interface Props {
@@ -55,4 +56,3 @@ const LazyRender: FunctionComponent<Props> = ({
 }
 
 export default LazyRender
-
