@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Performance improve on change/laze items rendering.
+- Performance improve on change/lazy items rendering.
 
 ## [0.27.2] - 2020-12-21
 

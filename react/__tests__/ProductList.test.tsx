@@ -1,5 +1,3 @@
-jest.mock("../LazyRender", () => ({ children } = { children: undefined }) => children);
-
 import type { FunctionComponent } from 'react'
 import React from 'react'
 import { render, fireEvent } from '@vtex/test-tools/react'
@@ -15,6 +13,10 @@ import ProductVariations from '../ProductVariations'
 import QuantitySelector from '../QuantitySelector'
 import RemoveButton from '../RemoveButton'
 import UnitPrice from '../UnitPrice'
+
+jest.mock('../LazyRender', () => ({ children } = { children: undefined }) =>
+  children
+)
 
 const ListItem: FunctionComponent = () => (
   <div>
