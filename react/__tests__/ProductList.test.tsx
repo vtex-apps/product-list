@@ -1,3 +1,5 @@
+jest.mock("../LazyRender", () => ({ children } = { children: undefined }) => children);
+
 import type { FunctionComponent } from 'react'
 import React from 'react'
 import { render, fireEvent } from '@vtex/test-tools/react'
