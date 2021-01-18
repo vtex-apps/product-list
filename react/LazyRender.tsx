@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useRef, useState } from 'react'
-
-import { useOnView } from './hooks/useOnView'
+import type { FunctionComponent } from 'react'
+import React, { useRef, useState } from 'react'
+import { useOnView } from 'vtex.on-view'
 
 interface Props {
   height?: number

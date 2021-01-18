@@ -27,7 +27,6 @@ interface Props {
     item?: ItemWithIndex
   ) => void
   onRemove: (uniqueId: string, item?: ItemWithIndex) => void
-  renderOnView: boolean
   onSetManualPrice: (price: number, itemIndex: number) => void
 }
 
@@ -154,9 +153,10 @@ const ProductList: React.FC<Props> = (props) => {
           />
         </div>
       ) : null}
-      {unavailableItems.map((item) => { 
+      {unavailableItems.map((item) => {
         const { userType, allowManualPrice, children } = props
-        const shouldAllowManualPrice = allowManualPrice && userType === CALL_CENTER_OPERATOR
+        const shouldAllowManualPrice =
+          allowManualPrice && userType === CALL_CENTER_OPERATOR
 
         return (
           <ItemContextWrapper
@@ -182,9 +182,11 @@ const ProductList: React.FC<Props> = (props) => {
           />
         </div>
       ) : null}
-      {availableItems.map(item => {
+      {availableItems.map((item) => {
         const { userType, allowManualPrice, children } = props
-        const shouldAllowManualPrice = allowManualPrice && userType === CALL_CENTER_OPERATOR
+        const shouldAllowManualPrice =
+          allowManualPrice && userType === CALL_CENTER_OPERATOR
+
         return (
           <ItemContextWrapper
             key={`${item.uniqueId}-${item.sellingPrice}`}
