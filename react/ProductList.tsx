@@ -28,6 +28,8 @@ interface Props {
   ) => void
   onRemove: (uniqueId: string, item?: ItemWithIndex) => void
   onSetManualPrice: (price: number, itemIndex: number) => void
+  lazyRenderHeight: number
+  lazyRenderOffset: number
 }
 
 interface ItemWithIndex extends Item {
@@ -48,6 +50,8 @@ interface ItemWrapperProps
   children: ReactNode
   shouldAllowManualPrice: boolean
   onSetManualPrice: (price: number, itemIndex: number) => void
+  lazyRenderHeight: number
+  lazyRenderOffset: number
 }
 
 const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
@@ -59,6 +63,8 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   children,
   shouldAllowManualPrice,
   onSetManualPrice,
+  lazyRenderHeight,
+  lazyRenderOffset,
 }) {
   const context = useMemo(
     () => ({
@@ -84,7 +90,7 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   )
 
   return (
-    <LazyRender height={100} offset={300}>
+    <LazyRender height={lazyRenderHeight} offset={lazyRenderOffset}>
       <ItemContextProvider value={context}>{children}</ItemContextProvider>
     </LazyRender>
   )
@@ -122,7 +128,12 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
 }
 
 const ProductList: React.FC<Props> = (props) => {
-  const { items, itemCountMode } = props
+  const {
+    items,
+    itemCountMode,
+    lazyRenderHeight = 100,
+    lazyRenderOffset = 300,
+  } = props
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -165,6 +176,8 @@ const ProductList: React.FC<Props> = (props) => {
             itemIndex={item.index}
             shouldAllowManualPrice={shouldAllowManualPrice}
             {...props}
+            lazyRenderHeight={lazyRenderHeight}
+            lazyRenderOffset={lazyRenderOffset}
           >
             {children}
           </ItemContextWrapper>
@@ -194,6 +207,8 @@ const ProductList: React.FC<Props> = (props) => {
             itemIndex={item.index}
             shouldAllowManualPrice={shouldAllowManualPrice}
             {...props}
+            lazyRenderHeight={lazyRenderHeight}
+            lazyRenderOffset={lazyRenderOffset}
           >
             {children}
           </ItemContextWrapper>

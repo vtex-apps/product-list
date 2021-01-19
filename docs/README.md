@@ -270,6 +270,8 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | Prop name              | Type      | Description                                                                                                                                                                                                                                     | Default value |
 | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `itemCountMode` | `enum` | Quantity badge behavior when displaying the number of total items added in Minicart. Possible values are: `total`  (quantity badge displays the number of items added to the cart), `distinct` (quantity badge only displays the number of different products added to the cart), `totalAvailable`  (quantity badge displays the number of available items added to the cart), and `distinctAvailable` (quantity badge only displays the number of different and available products added to the cart). | `distinct` |
+| `lazyRenderHeight` | `number` | The height (px) of each item's loading element. | `100` |
+| `lazyRenderOffset` | `number` | The distance (px) to the bottom of the viewport that each item should be at the moment of it's render. | `300` |
 
 ### `message` props
 
