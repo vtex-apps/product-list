@@ -28,8 +28,8 @@ interface Props {
   ) => void
   onRemove: (uniqueId: string, item?: ItemWithIndex) => void
   onSetManualPrice: (price: number, itemIndex: number) => void
-  lazyRenderHeight: number
-  lazyRenderOffset: number
+  lazyRenderHeight?: number
+  lazyRenderOffset?: number
 }
 
 interface ItemWithIndex extends Item {
@@ -50,8 +50,8 @@ interface ItemWrapperProps
   children: ReactNode
   shouldAllowManualPrice: boolean
   onSetManualPrice: (price: number, itemIndex: number) => void
-  lazyRenderHeight: number
-  lazyRenderOffset: number
+  lazyRenderHeight?: number
+  lazyRenderOffset?: number
 }
 
 const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
