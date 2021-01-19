@@ -14,6 +14,10 @@ import QuantitySelector from '../QuantitySelector'
 import RemoveButton from '../RemoveButton'
 import UnitPrice from '../UnitPrice'
 
+jest.mock('../LazyRender', () => ({ children } = { children: undefined }) =>
+  children
+)
+
 const ListItem: FunctionComponent = () => (
   <div>
     <AvailabilityMessage layout="cols" />
