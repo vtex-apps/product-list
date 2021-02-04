@@ -1,0 +1,27 @@
+  
+{
+  "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
+  "store/product-list.pricePerUnit.measurementUnit": "per {unitMultiplier} {measurementUnit}.",
+  "store/product-list.availableItems": "{quantity, plural, one {# producte disponible} other {# productes disponibles}}",
+  "store/product-list.unavailableItems": "{quantity, plural, one {# producte no disponible} other {# productes no disponibles}}",
+  "store/product-list.message.cantBeDelivered": "Aquest producte no es pot lliurar a l'adreça proporcionada.",
+  "store/product-list.message.noLongerAvailable": "Aquest producte no està disponible actualment.",
+  "store/product-list.message.remove": "retirar",
+  "store/product-list.quantity-selector.remove": "Retirar",
+  "store/product-list.quantity-label": "{quantity} un.",
+  "store/product-list.delete-button.default-label": "Eliminar Producte",
+  "store/product-list.priceChanged": "Modificat",
+  "store/product-list.priceOptions": "Opcions",
+  "store/product-list.changePrice": "Canvi de preu",
+  "store/product-list.revertToOriginal": "Tornar a l'original",
+  "store/product-list.originalPrice": "Preu original",
+  "store/product-list.changeTo": "Canviar a",
+  "store/product-list.manualPricePlaceholder": "Introduïu un valor monetari",
+  "store/product-list.applyManualPrice": "Aplicar",
+  "store/product-list.quantitySelector.label": "{quantity} {measurementUnit}",
+  "store/product-list.quantitySelector.maxValueLabel": "{quantity} {measurementUnit} +",
+  "store/product-list.quantityUnitMultiplierMismatch": "Aquest producte es ven per fraccions de {unitMultiplier}{measurementUnit}. Per tant, la quantitat ingressada s'ha arrodonit a {roundedValue}{measurementUnit}.",
+  "store/product-list.quantityStepper.label": "Quantitat de productes",
+  "store/product-list.quantityStepper.increaseQuantity": "Augmentar la quantitat",
+  "store/product-list.quantityStepper.decreaseQuantity": "Quantitat decreixent"
+}
