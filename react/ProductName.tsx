@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 import React from 'react'
-import { Loading } from 'vtex.render-runtime'
+import { Loading, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { useItemContext } from './ItemContext'
@@ -10,6 +10,7 @@ const CSS_HANDLES = ['productName'] as const
 
 const ProductName: FunctionComponent = () => {
   const { item, loading } = useItemContext()
+  const { rootPath = '' } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
@@ -22,7 +23,7 @@ const ProductName: FunctionComponent = () => {
       className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
         handles.productName
       } ${opaque(item.availability)}`}
-      href={item.detailUrl || undefined}
+      href={item.detailUrl ? rootPath + item.detailUrl : undefined}
     >
       {item.name}
     </a>
