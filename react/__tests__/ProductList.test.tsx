@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 import React from 'react'
-import { render, fireEvent } from '@vtex/test-tools/react'
+import { render, fireEvent, screen } from '@vtex/test-tools/react'
+import { useRuntime } from 'vtex.render-runtime'
 
 import { items } from '../__fixtures__/items'
 import AvailabilityMessage from '../AvailabilityMessage'
@@ -116,5 +117,53 @@ describe('Product List', () => {
     )
 
     expect(queryByText(/cannot be delivered/)).toBeTruthy()
+  })
+
+  it('should render the product detailUrl with correct rootPath', () => {
+    const { unmount } = render(
+      <ProductList
+        items={[items[0]]}
+        loading={false}
+        onQuantityChange={() => {}}
+        onRemove={() => {}}
+      >
+        <ListItem />
+      </ProductList>
+    )
+
+    let [productImageLink, productNameLink] = screen.getAllByRole('link')
+
+    expect(productImageLink).toHaveAttribute('href', '/work-shirt/p')
+    expect(productImageLink).toHaveClass('productImageAnchor')
+    expect(productNameLink).toHaveAttribute('href', '/work-shirt/p')
+    expect(productNameLink).toHaveClass('productName')
+
+    const mockedUseRuntime = useRuntime as jest.MockedFunction<
+      () => ReturnType<typeof useRuntime>
+    >
+
+    // @ts-expect-error: we are not mocking everything on purpose
+    mockedUseRuntime.mockReturnValue({
+      rootPath: '/pt-br',
+    })
+
+    unmount()
+
+    render(
+      <ProductList
+        items={[items[0]]}
+        loading={false}
+        onQuantityChange={() => {}}
+        onRemove={() => {}}
+      >
+        <ListItem />
+      </ProductList>
+    )
+    ;[productImageLink, productNameLink] = screen.getAllByRole('link')
+
+    expect(productImageLink).toHaveAttribute('href', '/pt-br/work-shirt/p')
+    expect(productImageLink).toHaveClass('productImageAnchor')
+    expect(productNameLink).toHaveAttribute('href', '/pt-br/work-shirt/p')
+    expect(productNameLink).toHaveClass('productName')
   })
 })

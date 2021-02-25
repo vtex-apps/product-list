@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 import React from 'react'
-import { Loading } from 'vtex.render-runtime'
+import { Loading, useRuntime } from 'vtex.render-runtime'
 import type { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -41,6 +41,7 @@ interface ImageProps {
 const Image: FunctionComponent<ImageProps> = ({ width = 96 }) => {
   const { item, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
+  const { rootPath = '' } = useRuntime()
 
   if (loading) {
     return <Loading />
@@ -58,7 +59,7 @@ const Image: FunctionComponent<ImageProps> = ({ width = 96 }) => {
     >
       <a
         className={handles.productImageAnchor}
-        href={item.detailUrl || undefined}
+        href={item.detailUrl ? rootPath + item.detailUrl : undefined}
       >
         {imageUrl ? (
           <img
