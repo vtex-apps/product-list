@@ -16,20 +16,21 @@ type TotalItemsType =
   | 'distinctAvailable'
 
 interface Props {
-  allowManualPrice: boolean
+  allowManualPrice?: boolean
   items: ItemWithIndex[]
   loading: boolean
-  userType: string
-  itemCountMode: TotalItemsType
+  userType?: string
+  itemCountMode?: TotalItemsType
   onQuantityChange: (
     uniqueId: string,
     value: number,
     item?: ItemWithIndex
   ) => void
   onRemove: (uniqueId: string, item?: ItemWithIndex) => void
-  onSetManualPrice: (price: number, itemIndex: number) => void
+  onSetManualPrice?: (price: number, itemIndex: number) => void
   lazyRenderHeight?: number
   lazyRenderOffset?: number
+  children: ReactNode
 }
 
 interface ItemWithIndex extends Item {
@@ -49,7 +50,7 @@ interface ItemWrapperProps
   loading: boolean
   children: ReactNode
   shouldAllowManualPrice: boolean
-  onSetManualPrice: (price: number, itemIndex: number) => void
+  onSetManualPrice?: (price: number, itemIndex: number) => void
   lazyRenderHeight?: number
   lazyRenderOffset?: number
 }
@@ -76,7 +77,7 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
         onQuantityChange(item.uniqueId, value, item),
       onRemove: () => onRemove(item.uniqueId, item),
       onSetManualPrice: (price: number, index: number) =>
-        onSetManualPrice(price, index),
+        onSetManualPrice?.(price, index),
     }),
     [
       item,
@@ -127,13 +128,19 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
   return arr.length
 }
 
-const ProductList: React.FC<Props> = (props) => {
+const ProductList = memo<Props>(function ProductList(props) {
   const {
     items,
-    itemCountMode,
+    itemCountMode = 'distinct',
     lazyRenderHeight = 100,
     lazyRenderOffset = 300,
+    userType = 'STORE_USER',
+    allowManualPrice = false,
+    children,
   } = props
+
+  const shouldAllowManualPrice =
+    allowManualPrice && userType === CALL_CENTER_OPERATOR
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -165,10 +172,6 @@ const ProductList: React.FC<Props> = (props) => {
         </div>
       ) : null}
       {unavailableItems.map((item) => {
-        const { userType, allowManualPrice, children } = props
-        const shouldAllowManualPrice =
-          allowManualPrice && userType === CALL_CENTER_OPERATOR
-
         return (
           <ItemContextWrapper
             key={`${item.uniqueId}-${item.sellingPrice}`}
@@ -196,10 +199,6 @@ const ProductList: React.FC<Props> = (props) => {
         </div>
       ) : null}
       {availableItems.map((item) => {
-        const { userType, allowManualPrice, children } = props
-        const shouldAllowManualPrice =
-          allowManualPrice && userType === CALL_CENTER_OPERATOR
-
         return (
           <ItemContextWrapper
             key={`${item.uniqueId}-${item.sellingPrice}`}
@@ -216,6 +215,6 @@ const ProductList: React.FC<Props> = (props) => {
       })}
     </div>
   )
-}
+})
 
-export default memo(ProductList)
+export default ProductList
