@@ -3,7 +3,11 @@ import React, { createContext, useContext } from 'react'
 import type { Item } from 'vtex.checkout-graphql'
 
 interface Context {
+  /**
+   * Reference item used to display the product base info
+   */
   item: Item
+  items: Item[]
   itemIndex: number
   loading: boolean
   shouldAllowManualPrice: boolean
