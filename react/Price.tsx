@@ -24,8 +24,13 @@ const Price: React.FC<PriceProps> = ({
   textAlign = 'left',
   showListPrice = true,
 }) => {
-  const { item, loading } = useItemContext()
+  const { item: referenceItem, items, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
+
+  const sellingPrice = items.reduce(
+    (price, item) => (item.sellingPrice ?? 0) * item.quantity + price,
+    0
+  )
 
   if (loading) {
     return <Loading />
@@ -33,34 +38,32 @@ const Price: React.FC<PriceProps> = ({
 
   return (
     <div
-      className={`${opaque(item.availability)} ${styles.price} ${
+      className={`${opaque(items[0].availability)} ${styles.price} ${
         handles.productPriceContainer
       } ${parseTextAlign(textAlign)}`}
     >
-      {item.listPrice && item.listPrice !== item.price && showListPrice && (
-        <div
-          id={`list-price-${item.id}`}
-          className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
-        >
-          <FormattedCurrency
-            value={
-              (item.listPrice * (item.unitMultiplier || 1) * item.quantity) /
-              100
-            }
-          />
-        </div>
-      )}
+      {referenceItem.listPrice != null &&
+        referenceItem.listPrice !== referenceItem.price &&
+        showListPrice && (
+          <div
+            id={`list-price-${referenceItem.id}`}
+            className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
+          >
+            <FormattedCurrency
+              value={
+                (referenceItem.listPrice *
+                  (referenceItem.unitMultiplier ?? 1) *
+                  referenceItem.quantity) /
+                100
+              }
+            />
+          </div>
+        )}
       <div
-        id={`price-${item.id}`}
+        id={`price-${referenceItem.id}`}
         className={`${handles.productPrice} div fw6 fw5-m`}
       >
-        <FormattedPrice
-          value={
-            item.sellingPrice != null
-              ? (item.sellingPrice * item.quantity) / 100
-              : item.sellingPrice
-          }
-        />
+        <FormattedPrice value={sellingPrice / 100} />
       </div>
     </div>
   )
