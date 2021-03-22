@@ -27,5 +27,13 @@
     "props": {
       "marginTop": "2"
     }
+  },
+  "flex-layout.row#price-discounts": {
+    "children": ["price-discounts"],
+    "props": {
+      "marginTop": "6",
+      "preventHorizontalStretch": true,
+      "preventVerticalStretch": true
+    }
   }
 }

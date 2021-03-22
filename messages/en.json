@@ -22,5 +22,9 @@
   "store/product-list.quantityUnitMultiplierMismatch": "This product is sold by fractions of {unitMultiplier}{measurementUnit}. Given that, the inserted quantity has been rounded to {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "Product quantity",
   "store/product-list.quantityStepper.increaseQuantity": "Increase quantity",
-  "store/product-list.quantityStepper.decreaseQuantity": "Decrease quantity"
+  "store/product-list.quantityStepper.decreaseQuantity": "Decrease quantity",
+  "store/product-list.priceDiscounts.freeItems": "You get {totalItems, plural, one {one item} other {# items}} for <b>free</b>!",
+  "store/product-list.priceDiscounts.nominalDiscounts": "You get a <b>{price} discount</b>!",
+  "store/product-list.priceDetails.title": "Price details:",
+  "store/product-list.priceDetails.details": "{quantity} {unit, select, un {un.} other {{unit}}} for {isFree, select, true {<b>free</b>} other {{isApproximation, select, true {aprox. } other {}}{price} each {unit, select, un {} other {{unit}.}}}}"
 }

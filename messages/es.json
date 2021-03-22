@@ -22,5 +22,9 @@
   "store/product-list.quantityUnitMultiplierMismatch": "Este producto se vende por fracciones de {unitMultiplier}{measurementUnit}. Por lo tanto, la cantidad ingresada se ha redondeado a {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "Cantidad de producto",
   "store/product-list.quantityStepper.increaseQuantity": "Aumentar la cantidad",
-  "store/product-list.quantityStepper.decreaseQuantity": "Cantidad decreciente"
+  "store/product-list.quantityStepper.decreaseQuantity": "Cantidad decreciente",
+  "store/product-list.priceDiscounts.freeItems": "Obtienes {totalItems, plural, one {un artículo} other {# artículos}} <b>GRATIS</b>!",
+  "store/product-list.priceDiscounts.nominalDiscounts": "Obtienes <b>{price} descuento</b>!",
+  "store/product-list.priceDetails.title": "Detalles del precio",
+  "store/product-list.priceDetails.details": "{quantity} {unit, select, un {un.} other {{unit}}} {isFree, select, true {<b>gratis</b>} other {por {isApproximation, select, true {aprox. } other {}}{price} cada {unit, select, un {} other {{unit}}}}}"
 }

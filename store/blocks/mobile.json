@@ -27,7 +27,8 @@
       "flex-layout.row#quantity-selector.mobile",
       "flex-layout.row#unit-price.mobile",
       "flex-layout.row#price.mobile",
-      "flex-layout.row#message.mobile"
+      "flex-layout.row#message.mobile",
+      "flex-layout.row#price-discounts"
     ],
     "props": {
       "width": "grow"

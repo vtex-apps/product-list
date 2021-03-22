@@ -84,6 +84,9 @@
       }
     }
   },
+  "price-discounts": {
+    "component": "ProductPriceDiscounts"
+  },
   "remove-button": {
     "component": "RemoveButton",
     "preview": {
