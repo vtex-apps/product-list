@@ -8,6 +8,7 @@ declare module 'vtex.styleguide' {
   export const Button: ComponentType<any>
   export const Dropdown: ComponentType<any>
   export const IconDelete: ComponentType<any>
+  export const IconInfo: ComponentType<any>
   export const Input: ComponentType<InputProps>
   export const InputCurrency: ComponentType<any>
   export const Link: ComponentType<any>

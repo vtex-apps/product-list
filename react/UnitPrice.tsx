@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { FormattedCurrency } from 'vtex.format-currency'
 import { useCssHandles } from 'vtex.css-handles'
+import { Tooltip, IconInfo } from 'vtex.styleguide'
 
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
@@ -29,27 +30,66 @@ type DisplayUnitListPriceType = 'showWhenDifferent' | 'notShow'
 
 type UnitPriceType = 'price' | 'sellingPrice'
 
+interface UnitPriceMessageProps {
+  unitPrice: number
+  measurementUnit?: string | null
+  unitMultiplier: number
+  isApproximation?: boolean
+}
+
+const UnitPriceMessage: React.VFC<UnitPriceMessageProps> = ({
+  unitPrice,
+  measurementUnit,
+  unitMultiplier,
+  isApproximation = false,
+}) => {
+  const handles = useCssHandles(CSS_HANDLES)
+
+  const unitPricePerUnit =
+    unitMultiplier === 1 ? unitPrice : unitPrice / unitMultiplier
+
+  return (
+    <span style={{ textDecoration: 'inherit' }}>
+      <FormattedMessage
+        id="store/product-list.pricePerUnit"
+        values={{
+          isApproximation: isApproximation || unitMultiplier !== 1,
+          price: (
+            <span
+              className={classnames(handles.unitPricePerUnitCurrency, 'dib')}
+              style={{ textDecoration: 'inherit' }}
+            >
+              <FormattedCurrency value={unitPricePerUnit / 100} />
+            </span>
+          ),
+          measurementUnit,
+        }}
+      />
+    </span>
+  )
+}
+
 const UnitPrice: React.FC<UnitPriceProps> = ({
   textAlign = 'left',
   unitPriceType = 'sellingPrice',
   unitPriceDisplay = 'default',
   displayUnitListPrice = 'notShow',
 }) => {
-  const { item, loading } = useItemContext()
+  const { item: referenceItem, items, loading } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
-  const intl = useIntl()
   const isManualPriceDefined =
-    item.sellingPrice === item.manualPrice && item.sellingPrice !== item.price
+    referenceItem.sellingPrice === referenceItem.manualPrice &&
+    referenceItem.sellingPrice !== referenceItem.price
 
   if (loading) {
     return null
   }
 
-  const unitPrice = item[unitPriceType] ?? 0
+  const unitPrice = referenceItem[unitPriceType] ?? 0
 
   if (
     !(
-      (item.quantity > 1 || unitPriceDisplay === 'always') &&
+      (referenceItem.quantity > 1 || unitPriceDisplay === 'always') &&
       unitPrice > 0 &&
       !isManualPriceDefined
     )
@@ -57,47 +97,111 @@ const UnitPrice: React.FC<UnitPriceProps> = ({
     return null
   }
 
+  const totalPrice = items.reduce(
+    (total, item) => total + (item.sellingPrice ?? 0) * item.quantity,
+    0
+  )
+
+  const totalQuantity = items.reduce((total, item) => total + item.quantity, 0)
+
+  const averageUnitPrice = Math.floor(totalPrice / totalQuantity)
+
+  const isAveragePriceLower = averageUnitPrice < unitPrice
+
   return (
     <div
-      id={`unit-price-${item.id}`}
+      id={`unit-price-${referenceItem.id}`}
       className={classnames(
         handles.unitPriceContainer,
-        opaque(item.availability),
+        opaque(referenceItem.availability),
         parseTextAlign(textAlign),
         // kept for backwards compatibility
         styles.quantity,
         styles.unitPrice,
-        't-mini c-muted-1 lh-title'
+        't-mini c-muted-1 lh-title flex flex-column justify-center'
       )}
     >
-      {item.listPrice &&
-        unitPrice !== item.listPrice &&
-        displayUnitListPrice === 'showWhenDifferent' && (
-          <div className={`strike ${handles.unitListPrice}`}>
-            <FormattedCurrency value={item.listPrice / 100} />
-          </div>
-        )}
-      <FormattedMessage
-        id="store/product-list.pricePerUnit"
-        values={{
-          price: (
-            <div className={`${handles.unitPricePerUnitCurrency} dib`}>
-              <FormattedCurrency value={unitPrice / 100} />
+      <div className={classnames({ strike: isAveragePriceLower })}>
+        {!isAveragePriceLower &&
+          referenceItem.listPrice &&
+          unitPrice !== referenceItem.listPrice &&
+          displayUnitListPrice === 'showWhenDifferent' && (
+            <div className={`strike ${handles.unitListPrice}`}>
+              <FormattedCurrency value={referenceItem.listPrice / 100} />
             </div>
-          ),
-          perMeasurementUnit: (
-            <div className={`${handles.unitPriceMeasurementUnit} dib`}>
-              <FormattedMessage
-                id="store/product-list.pricePerUnit.measurementUnit"
-                values={{
-                  unitMultiplier: intl.formatNumber(item.unitMultiplier ?? 1),
-                  measurementUnit: item.measurementUnit,
-                }}
-              />
-            </div>
-          ),
-        }}
-      />
+          )}
+        <UnitPriceMessage
+          unitPrice={unitPrice}
+          measurementUnit={referenceItem.measurementUnit}
+          unitMultiplier={referenceItem.unitMultiplier ?? 1}
+        />
+      </div>
+
+      {isAveragePriceLower && (
+        <div className="flex items-center mt2">
+          <UnitPriceMessage
+            unitPrice={averageUnitPrice}
+            measurementUnit={referenceItem.measurementUnit}
+            unitMultiplier={referenceItem.unitMultiplier ?? 1}
+            isApproximation
+          />
+          <Tooltip
+            label={
+              <>
+                <p className="mv0 f7" style={{ lineHeight: '20px' }}>
+                  <FormattedMessage id="store/product-list.priceDetails.title" />
+                </p>
+
+                <ul className="list ma0 pa0 f7" style={{ lineHeight: '20px' }}>
+                  {items.map((item) => {
+                    const multiplier = item.unitMultiplier ?? 1
+                    const quantity = item.quantity * (item.unitMultiplier ?? 1)
+                    const unit = item.measurementUnit ?? 'un.'
+
+                    const sellingPrice = item.sellingPrice ?? 0
+                    const isFree =
+                      item.sellingPrice == null || item.sellingPrice === 0
+
+                    const price =
+                      multiplier !== 1
+                        ? sellingPrice / multiplier
+                        : sellingPrice
+
+                    return (
+                      <li key={item.sellingPrice}>
+                        <span>
+                          <FormattedMessage
+                            id="store/product-list.priceDetails.details"
+                            values={{
+                              quantity,
+                              unit,
+                              price: <FormattedCurrency value={price / 100} />,
+                              isFree,
+                              isApproximation: multiplier !== 1,
+                              // eslint-disable-next-line react/display-name
+                              b: (chunks: any) => {
+                                return <span className="b ttu">{chunks}</span>
+                              },
+                            }}
+                          />
+                        </span>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </>
+            }
+          >
+            <button
+              className="c-action-primary bn bg-transparent pa0 ml3 flex items-center"
+              type="button"
+              aria-label="More information"
+            >
+              <IconInfo />
+            </button>
+          </Tooltip>
+        </div>
+      )}
     </div>
   )
 }

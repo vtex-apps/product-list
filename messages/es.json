@@ -1,6 +1,5 @@
 {
-  "store/product-list.pricePerUnit": "{price} {perMeasurementUnit}",
-  "store/product-list.pricePerUnit.measurementUnit": "por {unitMultiplier} {measurementUnit}.",
+  "store/product-list.pricePerUnit": "{isApproximation, select, true {Aprox.} other {}} {price} por {measurementUnit, select, un {un.} other {{measurementUnit}}}",
   "store/product-list.availableItems": "{quantity, plural, one {# producto disponible} other {# productos disponibles}}",
   "store/product-list.unavailableItems": "{quantity, plural, one {# producto no disponible} other {# productos no disponibles}}",
   "store/product-list.message.cantBeDelivered": "Este producto no se puede entregar en la dirección proporcionada.",
