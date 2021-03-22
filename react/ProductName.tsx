@@ -20,10 +20,11 @@ const ProductName: FunctionComponent = () => {
   return (
     <a
       id={`name-${item.id}`}
-      className={`c-on-base t-title lh-copy fw6 no-underline fw5-m ${
+      className={`c-on-base t-title lh-copy fw6 no-underline fw5-m mr-auto ${
         handles.productName
       } ${opaque(item.availability)}`}
       href={item.detailUrl ? rootPath + item.detailUrl : undefined}
+      style={{ width: 'auto' }}
     >
       {item.name}
     </a>
