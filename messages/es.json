@@ -7,7 +7,7 @@
   "store/product-list.message.noLongerAvailable": "Este producto no está disponible actualmente.",
   "store/product-list.message.remove": "retirar",
   "store/product-list.quantity-selector.remove": "Retirar",
-  "store/product-list.quantity-label": "{quantity} un.",
+  "store/product-list.quantity-label": "{quantity} {measurementUnit, select, un {un.} other {{measurementUnit}}}",
   "store/product-list.delete-button.default-label": "Eliminar Producto",
   "store/product-list.priceChanged": "Cambiado",
   "store/product-list.priceOptions": "Opciones",

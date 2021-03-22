@@ -7,7 +7,7 @@
   "store/product-list.message.noLongerAvailable": "This product is no longer available.",
   "store/product-list.message.remove": "remove",
   "store/product-list.quantity-selector.remove": "Remove",
-  "store/product-list.quantity-label": "{quantity} un.",
+  "store/product-list.quantity-label": "{quantity} {measurementUnit, select, un {un.} other{{measurementUnit}}}",
   "store/product-list.delete-button.default-label": "Remove Product",
   "store/product-list.priceChanged": "Changed",
   "store/product-list.priceOptions": "Price options",

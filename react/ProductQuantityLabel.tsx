@@ -14,7 +14,10 @@ const ProductQuantityLabel: React.FC = () => {
     <span className={`${cssHandles.productQuantityLabel} c-muted-1 t-body`}>
       <FormattedMessage
         id="store/product-list.quantity-label"
-        values={{ quantity: item.quantity }}
+        values={{
+          quantity: item.quantity * (item.unitMultiplier ?? 1),
+          measurementUnit: item.measurementUnit ?? 'un',
+        }}
       />
     </span>
   )
