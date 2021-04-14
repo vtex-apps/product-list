@@ -139,12 +139,14 @@ const QuantityStepper: VFC<Props> = ({
     <div className="flex">
       <button
         className={classnames(
+          styles.quantityButton,
           'pa4 ba br2 br--left flex items-center justify-center',
           {
             'c-muted-1 b--muted-4 hover-b--muted-3 bg-muted-5 hover-bg-muted-4 pointer': !disabled,
             'bg-muted-5 c-muted-3 b--muted-4': disabled,
           }
         )}
+        data-quantity-action="decrease"
         aria-label={intl.formatMessage(messages.decreaseQuantity)}
         disabled={disabled}
         onClick={handleDecrease}
@@ -167,7 +169,9 @@ const QuantityStepper: VFC<Props> = ({
         )}
       >
         <input
-          className={classnames('flex-auto h-100 bn bg-transparent', {
+          className={classnames(
+            styles.quantityInput,
+            'flex-auto h-100 bn bg-transparent', {
             tc: measurementUnit === 'un',
             tr: measurementUnit !== 'un',
           })}
@@ -184,12 +188,14 @@ const QuantityStepper: VFC<Props> = ({
       </div>
       <button
         className={classnames(
+          styles.quantityButton,
           'pa4 ba br2 br--right flex items-center justify-center',
           {
             'c-action-primary b--muted-4 hover-b--muted-3 bg-base hover-bg-muted-5 pointer': !disabled,
             'bg-muted-5 c-muted-3 b--muted-4': disabled,
           }
         )}
+        data-quantity-action="increase"
         aria-label={intl.formatMessage(messages.increaseQuantity)}
         disabled={disabled}
         onClick={handleIncrease}
