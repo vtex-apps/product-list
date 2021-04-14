@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- New CSS Handle `quantityButton`.
+- New CSS Handle `quantityInput`.
+- New data-attribute `data-quantity-action` in quantity buttons at `QuantityStepper` component.
+
 ## [0.28.2] - 2021-02-25
 ### Fixed
 - Product image component without rootPath in the URL
