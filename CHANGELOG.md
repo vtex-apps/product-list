@@ -9,8 +9,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - New CSS Handle `quantityButton`.
+- New CSS Handle `quantityButtonDecrease`.
+- New CSS Handle `quantityButtonIncrease`.
 - New CSS Handle `quantityInput`.
 - New data-attribute `data-quantity-action` in quantity buttons at `QuantityStepper` component.
+
+## [0.29.0] - 2021-04-26
+### Added
+- I18n Da, Fi, Ja, Ko and Ro.
+
+### Changed
+- Crowdin configuration file.
 
 ## [0.28.2] - 2021-02-25
 ### Fixed
