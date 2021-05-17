@@ -140,6 +140,7 @@ const QuantityStepper: VFC<Props> = ({
       <button
         className={classnames(
           styles.quantityButton,
+          styles.quantityButtonDecrease,
           'pa4 ba br2 br--left flex items-center justify-center',
           {
             'c-muted-1 b--muted-4 hover-b--muted-3 bg-muted-5 hover-bg-muted-4 pointer': !disabled,
@@ -189,6 +190,7 @@ const QuantityStepper: VFC<Props> = ({
       <button
         className={classnames(
           styles.quantityButton,
+          styles.quantityButtonIncrease,
           'pa4 ba br2 br--right flex items-center justify-center',
           {
             'c-action-primary b--muted-4 hover-b--muted-3 bg-base hover-bg-muted-5 pointer': !disabled,
