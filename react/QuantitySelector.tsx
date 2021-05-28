@@ -27,12 +27,11 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default', showBultAsUnit = false
   if (loading) {
     return <Loading />
   }
-
+  let unitMultiplier = item.unitMultiplier ?? undefined
+  if (showBultAsUnit){
+    unitMultiplier = 1
+  }
   if (mode === 'stepper') {
-    let unitMultiplier = item.unitMultiplier ?? undefined
-    if (showBultAsUnit){
-      unitMultiplier = 1
-    }
     return (
       <div
         className={classnames(
@@ -70,7 +69,7 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default', showBultAsUnit = false
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
         disabled={item.availability !== AVAILABLE}
-        unitMultiplier={item.unitMultiplier ?? undefined}
+        unitMultiplier={unitMultiplier}
         measurementUnit={item.measurementUnit ?? undefined}
       />
     </div>
