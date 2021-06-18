@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "product-list",
-  "version": "0.29.1",
+  "version": "0.29.1-beta.1",
   "title": "Product List",
   "description": "Product List",
   "defaultLocale": "pt-BR",
@@ -23,7 +23,8 @@
     "vtex.order-manager": "0.x",
     "vtex.store-icons": "0.x",
     "vtex.styleguide": "9.x",
-    "vtex.on-view": "1.x"
+    "vtex.on-view": "1.x",
+    "vtex.session-client": "1.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
