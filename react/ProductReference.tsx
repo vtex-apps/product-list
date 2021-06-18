@@ -1,8 +1,8 @@
 import type { FunctionComponent } from 'react'
-import React, {useEffect, useMemo, useState} from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import {useFullSession} from 'vtex.session-client'
+import { useFullSession } from 'vtex.session-client'
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 import { IdentifierType } from './constants/Identifiers'
@@ -28,31 +28,31 @@ const ProductReference: FunctionComponent<Props> = (props) => {
   const [warehouse, setWarehouse] = useState<string>('');
   const [isSeller, setIsSeller] = useState<boolean>(false);
   const prodId = item.id;
-  const [balance, setBalance] = useState<Balance>({totalQuantity: 0, reservedQuantity: 0})
+  const [balance, setBalance] = useState<Balance>({ totalQuantity: 0, reservedQuantity: 0 })
   const getData = () => {
     fetch(`https://${window.location.hostname}/_v/status/${prodId}/${warehouse}`,
-        {
-          credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(json => {
-          console.log('json', json)
-          setBalance(json.balance[0])
-        })
+      {
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(json => {
+        console.log('json', json)
+        setBalance(json.balance[0])
+      })
   }
   const getUser = () => {
     fetch(`https://${window.location.hostname}/_v/user/${userId}`,
-        {
-          credentials: 'include'
-        })
-        .then(response => response.json())
-        // eslint-disable-next-line no-console
-        .then(user => {
-          if(user[0].agente === "VE") {
-            setWarehouse(user[0].sucursal)
-            setIsSeller(true);
-          }
-        })
+      {
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      // eslint-disable-next-line no-console
+      .then(user => {
+        if (user[0].agente === "VE") {
+          setWarehouse(user[0].sucursal)
+          setIsSeller(true);
+        }
+      })
   }
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -60,12 +60,12 @@ const ProductReference: FunctionComponent<Props> = (props) => {
     }
   }, [session])
   useEffect(() => {
-    if(userId) {
+    if (userId) {
       getUser()
     }
   }, [userId])
   useEffect(() => {
-    if(userId) {
+    if (userId) {
       getData()
     }
   }, [warehouse, item.id])
@@ -82,9 +82,8 @@ const ProductReference: FunctionComponent<Props> = (props) => {
   if (!identifierValue) return null
   return (
     <div
-      className={`c-on-base t-title lh-copy fw6 fw5-m ${
-        handles.productIdentifier
-      } ${opaque(item.availability)}`}
+      className={`c-on-base t-title lh-copy fw6 fw5-m ${handles.productIdentifier
+        } ${opaque(item.availability)}`}
     >
       {identifierLabel && (
         <span className={`${handles.productIdentifierLabelValue}`}>
@@ -94,7 +93,7 @@ const ProductReference: FunctionComponent<Props> = (props) => {
       <span className={`${handles.productIdentifierValue}`}>
         {identifierValue}
       </span>
-      <p>Disponibles:{balance.totalQuantity - balance.reservedQuantity ?? 0}</p>
+      { isSeller && <p>Disponibles:{balance.totalQuantity - balance.reservedQuantity ?? 0}</p> }
     </div>
   )
 }
