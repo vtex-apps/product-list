@@ -15,20 +15,21 @@ const MAX_ITEM_QUANTITY = 99999
 const CSS_HANDLES = ['quantitySelectorContainer'] as const
 
 type QuantitySelectorMode = 'default' | 'stepper'
+export type QuantitySelectorStepType = 'unitMultiplier' | 'singleUnit'
 
 interface Props {
   mode?: QuantitySelectorMode
-  showBultAsUnit?: boolean
+  quantitySelectorStep?: QuantitySelectorStepType
 }
 
-const QuantitySelector: VFC<Props> = ({ mode = 'default', showBultAsUnit = false }) => {
+const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep = 'unitMultiplier' }) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
   if (loading) {
     return <Loading />
   }
   let unitMultiplier = item.unitMultiplier ?? undefined
-  if (showBultAsUnit){
+  if (quantitySelectorStep === 'singleUnit') {
     unitMultiplier = 1
   }
   if (mode === 'stepper') {
