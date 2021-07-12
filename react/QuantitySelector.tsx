@@ -25,6 +25,7 @@ interface Props {
 const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep = 'unitMultiplier' }) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
+  
   if (loading) {
     return <Loading />
   }
