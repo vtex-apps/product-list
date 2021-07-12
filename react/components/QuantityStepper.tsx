@@ -2,6 +2,7 @@ import type { VFC } from 'react'
 import React, { useState, useEffect } from 'react'
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl'
 import classnames from 'classnames'
+import { useCssHandles } from 'vtex.css-handles'
 
 import VisuallyHidden from './VisuallyHidden'
 import IncreaseIcon from './IncreaseIcon'
@@ -9,6 +10,13 @@ import DecreaseIcon from './DecreaseIcon'
 import { parseDisplayValue } from './utils'
 import useQuantitySelectorState from './useQuantitySelectorState'
 import styles from './QuantityStepper.css'
+
+const CSS_HANDLES = [
+  'quantitySelectorWrap',
+  'quantitySelectorButton',
+  'quantitySelectorDecrease',
+  'quantitySelectorIncrease',
+] as const
 
 const messages = defineMessages({
   increaseQuantity: {
@@ -47,6 +55,8 @@ const QuantityStepper: VFC<Props> = ({
     measurementUnit,
     minValue: 1,
   })
+
+  const handles = useCssHandles(CSS_HANDLES)
 
   const [focused, setFocused] = useState(false)
 
@@ -136,12 +146,15 @@ const QuantityStepper: VFC<Props> = ({
   const uniqueId = id ? `product-list-quantity-stepper-${id}` : undefined
 
   return (
-    <div className="flex">
+    <div className={classnames(handles.quantitySelectorWrap, 'flex')}>
       <button
         className={classnames(
+          handles.quantitySelectorButton,
+          handles.quantitySelectorDecrease,
           'pa4 ba br2 br--left flex items-center justify-center',
           {
-            'c-muted-1 b--muted-4 hover-b--muted-3 bg-muted-5 hover-bg-muted-4 pointer': !disabled,
+            'c-muted-1 b--muted-4 hover-b--muted-3 bg-muted-5 hover-bg-muted-4 pointer':
+              !disabled,
             'bg-muted-5 c-muted-3 b--muted-4': disabled,
           }
         )}
@@ -184,9 +197,12 @@ const QuantityStepper: VFC<Props> = ({
       </div>
       <button
         className={classnames(
+          handles.quantitySelectorButton,
+          handles.quantitySelectorIncrease,
           'pa4 ba br2 br--right flex items-center justify-center',
           {
-            'c-action-primary b--muted-4 hover-b--muted-3 bg-base hover-bg-muted-5 pointer': !disabled,
+            'c-action-primary b--muted-4 hover-b--muted-3 bg-base hover-bg-muted-5 pointer':
+              !disabled,
             'bg-muted-5 c-muted-3 b--muted-4': disabled,
           }
         )}
