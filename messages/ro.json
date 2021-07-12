@@ -4,7 +4,7 @@
     "store/product-list.availableItems": "{quantity, plural, one {# produs disponibil} other {# produse disponibile}}",
     "store/product-list.unavailableItems": "{quantity, plural, one {# produs indisponibil} other {# produse indisponibile}}",
     "store/product-list.message.cantBeDelivered": "Acest produs nu poate fi livrat la adresa furnizată.",
-    "store/product-list.message.noLongerAvailable": "Acest produs nu este mai este disponibil.",
+    "store/product-list.message.noLongerAvailable": "Acest produs nu mai este disponibil.",
     "store/product-list.message.remove": "înlătură",
     "store/product-list.quantity-selector.remove": "Șterge",
     "store/product-list.quantity-label": "{quantity} un.",
