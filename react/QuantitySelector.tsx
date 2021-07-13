@@ -29,7 +29,7 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep =
   if (loading) {
     return <Loading />
   }
-  const unitMultiplier = quantitySelectorStep === 'singleUnit' ? 1 : item.unitMultiplier
+  const unitMultiplier = quantitySelectorStep === 'singleUnit' ? 1 : item.unitMultiplier ?? undefined
   if (mode === 'stepper') {
     return (
       <div
