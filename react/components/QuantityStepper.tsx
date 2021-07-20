@@ -12,7 +12,7 @@ import useQuantitySelectorState from './useQuantitySelectorState'
 import styles from './QuantityStepper.css'
 
 const CSS_HANDLES = [
-  'quantitySelectorWrap',
+  'quantitySelectorWrapper',
   'quantitySelectorButton',
   'quantitySelectorDecrease',
   'quantitySelectorIncrease',
