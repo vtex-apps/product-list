@@ -146,7 +146,7 @@ const QuantityStepper: VFC<Props> = ({
   const uniqueId = id ? `product-list-quantity-stepper-${id}` : undefined
 
   return (
-    <div className={classnames(handles.quantitySelectorWrap, 'flex')}>
+    <div className={`flex ${handles.quantitySelectorWrapper}`}>
       <button
         className={classnames(
           handles.quantitySelectorButton,
