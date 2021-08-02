@@ -15,19 +15,21 @@ const MAX_ITEM_QUANTITY = 99999
 const CSS_HANDLES = ['quantitySelectorContainer'] as const
 
 type QuantitySelectorMode = 'default' | 'stepper'
+export type QuantitySelectorStepType = 'unitMultiplier' | 'singleUnit'
 
 interface Props {
   mode?: QuantitySelectorMode
+  quantitySelectorStep?: QuantitySelectorStepType
 }
 
-const QuantitySelector: VFC<Props> = ({ mode = 'default' }) => {
+const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep = 'unitMultiplier' }) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
-
+  
   if (loading) {
     return <Loading />
   }
-
+  const unitMultiplier = quantitySelectorStep === 'singleUnit' ? 1 : item.unitMultiplier ?? undefined
   if (mode === 'stepper') {
     return (
       <div
@@ -44,7 +46,7 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default' }) => {
           maxValue={MAX_ITEM_QUANTITY}
           onChange={onQuantityChange}
           disabled={item.availability !== AVAILABLE}
-          unitMultiplier={item.unitMultiplier ?? undefined}
+          unitMultiplier={unitMultiplier}
           measurementUnit={item.measurementUnit ?? undefined}
         />
       </div>
@@ -66,7 +68,7 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default' }) => {
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
         disabled={item.availability !== AVAILABLE}
-        unitMultiplier={item.unitMultiplier ?? undefined}
+        unitMultiplier={unitMultiplier}
         measurementUnit={item.measurementUnit ?? undefined}
       />
     </div>
