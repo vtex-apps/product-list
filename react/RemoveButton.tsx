@@ -8,7 +8,7 @@ import { IconDelete } from 'vtex.store-icons'
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 
-const CSS_HANDLES = ['removeButtonContainer', 'removeButton'] as const
+const CSS_HANDLES = ['removeButtonContainer', 'removeButtonContainerGiftProduct', 'removeButton'] as const
 
 type DisplayMode = 'icon-button' | 'text-button'
 type Variation =
@@ -43,7 +43,7 @@ function RemoveButton(props: Props) {
 
   return (
     <div
-      className={`${handles.removeButtonContainer} ${opaque(
+      className={(item.sellingPrice == 0 ? `${handles.removeButtonContainerGiftProduct}`: `${handles.removeButtonContainer}`) + `${opaque(
         item.availability
       )}`}
     >
