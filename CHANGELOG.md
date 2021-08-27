@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- CSS Handles  `removeButtonGiftProduct` in  `RemoveButton` component
+- CSS Handles  `item` in  `RemoveButton` component
 
 ## [0.31.0] - 2021-08-02
 ### Added
