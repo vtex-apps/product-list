@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
-- item.price changed to item.sellingPrice in Price.tsx component conditional
+- List price is now displayed when discount is applied by a promotion
 
 ## [0.32.0] - 2021-09-29
 
