@@ -48,7 +48,8 @@ const ProductReference: FunctionComponent<Props> = (props) => {
       .then(response => response.json())
       // eslint-disable-next-line no-console
       .then(user => {
-        if (user[0].agente === "VE") {
+        console.log('user product list',user)
+        if(user[0].agente === "VE" || user[0].agente === "VC" || user[0].agente === "CO") {
           setWarehouse(user[0].sucursal)
           setIsSeller(true);
         }
