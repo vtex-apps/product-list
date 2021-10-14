@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.33.1] - 2021-10-14
+
 
 ### Fixed
 - List price is now displayed when discount is applied by a promotion
