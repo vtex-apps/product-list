@@ -1,14 +1,14 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Loading } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
+import { applyModifiers, useCssHandles } from 'vtex.css-handles'
 import { Button } from 'vtex.styleguide'
 import { IconDelete } from 'vtex.store-icons'
 
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
 
-const CSS_HANDLES = ['removeButtonContainer', 'removeButton'] as const
+const CSS_HANDLES = ['removeButtonContainer', 'removeButton', 'item'] as const
 
 type DisplayMode = 'icon-button' | 'text-button'
 type Variation =
@@ -43,9 +43,7 @@ function RemoveButton(props: Props) {
 
   return (
     <div
-      className={`${handles.removeButtonContainer} ${opaque(
-        item.availability
-      )}`}
+    className={(`${handles.removeButtonContainer} ${applyModifiers(handles.item, item.sellingPrice === 0 ? "gift" : "")} ${opaque( item.availability)}`)}
     >
       <button
         id={`remove-button-${item.id}`}
