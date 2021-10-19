@@ -5,8 +5,8 @@ import classnames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
 
 import VisuallyHidden from './VisuallyHidden'
-import IncreaseIcon from './IncreaseIcon'
-import DecreaseIcon from './DecreaseIcon'
+import DefaultIncreaseIcon from './IncreaseIcon'
+import DefaultDecreaseIcon from './DecreaseIcon'
 import { parseDisplayValue } from './utils'
 import useQuantitySelectorState from './useQuantitySelectorState'
 import styles from './QuantityStepper.css'
@@ -35,6 +35,8 @@ interface Props {
   disabled?: boolean
   unitMultiplier?: number
   measurementUnit?: string
+  IncreaseIcon?: React.FC
+  DecreaseIcon?: React.FC
 }
 
 const QuantityStepper: VFC<Props> = ({
@@ -45,6 +47,8 @@ const QuantityStepper: VFC<Props> = ({
   disabled,
   unitMultiplier = 1,
   measurementUnit = 'un',
+  IncreaseIcon = DefaultIncreaseIcon,
+  DecreaseIcon = DefaultDecreaseIcon,
 }) => {
   const intl = useIntl()
 
@@ -153,8 +157,7 @@ const QuantityStepper: VFC<Props> = ({
           handles.quantitySelectorDecrease,
           'pa4 ba br2 br--left flex items-center justify-center',
           {
-            'c-muted-1 b--muted-4 hover-b--muted-3 bg-muted-5 hover-bg-muted-4 pointer':
-              !disabled,
+            'c-muted-1 b--muted-4 hover-b--muted-3 bg-muted-5 hover-bg-muted-4 pointer': !disabled,
             'bg-muted-5 c-muted-3 b--muted-4': disabled,
           }
         )}
@@ -201,8 +204,7 @@ const QuantityStepper: VFC<Props> = ({
           handles.quantitySelectorIncrease,
           'pa4 ba br2 br--right flex items-center justify-center',
           {
-            'c-action-primary b--muted-4 hover-b--muted-3 bg-base hover-bg-muted-5 pointer':
-              !disabled,
+            'c-action-primary b--muted-4 hover-b--muted-3 bg-base hover-bg-muted-5 pointer': !disabled,
             'bg-muted-5 c-muted-3 b--muted-4': disabled,
           }
         )}

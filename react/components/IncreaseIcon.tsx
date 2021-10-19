@@ -1,9 +1,15 @@
 import type { VFC } from 'react'
 import React from 'react'
+import { useCssHandles } from 'vtex.css-handles'
+
+const CSS_HANDLES = ['quantitySelectorIncreaseIcon'] as const
 
 const IncreaseIcon: VFC = () => {
+  const handles = useCssHandles(CSS_HANDLES)
+
   return (
     <svg
+      className={handles.quantitySelectorIncreaseIcon}
       width="16"
       height="16"
       viewBox="0 0 16 16"
