@@ -43,7 +43,10 @@ function RemoveButton(props: Props) {
 
   return (
     <div
-    className={(`${handles.removeButtonContainer} ${applyModifiers(handles.item, item.sellingPrice === 0 ? "gift" : "")} ${opaque( item.availability)}`)}
+      className={`${handles.removeButtonContainer} ${applyModifiers(
+        handles.item,
+        item.sellingPrice === 0 ? 'gift' : ''
+      )} ${opaque(item.availability)}`}
     >
       <button
         id={`remove-button-${item.id}`}
