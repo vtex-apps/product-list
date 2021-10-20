@@ -3,11 +3,10 @@ import React, { useState, Fragment, useEffect } from 'react'
 import type { IntlShape } from 'react-intl'
 import { defineMessages, useIntl } from 'react-intl'
 import { Dropdown, Input } from 'vtex.styleguide'
-import { applyModifiers, useCssHandles } from 'vtex.css-handles'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { parseDisplayValue } from './utils'
 import useQuantitySelectorState from './useQuantitySelectorState'
-import { useItemContext } from '../ItemContext'
 
 const range = (startValue: number, endNumber: number) => {
   const array = []
@@ -88,8 +87,7 @@ const CSS_HANDLES = [
   'quantityDropdownMobileContainer',
   'quantityDropdownContainer',
   'quantityInputMobileContainer',
-  'quantityInputContainer',
-  'item',
+  'quantityInputContainer'
 ] as const
 
 const QuantitySelector: FC<Props> = ({
@@ -221,11 +219,10 @@ const QuantitySelector: FC<Props> = ({
       unitMultiplier,
       measurementUnit,
     })
-    const { item, loading, onRemove } = useItemContext()
 
     return (
       <Fragment>
-        <div className={`${handles.quantityDropdownMobileContainer}  ${applyModifiers(handles.quantityDropdownMobileContainer, item.sellingPrice === 0 ? "gift" : "")} dn-m`}>
+        <div className={`${handles.quantityDropdownMobileContainer} dn-m`}>
           <Dropdown
             id={`quantity-dropdown-mobile-${id}`}
             testId={`quantity-dropdown-mobile-${id}`}
@@ -237,7 +234,7 @@ const QuantitySelector: FC<Props> = ({
             disabled={disabled}
           />
         </div>
-        <div className={`${handles.quantityDropdownContainer}  ${applyModifiers(handles.quantityDropdownContainer, item.sellingPrice === 0 ? "gift" : "")} dn db-m`}>
+        <div className={`${handles.quantityDropdownContainer} dn db-m`}>
           <Dropdown
             id={`quantity-dropdown-${id}`}
             testId={`quantity-dropdown-${id}`}
