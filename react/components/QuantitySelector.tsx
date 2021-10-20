@@ -225,7 +225,7 @@ const QuantitySelector: FC<Props> = ({
 
     return (
       <Fragment>
-        <div className={`${handles.quantityDropdownMobileContainer}  ${applyModifiers(handles.quantityDropdownContainer, item.sellingPrice === 0 ? "gift" : "")} dn-m`}>
+        <div className={`${handles.quantityDropdownMobileContainer}  ${applyModifiers(handles.quantityDropdownMobileContainer, item.sellingPrice === 0 ? "gift" : "")} dn-m`}>
           <Dropdown
             id={`quantity-dropdown-mobile-${id}`}
             testId={`quantity-dropdown-mobile-${id}`}
