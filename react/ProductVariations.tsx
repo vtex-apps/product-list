@@ -9,6 +9,9 @@ import { opaque } from './utils/opaque'
 const CSS_HANDLES = [
   'productVariationsContainer',
   'productVariationsItem',
+  'productVariationItem__labels',
+  'productVariationItem__labels_sku_specification',
+  'productVariationItem__labels_sku_name'
 ] as const
 
 const ProductVariations: FunctionComponent = () => {
@@ -28,7 +31,7 @@ const ProductVariations: FunctionComponent = () => {
             id={`specification-${item.id}-${spec.fieldName}`}
             key={spec.fieldName || undefined}
           >
-            {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
+            <div className={handles.productVariationItem__labels}><label className={handles.productVariationItem__labels_sku_specification}>{`${spec.fieldName}`}</label>: <label className={handles.productVariationItem__labels_sku_name}>{`${spec.fieldValues.join(', ')}`}</label></div>
           </div>
         )
       })}
