@@ -20,8 +20,8 @@ export type QuantitySelectorStepType = 'unitMultiplier' | 'singleUnit'
 interface Props {
   mode?: QuantitySelectorMode
   quantitySelectorStep?: QuantitySelectorStepType
-  IncreaseIcon?: React.FC
-  DecreaseIcon?: React.FC
+  IncreaseIcon?: React.ReactElement
+  DecreaseIcon?: React.ReactElement
 }
 
 const QuantitySelector: VFC<Props> = ({
