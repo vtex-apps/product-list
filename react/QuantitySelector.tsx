@@ -3,6 +3,7 @@ import React from 'react'
 import classnames from 'classnames'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import type { PropsWithChildren } from 'react-test-renderer/node_modules/@types/react'
 
 import Selector from './components/QuantitySelector'
 import QuantityStepper from './components/QuantityStepper'
@@ -20,8 +21,8 @@ export type QuantitySelectorStepType = 'unitMultiplier' | 'singleUnit'
 interface Props {
   mode?: QuantitySelectorMode
   quantitySelectorStep?: QuantitySelectorStepType
-  IncreaseIcon?: React.ReactElement
-  DecreaseIcon?: React.ReactElement
+  IncreaseIcon?: React.FC
+  DecreaseIcon?: React.FC
 }
 
 const QuantitySelector: VFC<Props> = ({

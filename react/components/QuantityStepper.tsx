@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl'
 import classnames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
+import type { PropsWithChildren } from 'react-test-renderer/node_modules/@types/react'
 
 import VisuallyHidden from './VisuallyHidden'
 import DefaultIncreaseIcon from './IncreaseIcon'
