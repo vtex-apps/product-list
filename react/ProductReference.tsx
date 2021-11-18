@@ -26,6 +26,7 @@ const ProductReference: FunctionComponent<Props> = (props) => {
   const handles = useCssHandles(CSS_HANDLES)
   const [userId, setUserId] = useState<string>('');
   const [warehouse, setWarehouse] = useState<string>('');
+  const [clientId, setClientId] = useState<string>('');
   const [isSeller, setIsSeller] = useState<boolean>(false);
   const prodId = item.id;
   const [balance, setBalance] = useState<Balance>({ totalQuantity: 0, reservedQuantity: 0 })
@@ -42,20 +43,30 @@ const ProductReference: FunctionComponent<Props> = (props) => {
   }
   const getUser = () => {
     fetch(`https://${window.location.hostname}/_v/user/${userId}`,
-      {
-        credentials: 'include'
-      })
-      .then(response => response.json())
-      // eslint-disable-next-line no-console
-      .then(user => {
-        if(user[0].agente === "VE" || user[0].agente === "VC" || user[0].agente === "CO") {
-          setWarehouse(user[0].sucursal)
-          setIsSeller(true);
-        }
-      })
+        {
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        // eslint-disable-next-line no-console
+        .then(user => {
+            if (user[0].agente === "VE" || user[0].agente === "VC" || user[0].agente === "CO") {
+                fetch(`https://${window.location.hostname}/_v/user/${clientId}`,
+                    {
+                        credentials: 'include'
+                    })
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(client => {
+                        setWarehouse(client[0].sucursal)
+                        setIsSeller(true);
+                    })
+            }
+        })
   }
   useEffect(() => {
     if (typeof window !== "undefined") {
+      setClientId(session?.data?.session?.namespaces?.profile?.id?.value)
       setUserId(session?.data?.session?.namespaces?.authentication?.storeUserId?.value)
     }
   }, [session])
