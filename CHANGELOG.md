@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Norwegian and Norwegian variant translation.
+
 ## [0.34.1] - 2022-01-24
 ### Fixed
 - `QuantitySelector` is no longer disabled when items are unavailable because they cannot be delivered. This allow users to change the quantity of the item back to when it didn't exceed the maximum weight chosen for deliveries.
@@ -142,7 +145,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.20.1] - 2020-06-18
 ### Fixed
-- Updated README.md file 
+- Updated README.md file
 
 ## [0.20.0] - 2020-05-19
 ### Added
