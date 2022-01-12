@@ -2,7 +2,7 @@ import type { VFC } from 'react'
 import React from 'react'
 import classnames from 'classnames'
 import { Loading } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import Selector from './components/QuantitySelector'
 import QuantityStepper from './components/QuantityStepper'
@@ -25,7 +25,7 @@ interface Props {
 const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep = 'unitMultiplier' }) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
-  
+
   if (loading) {
     return <Loading />
   }
@@ -38,7 +38,7 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep =
           handles.quantitySelectorContainer,
           styles.quantity,
           styles.quantityStepper
-        )}
+        ) + applyModifiers(styles.quantitySelector, item.sellingPrice === 0 ? "gift" : "")}
       >
         <QuantityStepper
           id={item.id}
@@ -60,7 +60,7 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep =
         handles.quantitySelectorContainer,
         styles.quantity,
         styles.quantitySelector
-      )}
+      ) + applyModifiers(styles.quantitySelector, item.sellingPrice === 0 ? "gift" : "")}
     >
       <Selector
         id={item.id}

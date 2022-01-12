@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedCurrency } from 'vtex.format-currency'
 import { FormattedPrice } from 'vtex.formatted-price'
 import { Loading } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import { useItemContext } from './ItemContext'
 import { opaque } from './utils/opaque'
@@ -40,7 +40,7 @@ const Price: React.FC<PriceProps> = ({
       {item.listPrice && item.listPrice !== item.sellingPrice && showListPrice && (
         <div
           id={`list-price-${item.id}`}
-          className={`${handles.productPriceCurrency} c-muted-1 strike t-mini mb2`}
+          className={`${handles.productPriceCurrency}  ${applyModifiers(handles.productPriceCurrency, item.sellingPrice === 0 ? "gift" : "")} c-muted-1 strike t-mini mb2`}
         >
           <FormattedCurrency
             value={
@@ -52,7 +52,7 @@ const Price: React.FC<PriceProps> = ({
       )}
       <div
         id={`price-${item.id}`}
-        className={`${handles.productPrice} div fw6 fw5-m`}
+        className={`${handles.productPrice} ${applyModifiers(handles.productPrice, item.sellingPrice === 0 ? "gift" : "")} div fw6 fw5-m`}
       >
         <FormattedPrice
           value={

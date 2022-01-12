@@ -87,7 +87,7 @@ const CSS_HANDLES = [
   'quantityDropdownMobileContainer',
   'quantityDropdownContainer',
   'quantityInputMobileContainer',
-  'quantityInputContainer',
+  'quantityInputContainer'
 ] as const
 
 const QuantitySelector: FC<Props> = ({
