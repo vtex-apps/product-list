@@ -7,7 +7,7 @@ import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import Selector from './components/QuantitySelector'
 import QuantityStepper from './components/QuantityStepper'
 import { useItemContext } from './ItemContext'
-import { AVAILABLE } from './constants/Availability'
+import { AVAILABLE, CANNOT_BE_DELIVERED } from './constants/Availability'
 import { opaque } from './utils/opaque'
 import styles from './styles.css'
 
@@ -22,31 +22,49 @@ interface Props {
   quantitySelectorStep?: QuantitySelectorStepType
 }
 
-const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep = 'unitMultiplier' }) => {
+const enabledSelectorAvailability = [AVAILABLE, CANNOT_BE_DELIVERED]
+
+function shouldDisableSelector(availability: string | null | undefined) {
+  return !enabledSelectorAvailability.includes(availability ?? '')
+}
+
+const QuantitySelector: VFC<Props> = ({
+  mode = 'default',
+  quantitySelectorStep = 'unitMultiplier',
+}) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
     return <Loading />
   }
-  const unitMultiplier = quantitySelectorStep === 'singleUnit' ? 1 : item.unitMultiplier ?? undefined
+
+  const unitMultiplier =
+    quantitySelectorStep === 'singleUnit' ? 1 : item.unitMultiplier ?? undefined
+
   if (mode === 'stepper') {
     return (
       <div
-        className={classnames(
-          opaque(item.availability),
-          handles.quantitySelectorContainer,
-          styles.quantity,
-          styles.quantityStepper
-        ) + applyModifiers(styles.quantitySelector, item.sellingPrice === 0 ? "gift" : "")}
+        className={
+          classnames(
+            opaque(item.availability),
+            handles.quantitySelectorContainer,
+            styles.quantity,
+            styles.quantityStepper
+          ) +
+          applyModifiers(
+            styles.quantitySelector,
+            item.sellingPrice === 0 ? 'gift' : ''
+          )
+        }
       >
         <QuantityStepper
           id={item.id}
           value={item.quantity}
           maxValue={MAX_ITEM_QUANTITY}
           onChange={onQuantityChange}
-          disabled={item.availability !== AVAILABLE}
           unitMultiplier={unitMultiplier}
+          disabled={shouldDisableSelector(item.availability)}
           measurementUnit={item.measurementUnit ?? undefined}
         />
       </div>
@@ -55,19 +73,25 @@ const QuantitySelector: VFC<Props> = ({ mode = 'default', quantitySelectorStep =
 
   return (
     <div
-      className={classnames(
-        opaque(item.availability),
-        handles.quantitySelectorContainer,
-        styles.quantity,
-        styles.quantitySelector
-      ) + applyModifiers(styles.quantitySelector, item.sellingPrice === 0 ? "gift" : "")}
+      className={
+        classnames(
+          opaque(item.availability),
+          handles.quantitySelectorContainer,
+          styles.quantity,
+          styles.quantitySelector
+        ) +
+        applyModifiers(
+          styles.quantitySelector,
+          item.sellingPrice === 0 ? 'gift' : ''
+        )
+      }
     >
       <Selector
         id={item.id}
         value={item.quantity}
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
-        disabled={item.availability !== AVAILABLE}
+        disabled={shouldDisableSelector(item.availability)}
         unitMultiplier={unitMultiplier}
         measurementUnit={item.measurementUnit ?? undefined}
       />
