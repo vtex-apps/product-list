@@ -321,6 +321,7 @@ Therefore, in order to customize the `product-list` configuration, you can simpl
 | --- | --- | --- | --- |
 | `mode` | `enum` | Mode of the quantity selector input. Possible values are `default` and `stepper`. On the default mode, the quantity stepper will initially render a dropdown component, and after the quantity exceeds 10, it will switch to an input. In the stepper mode it will always render a numeric stepper component. | `default`    |
 | `quantitySelectorStep` | `enum` | Defines how the number of products that have unitMultiplier will works. Possible values are: `singleUnit` (the quantity will be not affected with the unitMultiplier) and `unitMultiplier` (the quantity will be affected with the unitMultiplier). | `unitMultiplier` |
+| `displayUn` | `boolean` | Whether the UN unit of measure should be displayed (true) or not (false) | `false` |
 
 ## Customization
 
