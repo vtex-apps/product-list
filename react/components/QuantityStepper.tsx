@@ -35,6 +35,7 @@ interface Props {
   disabled?: boolean
   unitMultiplier?: number
   measurementUnit?: string
+  displayUn?: boolean
 }
 
 const QuantityStepper: VFC<Props> = ({
@@ -45,6 +46,7 @@ const QuantityStepper: VFC<Props> = ({
   disabled,
   unitMultiplier = 1,
   measurementUnit = 'un',
+  displayUn,
 }) => {
   const intl = useIntl()
 
@@ -191,7 +193,7 @@ const QuantityStepper: VFC<Props> = ({
           onFocus={() => setFocused(true)}
           onBlur={handleInputBlur}
         />
-        {measurementUnit !== 'un' && (
+        {(measurementUnit !== 'un' || displayUn) && (
           <span className="c-muted-1 ml3">{measurementUnit}</span>
         )}
       </div>
