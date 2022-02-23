@@ -2,13 +2,12 @@ import type { VFC } from 'react'
 import React from 'react'
 import classnames from 'classnames'
 import { Loading } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
-import type { PropsWithChildren } from 'react-test-renderer/node_modules/@types/react'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import Selector from './components/QuantitySelector'
 import QuantityStepper from './components/QuantityStepper'
 import { useItemContext } from './ItemContext'
-import { AVAILABLE } from './constants/Availability'
+import { AVAILABLE, CANNOT_BE_DELIVERED } from './constants/Availability'
 import { opaque } from './utils/opaque'
 import styles from './styles.css'
 
@@ -23,6 +22,12 @@ interface Props {
   quantitySelectorStep?: QuantitySelectorStepType
   IncreaseIcon?: React.FC
   DecreaseIcon?: React.FC
+}
+
+const enabledSelectorAvailability = [AVAILABLE, CANNOT_BE_DELIVERED]
+
+function shouldDisableSelector(availability: string | null | undefined) {
+  return !enabledSelectorAvailability.includes(availability ?? '')
 }
 
 const QuantitySelector: VFC<Props> = ({
@@ -44,20 +49,26 @@ const QuantitySelector: VFC<Props> = ({
   if (mode === 'stepper') {
     return (
       <div
-        className={classnames(
-          opaque(item.availability),
-          handles.quantitySelectorContainer,
-          styles.quantity,
-          styles.quantityStepper
-        )}
+        className={
+          classnames(
+            opaque(item.availability),
+            handles.quantitySelectorContainer,
+            styles.quantity,
+            styles.quantityStepper
+          ) +
+          applyModifiers(
+            styles.quantitySelector,
+            item.sellingPrice === 0 ? 'gift' : ''
+          )
+        }
       >
         <QuantityStepper
           id={item.id}
           value={item.quantity}
           maxValue={MAX_ITEM_QUANTITY}
           onChange={onQuantityChange}
-          disabled={item.availability !== AVAILABLE}
           unitMultiplier={unitMultiplier}
+          disabled={shouldDisableSelector(item.availability)}
           measurementUnit={item.measurementUnit ?? undefined}
           IncreaseIcon={IncreaseIcon}
           DecreaseIcon={DecreaseIcon}
@@ -68,19 +79,25 @@ const QuantitySelector: VFC<Props> = ({
 
   return (
     <div
-      className={classnames(
-        opaque(item.availability),
-        handles.quantitySelectorContainer,
-        styles.quantity,
-        styles.quantitySelector
-      )}
+      className={
+        classnames(
+          opaque(item.availability),
+          handles.quantitySelectorContainer,
+          styles.quantity,
+          styles.quantitySelector
+        ) +
+        applyModifiers(
+          styles.quantitySelector,
+          item.sellingPrice === 0 ? 'gift' : ''
+        )
+      }
     >
       <Selector
         id={item.id}
         value={item.quantity}
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
-        disabled={item.availability !== AVAILABLE}
+        disabled={shouldDisableSelector(item.availability)}
         unitMultiplier={unitMultiplier}
         measurementUnit={item.measurementUnit ?? undefined}
       />
