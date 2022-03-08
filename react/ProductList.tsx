@@ -31,6 +31,8 @@ interface Props {
   lazyRenderHeight?: number
   lazyRenderOffset?: number
   children: ReactNode
+  showSku: boolean
+  showBundles: boolean
 }
 
 interface ItemWithIndex extends Item {
@@ -53,6 +55,8 @@ interface ItemWrapperProps
   onSetManualPrice?: (price: number, itemIndex: number) => void
   lazyRenderHeight?: number
   lazyRenderOffset?: number
+  showSku: boolean
+  showBundles: boolean
 }
 
 const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
@@ -66,6 +70,8 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
   onSetManualPrice,
   lazyRenderHeight,
   lazyRenderOffset,
+  showSku,
+  showBundles,
 }) {
   const context = useMemo(
     () => ({
@@ -78,6 +84,8 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
       onRemove: () => onRemove(item.uniqueId, item),
       onSetManualPrice: (price: number, index: number) =>
         onSetManualPrice?.(price, index),
+      showSku,
+      showBundles,
     }),
     [
       item,
@@ -87,6 +95,8 @@ const ItemContextWrapper = memo<ItemWrapperProps>(function ItemContextWrapper({
       onRemove,
       onSetManualPrice,
       shouldAllowManualPrice,
+      showSku,
+      showBundles,
     ]
   )
 
@@ -137,6 +147,8 @@ const ProductList = memo<Props>(function ProductList(props) {
     userType = 'STORE_USER',
     allowManualPrice = false,
     children,
+    showSku,
+    showBundles,
   } = props
 
   const shouldAllowManualPrice =
@@ -181,6 +193,8 @@ const ProductList = memo<Props>(function ProductList(props) {
             {...props}
             lazyRenderHeight={lazyRenderHeight}
             lazyRenderOffset={lazyRenderOffset}
+            showSku={showSku ?? false}
+            showBundles={showBundles ?? false}
           >
             {children}
           </ItemContextWrapper>
@@ -208,6 +222,8 @@ const ProductList = memo<Props>(function ProductList(props) {
             {...props}
             lazyRenderHeight={lazyRenderHeight}
             lazyRenderOffset={lazyRenderOffset}
+            showSku={showSku ?? false}
+            showBundles={showBundles ?? false}
           >
             {children}
           </ItemContextWrapper>
