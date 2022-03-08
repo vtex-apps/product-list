@@ -9,8 +9,9 @@ import { opaque } from './utils/opaque'
 const CSS_HANDLES = ['productName'] as const
 
 const ProductName: FunctionComponent = () => {
-  const { item, loading } = useItemContext()
+  const { item, loading, showSku } = useItemContext()
   const { rootPath = '' } = useRuntime()
+  const hasSkuName = item.skuName && item.skuName.length > 0
   const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
@@ -25,7 +26,7 @@ const ProductName: FunctionComponent = () => {
       } ${opaque(item.availability)}`}
       href={item.detailUrl ? rootPath + item.detailUrl : undefined}
     >
-      {item.name}
+      {showSku && hasSkuName ? item.skuName : item.name}
     </a>
   )
 }

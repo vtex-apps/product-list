@@ -24,7 +24,8 @@ const Price: React.FC<PriceProps> = ({
   textAlign = 'left',
   showListPrice = true,
 }) => {
-  const { item, loading } = useItemContext()
+  const { item, loading, showBundles } = useItemContext()
+  const hasBundles = item.bundleItems.length > 0
   const handles = useCssHandles(CSS_HANDLES)
 
   if (loading) {
@@ -32,36 +33,65 @@ const Price: React.FC<PriceProps> = ({
   }
 
   return (
-    <div
-      className={`${opaque(item.availability)} ${styles.price} ${
-        handles.productPriceContainer
-      } ${parseTextAlign(textAlign)}`}
-    >
-      {item.listPrice && item.listPrice !== item.sellingPrice && showListPrice && (
+    <div>
+      <div
+        className={`${opaque(item.availability)} ${styles.price} ${
+          handles.productPriceContainer
+        } ${parseTextAlign(textAlign)}`}
+      >
+        {item.listPrice &&
+          item.listPrice !== item.sellingPrice &&
+          showListPrice && (
+            <div
+              id={`list-price-${item.id}`}
+              className={`${handles.productPriceCurrency}  ${applyModifiers(
+                handles.productPriceCurrency,
+                item.sellingPrice === 0 ? 'gift' : ''
+              )} c-muted-1 strike t-mini mb2`}
+            >
+              <FormattedCurrency
+                value={
+                  (item.listPrice *
+                    (item.unitMultiplier || 1) *
+                    item.quantity) /
+                  100
+                }
+              />
+            </div>
+          )}
         <div
-          id={`list-price-${item.id}`}
-          className={`${handles.productPriceCurrency}  ${applyModifiers(handles.productPriceCurrency, item.sellingPrice === 0 ? "gift" : "")} c-muted-1 strike t-mini mb2`}
+          id={`price-${item.id}`}
+          className={`${handles.productPrice} ${applyModifiers(
+            handles.productPrice,
+            item.sellingPrice === 0 ? 'gift' : ''
+          )} div fw6 fw5-m`}
         >
-          <FormattedCurrency
+          <FormattedPrice
             value={
-              (item.listPrice * (item.unitMultiplier || 1) * item.quantity) /
-              100
+              item.sellingPrice != null
+                ? (item.sellingPrice * item.quantity) / 100
+                : item.sellingPrice
             }
           />
         </div>
-      )}
-      <div
-        id={`price-${item.id}`}
-        className={`${handles.productPrice} ${applyModifiers(handles.productPrice, item.sellingPrice === 0 ? "gift" : "")} div fw6 fw5-m`}
-      >
-        <FormattedPrice
-          value={
-            item.sellingPrice != null
-              ? (item.sellingPrice * item.quantity) / 100
-              : item.sellingPrice
-          }
-        />
       </div>
+      {showBundles &&
+        hasBundles &&
+        item.bundleItems.map((bundle, key) => {
+          return (
+            <p key={key}>
+              {bundle.name}:{` `}
+              <FormattedCurrency
+                value={
+                  (Number(bundle.sellingPrice) *
+                    (bundle.unitMultiplier || 1) *
+                    bundle.quantity) /
+                  100
+                }
+              />
+            </p>
+          )
+        })}
     </div>
   )
 }

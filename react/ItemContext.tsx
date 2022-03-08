@@ -10,6 +10,8 @@ interface Context {
   onQuantityChange: (value: number) => void
   onRemove: () => void
   onSetManualPrice: (price: number, itemIndex: number) => void
+  showSku: boolean
+  showBundles: boolean
 }
 
 interface ItemContextProviderProps {
