@@ -34,7 +34,6 @@ const QuantitySelector: VFC<Props> = ({
 }) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
-
   if (loading) {
     return <Loading />
   }
@@ -88,6 +87,7 @@ const QuantitySelector: VFC<Props> = ({
     >
       <Selector
         id={item.id}
+        item={item}
         value={item.quantity}
         maxValue={MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}

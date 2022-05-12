@@ -39,6 +39,7 @@ const enum SelectorType {
 
 interface Props {
   id?: string
+  item: any
   value: number
   maxValue: number
   onChange: (value: number) => void
@@ -92,6 +93,7 @@ const CSS_HANDLES = [
 
 const QuantitySelector: FC<Props> = ({
   id,
+  item,
   value,
   maxValue,
   onChange,
@@ -133,6 +135,27 @@ const QuantitySelector: FC<Props> = ({
   const handles = useCssHandles(CSS_HANDLES)
 
   const handleDropdownChange = (inputValue: string) => {
+    console.log('item', item)
+    const selectorConPromo = item.price != item.priceDefinition.calculatedSellingPrice
+    if (selectorConPromo){
+      console.log('selector con promo')
+      const { validatedValue, validatedDisplayValue } = getUpdatedValue({
+        value: inputValue,
+        unitMultiplier: 1,
+        displayUnitMultiplier: unitMultiplier,
+        minValue: 0,
+      })
+      if (validatedValue >= MAX_DROPDOWN_VALUE) {
+        setSelector(SelectorType.Input)
+      }
+      /*const newValue = parseInt(validatedDisplayValue) - parseInt(curDisplayValue)
+      setDisplayValue(newValue.toString())
+      onChange(validatedValue - parseInt(curDisplayValue))*/
+      setDisplayValue(validatedDisplayValue)
+    onChange(validatedValue)
+    }else{
+      console.log('selector sin promo')
+
     const { validatedValue, validatedDisplayValue } = getUpdatedValue({
       value: inputValue,
       unitMultiplier: 1,
@@ -146,6 +169,8 @@ const QuantitySelector: FC<Props> = ({
 
     setDisplayValue(validatedDisplayValue)
     onChange(validatedValue)
+    }
+    
   }
 
   const handleInputChange = (inputValue: string) => {
