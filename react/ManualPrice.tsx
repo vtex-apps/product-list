@@ -54,7 +54,7 @@ const ManualPrice: FunctionComponent = () => {
   }
 
   const revertToOriginalPrice = () => {
-    if (item.price) {
+    if (item.price != null) {
       onSetManualPrice(item.price, itemIndex)
       setManualPrice(item.price)
     }
