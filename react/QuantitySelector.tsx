@@ -45,18 +45,16 @@ const QuantitySelector: VFC<Props> = ({
   if (mode === 'stepper') {
     return (
       <div
-        className={
-          classnames(
-            opaque(item.availability),
-            handles.quantitySelectorContainer,
-            styles.quantity,
-            styles.quantityStepper
-          ) +
+        className={classnames(
+          opaque(item.availability),
+          handles.quantitySelectorContainer,
+          styles.quantity,
+          styles.quantityStepper,
           applyModifiers(
             styles.quantitySelector,
             item.sellingPrice === 0 ? 'gift' : ''
           )
-        }
+        )}
       >
         <QuantityStepper
           id={item.id}
@@ -73,18 +71,16 @@ const QuantitySelector: VFC<Props> = ({
 
   return (
     <div
-      className={
-        classnames(
-          opaque(item.availability),
-          handles.quantitySelectorContainer,
-          styles.quantity,
-          styles.quantitySelector
-        ) +
+      className={classnames(
+        opaque(item.availability),
+        handles.quantitySelectorContainer,
+        styles.quantity,
+        styles.quantitySelector,
         applyModifiers(
           styles.quantitySelector,
           item.sellingPrice === 0 ? 'gift' : ''
         )
-      }
+      )}
     >
       <Selector
         id={item.id}
