@@ -30,7 +30,7 @@ const ManualPrice: FunctionComponent = () => {
     evt.preventDefault()
 
     if (manualPrice != null && !Number.isNaN(manualPrice)) {
-      onSetManualPrice(manualPrice!, itemIndex)
+      onSetManualPrice(manualPrice, itemIndex)
     }
 
     setIsModalOpen(false)
@@ -54,8 +54,11 @@ const ManualPrice: FunctionComponent = () => {
   }
 
   const revertToOriginalPrice = () => {
-    onSetManualPrice(item.price!, itemIndex)
-    setManualPrice(item.price)
+    if (item.price) {
+      onSetManualPrice(item.price, itemIndex)
+      setManualPrice(item.price)
+    }
+
     setIsModalOpen(false)
   }
 

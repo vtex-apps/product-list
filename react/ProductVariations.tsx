@@ -26,7 +26,7 @@ const ProductVariations: FunctionComponent = () => {
           <div
             className={handles.productVariationsItem}
             id={`specification-${item.id}-${spec.fieldName}`}
-            key={spec.fieldName || undefined}
+            key={spec.fieldName ?? undefined}
           >
             {`${spec.fieldName}: ${spec.fieldValues.join(', ')}`}
           </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ComponentType, Context } from 'react'
 
 declare module 'vtex.styleguide' {

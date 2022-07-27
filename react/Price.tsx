@@ -40,11 +40,14 @@ const Price: React.FC<PriceProps> = ({
       {item.listPrice && item.listPrice !== item.sellingPrice && showListPrice && (
         <div
           id={`list-price-${item.id}`}
-          className={`${handles.productPriceCurrency}  ${applyModifiers(handles.productPriceCurrency, item.sellingPrice === 0 ? "gift" : "")} c-muted-1 strike t-mini mb2`}
+          className={`${handles.productPriceCurrency}  ${applyModifiers(
+            handles.productPriceCurrency,
+            item.sellingPrice === 0 ? 'gift' : ''
+          )} c-muted-1 strike t-mini mb2`}
         >
           <FormattedCurrency
             value={
-              (item.listPrice * (item.unitMultiplier || 1) * item.quantity) /
+              (item.listPrice * (item.unitMultiplier ?? 1) * item.quantity) /
               100
             }
           />
@@ -52,7 +55,10 @@ const Price: React.FC<PriceProps> = ({
       )}
       <div
         id={`price-${item.id}`}
-        className={`${handles.productPrice} ${applyModifiers(handles.productPrice, item.sellingPrice === 0 ? "gift" : "")} div fw6 fw5-m`}
+        className={`${handles.productPrice} ${applyModifiers(
+          handles.productPrice,
+          item.sellingPrice === 0 ? 'gift' : ''
+        )} div fw6 fw5-m`}
       >
         <FormattedPrice
           value={

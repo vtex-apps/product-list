@@ -111,7 +111,7 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
   if (countMode === 'totalAvailable') {
     return arr.reduce((itemQuantity: number, item: Item) => {
       if (item.availability === 'available') {
-        return itemQuantity + item.quantity
+        return itemQuantity + Number(item.quantity)
       }
 
       return itemQuantity
@@ -120,7 +120,7 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
 
   if (countMode === 'total') {
     return arr.reduce((itemQuantity: number, item: Item) => {
-      return itemQuantity + item.quantity
+      return itemQuantity + Number(item.quantity)
     }, 0)
   }
 

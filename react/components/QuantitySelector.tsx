@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import type { ComponentProps, FC } from 'react'
 import React, { useState, Fragment, useEffect } from 'react'
 import type { IntlShape } from 'react-intl'
 import { defineMessages, useIntl } from 'react-intl'
@@ -87,7 +87,7 @@ const CSS_HANDLES = [
   'quantityDropdownMobileContainer',
   'quantityDropdownContainer',
   'quantityInputMobileContainer',
-  'quantityInputContainer'
+  'quantityInputContainer',
 ] as const
 
 const QuantitySelector: FC<Props> = ({
@@ -132,9 +132,11 @@ const QuantitySelector: FC<Props> = ({
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  const handleDropdownChange = (inputValue: string) => {
+  const handleDropdownChange: ComponentProps<'select'>['onChange'] = (
+    event
+  ) => {
     const { validatedValue, validatedDisplayValue } = getUpdatedValue({
-      value: inputValue,
+      value: event.target.value,
       unitMultiplier: 1,
       displayUnitMultiplier: unitMultiplier,
       minValue: 0,
@@ -148,8 +150,8 @@ const QuantitySelector: FC<Props> = ({
     onChange(validatedValue)
   }
 
-  const handleInputChange = (inputValue: string) => {
-    setDisplayValue(inputValue)
+  const handleInputChange: ComponentProps<'input'>['onChange'] = (event) => {
+    setDisplayValue(event.target.value)
   }
 
   const handleInputBlur = () => {
@@ -229,7 +231,7 @@ const QuantitySelector: FC<Props> = ({
             options={dropdownOptions}
             size="small"
             value={normalizedValue}
-            onChange={(event: any) => handleDropdownChange(event.target.value)}
+            onChange={handleDropdownChange}
             placeholder=" "
             disabled={disabled}
           />
@@ -240,7 +242,7 @@ const QuantitySelector: FC<Props> = ({
             testId={`quantity-dropdown-${id}`}
             options={dropdownOptions}
             value={normalizedValue}
-            onChange={(event: any) => handleDropdownChange(event.target.value)}
+            onChange={handleDropdownChange}
             placeholder=" "
             disabled={disabled}
           />
@@ -257,7 +259,7 @@ const QuantitySelector: FC<Props> = ({
           size="small"
           value={curDisplayValue}
           maxLength={MAX_INPUT_LENGTH}
-          onChange={(event: any) => handleInputChange(event.target.value)}
+          onChange={handleInputChange}
           onBlur={handleInputBlur}
           onFocus={handleInputFocus}
           placeholder=""
@@ -270,7 +272,7 @@ const QuantitySelector: FC<Props> = ({
           id={`quantity-input-${id}`}
           value={curDisplayValue}
           maxLength={MAX_INPUT_LENGTH}
-          onChange={(event: any) => handleInputChange(event.target.value)}
+          onChange={handleInputChange}
           onBlur={handleInputBlur}
           onFocus={handleInputFocus}
           placeholder=""
