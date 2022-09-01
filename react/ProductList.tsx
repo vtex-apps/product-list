@@ -128,6 +128,14 @@ const countCartItems = (countMode: TotalItemsType, arr: Item[]) => {
   return arr.length
 }
 
+const removeDuplicates = (items: ItemWithIndex[]) => {
+  try {
+    return [...new Map(items.map((item) => [`${item?.uniqueId}-${item?.sellingPrice}`, item])).values()];
+  } catch (error) {
+    return items
+  }
+}
+
 const ProductList = memo<Props>(function ProductList(props) {
   const {
     items,
@@ -144,7 +152,9 @@ const ProductList = memo<Props>(function ProductList(props) {
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  const [availableItems, unavailableItems] = items
+  const cleanItems = removeDuplicates(items);
+
+  const [availableItems, unavailableItems] = cleanItems
     .map((item, index) => ({ ...item, index }))
     .reduce<ItemWithIndex[][]>(
       (acc, item) => {
