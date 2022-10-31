@@ -31,18 +31,24 @@ const Price: React.FC<PriceProps> = ({
     return <Loading />
   }
 
+  // Setting a new selling price with all the decimals units
+  const newSellingPrice =
+    item.price && item.unitMultiplier
+      ? item.price * item.unitMultiplier
+      : item.sellingPrice
+
   return (
     <div
       className={`${opaque(item.availability)} ${styles.price} ${
         handles.productPriceContainer
       } ${parseTextAlign(textAlign)}`}
     >
-      {item.listPrice && item.listPrice !== item.sellingPrice && showListPrice && (
+      {item.listPrice && item.listPrice !== newSellingPrice && showListPrice && (
         <div
           id={`list-price-${item.id}`}
           className={`${handles.productPriceCurrency}  ${applyModifiers(
             handles.productPriceCurrency,
-            item.sellingPrice === 0 ? 'gift' : ''
+            newSellingPrice === 0 ? 'gift' : ''
           )} c-muted-1 strike t-mini mb2`}
         >
           <FormattedCurrency
@@ -57,14 +63,14 @@ const Price: React.FC<PriceProps> = ({
         id={`price-${item.id}`}
         className={`${handles.productPrice} ${applyModifiers(
           handles.productPrice,
-          item.sellingPrice === 0 ? 'gift' : ''
+          newSellingPrice === 0 ? 'gift' : ''
         )} div fw6 fw5-m`}
       >
         <FormattedPrice
           value={
-            item.sellingPrice != null
-              ? (item.sellingPrice * item.quantity) / 100
-              : item.sellingPrice
+            newSellingPrice != null
+              ? (newSellingPrice * item.quantity) / 100
+              : newSellingPrice
           }
         />
       </div>
