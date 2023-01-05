@@ -6008,6 +6008,10 @@ vtex-tachyons@^3.2.0:
   version "0.9.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.9.0/public/@types/vtex.order-manager#95626778e7cff8c8e70f0a3b09348937043f6d21"
 
+"vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context":
+  version "0.10.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context#c5e2a97b404004681ee12f4fff7e6b62157786cc"
+
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.7/public/@types/vtex.render-runtime":
   version "8.126.7"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.7/public/@types/vtex.render-runtime#bf00fb2ef41c5158c566c12dc6dd9dd0d5c2a9e9"
