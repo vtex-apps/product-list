@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Prevent users to select a higher product quantity than its maximum availability.
+
 ## [0.36.0] - 2023-01-02
 
 ### Added
