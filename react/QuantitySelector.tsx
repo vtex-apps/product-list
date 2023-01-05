@@ -3,6 +3,7 @@ import React from 'react'
 import classnames from 'classnames'
 import { Loading } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
+import useProduct from 'vtex.product-context/useProduct'
 
 import Selector from './components/QuantitySelector'
 import QuantityStepper from './components/QuantityStepper'
@@ -32,8 +33,12 @@ const QuantitySelector: VFC<Props> = ({
   mode = 'default',
   quantitySelectorStep = 'unitMultiplier',
 }) => {
+  const { selectedItem } = useProduct()
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
+  const maxValue =
+    selectedItem?.sellers?.[0]?.commertialOffer?.AvailableQuantity ??
+    MAX_ITEM_QUANTITY
 
   if (loading) {
     return <Loading />
@@ -59,7 +64,7 @@ const QuantitySelector: VFC<Props> = ({
         <QuantityStepper
           id={item.id}
           value={item.quantity}
-          maxValue={MAX_ITEM_QUANTITY}
+          maxValue={maxValue}
           onChange={onQuantityChange}
           unitMultiplier={unitMultiplier}
           disabled={shouldDisableSelector(item.availability)}
@@ -85,7 +90,7 @@ const QuantitySelector: VFC<Props> = ({
       <Selector
         id={item.id}
         value={item.quantity}
-        maxValue={MAX_ITEM_QUANTITY}
+        maxValue={maxValue}
         onChange={onQuantityChange}
         disabled={shouldDisableSelector(item.availability)}
         unitMultiplier={unitMultiplier}

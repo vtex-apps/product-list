@@ -21,6 +21,7 @@
     "vtex.format-currency": "0.x",
     "vtex.formatted-price": "0.x",
     "vtex.order-manager": "0.x",
+    "vtex.product-context": "0.x",
     "vtex.store-icons": "0.x",
     "vtex.styleguide": "9.x",
     "vtex.on-view": "1.x"
