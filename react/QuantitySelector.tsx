@@ -59,7 +59,7 @@ const QuantitySelector: VFC<Props> = ({
         <QuantityStepper
           id={item.id}
           value={item.quantity}
-          maxValue={MAX_ITEM_QUANTITY}
+          maxValue={item.availableQuantity ?? MAX_ITEM_QUANTITY}
           onChange={onQuantityChange}
           unitMultiplier={unitMultiplier}
           disabled={shouldDisableSelector(item.availability)}
@@ -85,7 +85,7 @@ const QuantitySelector: VFC<Props> = ({
       <Selector
         id={item.id}
         value={item.quantity}
-        maxValue={MAX_ITEM_QUANTITY}
+        maxValue={item.availableQuantity ?? MAX_ITEM_QUANTITY}
         onChange={onQuantityChange}
         disabled={shouldDisableSelector(item.availability)}
         unitMultiplier={unitMultiplier}
