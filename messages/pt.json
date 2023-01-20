@@ -22,5 +22,6 @@
   "store/product-list.quantityUnitMultiplierMismatch": "Esse produto é vendido por frações de {unitMultiplier}{measurementUnit}. Por isso, a quantidade inserida foi arredondada para {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "Quantidade do produto",
   "store/product-list.quantityStepper.increaseQuantity": "Aumentar quantidade",
-  "store/product-list.quantityStepper.decreaseQuantity": "Decrementar quantidade"
+  "store/product-list.quantityStepper.decreaseQuantity": "Decrementar quantidade",
+  "store/product-list.removeButton.titleAttribute": "remover"
 }

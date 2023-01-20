@@ -22,5 +22,6 @@
     "store/product-list.quantityUnitMultiplierMismatch": "Produsul este vândut prin fracțiuni de {unitMultiplier}{measurementUnit}. În aceste condiții, cantitatea introdusă a fost rotunjită la {roundedValue}{measurementUnit}.",
     "store/product-list.quantityStepper.label": "Cantitate produs",
     "store/product-list.quantityStepper.increaseQuantity": "Crește cantitatea",
-    "store/product-list.quantityStepper.decreaseQuantity": "Scade cantitatea"
+    "store/product-list.quantityStepper.decreaseQuantity": "Scade cantitatea",
+    "store/product-list.removeButton.titleAttribute": "sterge"
 }

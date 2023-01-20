@@ -22,5 +22,6 @@
     "store/product-list.quantityUnitMultiplierMismatch": "この製品は {unitMultiplier}{measurementUnit} に分けて販売されます。その場合、挿入された数量は {roundedValue}{measurementUnit} に丸められています。",
     "store/product-list.quantityStepper.label": "製品の数量",
     "store/product-list.quantityStepper.increaseQuantity": "数量を増やす",
-    "store/product-list.quantityStepper.decreaseQuantity": "数量を減らす"
+    "store/product-list.quantityStepper.decreaseQuantity": "数量を減らす",
+    "store/product-list.removeButton.titleAttribute": "削除"
 }
