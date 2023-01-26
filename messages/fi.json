@@ -22,5 +22,6 @@
     "store/product-list.quantityUnitMultiplierMismatch": "Tätä tuotetta myydään {unitMultiplier}{measurementUnit} murto-osissa. Tämän vuoksi syötetty määrä on pyöristetty summaan {roundedValue}{measurementUnit}.",
     "store/product-list.quantityStepper.label": "Tuotemäärä",
     "store/product-list.quantityStepper.increaseQuantity": "Lisää määrää",
-    "store/product-list.quantityStepper.decreaseQuantity": "Vähennä määrää"
+    "store/product-list.quantityStepper.decreaseQuantity": "Vähennä määrää",
+    "store/product-list.removeButton.titleAttribute": "poista"
 }

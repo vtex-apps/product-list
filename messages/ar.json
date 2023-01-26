@@ -22,5 +22,6 @@
   "store/product-list.quantityUnitMultiplierMismatch": "يُباع هذا المنتج بأجزاء من {unitMultiplier}{measurementUnit}. بالنظر إلى ذلك، تم تقريب الكمية المدرجة إلى {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "كمية المنتج",
   "store/product-list.quantityStepper.increaseQuantity": "زيادة الكمية",
-  "store/product-list.quantityStepper.decreaseQuantity": "إنقاص الكمية"
+  "store/product-list.quantityStepper.decreaseQuantity": "إنقاص الكمية",
+  "store/product-list.removeButton.titleAttribute": "حذف"
 }

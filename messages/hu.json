@@ -22,5 +22,6 @@
   "store/product-list.quantityUnitMultiplierMismatch": "Ezt a terméket {unitMultiplier}{measurementUnit} kiadásokban értékesítik. Ezért a megadott mennyiség kerekítésre került: {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "Termékmennyiség",
   "store/product-list.quantityStepper.increaseQuantity": "Mennyiség növelése",
-  "store/product-list.quantityStepper.decreaseQuantity": "Mennyiség csökkentése"
+  "store/product-list.quantityStepper.decreaseQuantity": "Mennyiség csökkentése",
+  "store/product-list.removeButton.titleAttribute": "eltávolítás"
 }

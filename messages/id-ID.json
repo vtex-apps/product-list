@@ -22,5 +22,6 @@
   "store/product-list.quantityUnitMultiplierMismatch": "Produk ini dijual berdasarkan pecahan {unitMultiplier}{measurementUnit}. Karenanya, jumlah yang dimasukkan telah dibulatkan ke {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "Jumlah produk",
   "store/product-list.quantityStepper.increaseQuantity": "Naikkan jumlah",
-  "store/product-list.quantityStepper.decreaseQuantity": "Turunkan jumlah"
+  "store/product-list.quantityStepper.decreaseQuantity": "Turunkan jumlah",
+  "store/product-list.removeButton.titleAttribute": "hapus"
 }

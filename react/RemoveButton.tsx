@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { Loading } from 'vtex.render-runtime'
 import { applyModifiers, useCssHandles } from 'vtex.css-handles'
 import { Button } from 'vtex.styleguide'
@@ -29,6 +29,8 @@ function RemoveButton(props: Props) {
   const { item, loading, onRemove } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
 
+  const intl = useIntl()
+
   if (loading) {
     return <Loading />
   }
@@ -52,7 +54,9 @@ function RemoveButton(props: Props) {
         id={`remove-button-${item.id}`}
         style={{ color: '#727273' }}
         className={`${handles.removeButton} pointer bg-transparent bn pa2`}
-        title="remove"
+        title={intl.formatMessage({
+          id: 'store/product-list.removeButton.titleAttribute',
+        })}
         onClick={onRemove}
       >
         <IconDelete />

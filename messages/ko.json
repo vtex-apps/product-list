@@ -22,5 +22,6 @@
     "store/product-list.quantityUnitMultiplierMismatch": "이 제품은 {unitMultiplier}{measurementUnit}의 일부로 판매됩니다. 따라서 삽입된 수량은 {roundedValue}{measurementUnit}로 반올림되었습니다.",
     "store/product-list.quantityStepper.label": "제품 수량",
     "store/product-list.quantityStepper.increaseQuantity": "수량 올리기",
-    "store/product-list.quantityStepper.decreaseQuantity": "수량 내리기"
+    "store/product-list.quantityStepper.decreaseQuantity": "수량 내리기",
+    "store/product-list.removeButton.titleAttribute": "제거"
 }

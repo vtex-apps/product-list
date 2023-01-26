@@ -22,5 +22,6 @@
     "store/product-list.quantityUnitMultiplierMismatch": "Dette produkt sælges i brøkdele af {unitMultiplier}{measurementUnit}. I betragtning af at den indsatte mængde er afrundet til {roundedValue}{measurementUnit}.",
     "store/product-list.quantityStepper.label": "Produktantal",
     "store/product-list.quantityStepper.increaseQuantity": "Øg antal",
-    "store/product-list.quantityStepper.decreaseQuantity": "Sænk antal"
+    "store/product-list.quantityStepper.decreaseQuantity": "Sænk antal",
+    "store/product-list.removeButton.titleAttribute": "fjern"
 }

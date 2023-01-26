@@ -22,5 +22,6 @@
   "store/product-list.quantityUnitMultiplierMismatch": "This product is sold by fractions of {unitMultiplier}{measurementUnit}. Given that, the inserted quantity has been rounded to {roundedValue}{measurementUnit}.",
   "store/product-list.quantityStepper.label": "Product quantity",
   "store/product-list.quantityStepper.increaseQuantity": "Increase quantity",
-  "store/product-list.quantityStepper.decreaseQuantity": "Decrease quantity"
+  "store/product-list.quantityStepper.decreaseQuantity": "Decrease quantity",
+  "store/product-list.removeButton.titleAttribute": "remove"
 }
