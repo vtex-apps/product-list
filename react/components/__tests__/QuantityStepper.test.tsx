@@ -135,7 +135,7 @@ describe('<QuantityStepper />', () => {
     expect(input).toHaveValue('1.5')
     expect(onChange).toHaveBeenLastCalledWith(3)
     expect(showToast).toHaveBeenLastCalledWith(
-      'This product is sold by fractions of 0.5un. Given that, the inserted quantity has been rounded to 1.5un.'
+      'This product is sold by fractions of 0.5un. That is why the entered quantity has been rounded to 1.5un.'
     )
   })
 
