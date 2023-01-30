@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Bulgarian, Catalan, Czech, German, Greek, French, Italian, Dutch, Polish, Russian, Slovakian, Swedish, Thai and Ukrainian translations.
+
+### Fixed 
+
+- Danish, English, Finnish, Korean, Indonesian and Romanian translation.
+- Crowdin configuration file.
+
 ## [0.36.0] - 2023-01-02
 
 ### Added
