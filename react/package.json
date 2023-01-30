@@ -33,6 +33,7 @@
     "vtex.on-view": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.on-view@1.0.0/public/@types/vtex.on-view",
     "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.9.0/public/@types/vtex.order-manager",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.7/public/@types/vtex.render-runtime",
+    "vtex.search-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-graphql@0.50.0/public/@types/vtex.search-graphql",
     "vtex.store-icons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.18.0/public/@types/vtex.store-icons",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.1/public/@types/vtex.styleguide"
   },

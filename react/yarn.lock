@@ -6012,6 +6012,10 @@ vtex-tachyons@^3.2.0:
   version "8.126.7"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.7/public/@types/vtex.render-runtime#bf00fb2ef41c5158c566c12dc6dd9dd0d5c2a9e9"
 
+"vtex.search-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-graphql@0.50.0/public/@types/vtex.search-graphql":
+  version "0.50.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-graphql@0.50.0/public/@types/vtex.search-graphql#e29e418461f338165a1f4ddaf2ed0fd2e7246420"
+
 "vtex.store-icons@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.18.0/public/@types/vtex.store-icons":
   version "0.18.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.18.0/public/@types/vtex.store-icons#0ee94d549aa283ce3a13ab987c13eac4fdfd1bba"
