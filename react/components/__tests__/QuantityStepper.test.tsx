@@ -40,7 +40,7 @@ describe('<QuantityStepper />', () => {
     expect(input).toHaveValue('2')
     expect(showToast).toHaveBeenCalledTimes(1)
     expect(showToast).toHaveBeenCalledWith(
-      'This product is sold by fractions of 1un. Given that, the inserted quantity has been rounded to 2un.'
+      'This product is sold by fractions of 1un. That is why the entered quantity has been rounded to 2un.'
     )
   })
 
