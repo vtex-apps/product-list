@@ -5,9 +5,10 @@
   },
   "dependencies": {
     "@vtex/css-handles": "^1.0.0",
+    "apollo-client": "^2.6.8",
     "classnames": "^2.2.6",
     "react": "^16.8.3",
-    "react-apollo": "^2.5.8",
+    "react-apollo": "^3.1.3",
     "react-dom": "^16.8.3",
     "react-intl": "3",
     "react-sizeme": "^2.6.7"
@@ -33,6 +34,7 @@
     "vtex.on-view": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.on-view@1.0.0/public/@types/vtex.on-view",
     "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.9.0/public/@types/vtex.order-manager",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.7/public/@types/vtex.render-runtime",
+    "vtex.search-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-graphql@0.50.0/public/@types/vtex.search-graphql",
     "vtex.store-icons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.18.0/public/@types/vtex.store-icons",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.1/public/@types/vtex.styleguide"
   },
