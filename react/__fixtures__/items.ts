@@ -24,7 +24,6 @@ export const items: Array<Item & { index: number }> = [
     bundleItems: [],
     offerings: [],
     attachments: [],
-    isGift: false,
   },
   {
     index: 1,
@@ -49,7 +48,6 @@ export const items: Array<Item & { index: number }> = [
     bundleItems: [],
     offerings: [],
     attachments: [],
-    isGift: false,
   },
   {
     index: 2,
@@ -74,6 +72,5 @@ export const items: Array<Item & { index: number }> = [
     bundleItems: [],
     offerings: [],
     attachments: [],
-    isGift: false,
   },
 ]
