@@ -174,7 +174,7 @@ const ProductList = memo<Props>(function ProductList(props) {
       {unavailableItems.map((item) => {
         return (
           <ItemContextWrapper
-            key={`${item.uniqueId}-${item.sellingPrice}`}
+            key={`${item.uniqueId}-${item.sellingPrice}-${item.index}`}
             item={item}
             itemIndex={item.index}
             shouldAllowManualPrice={shouldAllowManualPrice}
@@ -201,7 +201,7 @@ const ProductList = memo<Props>(function ProductList(props) {
       {availableItems.map((item) => {
         return (
           <ItemContextWrapper
-            key={`${item.uniqueId}-${item.sellingPrice}`}
+            key={`${item.uniqueId}-${item.sellingPrice}-${item.index}`}
             item={item}
             itemIndex={item.index}
             shouldAllowManualPrice={shouldAllowManualPrice}
