@@ -140,7 +140,7 @@ describe('<QuantitySelector />', () => {
 
     expect(showToast).toHaveBeenCalledTimes(1)
     expect(showToast).toHaveBeenLastCalledWith(
-      'This product is sold by fractions of 0.5kg. Given that, the inserted quantity has been rounded to 5.5kg.'
+      'This product is sold by fractions of 0.5kg. That is why the entered quantity has been rounded to 5.5kg.'
     )
 
     fireEvent.change(input, { target: { value: '6,5' } })
