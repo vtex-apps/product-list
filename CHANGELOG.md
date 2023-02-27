@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Duplicated keys when product is splitted in minicart
 
+## [0.37.0] - 2023-02-27
+
+### Added
+
+- Bulgarian, Catalan, Czech, German, Greek, French, Italian, Dutch, Polish, Russian, Slovakian, Swedish, Thai and Ukrainian translations.
+
+### Fixed 
+
+- Danish, English, Finnish, Korean, Indonesian and Romanian translation.
+- Crowdin configuration file.
+
 ## [0.36.0] - 2023-01-02
 
 ### Added
