@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.37.1] - 2023-02-27
+
 ### Fixed
 - Duplicated keys when product is splitted in minicart
 
