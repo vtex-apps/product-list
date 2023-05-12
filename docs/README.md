@@ -9,7 +9,7 @@
 
 The Product List component displays all items in the user's cart and informs users when items are unavailable.
 
-> ⚠️ Currently, the Product List only works with [Minicart v2](https://developers.vtex.com/docs/guides/vtex-minicart/).
+> ⚠️ Currently, the Product List only works with [Minicart v2](https://developers.vtex.com/docs/apps/vtex.minicart/).
 
 ![product-list image](https://cdn.jsdelivr.net/gh/vtexdocs/dev-portal-content@main/images/vtex-product-list-0.png)
 
@@ -40,7 +40,10 @@ Currently, the `product-list` default implementation is the following:
 ```json
 {
   "product-list": {
-    "blocks": ["product-list-content-desktop", "product-list-content-mobile"]
+    "blocks": [
+        "product-list-content-desktop", 
+        "product-list-content-mobile"
+    ]
   },
   "product-list-content-desktop": {
     "children": ["flex-layout.row#list-row.desktop"]
@@ -243,11 +246,11 @@ Currently, the `product-list` default implementation is the following:
 
 The default implementation means that whenever you declare the `product-list` block in your store, you are actually telling your theme to render the above `json` behind the scenes.
 
-In order to customize the `product-list` configuration, just copy the code above, paste it, and change it as you wish.
+In order to customize the `product-list` configuration, copy the code above, paste it, and change it as you wish.
 
 | Block name                     | Description                                                                                                                                                                                                                                                                                            |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `product-list`                 | ![https://img.shields.io/badge/-Mandatory-red](https://cdn.jsdelivr.net/gh/vtexdocs/dev-portal-content@main/images/vtex-product-list-1.png) Top level block that must be declared in the `minicart-product-list` block to render a default detailed list with all products added to the shopping cart. |
+| `product-list`                 | ![https://img.shields.io/badge/-Mandatory-red](https://img.shields.io/badge/-Mandatory-red) Top level block that must be declared in the `minicart-product-list` block to render a default detailed list with all products added to the shopping cart. |
 | `product-list-content-desktop` | Creates the product list layout for desktop devices.                                                                                                                                                                                                                                                   |
 | `product-list-content-mobile`  | Creates the product list layout for mobile devices.                                                                                                                                                                                                                                                    |
 | `message`                      | Renders a message about the product availability.                                                                                                                                                                                                                                                      |
