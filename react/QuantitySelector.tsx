@@ -20,6 +20,8 @@ export type QuantitySelectorStepType = 'unitMultiplier' | 'singleUnit'
 interface Props {
   mode?: QuantitySelectorMode
   quantitySelectorStep?: QuantitySelectorStepType
+  IncreaseIcon?: React.FC
+  DecreaseIcon?: React.FC
 }
 
 const enabledSelectorAvailability = [AVAILABLE, CANNOT_BE_DELIVERED]
@@ -31,6 +33,8 @@ function shouldDisableSelector(availability: string | null | undefined) {
 const QuantitySelector: VFC<Props> = ({
   mode = 'default',
   quantitySelectorStep = 'unitMultiplier',
+  IncreaseIcon,
+  DecreaseIcon,
 }) => {
   const { item, loading, onQuantityChange } = useItemContext()
   const handles = useCssHandles(CSS_HANDLES)
@@ -64,6 +68,8 @@ const QuantitySelector: VFC<Props> = ({
           unitMultiplier={unitMultiplier}
           disabled={shouldDisableSelector(item.availability)}
           measurementUnit={item.measurementUnit ?? undefined}
+          IncreaseIcon={IncreaseIcon}
+          DecreaseIcon={DecreaseIcon}
         />
       </div>
     )

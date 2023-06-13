@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl'
 import classnames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
+import type { PropsWithChildren } from 'react-test-renderer/node_modules/@types/react'
 
 import VisuallyHidden from './VisuallyHidden'
-import IncreaseIcon from './IncreaseIcon'
-import DecreaseIcon from './DecreaseIcon'
+import DefaultIncreaseIcon from './IncreaseIcon'
+import DefaultDecreaseIcon from './DecreaseIcon'
 import { parseDisplayValue } from './utils'
 import useQuantitySelectorState from './useQuantitySelectorState'
 import styles from './QuantityStepper.css'
@@ -35,6 +36,8 @@ interface Props {
   disabled?: boolean
   unitMultiplier?: number
   measurementUnit?: string
+  IncreaseIcon?: React.FC
+  DecreaseIcon?: React.FC
 }
 
 const QuantityStepper: VFC<Props> = ({
@@ -45,6 +48,8 @@ const QuantityStepper: VFC<Props> = ({
   disabled,
   unitMultiplier = 1,
   measurementUnit = 'un',
+  IncreaseIcon = DefaultIncreaseIcon,
+  DecreaseIcon = DefaultDecreaseIcon,
 }) => {
   const intl = useIntl()
 
