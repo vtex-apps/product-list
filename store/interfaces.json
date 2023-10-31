@@ -73,6 +73,17 @@
   "unit-price": {
     "component": "UnitPrice"
   },
+  "chapur-price": {
+    "component": "ChapurPrice",
+    "preview": {
+      "type": "box",
+      "height": 35,
+      "width": 90,
+      "options": {
+        "padding": 0
+      }
+    }
+  },
   "price": {
     "component": "Price",
     "preview": {
