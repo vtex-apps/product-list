@@ -36,7 +36,7 @@ const ChapurPrice: React.FC<PriceProps> = ({
   useEffect( () => {
     //@ts-ignore
     if(item?.priceTags && item?.priceTags.length > 0) {
-        const multiplier = calculateTaxMultiplier(item.priceTags)
+        const multiplier = calculateTaxMultiplier(item)
         setTax(multiplier)
     }
   }, [item])
@@ -57,8 +57,8 @@ const ChapurPrice: React.FC<PriceProps> = ({
         >
           <FormattedCurrency
             value={
-              (item.listPrice * (item.unitMultiplier ?? 1) * item.quantity * tax) /
-              100
+              ((item.listPrice * (item.unitMultiplier ?? 1) * item.quantity ) /
+              100) + tax
             }
           />
         </div>
@@ -73,7 +73,7 @@ const ChapurPrice: React.FC<PriceProps> = ({
         <FormattedPrice
           value={
             item.sellingPrice != null
-              ? (item.sellingPrice * item.quantity * tax) / 100
+              ? ((item.sellingPrice * item.quantity) / 100) + tax
               : item.sellingPrice
           }
         />
