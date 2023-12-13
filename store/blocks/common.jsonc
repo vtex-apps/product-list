@@ -20,7 +20,7 @@
   "flex-layout.row#product-name": {
     // Using app prefix here because it might conflict with
     // vtex.store-components:product-name
-    "children": ["vtex.product-list:product-name"]
+    "children": ["auchan.product-list:product-name"]
   },
   "flex-layout.row#product-variations": {
     "children": ["product-variations"],

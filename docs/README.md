@@ -19,7 +19,7 @@ The Product List component displays all items in the user's cart and informs use
 
 ```json
   "dependencies": {
-    "vtex.product-list": "0.x"
+    "auchan.product-list": "0.x"
   }
 ```
 
