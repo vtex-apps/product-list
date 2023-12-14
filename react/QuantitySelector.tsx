@@ -111,7 +111,7 @@ const QuantitySelector: VFC<Props> = ({
           unitMultiplier={unitMultiplier}
           disabled={shouldDisableSelector(availability)}
           measurementUnit={item.measurementUnit ?? undefined}
-          disabledAddUnitBtn={totalUnits === maxValue}
+          disabledAddUnitBtn={totalUnits >= maxValue}
         />
       </div>
     )
