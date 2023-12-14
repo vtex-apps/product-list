@@ -1,5 +1,5 @@
 import type { VFC } from 'react'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl'
 import classnames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
@@ -35,6 +35,7 @@ interface Props {
   disabled?: boolean
   unitMultiplier?: number
   measurementUnit?: string
+  disabledAddUnitBtn?: boolean
 }
 
 const QuantityStepper: VFC<Props> = ({
@@ -45,6 +46,7 @@ const QuantityStepper: VFC<Props> = ({
   disabled,
   unitMultiplier = 1,
   measurementUnit = 'un',
+  disabledAddUnitBtn = false,
 }) => {
   const intl = useIntl()
 
@@ -130,7 +132,7 @@ const QuantityStepper: VFC<Props> = ({
     if (focused) {
       return
     }
-
+    
     setCurrentValue(
       intl.formatNumber(
         parseDisplayValue({
@@ -205,7 +207,7 @@ const QuantityStepper: VFC<Props> = ({
           }
         )}
         aria-label={intl.formatMessage(messages.increaseQuantity)}
-        disabled={disabled}
+        disabled={disabled || disabledAddUnitBtn}
         onClick={handleIncrease}
       >
         <IncreaseIcon />
