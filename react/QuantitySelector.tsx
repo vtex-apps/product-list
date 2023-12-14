@@ -32,7 +32,7 @@ function shouldDisableSelector(availability: string | null | undefined) {
 const { useOrderForm } = OrderForm
 
 const VIRTUAL_MAX_VALUE = 36
-const DEFAULT_GIFT_TABLE_ID = 'default-gift-table=id'
+const DEFAULT_GIFT_TABLE_ID = 'default-gift-table-id'
 
 const QuantitySelector: VFC<Props> = ({
   mode = 'default',
