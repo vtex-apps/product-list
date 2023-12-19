@@ -2,8 +2,12 @@ import type { FC } from 'react'
 import React, { createContext, useContext } from 'react'
 import type { Item } from 'vtex.checkout-graphql'
 
+interface ItemWithMaxValue extends Item {
+  maxValue?: number
+}
+
 interface Context {
-  item: Item
+  item: ItemWithMaxValue
   itemIndex: number
   loading: boolean
   shouldAllowManualPrice: boolean

@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react'
-import React, { useMemo, memo } from 'react'
+import React, { useMemo, memo, useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import type { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
+import { OrderForm } from 'vtex.order-manager'
 
 import { ItemContextProvider } from './ItemContext'
-import { AVAILABLE } from './constants/Availability'
+import { AVAILABLE, WITHOUT_STOCK } from './constants/Availability'
 import { CALL_CENTER_OPERATOR } from './constants/User'
 import LazyRender from './LazyRender'
 
@@ -35,6 +36,7 @@ interface Props {
 
 interface ItemWithIndex extends Item {
   index: number
+  maxValue?: number
 }
 
 const CSS_HANDLES = [
@@ -43,6 +45,10 @@ const CSS_HANDLES = [
   'productListAvailableItemsMessage',
 ] as const
 
+const { useOrderForm } = OrderForm
+
+const DEFAULT_GIFT_TABLE_ID = 'default-gift-table-id'
+const VIRTUAL_MAX_VALUE = 36
 interface ItemWrapperProps
   extends Pick<Props, 'onQuantityChange' | 'onRemove'> {
   item: ItemWithIndex
@@ -138,13 +144,44 @@ const ProductList = memo<Props>(function ProductList(props) {
     allowManualPrice = false,
     children,
   } = props
+  
+  const [customItems, setCustomItems] = useState(items)
+
+  const orderForm = useOrderForm()
+  
+  const mdr = orderForm?.orderForm?.customData?.customApps?.find((app: {id: string}) =>  app?.id === 'mdr')
+
+  useEffect(() => {
+    const giftTableId = mdr?.fields?.giftTableId ?? DEFAULT_GIFT_TABLE_ID
+
+    if(!items[0].refId || !orderForm?.orderForm?.id) return
+
+    const getIsVirtual = async () => {
+      const res = await fetch(`/chapur/v1/items-are-virtual/${giftTableId}/${orderForm?.orderForm?.id}`)
+      const data = await res.json()
+    
+      setCustomItems(items.map((item) => {
+
+        const foundItem = data.find((x: { skuId: string }) => x.skuId === item.id)
+                
+        return {
+          ...item,
+          availability: foundItem.physicalInventory <= 0 ? WITHOUT_STOCK : item.availability,
+          maxValue: foundItem.virtual ? VIRTUAL_MAX_VALUE : foundItem.physicalInventory
+        }
+      }))
+    } 
+
+    getIsVirtual()
+  }, [items, mdr])
+
 
   const shouldAllowManualPrice =
     allowManualPrice && userType === CALL_CENTER_OPERATOR
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  const [availableItems, unavailableItems] = items
+  const [availableItems, unavailableItems] = customItems
     .map((item, index) => ({ ...item, index }))
     .reduce<ItemWithIndex[][]>(
       (acc, item) => {
