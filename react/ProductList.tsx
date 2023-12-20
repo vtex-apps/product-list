@@ -49,6 +49,43 @@ const { useOrderForm } = OrderForm
 
 const DEFAULT_GIFT_TABLE_ID = 'default-gift-table-id'
 const VIRTUAL_MAX_VALUE = 36
+export const SKUS_CERTIFIEDS = [
+  "1572412",
+  "1572412002",
+  "1572412003",
+  "1572412004",
+  "1572412005",
+  "1572412006",
+  "1572412007",
+  "1572412008",
+  "1572412009",
+  "1572412010",
+  "1572412011",
+  "1572412012",
+  "1572412013",
+  "1572412014",
+  "1572412015",
+  "1572412016",
+  "1572412017",
+  "1572412018",
+  "1572412019",
+  "1572412020",
+  "1572412021",
+  "1572412022",
+  "1572412023",
+  "1572412024",
+  "1572412025",
+  "1572412026",
+  "1572412027",
+  "1572412028",
+  "1572412029",
+  "1572412030",
+  "1572412031",
+  "1572412032",
+  "1572412033",
+  "1572412034"
+]
+
 interface ItemWrapperProps
   extends Pick<Props, 'onQuantityChange' | 'onRemove'> {
   item: ItemWithIndex
@@ -159,17 +196,20 @@ const ProductList = memo<Props>(function ProductList(props) {
     const getIsVirtual = async () => {
       const res = await fetch(`/chapur/v1/items-are-virtual/${giftTableId}/${orderForm?.orderForm?.id}`)
       const data = await res.json()
-    
-      setCustomItems(items.map((item) => {
+      const newItems = items.map((item) => {
 
         const foundItem = data.find((x: { skuId: string }) => x.skuId === item.id)
-                
+        
         return {
           ...item,
-          availability: foundItem.physicalInventory <= 0 ? WITHOUT_STOCK : item.availability,
-          maxValue: foundItem.virtual ? VIRTUAL_MAX_VALUE : foundItem.physicalInventory
+          availability: foundItem.virtual || SKUS_CERTIFIEDS.find((certified) => certified === item.id) ? AVAILABLE : foundItem.physicalInventory <= 0 ? WITHOUT_STOCK : item.availability,
+          maxValue: foundItem.virtual || SKUS_CERTIFIEDS.find((certified) => certified === item.id) ? VIRTUAL_MAX_VALUE : foundItem.physicalInventory
         }
-      }))
+      })
+      
+      if(JSON.stringify(newItems) === JSON.stringify(customItems)) return 
+      console.log("paso")
+      setCustomItems(newItems)
     } 
 
     getIsVirtual()
