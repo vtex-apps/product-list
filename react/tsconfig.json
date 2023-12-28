@@ -3,7 +3,11 @@
     "alwaysStrict": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es2017", "dom", "es2018.promise"],
+    "lib": [
+      "es2017",
+      "dom",
+      "es2018.promise"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -18,8 +22,14 @@
     "strictPropertyInitialization": true,
     "target": "es2017"
   },
-  "exclude": ["node_modules"],
-  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"],
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./typings/*.d.ts",
+    "./**/*.tsx",
+    "./**/*.ts"
+  ],
   "typeAcquisition": {
     "enable": false
   }
