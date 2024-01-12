@@ -1903,6 +1903,14 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+"auchan.cart-bags-manager@http://auchan.vtexassets.com/_v/public/typings/v1/auchan.cart-bags-manager@0.0.1/public/_types/react":
+  version "0.0.0"
+  resolved "http://auchan.vtexassets.com/_v/public/typings/v1/auchan.cart-bags-manager@0.0.1/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"auchan.product-list@http://auchan.vtexassets.com/_v/public/typings/v1/auchan.product-list@0.0.1/public/@types/auchan.product-list":
+  version "0.0.1"
+  resolved "http://auchan.vtexassets.com/_v/public/typings/v1/auchan.product-list@0.0.1/public/@types/auchan.product-list#0d47b9c3e70e042f406af259acc33f6f269a08c3"
+
 autoprefixer@^9.6.1:
   version "9.8.6"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.8.6.tgz#3b73594ca1bf9266320c5acf1588d74dea74210f"

@@ -23,6 +23,8 @@
     "@vtex/styleguide": "^8.70.4",
     "@vtex/test-tools": "^3.0.0",
     "apollo-client": "^2.5.1",
+    "auchan.cart-bags-manager": "http://auchan.vtexassets.com/_v/public/typings/v1/auchan.cart-bags-manager@0.0.1/public/_types/react",
+    "auchan.product-list": "http://auchan.vtexassets.com/_v/public/typings/v1/auchan.product-list@0.0.1/public/@types/auchan.product-list",
     "typescript": "3.9.7",
     "vtex.checkout-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.66.3/public/@types/vtex.checkout-graphql",
     "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles",

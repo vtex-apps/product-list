@@ -3,6 +3,7 @@ import React, { useMemo, memo, useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import type { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
+import { Spinner } from 'vtex.styleguide'
 
 import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
@@ -148,8 +149,12 @@ const ProductList = memo<Props>(function ProductList(props) {
   const [packagesSkuIds, setPackagesSkuIds] = useState<string[]>([])
   const [sgrSkuIds, setSgrSkuIds] = useState<string[]>([])
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     let isSubscribed = true
+
+    setLoading(true)
 
     fetchWithRetry('/_v/private/api/cart-bags-manager/app-settings', 3).then(
       (res: PackagesSkuIds) => {
@@ -168,6 +173,7 @@ const ProductList = memo<Props>(function ProductList(props) {
             })
 
             setSgrSkuIds(allSkuIds)
+            setLoading(false)
           } catch (error) {
             console.error('Error in packages feature.', error)
           }
@@ -198,6 +204,10 @@ const ProductList = memo<Props>(function ProductList(props) {
       },
       [[], []]
     )
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
