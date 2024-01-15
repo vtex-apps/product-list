@@ -149,37 +149,34 @@ const ProductList = memo<Props>(function ProductList(props) {
   const [packagesSkuIds, setPackagesSkuIds] = useState<string[]>([])
   const [sgrSkuIds, setSgrSkuIds] = useState<string[]>([])
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let isSubscribed = true
 
-    setLoading(true)
+    fetchWithRetry('/_v/private/api/cart-bags-manager/app-settings', 3, () => {
+      setLoading(false)
+    }).then((res: PackagesSkuIds) => {
+      if (res && isSubscribed) {
+        try {
+          const { bagsSettings, sgrSettings } = (res && res.data) ?? {}
 
-    fetchWithRetry('/_v/private/api/cart-bags-manager/app-settings', 3).then(
-      (res: PackagesSkuIds) => {
-        if (res && isSubscribed) {
-          try {
-            const { bagsSettings, sgrSettings } = (res && res.data) ?? {}
+          setPackagesSkuIds(Object.values(bagsSettings))
 
-            setPackagesSkuIds(Object.values(bagsSettings))
+          const allSkuIds: string[] = []
 
-            const allSkuIds: string[] = []
+          Object.values(sgrSettings).forEach((sgrType) => {
+            if (sgrType && sgrType.skuIds) {
+              allSkuIds.push(...sgrType.skuIds)
+            }
+          })
 
-            Object.values(sgrSettings).forEach((sgrType) => {
-              if (sgrType && sgrType.skuIds) {
-                allSkuIds.push(...sgrType.skuIds)
-              }
-            })
-
-            setSgrSkuIds(allSkuIds)
-            setLoading(false)
-          } catch (error) {
-            console.error('Error in packages feature.', error)
-          }
+          setSgrSkuIds(allSkuIds)
+        } catch (error) {
+          console.error('Error in packages feature.', error)
         }
       }
-    )
+    })
 
     return () => {
       isSubscribed = false
