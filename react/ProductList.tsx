@@ -3,6 +3,7 @@ import React, { useMemo, memo, useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import type { Item } from 'vtex.checkout-graphql'
 import { useCssHandles } from 'vtex.css-handles'
+import { Spinner } from 'vtex.styleguide'
 
 import { ItemContextProvider } from './ItemContext'
 import { AVAILABLE } from './constants/Availability'
@@ -148,32 +149,34 @@ const ProductList = memo<Props>(function ProductList(props) {
   const [packagesSkuIds, setPackagesSkuIds] = useState<string[]>([])
   const [sgrSkuIds, setSgrSkuIds] = useState<string[]>([])
 
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     let isSubscribed = true
 
-    fetchWithRetry('/_v/private/api/cart-bags-manager/app-settings', 3).then(
-      (res: PackagesSkuIds) => {
-        if (res && isSubscribed) {
-          try {
-            const { bagsSettings, sgrSettings } = (res && res.data) ?? {}
+    fetchWithRetry('/_v/private/api/cart-bags-manager/app-settings', 3, () => {
+      setLoading(false)
+    }).then((res: PackagesSkuIds) => {
+      if (res && isSubscribed) {
+        try {
+          const { bagsSettings, sgrSettings } = (res && res.data) ?? {}
 
-            setPackagesSkuIds(Object.values(bagsSettings))
+          setPackagesSkuIds(Object.values(bagsSettings))
 
-            const allSkuIds: string[] = []
+          const allSkuIds: string[] = []
 
-            Object.values(sgrSettings).forEach((sgrType) => {
-              if (sgrType && sgrType.skuIds) {
-                allSkuIds.push(...sgrType.skuIds)
-              }
-            })
+          Object.values(sgrSettings).forEach((sgrType) => {
+            if (sgrType && sgrType.skuIds) {
+              allSkuIds.push(...sgrType.skuIds)
+            }
+          })
 
-            setSgrSkuIds(allSkuIds)
-          } catch (error) {
-            console.error('Error in packages feature.', error)
-          }
+          setSgrSkuIds(allSkuIds)
+        } catch (error) {
+          console.error('Error in packages feature.', error)
         }
       }
-    )
+    })
 
     return () => {
       isSubscribed = false
@@ -198,6 +201,10 @@ const ProductList = memo<Props>(function ProductList(props) {
       },
       [[], []]
     )
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     /* Replacing the outer div by a Fragment may break the layout. See PR #39. */
