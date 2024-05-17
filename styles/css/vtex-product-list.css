@@ -1,0 +1,16 @@
+.maxQuantity {
+    position: absolute;
+    bottom: -4px;
+    display: flex;
+    left: 0;
+    background: #fff;
+}
+
+.maxQuantityTitle {
+    font-size: 0.75rem;
+}
+
+.maxQuantityClose {
+    border: none;
+    background: transparent
+}
