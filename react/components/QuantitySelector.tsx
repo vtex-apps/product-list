@@ -155,7 +155,14 @@ const QuantitySelector: FC<Props> = ({
   }
 
   const handleInputBlur = () => {
-    setInputFocused(false)
+    setInputFocused(false);
+
+    const proceedButton = document.getElementById('proceed-to-checkout') as HTMLButtonElement;
+    if (proceedButton) {
+      proceedButton.disabled = false;
+      proceedButton.style.backgroundColor = '';
+      proceedButton.style.cursor = 'pointer';
+    }
 
     if (curDisplayValue === '') {
       setDisplayValue(
@@ -183,7 +190,14 @@ const QuantitySelector: FC<Props> = ({
   }
 
   const handleInputFocus = () => {
-    setInputFocused(true)
+    setInputFocused(true);
+
+    const proceedButton = document.getElementById('proceed-to-checkout') as HTMLButtonElement;
+    if (proceedButton) {
+      proceedButton.disabled = true;
+      proceedButton.style.backgroundColor = 'gray';
+      proceedButton.style.cursor = 'not-allowed';
+    }
   }
 
   useEffect(() => {
@@ -232,6 +246,8 @@ const QuantitySelector: FC<Props> = ({
             size="small"
             value={normalizedValue}
             onChange={handleDropdownChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
             placeholder=" "
             disabled={disabled}
           />
@@ -243,6 +259,8 @@ const QuantitySelector: FC<Props> = ({
             options={dropdownOptions}
             value={normalizedValue}
             onChange={handleDropdownChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
             placeholder=" "
             disabled={disabled}
           />
