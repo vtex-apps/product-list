@@ -269,7 +269,7 @@ In order to customize the `product-list` configuration, copy the code above, pas
 
 | Prop name | Type   | Description                                                                                                                                                                         | Default value |
 | --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `splitItem`  | `boolean` | Determine whether products with attachments should be split and treated as individual items (`true`) or not (`false`) when increasing the quantity in the minicart | `false`        |
+| `splitItem`  | `boolean` | Determines whether products with attachments should be split and treated as individual items (`true`) or as a single item (`false`) when their quantity is increased in the minicart. | `false`        |
 
 
 ### `product-list` props
