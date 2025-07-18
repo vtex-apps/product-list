@@ -16,7 +16,7 @@ interface ItemContextProviderProps {
   value: Context
 }
 
-const ItemContext = createContext<Context | undefined>(undefined)
+export const ItemContext = createContext<Context | undefined>(undefined)
 
 export const ItemContextProvider: FC<ItemContextProviderProps> = ({
   value,
@@ -33,4 +33,4 @@ export const useItemContext = () => {
   return context
 }
 
-export default { useItemContext }
+export default { useItemContext, ItemContextProvider, ItemContext }
