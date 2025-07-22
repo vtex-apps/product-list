@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Added null to condition in Price.tsx so that if product list price is 0, react will render null instead of a duplicative 0 along with 'free'.
+
 ### Changed
 
 - Update GitHub actions/cache to v4
