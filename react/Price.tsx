@@ -37,7 +37,7 @@ const Price: React.FC<PriceProps> = ({
         handles.productPriceContainer
       } ${parseTextAlign(textAlign)}`}
     >
-      {item.listPrice && item.listPrice !== item.sellingPrice && showListPrice && (
+      {item.listPrice && item.listPrice !== item.sellingPrice && showListPrice ? (
         <div
           id={`list-price-${item.id}`}
           className={`${handles.productPriceCurrency}  ${applyModifiers(
@@ -52,7 +52,7 @@ const Price: React.FC<PriceProps> = ({
             }
           />
         </div>
-      )}
+      ) : null}
       <div
         id={`price-${item.id}`}
         className={`${handles.productPrice} ${applyModifiers(
