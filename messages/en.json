@@ -11,7 +11,7 @@
   "store/product-list.delete-button.default-label": "Remove Product",
   "store/product-list.priceChanged": "Changed",
   "store/product-list.priceOptions": "Price options",
-  "store/product-list.changePrice": "Change Price",
+  "store/product-list.changePrice": "Edit Price",
   "store/product-list.revertToOriginal": "Revert to Original",
   "store/product-list.originalPrice": "Original price",
   "store/product-list.changeTo": "Change to",
