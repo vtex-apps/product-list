@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Update GitHub actions/cache to v4
 
+## [0.37.4] - 2025-01-02
+### Added
+- Export ItemContextProvider and ItemContext in react/ItemContext file
+
 ## [0.37.3] - 2024-09-05
 ### Fixed
 - Updated README.md file
